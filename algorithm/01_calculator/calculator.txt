@@ -1,0 +1,56 @@
+calculator  -  19.11.2021
+
+******************************************
+
+******************************************
+
+1   FONCTIONS_UTILISEES
+2   VARIABLES
+3     firstNumber EST_DU_TYPE NOMBRE
+4     secondNumber EST_DU_TYPE NOMBRE
+5     calculateAnOtherNumber EST_DU_TYPE NOMBRE
+6     resultOperation EST_DU_TYPE NOMBRE
+7     signOperation EST_DU_TYPE CHAINE
+8     whichOperation EST_DU_TYPE CHAINE
+9   DEBUT_ALGORITHME
+10    AFFICHER "Welcome to the calculate!"
+11    calculateAnOtherNumber PREND_LA_VALEUR 1
+12    TANT_QUE (calculateAnOtherNumber) FAIRE
+13      DEBUT_TANT_QUE
+14      AFFICHER "Enter the first number for the operation"
+15      LIRE firstNumber
+16      AFFICHER "Enter the second number"
+17      LIRE secondNumber
+18      AFFICHER "What operation do you want to do ?"
+19      AFFICHER " + : addition ; - : substraction ; * : multiplication ; / : division"
+20      LIRE whichOperation
+21      SI (whichOperation == "+") ALORS
+22        DEBUT_SI
+23        resultOperation PREND_LA_VALEUR firstNumber + secondNumber
+24        signOperation PREND_LA_VALEUR "+"
+25        FIN_SI
+26      SI (whichOperation == "-") ALORS
+27        DEBUT_SI
+28        resultOperation PREND_LA_VALEUR firstNumber - secondNumber
+29        signOperation PREND_LA_VALEUR "-"
+30        FIN_SI
+31      SI (whichOperation == "*") ALORS
+32        DEBUT_SI
+33        resultOperation PREND_LA_VALEUR firstNumber * secondNumber
+34        signOperation PREND_LA_VALEUR "*"
+35        FIN_SI
+36      SI (whichOperation == "/") ALORS
+37        DEBUT_SI
+38        resultOperation PREND_LA_VALEUR firstNumber / secondNumber
+39        signOperation PREND_LA_VALEUR "/"
+40        FIN_SI
+41      AFFICHER firstNumber
+42      AFFICHER signOperation
+43      AFFICHER secondNumber
+44      AFFICHER "="
+45      AFFICHER resultOperation
+46      AFFICHER "Do you want make an other calcul ? (1 = yes; 0 = exit)"
+47      LIRE calculateAnOtherNumber
+48      FIN_TANT_QUE
+49    AFFICHER "Bye bye :) "
+50  FIN_ALGORITHME
