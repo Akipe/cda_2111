@@ -1,0 +1,92 @@
+buffet  -  22.11.2021
+
+******************************************
+
+******************************************
+
+1   FONCTIONS_UTILISEES
+2   VARIABLES
+3     amIAngry EST_DU_TYPE NOMBRE
+4     isDishAvailable EST_DU_TYPE NOMBRE
+5     doIWantTheDish EST_DU_TYPE NOMBRE
+6     plateIsFull EST_DU_TYPE NOMBRE
+7     dishName EST_DU_TYPE CHAINE
+8     howManyDish EST_DU_TYPE NOMBRE
+9     allDishTaken EST_DU_TYPE CHAINE
+10    isAllDishHasBeenShow EST_DU_TYPE NOMBRE
+11    doIWantExtraFinishBonus EST_DU_TYPE NOMBRE
+12    isServiceWasGood EST_DU_TYPE NOMBRE
+13  DEBUT_ALGORITHME
+14    amIAngry PREND_LA_VALEUR 1
+15    isAllDishHasBeenShow PREND_LA_VALEUR 0
+16    isDishAvailable PREND_LA_VALEUR 1
+17    doIWantTheDish PREND_LA_VALEUR 1
+18    plateIsFull PREND_LA_VALEUR 0
+19    dishName PREND_LA_VALEUR ""
+20    howManyDish PREND_LA_VALEUR 0
+21    allDishTaken PREND_LA_VALEUR ""
+22    doIWantExtraFinishBonus PREND_LA_VALEUR 0
+23    TANT_QUE (amIAngry) FAIRE
+24      DEBUT_TANT_QUE
+25      TANT_QUE (isAllDishHasBeenShow == 0 ET plateIsFull == 0) FAIRE
+26        DEBUT_TANT_QUE
+27        SI (plateIsFull == 0) ALORS
+28          DEBUT_SI
+29          SI (isAllDishHasBeenShow == 0) ALORS
+30            DEBUT_SI
+31            AFFICHER "What is the name of the dish ?"
+32            LIRE dishName
+33            AFFICHER "Is this dish is available ?"
+34            LIRE isDishAvailable
+35            SI (isDishAvailable == 1) ALORS
+36              DEBUT_SI
+37              AFFICHER "Do I want take "
+38              AFFICHER dishName
+39              AFFICHER " ?"
+40              LIRE doIWantTheDish
+41              SI (doIWantTheDish == 1) ALORS
+42                DEBUT_SI
+43                AFFICHER "I add "
+44                AFFICHER dishName
+45                AFFICHER " to my plate."
+46                allDishTaken PREND_LA_VALEUR allDishTaken + " " + dishName
+47                AFFICHER "Actually I have all this dish to my plate :"
+48                AFFICHER allDishTaken
+49                AFFICHER "Is the plate is full ?"
+50                LIRE plateIsFull
+51                FIN_SI
+52              FIN_SI
+53            FIN_SI
+54          FIN_SI
+55        howManyDish PREND_LA_VALEUR howManyDish + 1
+56        AFFICHER "Has I seen all dishes ?"
+57        LIRE isAllDishHasBeenShow
+58        FIN_TANT_QUE
+59      AFFICHER "I will sit down and eat..."
+60      AFFICHER "I eat"
+61      AFFICHER allDishTaken
+62      AFFICHER "."
+63      AFFICHER "Yum yum this is very good!"
+64      AFFICHER "Am I still hungry ?"
+65      LIRE amIAngry
+66      FIN_TANT_QUE
+67    AFFICHER "I finished my meal"
+68    AFFICHER "Do I want a coffee, a digestive or nothing ?"
+69    LIRE doIWantExtraFinishBonus
+70    SI (doIWantExtraFinishBonus == 1) ALORS
+71      DEBUT_SI
+72      AFFICHER "I gona take a coffee."
+73      FIN_SI
+74    SI (doIWantExtraFinishBonus == 2) ALORS
+75      DEBUT_SI
+76      AFFICHER "I gona take a digestive."
+77      FIN_SI
+78    AFFICHER "I ask for the bill and I pay."
+79    AFFICHER "Is the service was good ?"
+80    LIRE isServiceWasGood
+81    SI (isServiceWasGood == 1) ALORS
+82      DEBUT_SI
+83      AFFICHER "I give a tip :)"
+84      FIN_SI
+85    AFFICHER "Bye bye."
+86  FIN_ALGORITHME
