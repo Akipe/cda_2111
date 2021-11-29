@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ex_1_2_calculation_spheres", "ex_1_2_calculation_spheres\ex_1_2_calculation_spheres.csproj", "{A5D05169-0861-4867-9BC7-CD7DEBC74F1A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ex_1_1_3_number_average", "ex_1_1_3_number_average\ex_1_1_3_number_average.csproj", "{BFC2FBA6-308C-454F-8096-8AD77001E8A1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{A5D05169-0861-4867-9BC7-CD7DEBC74F1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A5D05169-0861-4867-9BC7-CD7DEBC74F1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A5D05169-0861-4867-9BC7-CD7DEBC74F1A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BFC2FBA6-308C-454F-8096-8AD77001E8A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFC2FBA6-308C-454F-8096-8AD77001E8A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFC2FBA6-308C-454F-8096-8AD77001E8A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFC2FBA6-308C-454F-8096-8AD77001E8A1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
