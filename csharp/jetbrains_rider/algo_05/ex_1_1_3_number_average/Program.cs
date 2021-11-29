@@ -6,12 +6,27 @@ namespace ex_1_1_3_number_average
     {
         public static void Main(string[] args)
         {
-            string listNumber;
-            int[] listNum;
+            string userInputNumbers;
+            int howManyNumbers;
+            int sumNumbers;
+            int countNumbers;
+            float averageNumber;
+            int[] listNumbers;
 
-            listNumber = "10 12 115 9 33 6748 45";
+            Console.WriteLine("Welcome to number average calculator.");
+            Console.WriteLine("Please enter numbers to calculate average (ex: \"15 12 200 4\"");
+            userInputNumbers = Console.ReadLine();
+            listNumbers = Program.Split(userInputNumbers, ' ');
+            howManyNumbers = listNumbers.Length;
+            sumNumbers = 0;
 
-            listNum = Program.Split(listNumber, ' ');
+            foreach (int number in listNumbers)
+            {
+                sumNumbers = sumNumbers + number;
+            }
+            averageNumber = (float) sumNumbers / (float) howManyNumbers;
+            
+            Console.WriteLine($"The average is {averageNumber}");
         }
 
         private static int[] Split(string _sentence, char _charWhichSplit)
