@@ -11,8 +11,8 @@ namespace ex_1_7_number_sorting
             Console.WriteLine("Begin to sort two numbers...");
             Program.SortTwoNumbersExercice();
             
-            // Console.WriteLine("Begin to sort three numbers...");
-            // Program.SortThreeNumbersExercice();
+            Console.WriteLine("Begin to sort three numbers...");
+            Program.SortThreeNumbersLoopExercice();
         }
 
         private static void SortTwoNumbersExercice()
@@ -41,10 +41,51 @@ namespace ex_1_7_number_sorting
             }
         }
         
-        // private static void SortThreeNumbersExercice()
-        // {
-        //     Console.WriteLine("Hello");
-        // }
+        private static void SortThreeNumbersLoopExercice()
+        {
+            int numberA;
+            int numberB;
+            int numberC;
+            int[] numbersSort;
 
+            numberA = Helper.GetIntFromUser("Please enter the first number :");
+            numberB = Helper.GetIntFromUser("Please enter the second number :");
+            numberC = Helper.GetIntFromUser("Please enter the third number :");
+
+            numbersSort = SortThreeNumbers(numberA, numberB, numberC);
+            Console.WriteLine($"Numbers sort : {numbersSort[0]} < {numbersSort[1]} < {numbersSort[2]}");
+        }
+
+        private static int[] SortThreeNumbers(int firstNumber, int secondNumber, int thirdNumber)
+        {
+            int[] twoNumbersSort;
+
+            while (!(firstNumber < secondNumber & secondNumber < thirdNumber))
+            {
+                twoNumbersSort = Program.SortTwoNumbers(firstNumber, secondNumber);
+                firstNumber = twoNumbersSort[0];
+                secondNumber = twoNumbersSort[1];
+
+                twoNumbersSort = Program.SortTwoNumbers(secondNumber, thirdNumber);
+                secondNumber = twoNumbersSort[0];
+                thirdNumber = twoNumbersSort[1];
+            }
+
+            return new int[] {firstNumber, secondNumber, thirdNumber};
+        }
+
+        private static int[] SortTwoNumbers(int firstNumber, int secondNumber)
+        {
+            int tempStorage;
+            
+            if (firstNumber > secondNumber)
+            {
+                tempStorage = firstNumber;
+                firstNumber = secondNumber;
+                secondNumber = tempStorage;
+            }
+
+            return new int[] {firstNumber, secondNumber};
+        }
     }
 }
