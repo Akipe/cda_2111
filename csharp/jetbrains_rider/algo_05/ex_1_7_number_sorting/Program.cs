@@ -86,6 +86,7 @@ namespace ex_1_7_number_sorting
             }
 
             return new int[] {firstNumber, secondNumber};
+            
         }
     }
 }
