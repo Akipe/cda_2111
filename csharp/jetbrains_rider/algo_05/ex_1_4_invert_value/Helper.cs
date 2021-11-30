@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ex_1_3_circular_sector
+namespace ex_1_4_invert_value
 {
     public class Helper
     {
