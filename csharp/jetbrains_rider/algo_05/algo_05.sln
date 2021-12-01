@@ -16,6 +16,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ex_1_7_number_sorting", "ex
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ex_1_10_perfect_numbers", "ex_1_10_perfect_numbers\ex_1_10_perfect_numbers.csproj", "{CF36D9F8-FED7-4452-9B50-5F2FA31AB42E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ex_2_1_3_km_mi_conversion", "ex_2_1_3_km_mi_conversion\ex_2_1_3_km_mi_conversion.csproj", "{5C77687C-139A-4E08-BD5D-732F48761246}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -54,5 +56,9 @@ Global
 		{CF36D9F8-FED7-4452-9B50-5F2FA31AB42E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CF36D9F8-FED7-4452-9B50-5F2FA31AB42E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CF36D9F8-FED7-4452-9B50-5F2FA31AB42E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C77687C-139A-4E08-BD5D-732F48761246}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C77687C-139A-4E08-BD5D-732F48761246}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C77687C-139A-4E08-BD5D-732F48761246}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C77687C-139A-4E08-BD5D-732F48761246}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
