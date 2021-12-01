@@ -16,7 +16,7 @@ namespace ex_1_1_3_number_average
             Console.WriteLine("Welcome to number average calculator.");
             Console.WriteLine("Please enter numbers to calculate average (ex: \"15 12 200 4\"");
             userInputNumbers = Console.ReadLine();
-            listNumbers = Program.SplitV2(userInputNumbers, ' ');
+            listNumbers = Program.SplitV3(userInputNumbers, ' ');
             howManyNumbers = listNumbers.Length;
             sumNumbers = 0;
 
@@ -58,7 +58,22 @@ namespace ex_1_1_3_number_average
             howManyNumbers = Program.SplitGetHowManyNumbers(sentence, charWhichSplit);
             return Program.SplitGetNumbersListOptimizeString(sentence, howManyNumbers, charWhichSplit);
         }
-
+        
+        /// <summary>
+        /// Split a string to a static array with numbers separate by a char.
+        /// Third version without using string for creating number.
+        /// </summary>
+        /// <param name="sentence">The string to split</param>
+        /// <param name="charWhichSplit">The char who separates numbers</param>
+        /// <returns>Return a static array with numbers inside the string.</returns>
+        private static int[] SplitV3(string sentence, char charWhichSplit)
+        {
+            int howManyNumbers;
+            
+            howManyNumbers = Program.SplitGetHowManyNumbers(sentence, charWhichSplit);
+            return Program.SplitGetNumbersListCalculation(sentence, howManyNumbers, charWhichSplit);
+        }
+        
         private static int SplitGetHowManyNumbers(string sentence, char charWhichSplit)
         {
             int howManyNumbers;
@@ -133,5 +148,42 @@ namespace ex_1_1_3_number_average
 
             return numberslist;
         }
+        
+        private static int[] SplitGetNumbersListCalculation(string sentence, int howManyNumbers, char charWhichSplit)
+        {
+            int[] numberslist;
+            int numbersCounter;
+            int number;
+            
+            numbersCounter = 0;
+            number = 0;
+            numberslist = new int[howManyNumbers];
+
+            for (int charCounter = 0; charCounter < sentence.Length; charCounter++)
+            {
+                if (sentence[charCounter] != charWhichSplit)
+                {
+                    if (number == 0)
+                    {
+                        number = int.Parse(sentence[charCounter].ToString());
+                    }
+                    else
+                    {
+                        number *= 10;
+                        number += int.Parse(sentence[charCounter].ToString());
+                    }
+                }
+
+                if (sentence[charCounter] == charWhichSplit | charCounter == (sentence.Length - 1))
+                {
+                    numberslist[numbersCounter] = number;
+                    numbersCounter++;
+                    number = 0;
+                }
+            }
+
+            return numberslist;
+        }
+
     }
 }
