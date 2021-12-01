@@ -134,7 +134,6 @@ namespace ex_1_1_3_number_average
             {
                 if (sentence[charCounter] != charWhichSplit)
                 {
-                    // numberBeforeCast = numberBeforeCast + sentence[charCounter];
                     numberBeforeCast.Append(sentence[charCounter]);
                 }
 
