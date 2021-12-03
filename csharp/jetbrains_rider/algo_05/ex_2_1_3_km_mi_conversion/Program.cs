@@ -18,8 +18,8 @@ namespace ex_2_1_3_km_mi_conversion
         private const string CommandExit = "quit";
         private const DistanceUnit DefaultUnit = DistanceUnit.Kilometers;
 
-        private static double[] distancesToConvert;
-        private static DistanceUnit[] unitsDistancesToConvert;
+        private static double[] _distancesToConvert;
+        private static DistanceUnit[] _unitsDistancesToConvert;
 
         public static void Main(string[] args)
         {
@@ -44,7 +44,7 @@ namespace ex_2_1_3_km_mi_conversion
                         Console.WriteLine("Make conversion...");
                         ConvertAllDistances();
                     }
-                    else if (isCommandIsExist(userCommand))
+                    else if (IsCommandIsExist(userCommand))
                     {
                         Console.WriteLine("Bye bye !");
                         Environment.Exit(0);
@@ -65,18 +65,18 @@ namespace ex_2_1_3_km_mi_conversion
         private static void ShowHelpCommandMessage()
         {
             Console.WriteLine("Please enter your distance to convert with unit (\"km\" or \"mi\", if no units define it will be km)");
-            Console.WriteLine("Or \"go\" to execute conversion");
-            Console.WriteLine("Or \"quit\" to exit.");
+            Console.WriteLine($"Or \"{CommandConversion}\" to execute conversion");
+            Console.WriteLine($"Or \"{CommandExit}\" to exit.");
         }
 
         private static bool IsCommandIsMakeConversion(string userCommand)
         {
-            return userCommand == "go";
+            return userCommand == CommandConversion;
         }
 
-        private static bool isCommandIsExist(string userCommand)
+        private static bool IsCommandIsExist(string userCommand)
         {
-            return userCommand == "quit";
+            return userCommand == CommandExit;
         }
 
         private static bool IsCommandIsDistance(string userCommand)
@@ -156,18 +156,18 @@ namespace ex_2_1_3_km_mi_conversion
         }
         private static void SaveDistanceToConvert(double distance, DistanceUnit unit)
         {
-            if (distancesToConvert == null)
+            if (_distancesToConvert == null)
             {
-                distancesToConvert = new double[1];
-                unitsDistancesToConvert = new DistanceUnit[1];
+                _distancesToConvert = new double[1];
+                _unitsDistancesToConvert = new DistanceUnit[1];
             }
             else
             {
-                Array.Resize(ref distancesToConvert, distancesToConvert.Length + 1);
-                Array.Resize(ref unitsDistancesToConvert, unitsDistancesToConvert.Length + 1);
+                Array.Resize(ref _distancesToConvert, _distancesToConvert.Length + 1);
+                Array.Resize(ref _unitsDistancesToConvert, _unitsDistancesToConvert.Length + 1);
             }
-            distancesToConvert[^1] = distance;
-            unitsDistancesToConvert[^1] = unit;
+            _distancesToConvert[^1] = distance;
+            _unitsDistancesToConvert[^1] = unit;
         }
 
         private static DistanceUnit ConvertUnitFromString(string unitInString)
@@ -214,19 +214,19 @@ namespace ex_2_1_3_km_mi_conversion
             double distanceConverted;
             DistanceUnit unitDistanceToConvert;
             
-            if (distancesToConvert.Length > 0)
+            if (_distancesToConvert.Length > 0)
             {
-                for (int index = 0; index < distancesToConvert.Length; index++)
+                for (int index = 0; index < _distancesToConvert.Length; index++)
                 {
-                    unitDistanceToConvert = GetInvertUnit(unitsDistancesToConvert[index]);
+                    unitDistanceToConvert = GetInvertUnit(_unitsDistancesToConvert[index]);
                     distanceConverted = GetConvertedDistance(
-                        distancesToConvert[index],
-                        unitsDistancesToConvert[index],
+                        _distancesToConvert[index],
+                        _unitsDistancesToConvert[index],
                         unitDistanceToConvert);
                     
-                    Console.Write(distancesToConvert[index]);
+                    Console.Write(_distancesToConvert[index]);
                     Console.Write(" ");
-                    Console.Write(GetStringUnit(unitsDistancesToConvert[index], true));
+                    Console.Write(GetStringUnit(_unitsDistancesToConvert[index], true));
                     Console.Write(" = ");
                     Console.Write(distanceConverted);
                     Console.Write(" ");
@@ -274,8 +274,8 @@ namespace ex_2_1_3_km_mi_conversion
 
         private static void ClearAllDistanceToConvert()
         {
-            distancesToConvert = Array.Empty<double>();
-            unitsDistancesToConvert = Array.Empty<DistanceUnit>();
+            _distancesToConvert = Array.Empty<double>();
+            _unitsDistancesToConvert = Array.Empty<DistanceUnit>();
         }
     }
 }
