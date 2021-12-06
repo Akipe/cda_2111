@@ -24,6 +24,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ex_2_3_the_fork_game", "ex_
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ex_2_4_barnabe_does_his_shopping", "ex_2_4_barnabe_does_his_shopping\ex_2_4_barnabe_does_his_shopping.csproj", "{6E3F5CD2-1CF3-4B92-98A1-A17FE4B132FE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ex_2_5_game_0_1_2", "ex_2_5_game_0_1_2\ex_2_5_game_0_1_2.csproj", "{2647D839-D812-48F1-9926-B7CB81D29255}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -78,5 +80,9 @@ Global
 		{6E3F5CD2-1CF3-4B92-98A1-A17FE4B132FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6E3F5CD2-1CF3-4B92-98A1-A17FE4B132FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6E3F5CD2-1CF3-4B92-98A1-A17FE4B132FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2647D839-D812-48F1-9926-B7CB81D29255}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2647D839-D812-48F1-9926-B7CB81D29255}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2647D839-D812-48F1-9926-B7CB81D29255}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2647D839-D812-48F1-9926-B7CB81D29255}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
