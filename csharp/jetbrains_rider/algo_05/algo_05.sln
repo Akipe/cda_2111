@@ -28,6 +28,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ex_2_5_game_0_1_2", "ex_2_5
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ex_2_6_bicycle", "ex_2_6_bicycle\ex_2_6_bicycle.csproj", "{7D6FE4B3-6062-4551-A404-5ABEF070CA09}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ex_2_7_2_calculation_persons", "ex_2_7_2_calculation_persons\ex_2_7_2_calculation_persons.csproj", "{F113DC11-29BB-4A28-BB79-A9C433E995D5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -90,5 +92,9 @@ Global
 		{7D6FE4B3-6062-4551-A404-5ABEF070CA09}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D6FE4B3-6062-4551-A404-5ABEF070CA09}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7D6FE4B3-6062-4551-A404-5ABEF070CA09}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F113DC11-29BB-4A28-BB79-A9C433E995D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F113DC11-29BB-4A28-BB79-A9C433E995D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F113DC11-29BB-4A28-BB79-A9C433E995D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F113DC11-29BB-4A28-BB79-A9C433E995D5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
