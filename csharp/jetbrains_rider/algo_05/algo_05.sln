@@ -36,6 +36,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ex_3_2_search_char_in_strin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ex_3_3_count_all_alphabetic_letters", "ex_3_3_count_all_alphabetic_letters\ex_3_3_count_all_alphabetic_letters.csproj", "{5711BC07-3DEB-4D27-9175-B3835262FB36}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ex_bonus_recursive_bigger_number_array", "ex_bonus_recursive_bigger_number_array\ex_bonus_recursive_bigger_number_array.csproj", "{BD893862-CF6F-4FE7-AC8B-91B87447DF9A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -114,5 +116,9 @@ Global
 		{5711BC07-3DEB-4D27-9175-B3835262FB36}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5711BC07-3DEB-4D27-9175-B3835262FB36}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5711BC07-3DEB-4D27-9175-B3835262FB36}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD893862-CF6F-4FE7-AC8B-91B87447DF9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD893862-CF6F-4FE7-AC8B-91B87447DF9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD893862-CF6F-4FE7-AC8B-91B87447DF9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD893862-CF6F-4FE7-AC8B-91B87447DF9A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
