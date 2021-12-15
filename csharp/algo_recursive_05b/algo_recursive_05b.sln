@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ex_1_3_sub_2_10_palindromes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ex_1_3_sub_2_12_permutation_characters", "ex_1_3_sub_2_12_permutation_characters\ex_1_3_sub_2_12_permutation_characters.csproj", "{55EF6B8C-57F1-4994-8E41-F22FB2AFF234}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ex_1_5_sub_2_15_addition_elements_array", "ex_1_5_sub_2_15_addition_elements_array\ex_1_5_sub_2_15_addition_elements_array.csproj", "{7DC5DD70-A1D1-4077-BEA9-88E9E7BB02AA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,9 @@ Global
 		{55EF6B8C-57F1-4994-8E41-F22FB2AFF234}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{55EF6B8C-57F1-4994-8E41-F22FB2AFF234}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{55EF6B8C-57F1-4994-8E41-F22FB2AFF234}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DC5DD70-A1D1-4077-BEA9-88E9E7BB02AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DC5DD70-A1D1-4077-BEA9-88E9E7BB02AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DC5DD70-A1D1-4077-BEA9-88E9E7BB02AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DC5DD70-A1D1-4077-BEA9-88E9E7BB02AA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
