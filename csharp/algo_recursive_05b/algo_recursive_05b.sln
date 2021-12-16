@@ -12,6 +12,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ex_1_3_sub_2_12_permutation
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ex_1_5_sub_2_15_addition_elements_array", "ex_1_5_sub_2_15_addition_elements_array\ex_1_5_sub_2_15_addition_elements_array.csproj", "{7DC5DD70-A1D1-4077-BEA9-88E9E7BB02AA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ex_bonus_addition_two_numbers", "ex_bonus_addition_two_numbers\ex_bonus_addition_two_numbers.csproj", "{257C2AAF-4649-40F2-B891-25ACE0904F03}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,5 +44,9 @@ Global
 		{7DC5DD70-A1D1-4077-BEA9-88E9E7BB02AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7DC5DD70-A1D1-4077-BEA9-88E9E7BB02AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7DC5DD70-A1D1-4077-BEA9-88E9E7BB02AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{257C2AAF-4649-40F2-B891-25ACE0904F03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{257C2AAF-4649-40F2-B891-25ACE0904F03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{257C2AAF-4649-40F2-B891-25ACE0904F03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{257C2AAF-4649-40F2-B891-25ACE0904F03}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
