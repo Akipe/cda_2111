@@ -38,6 +38,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ex_3_3_count_all_alphabetic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ex_bonus_recursive_bigger_number_array", "ex_bonus_recursive_bigger_number_array\ex_bonus_recursive_bigger_number_array.csproj", "{BD893862-CF6F-4FE7-AC8B-91B87447DF9A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ex_bonus_lambda_expression", "ex_bonus_lambda_expression\ex_bonus_lambda_expression.csproj", "{A2403785-E946-48FD-B987-B29A3B7FA287}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -120,5 +122,9 @@ Global
 		{BD893862-CF6F-4FE7-AC8B-91B87447DF9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BD893862-CF6F-4FE7-AC8B-91B87447DF9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BD893862-CF6F-4FE7-AC8B-91B87447DF9A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2403785-E946-48FD-B987-B29A3B7FA287}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2403785-E946-48FD-B987-B29A3B7FA287}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2403785-E946-48FD-B987-B29A3B7FA287}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2403785-E946-48FD-B987-B29A3B7FA287}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
