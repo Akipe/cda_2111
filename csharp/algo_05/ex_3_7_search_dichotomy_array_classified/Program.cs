@@ -15,6 +15,8 @@ namespace ex_3_7_search_dichotomy_array_classified
                 "raymonde",
                 "sidonie"
             };
+
+            listNameSorted[0].Split();
             string userNameToFind;
             int howManyPassToFind = 0;
             
@@ -39,6 +41,13 @@ namespace ex_3_7_search_dichotomy_array_classified
             Console.WriteLine($"This search has been terminate with {howManyPassToFind} pass.");
         }
 
+        /// <summary>
+        /// Search in an string array sorted if an element exist. It use the Dichotomy algorithm.
+        /// </summary>
+        /// <param name="_element">Element to search</param>
+        /// <param name="_arraySort">Array sorted by alphabetic order</param>
+        /// <param name="_howManyPassToFind">Variable in reference to know how many pass the algorithm do the search</param>
+        /// <returns>If the element is inside the array</returns>
         public static bool IsElementInsideSortedArray(string _element, string[] _arraySort, ref int _howManyPassToFind)
         {
             _howManyPassToFind++;
@@ -61,12 +70,12 @@ namespace ex_3_7_search_dichotomy_array_classified
             {
                 case < 0:
                     return IsElementInsideSortedArray(
-                        _element, GetPartOfArrayFromIndex(indexMedian - 1, _arraySort, false),
+                        _element, GetPartOfArrayFromAnIndex(indexMedian - 1, _arraySort, false),
                         ref _howManyPassToFind
                         );
                 case > 0:
                     return IsElementInsideSortedArray(
-                        _element, GetPartOfArrayFromIndex(indexMedian + 1, _arraySort, true),
+                        _element, GetPartOfArrayFromAnIndex(indexMedian + 1, _arraySort, true),
                         ref _howManyPassToFind
                         );
                 case 0:
@@ -74,7 +83,18 @@ namespace ex_3_7_search_dichotomy_array_classified
             }
         }
 
-        private static string[] GetPartOfArrayFromIndex(int _indexToSplit, string[] _array, bool _takeToEnd = true)
+        /// <summary>
+        /// Get a part of an array in relation to an index.
+        /// </summary>
+        /// <param name="_indexToSplit">Where to split the array, this index will be on the new array</param>
+        /// <param name="_array">The array to split</param>
+        /// <param name="_getToTheEnd">
+        /// What to put in the new array,
+        /// if yes the new array will begin from the _indexToSplit to the end of the array,
+        /// if no the new array will begin from the begin of the array to the index _indexToSplit.
+        /// </param>
+        /// <returns>Return a new array who are the part of the _array</returns>
+        private static string[] GetPartOfArrayFromAnIndex(int _indexToSplit, string[] _array, bool _getToTheEnd = true)
         {
             int indexToStart;
             int indexToStop;
@@ -82,7 +102,7 @@ namespace ex_3_7_search_dichotomy_array_classified
             int sizeNewArrayFromSplit;
             string[] newArrayFromSplit;
             
-            if (_takeToEnd)
+            if (_getToTheEnd)
             {
                 indexToStart = _indexToSplit;
                 indexToStop = _array.Length - 1;
@@ -106,11 +126,28 @@ namespace ex_3_7_search_dichotomy_array_classified
             return newArrayFromSplit;
         }
 
+        /// <summary>
+        /// Get the index of the half of the length of an array.
+        /// If the number of indexes is an even number, we round up.
+        /// </summary>
+        /// <param name="_array">The array to get the median index</param>
+        /// <returns>Get the median (middle) index, if the number of indexes is an even number, we round up.</returns>
         private static int GetMedianIndex(string[] _array)
         {
             return _array.Length / 2;
         }
 
+        /// <summary>
+        /// Compare if two words are same, or if one word is bigger or smaller than the other.
+        /// The comparison is made in relation to the alphabet.
+        /// </summary>
+        /// <param name="_firstWord">The first word, the result will be related to him.</param>
+        /// <param name="_secondWord">The second word to compare</param>
+        /// <returns>
+        /// "-1" if the first word is smaller than the second,
+        /// "0" if they are same,
+        /// "1" if the first word is bigger than the second.
+        /// </returns>
         private static int CompareTwoWords(string _firstWord, string _secondWord)
         {
             const int FIRST_WORD_BIGGER = -1;
