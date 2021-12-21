@@ -41,7 +41,7 @@ namespace ex_1_3_sub_2_12_v2_permutation_characters
             ref int _howManyPermutation,
             string _prefixPermutedWip = "")
         {
-            string maybePermutation = "";
+            string? maybePermutation = null;
             
             // Optimize algorithm with removing latest loop because there will be only one character left
             // So We add the last character of the _word manually. 
@@ -49,17 +49,19 @@ namespace ex_1_3_sub_2_12_v2_permutation_characters
             {
                 if (_howManyPermutation == 0)
                 {
+                    // The desired permutation
                     return _prefixPermutedWip + _wordToPermute[0];
                 }
                 _howManyPermutation--;
 
-                return maybePermutation;
+                return null;
             }
             
             // When the word has letters to permute (length bigger than 1)
             for (int indexCharacterToPermute = 0; indexCharacterToPermute < _wordToPermute.Length; indexCharacterToPermute++)
             {
-                string maybePermutationInLoop;
+                // Can be null or the desired permutation
+                string? maybePermutationInLoop;
                 
                 maybePermutationInLoop = GetPermutationCharacters(
                     RemoveCharacterInIndexInWord(indexCharacterToPermute, _wordToPermute),
@@ -67,6 +69,7 @@ namespace ex_1_3_sub_2_12_v2_permutation_characters
                     _prefixPermutedWip + GetCharacterAtIndexInWord(indexCharacterToPermute, _wordToPermute)
                 );
 
+                // Return the desired permutation
                 if (!String.IsNullOrEmpty(maybePermutationInLoop) && _howManyPermutation == 0)
                 {
                     return maybePermutationInLoop;
