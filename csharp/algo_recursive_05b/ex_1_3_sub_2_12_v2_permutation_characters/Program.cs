@@ -92,7 +92,7 @@ namespace ex_1_3_sub_2_12_v2_permutation_characters
         /// </summary>
         /// <param name="_indexCharacterToRemove">Where to remove the character</param>
         /// <param name="_word">Word to remove the character</param>
-        /// <returns>The word without the character in the index define</returns>
+        /// <returns>The word without the character</returns>
         private static string RemoveCharacterInIndexInWord(int _indexCharacterToRemove, string _word)
         {
             StringBuilder buildWordWithoutCharacter = new StringBuilder();
