@@ -88,7 +88,7 @@ namespace ex_1_3_sub_2_12_v2_permutation_characters
         }
 
         /// <summary>
-        /// Remote a character in a define index of a word.
+        /// Remove a character in a define index of a word.
         /// </summary>
         /// <param name="_indexCharacterToRemove">Where to remove the character</param>
         /// <param name="_word">Word to remove the character</param>
