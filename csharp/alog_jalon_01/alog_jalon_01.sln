@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ex_01_variables", "ex_01_va
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ex_02_month_birthday", "ex_02_month_birthday\ex_02_month_birthday.csproj", "{76B333D8-5CC7-4BEB-9AF0-CB2B55E7E571}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ex_03_saterday_day", "ex_03_saterday_day\ex_03_saterday_day.csproj", "{AC9F2018-EF99-4626-9013-EAB49E35D6F5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{76B333D8-5CC7-4BEB-9AF0-CB2B55E7E571}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{76B333D8-5CC7-4BEB-9AF0-CB2B55E7E571}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{76B333D8-5CC7-4BEB-9AF0-CB2B55E7E571}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC9F2018-EF99-4626-9013-EAB49E35D6F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC9F2018-EF99-4626-9013-EAB49E35D6F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC9F2018-EF99-4626-9013-EAB49E35D6F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC9F2018-EF99-4626-9013-EAB49E35D6F5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
