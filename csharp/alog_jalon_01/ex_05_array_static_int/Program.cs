@@ -11,7 +11,7 @@ namespace ex_05_array_static_int
 
         public static void Main(string[] _args)
         {
-            // Uncomment for checking all exercices
+            // Uncomment for checking all sub functions
 
             // Ex1();
             // Ex2();
@@ -76,6 +76,26 @@ namespace ex_05_array_static_int
                 Console.WriteLine(number);
             }
         }
+        
+        /// <summary>
+        /// Exercice 2
+        /// </summary>
+        /// <param name="_minHowManyNumbers"></param>
+        /// <param name="_maxHowManyNumbers"></param>
+        /// <param name="_splitNumbers"></param>
+        /// <returns></returns>
+        private static int[] AskUserListNumbersWithChoiceHowMany(
+            int _minHowManyNumbers,
+            int _maxHowManyNumbers,
+            char _splitNumbers)
+        {
+            return AskUserMultipleNumbers(
+                AskUserOneNumber(
+                    "Combien de nombres souhaitez-vous entrer ?",
+                    _minHowManyNumbers,
+                    _maxHowManyNumbers),
+                _splitNumbers);
+        }
 
         /// <summary>
         /// Exercice 2
@@ -105,7 +125,7 @@ namespace ex_05_array_static_int
         private static int AskUserOneNumber(
             string _message,
             int _minNumberAllow = Int32.MinValue,
-            int _maxNumberAllow = Int32.MinValue)
+            int _maxNumberAllow = Int32.MaxValue)
         {
             int userResonse;
 
@@ -351,26 +371,6 @@ namespace ex_05_array_static_int
 
             ShowAllInformationOneLineAboutIntArray(listNumbers);
             ShowInformationsAboutNumbersInArray(listNumbers);
-        }
-
-        /// <summary>
-        /// Exercice 5
-        /// </summary>
-        /// <param name="_minHowManyNumbers"></param>
-        /// <param name="_maxHowManyNumbers"></param>
-        /// <param name="_splitNumbers"></param>
-        /// <returns></returns>
-        private static int[] AskUserListNumbersWithChoiceHowMany(
-            int _minHowManyNumbers,
-            int _maxHowManyNumbers,
-            char _splitNumbers)
-        {
-            return AskUserMultipleNumbers(
-                AskUserOneNumber(
-                    "Combien de nombres souhaitez-vous entrer ?",
-                    _minHowManyNumbers,
-                    _maxHowManyNumbers),
-                _splitNumbers);
         }
 
         /// <summary>
