@@ -242,7 +242,7 @@ namespace ex_03_saterday_day
                         return false;
                     }
                     
-                    throw new ApplicationException("Veuillez entrer comme réponse uniquement \"oui\" ou \"non\" !");
+                    throw new ApplicationException($"Veuillez entrer comme réponse uniquement \"{YES}\" ou \"{NO}\" !");
                 }
                 catch (ApplicationException error)
                 {
