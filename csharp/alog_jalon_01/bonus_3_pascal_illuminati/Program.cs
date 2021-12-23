@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Text;
 
 namespace bonus_3_pascal_illuminati
 {
@@ -6,48 +8,33 @@ namespace bonus_3_pascal_illuminati
     {
         public static void Main(string[] _args)
         {
-            //DrawIlluminatiPascal(2);
-            DrawIlluminatiPascal(100);
+            DrawIlluminatiPascal(200);
         }
 
         public static void DrawIlluminatiPascal(int _howManyLines)
         {
-            //int[][] illuminatiPascal2D = new int[_howManyLines + 1][];
-            // int[] currentHorizontalLineDraw = new int[maxSizeHorizontalLine];
             int maxSizeHorizontalLine = GetSizeHorizontalLine(_howManyLines);
-            ulong[] currentPascalLine;
+            bool[] currentPascalLine;
             int indexToBeginDraw;
             
             // Horizontal lines begin to top
             for (int indexLineHorizontal = 0; indexLineHorizontal <= _howManyLines; indexLineHorizontal++)
             {
-                currentPascalLine = GetPascalLine(indexLineHorizontal);
+                currentPascalLine = GetPascalLineEvenOdd(indexLineHorizontal);
                 indexToBeginDraw = GetIndexToBeginDrawNumbers(maxSizeHorizontalLine, currentPascalLine.Length);
                 
-                DrawOneLinePascal(currentPascalLine, maxSizeHorizontalLine, indexToBeginDraw);
+                DrawOneLinePascal(currentPascalLine, indexToBeginDraw);
             }
         }
 
-        public static char GetFirstDigitNumbersOrEvenOddLetter(ulong _numberToConvert)
+        public static char GetCharacterFromEvenOddNumber(bool _numberEvenOdd)
         {
-            // Error when negative numbers
-            if (_numberToConvert < 0)
-            {
-                throw new ArgumentException("Please enter only positive numbers");
-            }
-
-            // Return all digit numbers
-            if (_numberToConvert <= 9)
-            {
-                return (char) (_numberToConvert + 48);
-            }
-
-            return _numberToConvert % 2 == 0 ? 'P' : 'I';
+            return _numberEvenOdd ? 'I' : 'P';
         }
 
         public static int GetMiddleHorizontalLine(int _lineSize)
         {
-            return (int) _lineSize / 2 + 1;
+            return (int) _lineSize / 2 + 1 + 1; // last "+1" for fix last line not align
         }
         
         /*
@@ -67,18 +54,15 @@ namespace bonus_3_pascal_illuminati
             return _howManyLines + (_howManyLines - 2);
         }
 
-        public static void DrawOneLinePascal(ulong[] _pascalNumbers, int _sizeHorizontalLine, int _indexToBeginDraw)
+        public static void DrawOneLinePascal(bool[] _pascalNumbers, int _indexToBeginDraw)
         {
             WriteBlankSpaces(_indexToBeginDraw);
-
-            Console.BackgroundColor = ConsoleColor.Red;
-            Console.ForegroundColor = ConsoleColor.Black;
 
             for (int indexPixelPascal = 0; indexPixelPascal < _pascalNumbers.Length; indexPixelPascal++)
             {
                 SetTerminalOutputColorFromNumbers(_pascalNumbers[indexPixelPascal]);
                 
-                Console.Write(GetFirstDigitNumbersOrEvenOddLetter(_pascalNumbers[indexPixelPascal]));
+                Console.Write(GetCharacterFromEvenOddNumber(_pascalNumbers[indexPixelPascal]));
                 
                 ResetTerminalOutputColor();
                 
@@ -88,14 +72,12 @@ namespace bonus_3_pascal_illuminati
                 }
             }
             
-            WriteBlankSpaces(_indexToBeginDraw);
-            
             Console.Write("\n");
         }
 
-        public static void SetTerminalOutputColorFromNumbers(ulong _number)
+        public static void SetTerminalOutputColorFromNumbers(bool _numberEven)
         {
-            if (_number % 2 == 0)
+            if (!_numberEven)
             {
                 Console.BackgroundColor = ConsoleColor.Red;
                 Console.ForegroundColor = ConsoleColor.Black;
@@ -153,6 +135,7 @@ namespace bonus_3_pascal_illuminati
                 {
                     numberLastLineIndexBefore = 0;
                 }
+                
                 else
                 {
                     numberLastLineIndexBefore = resultPascalLineBeforeThis[numberIndex - 1];
@@ -172,6 +155,55 @@ namespace bonus_3_pascal_illuminati
 
                 resultPascalLine[numberIndex] =
                     numberLastLineIndexBefore + numberLastLineSameIndex;
+            }
+
+            return resultPascalLine;
+        }
+        
+        /// <summary>
+        /// Return only even or odd even for a Pascal line.
+        /// - even number : false
+        /// - odd number : true
+        /// </summary>
+        /// <param name="_whichLine"></param>
+        /// <returns></returns>
+        /// <exception cref="ApplicationException"></exception>
+        public static bool[] GetPascalLineEvenOdd(int _whichLine)
+        {
+            const int MIN_PASCAL_LINE = 0;
+
+            bool[] resultPascalLineBeforeThis;
+            bool[] resultPascalLine;
+            // int mediaIndexListNumbers;
+
+            if (_whichLine < MIN_PASCAL_LINE)
+            {
+                throw new ApplicationException($"Veuillez enter au minimum \"{MIN_PASCAL_LINE}\" ligne à afficher.");
+            }
+
+            if (_whichLine == MIN_PASCAL_LINE)
+            {
+                return new bool[] {true};
+            }
+
+            resultPascalLineBeforeThis = GetPascalLineEvenOdd(_whichLine - 1);
+
+            // Todo : calculate the middle of line and don't remake cal
+            // mediaIndexListNumbers = _whichLine / 2 + 1;
+            
+            resultPascalLine = new bool[resultPascalLineBeforeThis.Length + 1];
+
+            for (int numberIndex = 0; numberIndex < resultPascalLine.Length; numberIndex++)
+            {
+                if (numberIndex == 0 || numberIndex == resultPascalLine.Length - 1)
+                {
+                    resultPascalLine[numberIndex] = true;
+                }
+                else
+                {
+                    resultPascalLine[numberIndex] = 
+                        resultPascalLineBeforeThis[numberIndex - 1] ^ resultPascalLineBeforeThis[numberIndex];
+                }
             }
 
             return resultPascalLine;
