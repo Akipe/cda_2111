@@ -64,7 +64,7 @@ namespace bonus_3_pascal_illuminati
                 
                 Console.Write(GetCharacterFromEvenOddNumber(_pascalNumbers[indexPixelPascal]));
                 
-                ResetTerminalOutputColor();
+                Console.ResetColor();
                 
                 if (indexPixelPascal != _pascalNumbers.Length - 1)
                 {
@@ -84,16 +84,10 @@ namespace bonus_3_pascal_illuminati
             }
             else
             {
-                ResetTerminalOutputColor();
+                Console.ResetColor();
             }
         }
-
-        public static void ResetTerminalOutputColor()
-        {
-            Console.BackgroundColor = ConsoleColor.Black;
-            Console.ForegroundColor = ConsoleColor.White;
-        }
-
+        
         public static void WriteBlankSpaces(int _indexToBeginDraw)
         {
             for (int indexPixelBlankBefore = 0; indexPixelBlankBefore < _indexToBeginDraw; indexPixelBlankBefore++)
