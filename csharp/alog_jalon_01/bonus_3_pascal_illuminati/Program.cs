@@ -4,10 +4,10 @@ namespace bonus_3_pascal_illuminati
 {
     class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] _args)
         {
             //DrawIlluminatiPascal(2);
-            DrawIlluminatiPascal(12);
+            DrawIlluminatiPascal(100);
         }
 
         public static void DrawIlluminatiPascal(int _howManyLines)
@@ -15,7 +15,7 @@ namespace bonus_3_pascal_illuminati
             //int[][] illuminatiPascal2D = new int[_howManyLines + 1][];
             // int[] currentHorizontalLineDraw = new int[maxSizeHorizontalLine];
             int maxSizeHorizontalLine = GetSizeHorizontalLine(_howManyLines);
-            int[] currentPascalLine;
+            ulong[] currentPascalLine;
             int indexToBeginDraw;
             
             // Horizontal lines begin to top
@@ -26,6 +26,23 @@ namespace bonus_3_pascal_illuminati
                 
                 DrawOneLinePascal(currentPascalLine, maxSizeHorizontalLine, indexToBeginDraw);
             }
+        }
+
+        public static char GetFirstDigitNumbersOrEvenOddLetter(ulong _numberToConvert)
+        {
+            // Error when negative numbers
+            if (_numberToConvert < 0)
+            {
+                throw new ArgumentException("Please enter only positive numbers");
+            }
+
+            // Return all digit numbers
+            if (_numberToConvert <= 9)
+            {
+                return (char) (_numberToConvert + 48);
+            }
+
+            return _numberToConvert % 2 == 0 ? 'P' : 'I';
         }
 
         public static int GetMiddleHorizontalLine(int _lineSize)
@@ -50,40 +67,65 @@ namespace bonus_3_pascal_illuminati
             return _howManyLines + (_howManyLines - 2);
         }
 
-        public static void DrawOneLinePascal(int[] _pascalNumbers, int _sizeHorizontalLine, int _indexToBeginDraw)
+        public static void DrawOneLinePascal(ulong[] _pascalNumbers, int _sizeHorizontalLine, int _indexToBeginDraw)
         {
-            
-            for (int indexPixelBlankBefore = 0; indexPixelBlankBefore < _indexToBeginDraw; indexPixelBlankBefore++)
-            {
-                Console.Write(" ");
-            }
+            WriteBlankSpaces(_indexToBeginDraw);
+
+            Console.BackgroundColor = ConsoleColor.Red;
+            Console.ForegroundColor = ConsoleColor.Black;
 
             for (int indexPixelPascal = 0; indexPixelPascal < _pascalNumbers.Length; indexPixelPascal++)
             {
+                SetTerminalOutputColorFromNumbers(_pascalNumbers[indexPixelPascal]);
+                
+                Console.Write(GetFirstDigitNumbersOrEvenOddLetter(_pascalNumbers[indexPixelPascal]));
+                
+                ResetTerminalOutputColor();
+                
                 if (indexPixelPascal != _pascalNumbers.Length - 1)
                 {
-                    Console.Write(_pascalNumbers[indexPixelPascal] + " ");
-                }
-                else
-                {
-                    Console.Write(_pascalNumbers[indexPixelPascal]);                    
+                    Console.Write(" ");
                 }
             }
             
-            for (int indexPixelBlankBefore = 0; indexPixelBlankBefore < _indexToBeginDraw; indexPixelBlankBefore++)
-            {
-                Console.Write(" ");
-            }
+            WriteBlankSpaces(_indexToBeginDraw);
             
             Console.Write("\n");
         }
 
-        public static int[] GetPascalLine(int _whichLine)
+        public static void SetTerminalOutputColorFromNumbers(ulong _number)
+        {
+            if (_number % 2 == 0)
+            {
+                Console.BackgroundColor = ConsoleColor.Red;
+                Console.ForegroundColor = ConsoleColor.Black;
+            }
+            else
+            {
+                ResetTerminalOutputColor();
+            }
+        }
+
+        public static void ResetTerminalOutputColor()
+        {
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+
+        public static void WriteBlankSpaces(int _indexToBeginDraw)
+        {
+            for (int indexPixelBlankBefore = 0; indexPixelBlankBefore < _indexToBeginDraw; indexPixelBlankBefore++)
+            {
+                Console.Write(" ");
+            }
+        }
+
+        public static ulong[] GetPascalLine(int _whichLine)
         {
             const int MIN_PASCAL_LINE = 0;
 
-            int[] resultPascalLineBeforeThis;
-            int[] resultPascalLine;
+            ulong[] resultPascalLineBeforeThis;
+            ulong[] resultPascalLine;
 
             if (_whichLine < MIN_PASCAL_LINE)
             {
@@ -92,17 +134,17 @@ namespace bonus_3_pascal_illuminati
 
             if (_whichLine == MIN_PASCAL_LINE)
             {
-                return new int[] {1};
+                return new ulong[] {1};
             }
 
             resultPascalLineBeforeThis = GetPascalLine(_whichLine - 1);
 
-            resultPascalLine = new int[resultPascalLineBeforeThis.Length + 1];
+            resultPascalLine = new ulong[resultPascalLineBeforeThis.Length + 1];
 
             for (int numberIndex = 0; numberIndex < resultPascalLine.Length; numberIndex++)
             {
-                int numberLastLineSameIndex;
-                int numberLastLineIndexBefore;
+                ulong numberLastLineSameIndex;
+                ulong numberLastLineIndexBefore;
 
                 // If first number of line, can't get the number of index -1 of line before
                 // --> x 1      (line 1)
