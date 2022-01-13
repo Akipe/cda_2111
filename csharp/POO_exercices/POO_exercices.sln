@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ex_01_pen_kit", "ex_01_pen_kit\ex_01_pen_kit.csproj", "{9C3D4BAD-2CA0-447A-95A0-D5FA6D00ABA2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ex_02_coffee", "ex_02_coffee\ex_02_coffee.csproj", "{88B4814D-3E1F-4BA5-AAD9-C33E88E13A53}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{9C3D4BAD-2CA0-447A-95A0-D5FA6D00ABA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9C3D4BAD-2CA0-447A-95A0-D5FA6D00ABA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9C3D4BAD-2CA0-447A-95A0-D5FA6D00ABA2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88B4814D-3E1F-4BA5-AAD9-C33E88E13A53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88B4814D-3E1F-4BA5-AAD9-C33E88E13A53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88B4814D-3E1F-4BA5-AAD9-C33E88E13A53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88B4814D-3E1F-4BA5-AAD9-C33E88E13A53}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
