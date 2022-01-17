@@ -7,8 +7,9 @@ public class RussianDolls
     private RussianDolls? _inRussianDolls;
     private RussianDolls? _containDolls;
 
-    public RussianDolls()
+    public RussianDolls(short size)
     {
+        Size = size;
     }
 
     public bool IsOpen
@@ -25,14 +26,52 @@ public class RussianDolls
 
     public void Open()
     {
+        if (IsOpen)
+        {
+            throw new ApplicationException("You can't open an already open Russian dolls");
+        }
+
+        IsOpen = true;
     }
 
     public void Close()
     {
+        if (!IsOpen)
+        {
+            throw new ApplicationException("You can't close an already close Russian dolls");
+        }
+
+        IsOpen = false;
     }
 
     public void PutInt(RussianDolls russianDolls)
     {
+        if (IsOpen)
+        {
+            throw new ApplicationException("");
+        }
+
+        if (IsInRussianDools())
+        {
+            throw new ApplicationException();
+        }
+
+        if (!russianDolls.IsOpen)
+        {
+            throw new ApplicationException();
+        }
+
+        if (!russianDolls.HasRussianDools())
+        {
+            throw new ApplicationException();
+        }
+        
+        if (IsSmallerThanRussianDools(russianDolls))
+        {
+            throw new ApplicationException("You can't put this russian dolls inside an other smaller russian dolls.");
+        }
+
+        _inRussianDolls = russianDolls;
     }
 
     public void GetOutOf(RussianDolls russianDolls)
@@ -40,13 +79,18 @@ public class RussianDolls
         
     }
 
-    private bool IsInRussianDools()
+    public bool IsInRussianDools()
     {
         
     }
 
-    private bool HasRussianDools()
+    public bool HasRussianDools()
     {
         
+    }
+
+    private bool IsSmallerThanRussianDools(RussianDolls russianDolls)
+    {
+        return Size > russianDolls.Size;
     }
 }
