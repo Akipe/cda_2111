@@ -2,13 +2,13 @@
 
 namespace ex_03_russian_dolls;
 
-internal class Program
+internal static class Program
 {
-    static void Main(string[] args)
+    public static void Main(string[] args)
     {
-        RussianDolls p1 = new RussianDolls(1);
-        RussianDolls p2 = new RussianDolls(2);
-        RussianDolls p3 = new RussianDolls(3);
+        RussianDoll p1 = new RussianDoll(1);
+        RussianDoll p2 = new RussianDoll(2);
+        RussianDoll p3 = new RussianDoll(3);
 
         try
         {
@@ -47,17 +47,31 @@ internal class Program
             
             p2.Open();
             p1.PutIn(p2);
-            Console.WriteLine("Test");
+            
             p2.Close();
             p3.Open();
             p2.PutIn(p3);
 
             p2.GetOutOf(p3);
+            p2.Open();
             p1.GetOutOf(p2);
-
+            
             try
             {
-                p2.PutIn(p1);
+                p1.Open();
+                p1.PutIn(p2);
+            }
+            catch (ApplicationException error)
+            {
+                Console.Error.WriteLine($"Error test  : {error.Message}");
+            }
+
+            p2.Close();
+            p3.Close();
+            
+            try
+            {
+                p3.PutIn(p1);
             }
             catch (ApplicationException error)
             {
@@ -67,6 +81,41 @@ internal class Program
             try
             {
                 p2.PutIn(p1);
+            }
+            catch (ApplicationException error)
+            {
+                Console.Error.WriteLine($"Error test  : {error.Message}");
+            }
+            
+            try
+            {
+                p2.PutIn(p1);
+            }
+            catch (ApplicationException error)
+            {
+                Console.Error.WriteLine($"Error test  : {error.Message}");
+            }
+            
+            p1.Close();
+            p2.Open();
+            p3.Open();
+            
+            try
+            {
+                p1.PutIn(p3);
+                p1.PutIn(p2);
+            }
+            catch (ApplicationException error)
+            {
+                Console.Error.WriteLine($"Error test  : {error.Message}");
+            }
+            
+            p2.Close();
+            
+            try
+            {
+                p2.PutIn(p3);
+                p3.Open();
             }
             catch (ApplicationException error)
             {
@@ -77,12 +126,5 @@ internal class Program
         {
             Console.Error.WriteLine($"ERROR : {error.Message}");
         }
-
-    }
-
-    public static void ShowStatusOpenRussianDoll(RussianDolls russianDoll)
-    {
-        Console.WriteLine(
-            $"This Russian doll is {(russianDoll.IsOpen ? "open" : "close")}.");
     }
 }

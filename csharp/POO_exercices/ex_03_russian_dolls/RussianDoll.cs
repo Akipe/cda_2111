@@ -1,16 +1,16 @@
 ﻿namespace ex_03_russian_dolls;
 
-public class RussianDolls
+public class RussianDoll
 {
-    private RussianDolls? _inRussianDolls;
-    private RussianDolls? _containDolls;
+    private RussianDoll? _inRussianDoll;
+    private RussianDoll? _containDoll;
 
-    public RussianDolls(byte size)
+    public RussianDoll(byte size)
     {
         Size = size;
         IsOpen = false;
-        _inRussianDolls = null;
-        _containDolls = null;
+        _inRussianDoll = null;
+        _containDoll = null;
     }
 
     public bool IsOpen { get; private set; }
@@ -51,7 +51,7 @@ public class RussianDolls
         IsOpen = false;
     }
 
-    public void PutIn(RussianDolls russianDolls)
+    public void PutIn(RussianDoll russianDoll)
     {
         if (IsOpen)
         {
@@ -65,58 +65,58 @@ public class RussianDolls
                 "This Russian doll is already in an other Russian doll.");
         }
 
-        if (!russianDolls.IsOpen)
+        if (!russianDoll.IsOpen)
         {
             throw new ApplicationException(
                 "The other Russian doll has to be open to put this Russian doll inside it.");
         }
 
-        if (!(russianDolls.HasRussianDools()))
+        if (russianDoll.HasRussianDools())
         {
             throw new ApplicationException(
                 "The other Russian doll has already an other Russian doll inside it.");
         }
         
-        if (IsSmallerThanRussianDools(russianDolls))
+        if (IsSmallerThanRussianDools(russianDoll))
         {
             throw new ApplicationException(
                 "The other Russian doll is smaller than this one.");
         }
 
-        _inRussianDolls = russianDolls;
-        russianDolls._containDolls = this;
+        _inRussianDoll = russianDoll;
+        russianDoll._containDoll = this;
     }
 
-    public void GetOutOf(RussianDolls russianDolls)
+    public void GetOutOf(RussianDoll russianDoll)
     {
-        if (!(_inRussianDolls == russianDolls))
+        if (_inRussianDoll != russianDoll)
         {
             throw new ApplicationException(
                 "This Russian doll is not inside the other Russian doll.");
         }
 
-        if (!_inRussianDolls.IsOpen)
+        if (!_inRussianDoll.IsOpen)
         {
             throw new ApplicationException(
                 "You have to open the other Russian doll to get out this.");
         }
 
-        _inRussianDolls = null;
-        russianDolls._containDolls = null;
+        _inRussianDoll = null;
+        russianDoll._containDoll = null;
     }
 
     public bool IsInRussianDools()
     {
-        return _inRussianDolls is not null;
+        return _inRussianDoll is not null;
     }
 
     public bool HasRussianDools()
     {
-        return _inRussianDolls is not null;
+        return _containDoll is not null;
     }
 
-    private bool IsSmallerThanRussianDools(RussianDolls russianDolls)
+    private bool IsSmallerThanRussianDools(RussianDoll russianDoll)
     {
-        return Size > russianDolls.Size;
+        return Size > russianDoll.Size;
     }
 }
