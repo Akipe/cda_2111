@@ -41,12 +41,6 @@ public class RussianDoll
             throw new ApplicationException(
                 "This Russian doll is already close.");
         }
-        
-        if (IsInRussianDools())
-        {
-            throw new ApplicationException(
-                "You can't close this Russian doll because it is inside an other one.");
-        }
 
         IsOpen = false;
     }
