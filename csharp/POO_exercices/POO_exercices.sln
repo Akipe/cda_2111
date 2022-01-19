@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ex_02_coffee", "ex_02_coffe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ex_03_russian_dolls", "ex_03_russian_dolls\ex_03_russian_dolls.csproj", "{53D1AE25-10C4-45BE-B232-E9810BF1C744}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ex_04_persons_with_clock", "ex_04_persons_with_clock\ex_04_persons_with_clock.csproj", "{88AC6026-12D4-43D5-8D88-590241C716AF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{53D1AE25-10C4-45BE-B232-E9810BF1C744}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{53D1AE25-10C4-45BE-B232-E9810BF1C744}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{53D1AE25-10C4-45BE-B232-E9810BF1C744}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88AC6026-12D4-43D5-8D88-590241C716AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88AC6026-12D4-43D5-8D88-590241C716AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88AC6026-12D4-43D5-8D88-590241C716AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88AC6026-12D4-43D5-8D88-590241C716AF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
