@@ -2,7 +2,7 @@
 
 public class Person
 {
-    private string _name;
+    /*private string _name;
 
     public Person(string name)
     {
@@ -37,5 +37,5 @@ public class Person
 
     public void GiveWatchTo(Person person)
     {
-    }
+    }*/
 }
