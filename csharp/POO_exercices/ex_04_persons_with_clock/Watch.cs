@@ -11,19 +11,16 @@ public class Watch
     {
         CurrentMinutesOfDay = initialMinutes + initialHours * HOW_MANY_MINUTES_IN_HOURS;
         _wearBy = null;
-        AutomaticallyIncrementMinutes();
     }
 
     public Watch(Watch anExistingWatch)
     {
         CurrentMinutesOfDay = anExistingWatch.CurrentMinutesOfDay;
-        
         _wearBy = null;
     }
 
     public void IncrementOneMinute()
     {
-        Console.WriteLine("test");
         CurrentMinutesOfDay++;
     }
 
@@ -47,9 +44,24 @@ public class Watch
         return $"{GetHours()}H {GetMinutes()}m";
     }
 
-    private void SetWearBy(Person person)
+    public void SetWearBy(Person person)
     {
+        if (person.HasWatch())
+            throw new ApplicationException();
+        if (_wearBy is not null)
+            throw new ApplicationException();
+        
         _wearBy = person;
+        _wearBy.WearWatch(this);
+    }
+    
+    public void RemoveWearBy()
+    {
+        if (_wearBy is null)
+            throw new AggregateException();
+
+        _wearBy.RemoveWatch();
+        _wearBy = null;
     }
 
     private void RemoveWearFromPerson()
@@ -57,24 +69,18 @@ public class Watch
         _wearBy = null;
     }
 
-    public int CurrentMinutesOfDay
+    private int CurrentMinutesOfDay
     {
         get => _currentMinutesOfDay;
         set
         {
+            _currentMinutesOfDay = value;
+            
             while (_currentMinutesOfDay >= MaxMinutesInDay())
             {
                 _currentMinutesOfDay -= MaxMinutesInDay();
             }
-            _currentMinutesOfDay = value;
         }
-    }
-
-    private void AutomaticallyIncrementMinutes()
-    {
-        Task
-            .Run(IncrementOneMinute)
-            .Wait(TimeSpan.FromMinutes(1));
     }
 
     private int MaxMinutesInDay()

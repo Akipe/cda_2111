@@ -2,40 +2,96 @@
 
 public class Person
 {
-    /*private string _name;
-
     public Person(string name)
-    {
-        Name = name;
-    }
+     {
+         Name = name;
+         Watch = null;
+         IsMakingChangeOnWatch = false;
+     }
 
-    public string Name
-    {
-        get => _name;
-        init => _name = value;
-    }
+     public string Name { get; init; }
+     
+     public Watch? Watch
+     {
+         get;
+         set;
+     }
 
-    public bool HasWatch()
-    {
-    }
+     private bool IsMakingChangeOnWatch { get; set; }
 
-    public void WearWatch(Watch watch)
-    {
-    }
+     public bool HasWatch()
+     {
+         return Watch is not null;
+     }
 
-    public void RemoveWatch()
-    {
-    }
+     public void WearWatch(Watch watch)
+     {
+         if (!IsMakingChangeOnWatch)
+         {
+             if (HasWatch())
+                 throw new ApplicationException($"{Name} wear already a watch.");
 
-    public void AskTime(Person person)
-    {
-    }
+             if (watch.GetWearBy() is not null)
+                 throw new ApplicationException("The wear is already wear.");
 
-    public string GiveTime()
-    {
-    }
+             IsMakingChangeOnWatch = true;
+             watch.SetWearBy(this);
+         }
+         else
+         {
+             Watch = watch;
+             IsMakingChangeOnWatch = false;
+         }
+     }
 
-    public void GiveWatchTo(Person person)
-    {
-    }*/
+     public void RemoveWatch()
+     {
+         if (!IsMakingChangeOnWatch)
+         {
+             if (!HasWatch())
+                 throw new ApplicationException();
+         
+             if (Watch is null)
+                 throw new ApplicationException();
+
+             IsMakingChangeOnWatch = true;
+             Watch.RemoveWearBy();
+         }
+         else
+         {
+             Watch = null;
+             IsMakingChangeOnWatch = false;
+         }
+     }
+
+     public string AskTime(Person person)
+     {
+         if (!person.HasWatch())
+             throw new AggregateException();
+
+         return person.GiveTime();
+     }
+
+     public string GiveTime()
+     {
+         if (Watch is null)
+             throw new AggregateException();
+         
+         return Watch.GetTime();
+     }
+
+     public void GiveWatchTo(Person person)
+     {
+         Watch tempWatchStorage;
+         
+         if (Watch is null)
+             throw new AggregateException();
+
+         if (person.HasWatch())
+             throw new ApplicationException();
+
+         tempWatchStorage = Watch;
+         RemoveWatch();
+         person.WearWatch(tempWatchStorage);
+     }
 }
