@@ -48,11 +48,8 @@ public class Person
      {
          if (!IsMakingChangeOnWatch)
          {
-             if (!HasWatch())
-                 throw new ApplicationException();
-         
              if (Watch is null)
-                 throw new ApplicationException();
+                 throw new ApplicationException("You do not have a watch");
 
              IsMakingChangeOnWatch = true;
              Watch.RemoveWearBy();
@@ -66,16 +63,19 @@ public class Person
 
      public string AskTime(Person person)
      {
+         if (person == this)
+             throw new ApplicationException("You can't ask yourself the time");
+         
          if (!person.HasWatch())
-             throw new AggregateException();
-
+             throw new ApplicationException($"{person.Name} has not clock");
+         
          return person.GiveTime();
      }
 
      public string GiveTime()
      {
          if (Watch is null)
-             throw new AggregateException();
+             throw new ApplicationException("You do not have watch");
          
          return Watch.GetTime();
      }
@@ -84,11 +84,14 @@ public class Person
      {
          Watch tempWatchStorage;
          
+         if (person == this)
+             throw new ApplicationException("You can't give yourself a watch");
+         
          if (Watch is null)
-             throw new AggregateException();
+             throw new ApplicationException("You do not have a watch to give");
 
          if (person.HasWatch())
-             throw new ApplicationException();
+             throw new ApplicationException($"{person.Name} has already a watch");
 
          tempWatchStorage = Watch;
          RemoveWatch();

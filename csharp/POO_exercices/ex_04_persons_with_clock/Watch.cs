@@ -2,8 +2,8 @@
 
 public class Watch
 {
-    public const int HOW_MANY_HOURS_IN_DAY = 24;
-    public const int HOW_MANY_MINUTES_IN_HOURS = 60;
+    private const int HOW_MANY_HOURS_IN_DAY = 24;
+    private const int HOW_MANY_MINUTES_IN_HOURS = 60;
     private int _currentMinutesOfDay;
     private Person? _wearBy;
 
@@ -47,9 +47,9 @@ public class Watch
     public void SetWearBy(Person person)
     {
         if (person.HasWatch())
-            throw new ApplicationException();
+            throw new ApplicationException($"{person.Name} has already a watch");
         if (_wearBy is not null)
-            throw new ApplicationException();
+            throw new ApplicationException($"This watch is already wear by {GetWearBy().Name}");
         
         _wearBy = person;
         _wearBy.WearWatch(this);
@@ -58,7 +58,7 @@ public class Watch
     public void RemoveWearBy()
     {
         if (_wearBy is null)
-            throw new AggregateException();
+            throw new ApplicationException("Nobody wear this watch");
 
         _wearBy.RemoveWatch();
         _wearBy = null;
@@ -74,6 +74,9 @@ public class Watch
         get => _currentMinutesOfDay;
         set
         {
+            if (value < 0)
+                throw new ApplicationException("You have to enter an hour superior to 0");
+            
             _currentMinutesOfDay = value;
             
             while (_currentMinutesOfDay >= MaxMinutesInDay())
@@ -83,7 +86,7 @@ public class Watch
         }
     }
 
-    private int MaxMinutesInDay()
+    private static int MaxMinutesInDay()
     {
         return HOW_MANY_MINUTES_IN_HOURS * HOW_MANY_HOURS_IN_DAY;
     }
