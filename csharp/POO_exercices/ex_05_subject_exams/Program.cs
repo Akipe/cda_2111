@@ -1,11 +1,18 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 using ex_05_subject_exams.question;
+using ex_05_subject_exams.response;
 
 // QCM
 OpenEndedQuestion firstQuestion = new OpenEndedQuestion(
     "Présentez vous :",
-    0);
+    0,
+    new OpenSolution(
+        new string[]
+        {
+            "nom",
+            "prenom"
+        }));
 
 MultipleChoiceQuestion secondQuestion = new MultipleChoiceQuestion(
     "Quel est la couleur du cheval blanc de Charlemagne ?",
@@ -20,7 +27,13 @@ MultipleChoiceQuestion secondQuestion = new MultipleChoiceQuestion(
 
 OpenEndedQuestion thirdQuestion = new OpenEndedQuestion(
     "Qu'est ce que la philosophie ?",
-    120);
+    120,
+    new OpenSolution(
+        new string[]
+        {
+            "philosophie",
+            "ouf"
+        }));
 
 MultipleChoiceQuestion fourthQuestion = new MultipleChoiceQuestion(
     "Dans quel pays vivez vous ?",
@@ -34,7 +47,7 @@ MultipleChoiceQuestion fourthQuestion = new MultipleChoiceQuestion(
 
 // User response
 Console.WriteLine(firstQuestion.Statement);
-firstQuestion.Answer = Console.ReadLine();
+firstQuestion.OpenSolution.Answer = Console.ReadLine();
 
 Console.WriteLine(secondQuestion.Statement);
 foreach (var choice in secondQuestion.Choices)
@@ -47,7 +60,7 @@ foreach (var choice in secondQuestion.Choices)
 }
 
 Console.WriteLine(thirdQuestion.Statement);
-thirdQuestion.Answer = Console.ReadLine();
+thirdQuestion.OpenSolution.Answer = Console.ReadLine();
 
 Console.WriteLine(fourthQuestion.Statement);
 foreach (var choice in fourthQuestion.Choices)
@@ -58,13 +71,6 @@ foreach (var choice in fourthQuestion.Choices)
     else
         choice.Uncheck();
 }
-
-// Correction
-Console.WriteLine(" \"" + firstQuestion.Statement + "\" with response \""+ firstQuestion.Answer + "\" is correct ?");
-firstQuestion.SetIsCorrect(bool.Parse(Console.ReadLine()));
-
-Console.WriteLine(" \"" + thirdQuestion.Statement + "\" with response \""+ thirdQuestion.Answer + "\" is correct ?");
-thirdQuestion.SetIsCorrect(bool.Parse(Console.ReadLine()));
 
 // Result
 Console.WriteLine(firstQuestion.GetIsCorrect());

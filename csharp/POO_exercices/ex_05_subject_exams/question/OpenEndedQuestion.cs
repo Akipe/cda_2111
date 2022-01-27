@@ -1,26 +1,22 @@
-﻿namespace ex_05_subject_exams.question;
+﻿using ex_05_subject_exams.response;
+
+namespace ex_05_subject_exams.question;
 
 public class OpenEndedQuestion : Question
 {
-    private bool? _isCorrect;
-    
-    public OpenEndedQuestion(string statement, int difficulty) : base(statement, difficulty)
+    public OpenEndedQuestion(string statement, int difficulty, OpenSolution openSolution) : base(statement, difficulty)
     {
-        _isCorrect = null;
+        OpenSolution = openSolution;
     }
 
-    public string? Answer { get; set; }
-
-    public void SetIsCorrect(bool? isCorrect)
+    public OpenSolution OpenSolution
     {
-        _isCorrect = isCorrect;
+        init;
+        get;
     }
 
     public override bool GetIsCorrect()
     {
-        if (_isCorrect is null)
-            throw new ApplicationException("The answer has not been received a correction");
-
-        return (bool) _isCorrect;
+        return OpenSolution.IsCorrect();
     }
 }

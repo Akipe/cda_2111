@@ -1,6 +1,6 @@
-﻿namespace ex_05_subject_exams.question;
+﻿namespace ex_05_subject_exams.response;
 
-public class Choice
+public class Choice : Response
 {
     private bool _isCheck;
     
@@ -35,7 +35,7 @@ public class Choice
     /// If this choice is incorrect and has not been checked, it is correct.
     /// </summary>
     /// <returns>If user has answered correctly</returns>
-    public bool IsCorrect()
+    public override bool IsCorrect()
     {
         return GetIsCheck() == Solution;
     }

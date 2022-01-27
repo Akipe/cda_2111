@@ -1,4 +1,8 @@
-﻿namespace ex_05_subject_exams.question;
+﻿
+
+using ex_05_subject_exams.response;
+
+namespace ex_05_subject_exams.question;
 
 public class MultipleChoiceQuestion : Question
 {
