@@ -14,11 +14,11 @@ namespace ONF
 
             Parcel p1 = new Parcel(
                 1,
-                new List<GpsCoordonate> {
-                    new GpsCoordonate(1.1, 1.1),
-                    new GpsCoordonate(1.1, 1.1),
-                    new GpsCoordonate(1.1, 1.1),
-                    new GpsCoordonate(1.1, 1.1)
+                new List<GeoCoordinate.NetStandard2.GeoCoordinate> {
+                    new GeoCoordinate.NetStandard2.GeoCoordinate(47.76038152655799, 7.350828398223791),
+                    new GeoCoordinate.NetStandard2.GeoCoordinate(47.733056301037365, 7.30447234346341),
+                    new GeoCoordinate.NetStandard2.GeoCoordinate(47.740461615634956, 7.2921042540475485),
+                    new GeoCoordinate.NetStandard2.GeoCoordinate(1.1, 1.1)
                 });
 
             p1.PlantATree(t1);
@@ -26,6 +26,8 @@ namespace ONF
             p1.PlantATree(t3);
 
             Console.WriteLine($"There are {p1.GetNumberTrees()} trees");
+            
+            Console.WriteLine(p1.GetSurface());
         }
     }
 }

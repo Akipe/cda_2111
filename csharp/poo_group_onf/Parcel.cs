@@ -10,16 +10,16 @@ namespace ONF
     {
         private uint _id;
         private List<Tree> _trees;
-        private List<GpsCoordonate> _coordonates;
+        private List<GeoCoordinate.NetStandard2.GeoCoordinate> _coordonates;
 
-        public Parcel(uint _id, List<GpsCoordonate> coordonates)
+        public Parcel(uint _id, List<GeoCoordinate.NetStandard2.GeoCoordinate> coordonates)
         {
             this.ParcelId = _id;
             this.Coordonates = coordonates;
             this.Trees = new List<Tree> { };
         }
 
-        public List<GpsCoordonate> Coordonates
+        public List<GeoCoordinate.NetStandard2.GeoCoordinate> Coordonates
         {
             get => this._coordonates;
             set 
@@ -55,9 +55,10 @@ namespace ONF
             this.Trees.Add(tree);
         }
 
-        public float GetSurface()
+        public double GetSurface()
         {
-            return 0;
+            return Coordonates[0].GetDistanceTo(Coordonates[1]) * 
+                Coordonates[1].GetDistanceTo(Coordonates[2]);
         }
     }
 }
