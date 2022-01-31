@@ -1,10 +1,24 @@
 ﻿using System.Text;
+using ex_05_subject_exams.question;
 
 namespace ex_05_subject_exams;
 
 public class ExamSubject
 {
     private Dictionary<Question,int> _questions;
+    private int _maxPoints;
+
+    private readonly char[] alphabetNumbering = new char[]
+    {
+        'a',
+        'b',
+        'c',
+        'd',
+        'e',
+        'f',
+        'g',
+        'h'
+    };
 
     public ExamSubject(Dictionary<Question,int> questions)
     {
@@ -18,44 +32,65 @@ public class ExamSubject
             if (value < 1)
                 throw new ApplicationException("The score has to be positive and bigger than zero");
 
-            _maxPoints = value;
+            this._maxPoints = value;
         }
-        get => _maxPoints;
+        get => this._maxPoints;
     }
 
     public Dictionary<Question,int> Questions
     {
         init
         {
-            if (value.Length < 1)
+            if (value.Count < 1)
                 throw new ApplicationException("You have to enter at least one question");
 
-            _questions = value;
+            this._questions = value;
         }
-        get => _questions;
+        get => this._questions;
     }
 
     public void Show()
     {
         StringBuilder outputExam = new StringBuilder();
         
-        for (int numberQuestion = 1; numberQuestion <= Questions.Length; numberQuestion++)
+        for (int numberQuestion = 0; numberQuestion < this.Questions.Count; numberQuestion++)
         {
-            outputExam.Append("Question number ");
-            outputExam.Append(numberQuestion);
-            outputExam.Append(" :");
-            outputExam.AppendLine(Questions[numberQuestion].Statement);
-            if (Questions[numberQuestion] is )
+            outputExam.Append(numberQuestion + 1);
+            outputExam.Append(") ");
+            outputExam.Append(this.Questions.Keys.ElementAt(numberQuestion).Statement);
+            outputExam.Append(" (");
+            outputExam.Append(this.Questions.Values.ElementAt(numberQuestion));
+            outputExam.AppendLine(" points)");
+            if (this.Questions.Keys.ElementAt(numberQuestion) is MultipleChoiceQuestion qcmQuestion)
+            {
+                this.PopulateOutputAllChoicesFrom(qcmQuestion, ref outputExam);
+            }
+        }
+        
+        Console.WriteLine(outputExam.ToString());
+    }
+
+    private void PopulateOutputAllChoicesFrom(MultipleChoiceQuestion question, ref StringBuilder outputExam)
+    {
+        for (int indexChoice = 0; indexChoice < question.Choices.Length; indexChoice++)
+        {
+            outputExam.Append('\t');
+            outputExam.Append(alphabetNumbering[indexChoice]);
+            outputExam.Append(") ");
+            outputExam.AppendLine(question.Choices[indexChoice].Entitled);
         }
     }
 
-    public void Perform()
-    {
-        
-    }
 
     public int GetDifficulty()
     {
+        int examDifficulty = 0;
         
+        foreach (Question question in _questions.Keys)
+        {
+            examDifficulty += question.Difficulty;
+        }
+
+        return examDifficulty / _questions.Count;
     }
 }
