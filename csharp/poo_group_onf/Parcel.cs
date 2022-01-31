@@ -55,10 +55,13 @@ namespace ONF
             this.Trees.Add(tree);
         }
 
+        /// <summary>
+        /// Return surface of parcel (m2) 
+        /// </summary>
+        /// <returns></returns>
         public double GetSurface()
         {
-            return Coordonates[0].GetDistanceTo(Coordonates[1]) * 
-                Coordonates[1].GetDistanceTo(Coordonates[2]);
+            return (Coordonates[0].GetDistanceTo(Coordonates[1])) * (Coordonates[1].GetDistanceTo(Coordonates[2]));
         }
     }
 }

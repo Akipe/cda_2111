@@ -15,9 +15,9 @@ namespace ONF
             Parcel p1 = new Parcel(
                 1,
                 new List<GeoCoordinate.NetStandard2.GeoCoordinate> {
-                    new GeoCoordinate.NetStandard2.GeoCoordinate(47.76038152655799, 7.350828398223791),
-                    new GeoCoordinate.NetStandard2.GeoCoordinate(47.733056301037365, 7.30447234346341),
-                    new GeoCoordinate.NetStandard2.GeoCoordinate(47.740461615634956, 7.2921042540475485),
+                    new GeoCoordinate.NetStandard2.GeoCoordinate(47.76046807377427, 7.350892771234676),
+                    new GeoCoordinate.NetStandard2.GeoCoordinate(47.73632250242514, 7.3028557263941325),
+                    new GeoCoordinate.NetStandard2.GeoCoordinate(47.741655552891146, 7.291956754172469),
                     new GeoCoordinate.NetStandard2.GeoCoordinate(1.1, 1.1)
                 });
 
