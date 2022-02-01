@@ -10,26 +10,26 @@ namespace ONF
     {
         private uint _id;
         private List<Tree> _trees;
-        private List<GeoCoordinate.NetStandard2.GeoCoordinate> _coordonates;
+        private List<GeoCoordinate.NetStandard2.GeoCoordinate> _coordinates;
 
-        public Parcel(uint _id, List<GeoCoordinate.NetStandard2.GeoCoordinate> coordonates)
+        public Parcel(uint _id, List<GeoCoordinate.NetStandard2.GeoCoordinate> coordinates)
         {
             this.ParcelId = _id;
-            this.Coordonates = coordonates;
+            this.coordinates = coordinates;
             this.Trees = new List<Tree> { };
         }
 
-        public List<GeoCoordinate.NetStandard2.GeoCoordinate> Coordonates
+        public List<GeoCoordinate.NetStandard2.GeoCoordinate> coordinates
         {
-            get => this._coordonates;
+            get => this._coordinates;
             set 
             {
                 if (value.Count != 4)
                 {
-                    throw new ApplicationException("We need 4 GPS coordonates");
+                    throw new ApplicationException("We need 4 GPS coordinates");
                 }
 
-                _coordonates = value;
+                _coordinates = value;
             }
         }
 
@@ -56,12 +56,15 @@ namespace ONF
         }
 
         /// <summary>
-        /// Return surface of parcel (m2) 
+        /// Return surface of parcel from coordinates
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Surface of parcel in square kilometer</returns>
         public double GetSurface()
         {
-            return (Coordonates[0].GetDistanceTo(Coordonates[1])) * (Coordonates[1].GetDistanceTo(Coordonates[2]));
+            return 
+                coordinates[0].GetDistanceTo(coordinates[1])
+                * coordinates[1].GetDistanceTo(coordinates[2])
+                / 1000000;
         }
     }
 }
