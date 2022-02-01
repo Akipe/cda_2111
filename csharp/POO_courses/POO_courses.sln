@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "POO_01_courses_initial", "POO_01_courses_initial\POO_01_courses_initial.csproj", "{0B87A63A-3CAA-444C-BC15-F3E255BDED93}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "POO_02_geometry", "POO_02_geometry\POO_02_geometry.csproj", "{0E36F3C4-BA83-4B47-8BDD-108857459DA5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "POO_03_writetool", "POO_03_writetool\POO_03_writetool.csproj", "{AAEEB551-57F7-4AF0-A8D5-DAD7EAA1B40A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "POO_04_override_virtual_new", "POO_04_override_virtual_new\POO_04_override_virtual_new.csproj", "{7A3537CD-7A37-436E-8338-8622F52A6875}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0B87A63A-3CAA-444C-BC15-F3E255BDED93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B87A63A-3CAA-444C-BC15-F3E255BDED93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B87A63A-3CAA-444C-BC15-F3E255BDED93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B87A63A-3CAA-444C-BC15-F3E255BDED93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E36F3C4-BA83-4B47-8BDD-108857459DA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E36F3C4-BA83-4B47-8BDD-108857459DA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E36F3C4-BA83-4B47-8BDD-108857459DA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E36F3C4-BA83-4B47-8BDD-108857459DA5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AAEEB551-57F7-4AF0-A8D5-DAD7EAA1B40A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AAEEB551-57F7-4AF0-A8D5-DAD7EAA1B40A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AAEEB551-57F7-4AF0-A8D5-DAD7EAA1B40A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AAEEB551-57F7-4AF0-A8D5-DAD7EAA1B40A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A3537CD-7A37-436E-8338-8622F52A6875}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A3537CD-7A37-436E-8338-8622F52A6875}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A3537CD-7A37-436E-8338-8622F52A6875}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A3537CD-7A37-436E-8338-8622F52A6875}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

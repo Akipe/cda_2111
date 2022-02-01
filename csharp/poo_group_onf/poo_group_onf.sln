@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "onf", "onf\onf.csproj", "{531907E2-4899-41DD-8DF5-0D10DECB3E01}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "onf_correction", "onf_correction\onf_correction.csproj", "{D51CA7CC-AE9E-49B1-82F2-1686CE66D21F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{531907E2-4899-41DD-8DF5-0D10DECB3E01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{531907E2-4899-41DD-8DF5-0D10DECB3E01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{531907E2-4899-41DD-8DF5-0D10DECB3E01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{531907E2-4899-41DD-8DF5-0D10DECB3E01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D51CA7CC-AE9E-49B1-82F2-1686CE66D21F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D51CA7CC-AE9E-49B1-82F2-1686CE66D21F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D51CA7CC-AE9E-49B1-82F2-1686CE66D21F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D51CA7CC-AE9E-49B1-82F2-1686CE66D21F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
