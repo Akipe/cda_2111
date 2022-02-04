@@ -1,3 +1,7 @@
+### Personal
+
+database/00_mssql-server_docker/data/*
+
 ###########################
 # Common IntelliJ Platform excludes
 ###########################
