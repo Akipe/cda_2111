@@ -16,7 +16,7 @@ Management rules
 
 
 - **une entreprise** est représenté par une **personne**.
-- **une personne** représente une ou plusieurs **entreprises**.
+- **une personne** représente zero ou plusieurs **entreprises**.
 
 - **une entreprise** regroupe 2 ou plusieurs **personne**.
 - **une personne** est regroupé dans 0 ou plusieurs **entreprises**.
