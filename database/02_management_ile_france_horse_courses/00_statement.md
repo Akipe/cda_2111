@@ -1,13 +1,10 @@
-1ère Partie : gestion de la race chevaline
+2ème Partie : Gestion des courses de la région parisienne
 =========
 
-2ème Partie : Gestion des courses de la région parisienne
-Pour le programme de COURSES de CHEVAUX en région parisienne d'autres éléments d'informations
-extraits de la phase de recueil sont les suivants :
+Pour le programme de COURSES de CHEVAUX en région parisienne d'autres éléments d'informations extraits de la phase de recueil sont les suivants :
 - il existe 6 champs de courses en région parisienne.
 - il est prévue au maximum deux réunions de courses par jour (après-midi et nocturne).
-- le nombre de chevaux par course est fixé au minimum à 5 chevaux et au maximum à 25
-chevaux.
+- le nombre de chevaux par course est fixé au minimum à 5 chevaux et au maximum à 25 chevaux.
 - Le programme des courses à établir concerne une semaine quelconque dans l'année.
 - Les informations nécessaires pour chaque course sont les suivantes :
     * le numéro de la course,
@@ -31,5 +28,4 @@ chevaux.
 - Les éléments d'information suivants ont été fournis :
     * Un jockey ou un driver peut monter plusieurs fois dans la même réunion de courses.
     * Un cheval ne peut courir que dans un seul type de course
-    * Un propriétaire ou un entraîneur peut avoir plusieurs chevaux dans la même épreuve
-    (écurie).
+    * Un propriétaire ou un entraîneur peut avoir plusieurs chevaux dans la même épreuve (écurie).
