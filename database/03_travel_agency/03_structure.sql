@@ -1,12 +1,4 @@
--- IF NOT EXISTS
--- (
--- 	SELECT name FROM master.dbo.sysdatabases
--- 	WHERE name = N'db_travel_agency'
--- )
--- CREATE DATABASE [db_travel_agency];
-
 USE db_travel_agency;
-
 
 -- suppression de la structure
 
@@ -49,7 +41,7 @@ CREATE TABLE trips (
     trip_overview VARCHAR(max) NOT NULL,
     trip_description VARCHAR(max) NULL,
     CONSTRAINT PK_trips_trip_code PRIMARY KEY (trip_code)
-)
+);
 
 CREATE TABLE transit (
 	city_code INT NOT NULL,
@@ -68,6 +60,14 @@ CREATE TABLE themes (
     CONSTRAINT PK_themes_theme_code PRIMARY KEY (theme_code)
 )
 
+CREATE TABLE propose (
+    trip_code INT NOT NULL,
+    theme_code INT NOT NULL,
+    CONSTRAINT PK_propose_id PRIMARY KEY (trip_code, theme_code),
+    CONSTRAINT FK_propose_trip_code FOREIGN KEY (trip_code) REFERENCES trips(trip_code),
+    CONSTRAINT FK_propose_theme_code FOREIGN KEY (theme_code) REFERENCES themes(theme_code)
+)
+
 CREATE TABLE benefits (
     benefit_code INT IDENTITY(1,1),
     benefit_name VARCHAR(32) NOT NULL,
@@ -75,7 +75,7 @@ CREATE TABLE benefits (
     benefit_score TINYINT NOT NULL,
     benefit_commentary VARCHAR(255) NULL,
     CONSTRAINT PK_benefits_benefit_code PRIMARY KEY (benefit_code)
-)
+);
 
 CREATE TABLE provide (
     trip_code INT NOT NULL,
@@ -83,7 +83,7 @@ CREATE TABLE provide (
     CONSTRAINT PK_provide_id PRIMARY KEY (trip_code, benefit_code),
     CONSTRAINT FK_provide_trip_code FOREIGN KEY (trip_code) REFERENCES trips(trip_code),
     CONSTRAINT FK_benefit_code FOREIGN KEY (benefit_code) REFERENCES benefits(benefit_code)
-)
+);
 
 CREATE TABLE sales_people (
     com_code CHAR(5) NOT NULL,
@@ -92,7 +92,7 @@ CREATE TABLE sales_people (
     com_code_substitute CHAR(5) NULL,
     CONSTRAINT PK_sales_people_com_code PRIMARY KEY (com_code),
     CONSTRAINT FK_sales_people_com_code_substitute FOREIGN KEY (com_code_substitute) REFERENCES sales_people(com_code)
-)
+);
 
 CREATE TABLE clients (
     client_id INT IDENTITY(1,1),
@@ -105,7 +105,7 @@ CREATE TABLE clients (
     com_code CHAR(5) NOT NULL,
     CONSTRAINT PK_clients_client_id PRIMARY KEY (client_id),
     CONSTRAINT FK_clients_com_code FOREIGN KEY (com_code) REFERENCES sales_people(com_code)
-)
+);
 
 
 CREATE TABLE book (
@@ -116,52 +116,19 @@ CREATE TABLE book (
     CONSTRAINT PK_books_ids PRIMARY KEY (client_id, trip_code),
     CONSTRAINT FK_books_client_id FOREIGN KEY (client_id) REFERENCES clients(client_id),
     CONSTRAINT FK_books_trip_code FOREIGN KEY (trip_code) REFERENCES trips(trip_code)
-)
+);
 
 
--- données
+-- affichage des tables
 
-INSERT INTO countries(country_name) VALUES
-	(N'France'),
-	(N'Belgique');
-
-INSERT INTO cities(city_name, country_code) VALUES
-	(N'Paris', 1),
-	(N'Marseille', 1);
-
-INSERT INTO trips(
-		trip_title,
-		trip_available,
-		trip_start,
-		trip_end,
-		trip_price,
-		trip_overview,
-		trip_description
-	) VALUES (
-		N'Cap Yolo',
-		15,
-		'2013-04-02 12:45:34',
-		GETDATE(),
-		750.12,
-		N'Ce voyage est vraiment trop cool',
-		N'Ce voyage vous fera décrouvrir des univers trop stylés B)'
-	);
-
-INSERT INTO transit(
-		city_code,
-		trip_code,
-		step_start,
-		step_end
-	) VALUES (
-		1,
-		1,
-		'2013-04-02 12:45:34',
-		GETDATE()
-	);
-
--- affichage des données
-
-SELECT * FROM countries;
-SELECT * FROM cities;
-SELECT * FROM trips;
+SELECT * FROM provide;
+SELECT * FROM book;
+SELECT * FROM propose;
 SELECT * FROM transit;
+SELECT * FROM trips;
+SELECT * FROM cities;
+SELECT * FROM countries;
+SELECT * FROM clients;
+SELECT * FROM sales_people;
+SELECT * FROM themes;
+SELECT * FROM benefits;
