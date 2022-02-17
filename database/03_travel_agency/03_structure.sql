@@ -108,7 +108,7 @@ CREATE TABLE clients (
 );
 
 
-CREATE TABLE book (
+/*CREATE TABLE book (
     client_id INT NOT NULL,
     trip_code INT NOT NULL,
     order_quantity TINYINT NOT NULL,
@@ -116,7 +116,37 @@ CREATE TABLE book (
     CONSTRAINT PK_books_ids PRIMARY KEY (client_id, trip_code),
     CONSTRAINT FK_books_client_id FOREIGN KEY (client_id) REFERENCES clients(client_id),
     CONSTRAINT FK_books_trip_code FOREIGN KEY (trip_code) REFERENCES trips(trip_code)
+);*/
+
+CREATE TABLE book (
+    client_id INT NOT NULL,
+    CONSTRAINT PK_book_book_id PRIMARY KEY (client_id)
 );
+
+ALTER TABLE book ADD
+    trip_code INT NOT NULL,
+    order_quantity INT NULL,
+    order_paid BIT NULL DEFAULT 0,
+    order_to_remove VARCHAR(max) NULL
+;
+
+ALTER TABLE book ALTER COLUMN
+    order_quantity TINYINT NOT NULL
+;
+
+ALTER TABLE book DROP COLUMN order_to_remove;
+
+ALTER TABLE book ADD CONSTRAINT
+    FK_book_client_id FOREIGN KEY (client_id) REFERENCES clients(client_id);
+ALTER TABLE book ADD CONSTRAINT
+    FK_book_trip_code FOREIGN KEY (trip_code) REFERENCES trips(trip_code);
+
+ALTER TABLE book DROP CONSTRAINT
+    PK_book_book_id;
+
+ALTER TABLE book ADD CONSTRAINT
+    PK_book_book_id PRIMARY KEY (trip_code, client_id);
+
 
 
 -- affichage des tables
