@@ -1,13 +1,15 @@
 -- SQL structure for library
 
-IF NOT EXISTS (SELECT µ FROM sys.databases WHERE name = 'db_library')
+IF NOT EXISTS (SELECT * FROM sys.databases WHERE name = 'db_library')
     BEGIN
         CREATE DATABASE [db_library]
     END
 GO
 
+USE db_library;
+
 DROP TABLE IF EXISTS write;
-DROP TABLE IF EXISTS author;
+DROP TABLE IF EXISTS authors;
 DROP TABLE IF EXISTS copies_books;
 DROP TABLE IF EXISTS books;
 DROP TABLE IF EXISTS book_publishers;
@@ -64,9 +66,9 @@ CREATE TABLE lending_points(
     lending_point_city VARCHAR(32) NOT NULL,
     lending_point_zipcode CHAR(5) NOT NULL,
     CONSTRAINT PK_lending_points_id PRIMARY KEY (lending_point_name),
-    CONSTRAINT FK_lending_points_street FOREIGN KEY (lending_point_street) REFERENCES addresses(address_street),
-    CONSTRAINT FK_lending_points_city FOREIGN KEY (lending_point_city) REFERENCES addresses(address_city),
-    CONSTRAINT FK_lending_points_zipcode FOREIGN KEY (lending_point_zipcode) REFERENCES addresses(address_zipcode),
+    CONSTRAINT FK_lending_addresses
+        FOREIGN KEY (lending_point_street, lending_point_city, lending_point_zipcode)
+        REFERENCES addresses(address_street, address_city, address_zipcode)
 );
 
 CREATE TABLE customers(
@@ -78,9 +80,9 @@ CREATE TABLE customers(
     customer_city VARCHAR(32) NOT NULL,
     customer_zipcode CHAR(5) NOT NULL,
     CONSTRAINT PK_customers_id PRIMARY KEY (customer_id),
-    CONSTRAINT FK_customers_street FOREIGN KEY (customer_street) REFERENCES addresses(address_street),
-    CONSTRAINT FK_customers_city FOREIGN KEY (customer_city) REFERENCES addresses(address_city),
-    CONSTRAINT FK_customers_zipcode FOREIGN KEY (customer_zipcode) REFERENCES addresses(address_zipcode),
+    CONSTRAINT FK_customers_street
+        FOREIGN KEY (customer_street, customer_city, customer_zipcode)
+        REFERENCES addresses(address_street, address_city, address_zipcode)
 );
 
 CREATE TABLE copies_books(

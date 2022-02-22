@@ -17,7 +17,7 @@ Library - Management rules
 - **un exemplaire de livre** est emprunté par **0 ou plusieurs client**.
 
 - **un client** habite à **1 adresse**.
-- **une adresse** est habité par **1 ou plusieurs clients**.
+- **une adresse** est habité par **0 ou plusieurs clients**.
 
 - **un exemplaire de livre** est décrit par **une condition**.
 - **une condition** décrit **0 ou plusieurs exemplaires de livres**.
