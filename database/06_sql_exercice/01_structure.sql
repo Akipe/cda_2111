@@ -1,13 +1,13 @@
 -- base structure for first part
 
-IF NOT EXISTS (SELECT * FROM sys.databases WHERE name = 'db_sql_ex_part_one')
+IF NOT EXISTS (SELECT * FROM sys.databases WHERE name = 'db_sql_exercice')
     BEGIN
-        CREATE DATABASE [db_sql_ex_part_one]
+        CREATE DATABASE [db_sql_exercice]
     END
 GO
 
 
-USE db_sql_ex_part_one;
+USE db_sql_exercice;
 
 
 IF NOT EXISTS (SELECT * FROM sys.sysobjects WHERE name = 'dept' AND xtype = 'U')

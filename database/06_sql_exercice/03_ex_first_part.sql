@@ -1,6 +1,6 @@
 -- Exercices first part
 
-USE db_sql_ex_part_one;
+USE db_sql_exercice;
 
 -- ex01 : Donner nom, job, numéro et salaire de tous les employés, puis seulement des employés du département 10
 

@@ -1,6 +1,6 @@
 -- data for first part
 
-USE db_sql_ex_part_one;
+USE db_sql_exercice;
 
 IF NOT EXISTS (SELECT * FROM dept)
 BEGIN
