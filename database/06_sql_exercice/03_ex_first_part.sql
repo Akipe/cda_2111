@@ -203,8 +203,7 @@ IF NOT EXISTS (SELECT * FROM sys.sysobjects WHERE name = 'employees_resume' AND 
     CREATE VIEW employees_resume AS
         SELECT e.ename AS employe_name, e.job AS employe_job, d.dname AS departement_name, p.project_name FROM emp AS e
         INNER JOIN dept AS d ON e.deptno = d.deptno
-        INNER JOIN projects AS p ON e.emp_project_number = p.project_number
-    ;
+        INNER JOIN projects AS p ON e.emp_project_number = p.project_number;
 GO;
 
 SELECT * FROM employees_resume;

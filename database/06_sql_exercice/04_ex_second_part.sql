@@ -110,11 +110,41 @@ SELECT e1.ename, e1.hiredate, e1.deptno FROM emp AS e1
 
 -- ex18: Sélectionner le métier où le salaire moyen est le plus faible.
 
-/*SELECT e.job, AVG(e.sal) AS average_salary_job FROM emp AS e
-    HAVING average_salary_job = MIN(e.sal)
-    GROUP BY e.job*/
+-- List jobs with average salary
+SELECT e1.job, AVG(e1.sal) FROM emp AS e1
+    GROUP BY e1.job;
+
+-- The smallest average salary from all jobs
+SELECT MIN(average_sal_job.salary) FROM
+    (SELECT AVG(e2.sal) AS salary FROM emp AS e2 GROUP BY e2.job)
+    AS average_sal_job;
+
+-- The job with the smallest average salary
+WITH jobs_avg_salary AS (
+    SELECT employe.job as name, AVG(employe.sal) AS salary
+    FROM emp AS employe
+    GROUP BY employe.job
+), job_lowest_salary AS (
+    SELECT MIN(jobs.salary) AS salary
+    FROM jobs_avg_salary AS jobs
+)
+SELECT jobs_avg_salary.name, jobs_avg_salary.salary FROM jobs_avg_salary
+    INNER JOIN job_lowest_salary
+    ON jobs_avg_salary.salary = job_lowest_salary.salary;
 
 -- ex19: Sélectionner le département ayant le plus d'employés.
+
+WITH departments_employees AS (
+    SELECT d.dname AS name, COUNT(d.dname) AS number FROM dept AS d
+    INNER JOIN emp AS e
+    ON d.deptno = e.deptno
+    GROUP BY d.dname
+), departments_employees_biggest AS (
+    SELECT MAX(departments_employees.number) AS number FROM departments_employees
+)
+SELECT departments_employees.name, departments_employees.number FROM departments_employees
+    INNER JOIN departments_employees_biggest
+    ON departments_employees.number = departments_employees_biggest.number;
 
 -- ex20: Donner la répartition en pourcentage du nombre d'employés par département
 --       selon le modèle ci-dessous :
@@ -125,3 +155,15 @@ SELECT e1.ename, e1.hiredate, e1.deptno FROM emp AS e1
 -- 20 35.71
 -- 30 42.86
 
+WITH departement_employees AS ( -- on récupére de nombre d'employé par département
+    SELECT d.deptno as id, COUNT(d.deptno) as number FROM dept AS d
+    INNER JOIN emp AS e
+    ON d.deptno = e.deptno
+    GROUP BY d.deptno
+), employees_total AS ( -- on récupére le nombre total d'employé
+    SELECT COUNT(*) as max FROM emp AS e
+)
+    SELECT
+        de.id AS department_id,
+        ROUND((CAST(de.number AS FLOAT) / CAST(et.max AS FLOAT) * 100), 2) AS number_employees
+    FROM departement_employees AS de, employees_total AS et
