@@ -57,17 +57,57 @@ SELECT p.pilnom, a.avmarq, a.loc FROM pilote AS p
 SELECT p.pilnom, a.avmarq, p.adr FROM pilote AS p
     INNER JOIN vol AS v ON v.pil = p.pil
     INNER JOIN avion AS a ON v.av = a.av
-    WHERE (p.adr = a.loc AND a.avmarq = 'AIRBUS')
-WHERE v.avmarq = 'AIRBUS' OR
+    WHERE p.adr = a.loc OR a.avmarq = 'AIRBUS';
 
 -- ex09: Quels sont les noms des pilotes qui conduisent un Airbus
 --       sauf ceux qui habitent dans la ville de localisation d'un Airbus ?
+
+SELECT p.pilnom, p.adr FROM pilote AS p
+
+SELECT p.pilnom, p.adr, a.avmarq AS plane_drive FROM pilote AS p
+    INNER JOIN vol AS v ON p.pil = v.pil
+    INNER JOIN avion AS a ON a.av = v.av
+    WHERE
+          a.avmarq = 'AIRBUS' AND
+          p.adr NOT IN (SELECT av.loc FROM avion AS av WHERE av.avmarq = 'AIRBUS')
+    GROUP BY p.pilnom, p.adr, a.avmarq;
+
 -- ex10: Quels sont les vols ayant un trajet identique ( VD, VA )
 --       à ceux assurés par Serge ?
+
+WITH serge_villes_vol AS (
+    SELECT v.vd, v.va FROM vol AS v INNER JOIN pilote AS p ON v.pil = p.pil WHERE p.pilnom = 'Serge'
+)
+SELECT v.vol, v.vd, v.va, v.hd, v.ha FROM vol AS v
+    INNER JOIN pilote AS p ON v.pil = p.pil
+    WHERE
+          v.vd IN (SELECT s.vd FROM serge_villes_vol AS s) AND
+          v.va IN (SELECT s.va FROM serge_villes_vol AS s);
+
 -- ex11: Donner toutes les paires de pilotes habitant la même ville ( sans doublon ).
+
+
 -- ex12: Quels sont les noms des pilotes qui conduisent
 --       un avion que conduit aussi le pilote n°1 ?
+
+SELECT p.pilnom, v.av FROM pilote AS p
+    INNER JOIN vol AS v ON p.pil = v.pil
+    WHERE v.av IN (SELECT v.av FROM vol AS v WHERE v.pil = 1)
+
 -- ex13: Donner toutes les paires de villes telles qu'un avion localisé
 --       dans la ville de départ soit conduit
 --       par un pilote résidant dans la ville d'arrivée.
+
+SELECT v.vd AS vol_start, v.va AS vol_end, p.adr AS addr_pilot, a.loc AS addr_plane FROM vol AS v
+    INNER JOIN avion AS a ON v.av = a.av
+    INNER JOIN pilote AS p ON v.pil = p.pil
+    WHERE a.loc = v.vd AND p.adr = v.va
+
 -- ex014 Sélectionner les numéros des pilotes qui conduisent tous les Airbus ?
+
+SELECT p.pil, p.pilnom, a.avmarq FROM pilote AS p
+    INNER JOIN vol AS v ON v.pil = p.pil
+    INNER JOIN avion AS a ON v.av = a.av
+    WHERE a.avmarq = 'AIRBUS'
+    GROUP BY p.pil, p.pilnom, a.avmarq
+
