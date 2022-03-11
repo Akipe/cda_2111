@@ -83,6 +83,23 @@ SELECT v.vol, v.vd, v.va, v.hd, v.ha FROM vol AS v
           v.vd IN (SELECT s.vd FROM serge_villes_vol AS s) AND
           v.va IN (SELECT s.va FROM serge_villes_vol AS s);
 
+
+
+
+DECLARE @SergeNumber VARCHAR(10);
+SELECT @SergeNumber=pil from pilote where pilnom = 'serge';
+SELECT main.vol, main.vd, main.va
+FROM vol as main
+INNER JOIN vol AS depart ON depart.vd = main.vd
+INNER JOIN vol AS arrivee ON arrivee.va = main.va
+WHERE depart.pil = @SergeNumber
+AND arrivee.pil = @SergeNumber
+AND arrivee.vol = depart.vol;
+
+
+
+
+
 -- ex11: Donner toutes les paires de pilotes habitant la même ville ( sans doublon ).
 
 SELECT
@@ -97,7 +114,7 @@ SELECT
 -- ex12: Quels sont les noms des pilotes qui conduisent
 --       un avion que conduit aussi le pilote n°1 ?
 
-SELECT p.pilnom, v.av FROM pilote AS p
+SELECT DISTINCT p.pilnom FROM pilote AS p
     INNER JOIN vol AS v ON p.pil = v.pil
     WHERE v.av IN (SELECT v.av FROM vol AS v WHERE v.pil = 1);
 
@@ -117,3 +134,16 @@ SELECT p.pil, p.pilnom, a.avmarq FROM pilote AS p
     INNER JOIN avion AS a ON v.av = a.av
     WHERE a.avmarq = 'AIRBUS'
     GROUP BY p.pil, p.pilnom, a.avmarq;
+
+CREATE PROCEDURE PSP_show_pilot @pilot_name VARCHAR(50) AS
+    SELECT pil, pilnom, adr FROM pilote
+    WHERE pilnom = @pilot_name;
+
+SELECT * FROM pilote;
+PSP_show_pilot 'ROBERT'
+
+--CREATE PROCEDURE PSP_is_sal_greater_then_ceo @salary MONEY AS
+--BEGIN
+--    DECLARE @result BIT;
+--    IF (@)
+--END
