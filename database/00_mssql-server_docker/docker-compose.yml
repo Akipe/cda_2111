@@ -1,0 +1,12 @@
+version: "3.9"
+services:
+  mssql-server:
+    image: "mcr.microsoft.com/mssql/server:2019-latest"
+    user: root  # Only for dev
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Pass@word
+    ports:
+      - "1433:1433"
+    volumes:
+        - './data:/var/opt/mssql'
