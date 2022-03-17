@@ -147,3 +147,30 @@ PSP_show_pilot 'ROBERT'
 --    DECLARE @result BIT;
 --    IF (@)
 --END
+
+
+    CREATE PROCEDURE prp_is_location_already_exist @location NVARCHAR(16), @location_exist BIT
+        AS
+        BEGIN
+            IF ()
+        end
+
+        CREATE OR ALTER TRIGGER tr_pilote_toto ON pilote
+            FOR INSERT
+            AS
+        BEGIN
+            DECLARE @new_pilote_name VARCHAR(16)
+            SELECT @new_pilote_name = Inserted.pilnom FROM Inserted;
+            IF (@new_pilote_name = 'Cyrile')
+                BEGIN
+                    ROLLBACK TRANSACTION
+                    PRINT('Le pilote ne peut pas s''appeler Cyrile !!')
+                END
+        END
+GO;
+
+INSERT INTO pilote(pilnom, adr) VALUES
+                ('Cyrile', 'Mulhouse');
+
+SELECT * FROM pilote;
+DELETE FROM pilote WHERE pilnom = 'toto'
