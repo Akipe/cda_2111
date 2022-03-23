@@ -85,6 +85,21 @@ namespace ApiCereals.Controllers
             return CreatedAtAction("GetCereal", new { id = cereal.Id }, cereal);
         }
 
+        // POST: api/Cereals/all
+        [Route("all")]
+        [HttpPost]
+        public async Task<ActionResult<Cereal>> PostManyCereals(List<Cereal> cereals)
+        {
+            foreach (Cereal cereal in cereals)
+            {
+                _context.Cereals.Add(cereal);
+            }
+
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("GetCereals");
+        }
+
         // DELETE: api/Cereals/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCereal(int id)

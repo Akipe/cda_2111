@@ -3,6 +3,7 @@ using ApiCereals;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ApiCereals.Migrations
 {
     [DbContext(typeof(CerealDbContext))]
-    partial class CerealDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220323105954_ex01-compatibility-mickael-api_1")]
+    partial class ex01compatibilitymickaelapi_1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -63,7 +65,7 @@ namespace ApiCereals.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Cereals");
+                    b.ToTable("tata");
                 });
 #pragma warning restore 612, 618
         }
