@@ -5,6 +5,11 @@ namespace ApiCereals.Models
 {
     public class Cereal
     {
+        private const short NULL_VALUE = -1;
+        private short? _carbo;
+        private short? _sugars;
+        private short? _potass;
+
         [Key]
         public int Id { get; set; }
 
@@ -30,17 +35,43 @@ namespace ApiCereals.Models
         [Range(0, 20)]
         public byte Fiber { get; set; }
 
-        [Required(ErrorMessage = "Le champs Carbo est requis")]
-        [Range(-10, 500)]
-        public short Carbo { get; set; }
+
+        [Range(-1, 500)]
+        public short? Carbo {
+            get
+            {
+                return _carbo ?? NULL_VALUE;
+            }
+            set
+            {
+                _carbo = value ?? NULL_VALUE;
+            }
+        }
         
-        [Required(ErrorMessage = "Le champs Sugars est requis")]
-        [Range(-10, 50)]
-        public short Sugars { get; set; }
+        [Range(-1, 50)]
+        public short? Sugars {
+            get
+            {
+                return _sugars ?? NULL_VALUE;
+            }
+            set
+            {
+                _sugars = value ?? NULL_VALUE;
+            }
         
-        [Required(ErrorMessage = "Le champs Potass est requis")]
-        [Range(-10, 500)]
-        public short Potass { get; set; }
+        }
+        
+        [Range(-1, 500)]
+        public short? Potass {
+            get
+            {
+                return _potass ?? NULL_VALUE;
+            }
+            set
+            {
+                _potass = value ?? NULL_VALUE;
+            }
+        }
 
         [Required(ErrorMessage = "Le champs Vitamins est requis")]
         [Range(0, 200)]
