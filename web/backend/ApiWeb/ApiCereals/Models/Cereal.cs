@@ -35,16 +35,15 @@ namespace ApiCereals.Models
         [Range(0, 20)]
         public byte Fiber { get; set; }
 
-
         [Range(-1, 500)]
         public short? Carbo {
             get
             {
-                return _carbo ?? NULL_VALUE;
+                return this.ConvertNumberForAPI(_carbo);
             }
             set
             {
-                _carbo = value ?? NULL_VALUE;
+                _carbo = this.ConvertNumberForDatabase(value);
             }
         }
         
@@ -52,11 +51,11 @@ namespace ApiCereals.Models
         public short? Sugars {
             get
             {
-                return _sugars ?? NULL_VALUE;
+                return this.ConvertNumberForAPI(_sugars);
             }
             set
             {
-                _sugars = value ?? NULL_VALUE;
+                _sugars = this.ConvertNumberForDatabase(value);
             }
         
         }
@@ -65,11 +64,11 @@ namespace ApiCereals.Models
         public short? Potass {
             get
             {
-                return _potass ?? NULL_VALUE;
+                return this.ConvertNumberForAPI(_potass);
             }
             set
             {
-                _potass = value ?? NULL_VALUE;
+                _potass = this.ConvertNumberForDatabase(value);
             }
         }
 
@@ -80,5 +79,25 @@ namespace ApiCereals.Models
         [Required(ErrorMessage = "Le champs Rating est requis")]
         [Range(0.0, 100.0)]
         public float Rating { get; set; }
+
+        private short ConvertNumberForAPI(short? value)
+        {
+            if (value == null)
+            {
+                return NULL_VALUE;
+            }
+                
+            return (short) value;
+        }
+
+        private short? ConvertNumberForDatabase(short? value)
+        {
+            if (value == NULL_VALUE)
+            {
+                return null;
+            }
+
+            return (short?) value;
+        }
     }
 }
