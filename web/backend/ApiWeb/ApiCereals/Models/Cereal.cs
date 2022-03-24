@@ -5,99 +5,53 @@ namespace ApiCereals.Models
 {
     public class Cereal
     {
-        private const short NULL_VALUE = -1;
-        private short? _carbo;
-        private short? _sugars;
-        private short? _potass;
+        private const int NULL_VALUE = -1;
+        private const int MIN_SPEC_VALUE = NULL_VALUE;
+        private const int MAX_SPEC_VALUE = 500;
 
         [Key]
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Le champs est requis")]
+        [Required]
         [StringLength(64, MinimumLength = 3)]
         //[Index]
-        //[RegularExpression(@"^\p{L}{2,32}$")]
+        [RegularExpression(@"^[^_]+$", ErrorMessage = "Le format du nom ne doit pas contenir les caractères '_'")]
         public string Name { get; set; }
 
-        [Required(ErrorMessage = "Le champs Calorise est requis")]
-        [Range(1, 400)]
-        public byte Calories { get; set; }
+        [Required]
+        [Range(MIN_SPEC_VALUE, MAX_SPEC_VALUE)]
+        public int Calories { get; set; }
 
-        [Required(ErrorMessage = "Le champs Protein est requis")]
-        [Range(1, 6)]
-        public byte Protein { get; set; }
+        [Required]
+        [Range(MIN_SPEC_VALUE, MAX_SPEC_VALUE)]
+        public int Protein { get; set; }
 
-        [Required(ErrorMessage = "Le champs Sodium est requis")]
-        [Range(0, 400)]
-        public ushort Sodium { get; set; }
+        [Required]
+        [Range(MIN_SPEC_VALUE, MAX_SPEC_VALUE)]
+        public int Sodium { get; set; }
 
-        [Required(ErrorMessage = "Le champs Fiber est requis")]
-        [Range(0, 20)]
-        public byte Fiber { get; set; }
+        [Required]
+        [Range(MIN_SPEC_VALUE, MAX_SPEC_VALUE)]
+        public int Fiber { get; set; }
 
-        [Range(-1, 500)]
-        public short? Carbo {
-            get
-            {
-                return this.ConvertNumberForAPI(_carbo);
-            }
-            set
-            {
-                _carbo = this.ConvertNumberForDatabase(value);
-            }
-        }
-        
-        [Range(-1, 50)]
-        public short? Sugars {
-            get
-            {
-                return this.ConvertNumberForAPI(_sugars);
-            }
-            set
-            {
-                _sugars = this.ConvertNumberForDatabase(value);
-            }
-        
-        }
-        
-        [Range(-1, 500)]
-        public short? Potass {
-            get
-            {
-                return this.ConvertNumberForAPI(_potass);
-            }
-            set
-            {
-                _potass = this.ConvertNumberForDatabase(value);
-            }
-        }
+        [Required]
+        [Range(MIN_SPEC_VALUE, MAX_SPEC_VALUE)]
+        public int Carbo { get; set; }
 
-        [Required(ErrorMessage = "Le champs Vitamins est requis")]
-        [Range(0, 200)]
-        public ushort Vitamins { get; set; }
+        [Required]
+        [Range(MIN_SPEC_VALUE, MAX_SPEC_VALUE)]
+        public int Sugars { get; set; }
 
-        [Required(ErrorMessage = "Le champs Rating est requis")]
+        [Required]
+        [Range(MIN_SPEC_VALUE, MAX_SPEC_VALUE)]
+        public int Potass { get; set; }
+
+        [Required]
+        [Range(MIN_SPEC_VALUE, MAX_SPEC_VALUE)]
+        public int Vitamins { get; set; }
+
+        [Required]
         [Range(0.0, 100.0)]
-        public float Rating { get; set; }
-
-        private short ConvertNumberForAPI(short? value)
-        {
-            if (value == null)
-            {
-                return NULL_VALUE;
-            }
-                
-            return (short) value;
-        }
-
-        private short? ConvertNumberForDatabase(short? value)
-        {
-            if (value == NULL_VALUE)
-            {
-                return null;
-            }
-
-            return (short?) value;
-        }
+        public double Rating { get; set; }
     }
 }
