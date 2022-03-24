@@ -10,11 +10,26 @@
 <body>
     <div>
         <div>
-            <label for="zipcode">Code postale :</label>
-            <input list="zipcode_list" id="zipcode" name="zipcode" />
+            <div id="zipcode-form">
+                <label for="zipcode">Code postal :</label>
+                <input list="zipcode-datalist" id="zipcode-user_choice" name="zipcode" />
+                <datalist id="zipcode-datalist"></datalist>
+                
+                <button id="zipcode-ask_info" type="button">Afficher les informations de la commune</button>
+                <dl id="zipcode-show_info" style="visibility: hidden;">
+                    <dt>Nom de la commune :</dt>
+                    <dd id="zipcode-show_info_nomCommune"></dd>
 
-            <datalist id="zipcode_list">
-            </datalist>
+                    <dt>Code postal :</dt>
+                    <dd id="zipcode-show_info_codePostal"></dd>
+                    
+                    <dt>Code de la commune :</dt>
+                    <dd id="zipcode-show_info_codeCommune"></dd>
+
+                    <dt>Libelle d'acheminement :</dt>
+                    <dd id="zipcode-show_info_libelleAcheminement"></dd>
+                </dl>
+            </div>
         </div>
     </div>
 </body>
