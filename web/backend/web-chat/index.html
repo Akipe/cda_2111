@@ -1,0 +1,80 @@
+<!-- On défini le type et la version, ici HTML 5 -->
+<!DOCTYPE html>
+
+<!-- Code langage de la page, 2 caractère ou sur 2-2 caractères -->
+<!-- "fr" ou "fr-be" -->
+<html lang="fr">
+
+    <!-- Entête de la page-->
+    <head>
+        <!-- Le type encodage -->
+        <meta charset="utf-8">
+
+        <!-- Le "viewport" correspond à la zone d'affichage -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- "width=device-width": pour définir la taille du viewport, en JS -->
+        <!-- On défini la largeur du périphérique est égale à la largeur de la page -->
+        <!--     pour faire du responsive-->
+        <!-- "initial-scale=1": pour définir le niveau de zoom de base -->
+
+        <!-- Titre de la page -->
+        <title>Webchat</title>
+
+        <!-- Inclusion de fichier CSS -->
+        <link rel="stylesheet" href="assets/style.css">
+
+        <!-- Inclusion de fichier CSS -->
+        <script src="assets/main.js" defer></script>
+        <!-- "defer" permet d'attendre que le DOM soit construit avant de charger le fichier JS-->
+    </head>
+
+    <!-- Contenu de la page -->
+    <body>
+    
+        <!-- titre du site, logo, différents elements de la page -->
+        <header> <!-- Peut être dans balise "section" et "article" -->
+            <!-- Pas de titre dans le header, sauf si utile au contenu de la page! -->
+
+            <a id="logo" href="#">WeChat</a>
+
+            <!-- Menu de navigation du site grace à "navigation" -->
+            <!-- Si pas lié au menu du site, on retire role="navigation" -->
+            <nav role="navigation">
+
+                <!-- Liste de données, non ordonnée -->
+                <ul> <!-- "Unordered List"-->
+                    <li> <!-- "List Item" -->
+                        <a href="#">Accueil</a> <!-- Liens-->
+                        <a href="#">Utilisateurs</a>
+                        <ul> <!-- Sous liste d'une liste -->
+                            <li><a href="">Sous menu</a></li>
+                        </ul>
+                    </li> 
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Navigation, file d'ariane (grace à "breadcrumb") -->
+        <!-- tant que role breadcrumb, peut être placé un peu n'importe où -->
+        <nav role="breadcrumb">
+            <!-- Vu qu'on est dans un file d'ariane, on utilise des listes ordonnées -->
+            <ol> <!-- "Ordened list" -->
+                <li><a href="/">Accueil</a></li>
+                <li>Page actuelle</li>
+            </ol>
+        </nav>
+
+        <!-- contenu principal -->
+        <!-- ne peut avoir qu'une seul balise main dans la page (du moins affiché) -->
+        <main>
+
+            <!-- Titre principal de la page -->
+            <h1>Connexion</h1>
+        </main>
+
+        <!-- Contient condition utilisation, crédit, navigation -->
+        <footer> <!-- Peut être dans balise "section" et "article" -->
+
+        </footer>
+    </body>
+</html>
