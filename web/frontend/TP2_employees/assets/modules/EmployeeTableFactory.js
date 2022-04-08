@@ -30,7 +30,7 @@ export class EmployeeTableFactory
     {
         this.addRow(
             `employee_total_monthly_salary`,
-            this.numberRow,
+            this.employeeApi.getAllEmployees().length,
             "",
             "",
             `${totalMontlySalary} ${currencySalary}`,
@@ -101,7 +101,7 @@ export class EmployeeTableFactory
 
     generate()
     {
-        this.employeeApi.allEmployees.forEach(employee => {
+        this.employeeApi.getAllEmployees().forEach(employee => {
             this.addEmployeeRow(employee);
         });
 
@@ -116,14 +116,14 @@ export class EmployeeTableFactory
     
     eventActionDuplicate(event, that)
     {
-        that.employeeApi.duplicate(event.currentTarget.dataset.employeeId);
+        that.employeeApi.postDuplicateEmployee(event.currentTarget.dataset.employeeId);
         that.eventDeleteTable(event, that);
         that.generate();
     }
 
     eventActionDelete(event, that)
     {
-        that.employeeApi.remove(event.currentTarget.dataset.employeeId);
+        that.employeeApi.deleteEmployee(event.currentTarget.dataset.employeeId);
         that.eventDeleteTable(event, that);
         that.generate();
     }

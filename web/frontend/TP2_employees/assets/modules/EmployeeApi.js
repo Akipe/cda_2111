@@ -2,25 +2,30 @@ import { Employee } from "./Employee.js";
 
 export class EmployeeApi
 {
-    constructor(apiUrl)
+    constructor(_apiUrl)
     {
-        this.apiUrl = apiUrl;
-        this.allEmployees = [];
+        this.apiUrl = _apiUrl;
+        this.jsonResponse = {};
+        this.jsonEmployees = [];
+        this.employees = [];
         this.fetchPromise = false;
         this.totalMonthlySalary = parseFloat(0.0);
         this.salaryCurrency = "€";
+        this.mailSuffix = "email.com";
     }
 
-    apiRequest()
+    fetch()
     {
-        this.fetchPromise = this.apiFetch();
+        this.fetchPromise = this.fetchRequest();
     }
 
-    async apiFetch()
+    async fetchRequest()
     {
         const response = await fetch(this.apiUrl);
         const json = await response.json();
-        this.processData(json.data);
+        this.jsonResponse = json;
+        this.jsonEmployees = json.data;
+        this.processJsonEmployees();
         return json;
     }
 
@@ -29,91 +34,137 @@ export class EmployeeApi
         return this.fetchPromise;
     }
 
-    processData(jsonEmployees)
+    processJsonEmployees()
     {
+        this.employees = [];
         let totalMonthlySalary = parseFloat(0.0);
-        jsonEmployees.forEach(jsonEmployee => {
+
+        this.jsonEmployees.forEach(jsonEmployee => {
             let employee = new Employee(
-                jsonEmployee.id,
-                jsonEmployee.employee_name,
-                jsonEmployee.employee_age,
-                jsonEmployee.employee_salary,
+                jsonEmployee,
                 this.salaryCurrency,
-                jsonEmployee.profile_image
+                this.mailSuffix
             );
             totalMonthlySalary += parseFloat(employee.monthlySalary);
-            this.allEmployees.push(employee);
+            this.employees.push(employee);
         });
 
         this.totalMonthlySalary = parseFloat(totalMonthlySalary).toFixed(2);
     }
 
-    duplicate(idEmployee)
+    getAllEmployees()
     {
-        this.allEmployees.forEach(employee => {
-            if (employee.id == idEmployee) {
-                this.add(
-                    (this.getLastId() + 1),
-                    employee.fullName,
-                    employee.age,
-                    employee.annualSalary,
-                    employee.currencySalary,
-                    employee.profileImage
-                );
-                return true;
-            }
-        });
-
-        return false;
+        return this.employees;
     }
 
-    add(
-        id,
-        fullName,
-        age,
-        annualSalary,
-        currencySalary = this.salaryCurrency,
-        profileImage
-    )
+    getEmployee(_id)
     {
-        this.allEmployees.push(new Employee(
-            id,
-            fullName,
-            age,
-            annualSalary,
-            currencySalary,
-            profileImage
-        ));
+        let indexEmployee = this.getIndexEmployee(_id);
 
-        this.calculateTotalMonthlySalary();
-    }
-
-    remove(idEmployee)
-    {
-        for (let employeeIndex = 0; employeeIndex <= this.allEmployees.length; employeeIndex++) {
-            if (this.allEmployees[employeeIndex].id == idEmployee) {
-                this.allEmployees.splice(employeeIndex, 1);
-
-                this.calculateTotalMonthlySalary();
-                return true;
-            }
+        if (indexEmployee == -1) {
+            throw new Error(`There is not employee with ID ${_id}!`);
         }
 
+        return this.employees[indexEmployee];
+    }
+
+    postEmployee(_employee)
+    {
+        if (_employee instanceof Employee) {
+            let employeeJson = {};
+            ({
+                id: employeeJson.id,
+                fullName: employeeJson.employee_name,
+                age: employeeJson.employee_age,
+                annualSalary: employeeJson.employee_salary,
+                profileImage: employeeJson.profile_image
+            } = _employee);
+
+            this.jsonEmployees.push(employeeJson);
+            this.processJsonEmployees();
+
+            return true;
+        } else {
+            throw new Error(
+                "Error to add an employee: the data has to be an instance of Employee"
+            );
+        }
+    }
+
+    /**
+     * TODO
+     * @param {*} _id 
+     * @returns 
+     */
+    putEmployee(_id)
+    {
         return false;
     }
 
-    calculateTotalMonthlySalary()
+    deleteEmployee(_id)
     {
-        this.totalMonthlySalary = parseFloat(0.0);
-        this.allEmployees.forEach(
-            employee => this.totalMonthlySalary += parseFloat(employee.monthlySalary)
-        );
+        if (typeof parseInt(_id) != "number") {
+            throw new Error('The ID of employee has to be a number.');
+        }
 
-        this.totalMonthlySalary = parseFloat(this.totalMonthlySalary).toFixed(2);
+        let index = this.getIndexEmployee(_id)
+
+        if (index == -1) {
+            throw new Error(`There is not employee with ID ${_id}`);
+        }
+        
+        this.jsonEmployees.splice(index, 1);
+        this.processJsonEmployees();
+
+        return true;
     }
 
-    getLastId()
+    postDuplicateEmployee(_id)
     {
-        return this.allEmployees[this.allEmployees.length - 1].id;
+        let indexEmployee = this.getIndexEmployee(_id);
+        
+        if (indexEmployee == -1) {
+            throw new Error(`There is not employee with ID ${_id}`);
+        }
+
+        let employeeDuplicate = this.employees[indexEmployee];
+        this.setIdNewEmployee(employeeDuplicate);
+        this.postEmployee(employeeDuplicate);
+
+        return true;
     }
-};
+
+    getLatestEmployeeId()
+    {
+        return this.employees[this.employees.length - 1].id;
+    }
+
+    /**
+     * Check if an employee exist with checking ID,
+     * @param {*} _id id of employee to search
+     * @returns the index of employee or -1 if not exist
+     */
+    getIndexEmployee(_id)
+    {
+        for (let index = 0; index < this.employees.length; index++) {
+            if (this.employees[index].id == _id) {
+                return index;
+            }
+        }
+        return -1;
+    }
+
+    setIdNewEmployee(_employee)
+    {
+        if (_employee instanceof Employee) {
+            _employee.id = this.getLatestEmployeeId() + 1;
+        } else {
+            throw new Error("You have to send an Employee object.");
+        }
+    }
+
+    getIdForNewEmployee()
+    {
+        return this.getLatestEmployeeId() + 1;
+    }
+}

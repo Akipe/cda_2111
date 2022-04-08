@@ -1,19 +1,21 @@
 export class Employee
 {
-    constructor(id, name, age, salary, currencySalary, profile_image, mailSuffix = "email.com")
+    constructor(_jsonEmployee, _currencySalary, _mailSuffix)
     {
-        this.id = id;
-        this.fullName = name;
+        ({
+            id: this.id,
+            employee_name: this.fullName,
+            employee_age: this.age,
+            employee_salary: this.annualSalary,
+            profile_image: this.profileImage
+        } = _jsonEmployee);
+        this.currencySalary = _currencySalary;
+        this.mailSuffix = _mailSuffix;
         this.firstName = this.getFirstName();
         this.lastName = this.getLastName();
-        this.mailSuffix = mailSuffix;
         this.email = this.getEmail();
-        this.age = age;
         this.birthYear = this.getYearBirth();
-        this.annualSalary = salary;
         this.monthlySalary = this.getSalaryPerMonth();
-        this.currencySalary = currencySalary;
-        this.profileImage = profile_image;
     }
 
     getFirstName()
