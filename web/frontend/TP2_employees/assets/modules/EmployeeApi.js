@@ -119,26 +119,6 @@ export class EmployeeApi
         return true;
     }
 
-    postDuplicateEmployee(_id)
-    {
-        let indexEmployee = this.getIndexEmployee(_id);
-        
-        if (indexEmployee == -1) {
-            throw new Error(`There is not employee with ID ${_id}`);
-        }
-
-        let employeeDuplicate = this.employees[indexEmployee];
-        this.setIdNewEmployee(employeeDuplicate);
-        this.postEmployee(employeeDuplicate);
-
-        return true;
-    }
-
-    getLatestEmployeeId()
-    {
-        return this.employees[this.employees.length - 1].id;
-    }
-
     /**
      * Check if an employee exist with checking ID,
      * @param {*} _id id of employee to search
@@ -154,17 +134,8 @@ export class EmployeeApi
         return -1;
     }
 
-    setIdNewEmployee(_employee)
-    {
-        if (_employee instanceof Employee) {
-            _employee.id = this.getLatestEmployeeId() + 1;
-        } else {
-            throw new Error("You have to send an Employee object.");
-        }
-    }
-
     getIdForNewEmployee()
     {
-        return this.getLatestEmployeeId() + 1;
+        return this.employees[this.employees.length - 1].id + 1;
     }
 }

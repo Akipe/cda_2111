@@ -116,14 +116,18 @@ export class EmployeeTableFactory
     
     eventActionDuplicate(event, that)
     {
-        that.employeeApi.postDuplicateEmployee(event.currentTarget.dataset.employeeId);
+        let currentIdEmployee = event.currentTarget.dataset.employeeId;
+        let currentEmployee = that.employeeApi.getEmployee(currentIdEmployee);
+        let newId = that.employeeApi.getIdForNewEmployee();
+        that.employeeApi.postEmployee(currentEmployee.duplicate(newId));
         that.eventDeleteTable(event, that);
         that.generate();
     }
 
     eventActionDelete(event, that)
     {
-        that.employeeApi.deleteEmployee(event.currentTarget.dataset.employeeId);
+        let currentIdEmployee = event.currentTarget.dataset.employeeId;
+        that.employeeApi.deleteEmployee(currentIdEmployee);
         that.eventDeleteTable(event, that);
         that.generate();
     }

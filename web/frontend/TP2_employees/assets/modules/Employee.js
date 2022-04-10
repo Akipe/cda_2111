@@ -52,4 +52,23 @@ export class Employee
     {
         return this.getFirstName().charAt(0);
     }
+
+    duplicate(_newId)
+    {
+        let jsonDuplicateEmployee = {
+            id: _newId,
+            employee_name: this.fullName,
+            employee_age: this.age,
+            employee_salary: this.annualSalary,
+            profile_image: this.profileImage
+        };
+
+        let duplicateEmployee = new Employee(
+            jsonDuplicateEmployee,
+            this.currencySalary,
+            this.mailSuffix
+        );
+
+        return duplicateEmployee;
+    }
 };
