@@ -1,99 +1,99 @@
 export class EmployeeTableFactory
 {
-    constructor(tableElement, employeeApi)
+    constructor(_tableElement, _employeeApi)
     {
-        this.table = tableElement;
-        this.employeeApi = employeeApi;
+        this.table = _tableElement;
+        this.employeeApi = _employeeApi;
         this.virtualTable = document.createDocumentFragment();
         this.numberRow = 0;
     }
 
-    addEmployeeRow(employee)
+    addEmployeeRow(_employee)
     {
         let buttons = [];
 
-        buttons.push(this.getActionDuplicateButton(employee.id));
-        buttons.push(this.getActionDeleteButton(employee.id));
+        buttons.push(this.getActionDuplicateButton(_employee.id));
+        buttons.push(this.getActionDeleteButton(_employee.id));
 
         this.addRow(
-            `employee_${employee.id}`,
-            employee.id,
-            employee.fullName,
-            employee.email,
-            `${employee.monthlySalary} ${employee.currencySalary}`,
-            employee.birthYear,
+            `employee_${_employee.id}`,
+            _employee.id,
+            _employee.fullName,
+            _employee.email,
+            `${_employee.monthlySalary} ${_employee.currencySalary}`,
+            _employee.birthYear,
             buttons
         );
     }
 
-    addTotalMontlySalaryRow(totalMontlySalary, currencySalary)
+    addTotalMontlySalaryRow()
     {
         this.addRow(
             `employee_total_monthly_salary`,
             this.employeeApi.getAllEmployees().length,
             "",
             "",
-            `${totalMontlySalary} ${currencySalary}`,
+            `${this.employeeApi.totalMonthlySalary} ${this.employeeApi.salaryCurrency}`,
             "",
             ""
         );
     }
 
     addRow(
-        idRow,
-        eidCell,
-        fullNameCell,
-        emailCell,
-        monthlySalaryCell,
-        yearBirthCell,
-        actionsCell
+        _idRow,
+        _eidCell,
+        _fullNameCell,
+        _emailCell,
+        _monthlySalaryCell,
+        _yearBirthCell,
+        _actionsCell
     ) {
         let row = document.createElement("tr");
 
-        row.setAttribute('id', idRow);
+        row.setAttribute('id', _idRow);
 
         for (let argIndex = 1; argIndex < arguments.length - 1; argIndex++) {
             this.addCell(row, arguments[argIndex]);
         }
 
-        this.addCell(row, "", actionsCell);
+        this.addCell(row, "", _actionsCell);
 
         this.virtualTable.appendChild(row);
         this.numberRow++;
     }
 
-    addCell(row, value = "", childNodes = [])
+    addCell(_row, _value = "", _childNodes = [])
     {
         let cell = document.createElement("td");
-        if (value != "") {
-            cell.textContent = value;
+        if (_value != "") {
+            cell.textContent = _value;
         }
-        if (childNodes.length != 0) {
-            childNodes.forEach(node => cell.appendChild(node));
+        if (_childNodes.length != 0) {
+            _childNodes.forEach(node => cell.appendChild(node));
         } 
-        row.appendChild(cell);
+        _row.appendChild(cell);
     }
 
-    getActionDuplicateButton(employeeId)
+    getActionDuplicateButton(_employeeId)
     {
-        return this.getActionButton("Duplicate", "employeeActionDuplicate", employeeId, this.eventActionDuplicate)
+        return this.getActionButton("Duplicate", "employeeActionDuplicate", _employeeId, this.eventActionDuplicate)
     }
 
-    getActionDeleteButton(employeeId)
+    getActionDeleteButton(_employeeId)
     {
-        return this.getActionButton("Delete", "employeeActionDelete", employeeId, this.eventActionDelete)
+        return this.getActionButton("Delete", "employeeActionDelete", _employeeId, this.eventActionDelete)
     }
 
-    getActionButton(label, className, employeeId, functionOnEvent)
+    getActionButton(_label, _className, _employeeId, _functionOnEvent)
     {
         let button = document.createElement("button");
 
-        button.textContent = label;
-        button.classList.add(className);
-        button.dataset.employeeId = employeeId;
+        button.textContent = _label;
+        button.classList.add(_className);
+        button.dataset.employeeId = _employeeId;
         button.setAttribute("type", "button");
         button.addEventListener('click', (event) => {
-            functionOnEvent(event, this);
+            _functionOnEvent(event, this);
         });
 
         return button;
@@ -105,36 +105,33 @@ export class EmployeeTableFactory
             this.addEmployeeRow(employee);
         });
 
-        this.addTotalMontlySalaryRow(
-            this.employeeApi.totalMonthlySalary,
-            this.employeeApi.salaryCurrency
-        );
+        this.addTotalMontlySalaryRow();
 
         this.table.querySelector("tbody").appendChild(this.virtualTable);
     }
 
     
-    eventActionDuplicate(event, that)
+    eventActionDuplicate(_event, _that)
     {
-        let currentIdEmployee = event.currentTarget.dataset.employeeId;
-        let currentEmployee = that.employeeApi.getEmployee(currentIdEmployee);
-        let newId = that.employeeApi.getIdForNewEmployee();
-        that.employeeApi.postEmployee(currentEmployee.duplicate(newId));
-        that.eventDeleteTable(event, that);
-        that.generate();
+        let currentIdEmployee = _event.currentTarget.dataset.employeeId;
+        let currentEmployee = _that.employeeApi.getEmployee(currentIdEmployee);
+        let newId = _that.employeeApi.getIdForNewEmployee();
+        _that.employeeApi.postEmployee(currentEmployee.duplicate(newId));
+        _that.eventDeleteTable(_event, _that);
+        _that.generate();
     }
 
-    eventActionDelete(event, that)
+    eventActionDelete(_event, _that)
     {
-        let currentIdEmployee = event.currentTarget.dataset.employeeId;
-        that.employeeApi.deleteEmployee(currentIdEmployee);
-        that.eventDeleteTable(event, that);
-        that.generate();
+        let currentIdEmployee = _event.currentTarget.dataset.employeeId;
+        _that.employeeApi.deleteEmployee(currentIdEmployee);
+        _that.eventDeleteTable(_event, _that);
+        _that.generate();
     }
 
-    eventDeleteTable(event, that)
+    eventDeleteTable(_event, _that)
     {
-        event.currentTarget.parentNode.parentNode.parentNode.innerHTML = "";
-        that.numberRow = 0;
+        _event.currentTarget.parentNode.parentNode.parentNode.innerHTML = "";
+        _that.numberRow = 0;
     }
 };
