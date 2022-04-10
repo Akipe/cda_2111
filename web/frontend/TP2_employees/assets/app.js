@@ -10,7 +10,8 @@ let employeeTableFactory = new EmployeeTableFactory(employeeTable, employeesApi)
 employeesApi.fetch();
 
 employeesApi.fetchDone().then(() => {
-    employeesApi.postDuplicateEmployee(1);
+    let anEmployee = employeesApi.getEmployee(1);
+    employeesApi.postEmployee(anEmployee.duplicate(employeesApi.getIdForNewEmployee()));
     employeesApi.deleteEmployee(25);
 })
 
