@@ -1,8 +1,8 @@
 :root {
-    --main-color-red: rgb(232, 76, 61);
+    --main-color-red: rgb(230, 75, 60);
     --main-color-brown: rgb(188, 188, 188);
     --main-color-grey: rgb(219, 219, 219);
-    --main-color-grey-dark: rgb(107, 107, 107);
+    --main-color-grey-dark: rgb(88, 88, 88);
     --main-color-white: white;
 
     --main-title-shadow: 1px 1px 4px #000000;
