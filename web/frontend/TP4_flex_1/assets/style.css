@@ -1,0 +1,123 @@
+:root {
+    --tp-color-blue: #CCDDFF;
+    --tp-color-orange: #FFDDCC;
+    --tp-color-white: #FFFFFF;
+    --block-color-green: rgb(204, 255, 222);
+    --block-color-yellow: rgb(255, 255, 255);
+    --border-color-dark-yellow: rgb(172, 188, 178);
+
+    --main-block-space: 10px;
+    --main-items-outer-space: 15px;
+    --main-items-inner-space: 10px;
+}
+
+body {
+    background-color: black;
+
+    margin: 0;
+
+    display: flex;
+    flex-direction: column;
+    /*justify-content: center;
+    justify-content: stretch;*/
+    align-items: stretch;
+    align-content: stretch;
+
+    height: 100vh;
+}
+
+h1, h2, p {
+    margin: 0;
+}
+
+p {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+
+
+.header, .footer {
+    padding-top: var(--main-items-inner-space);
+    background-color: var(--tp-color-blue);
+    text-align: center;
+}
+
+.header {
+    padding-bottom: 75px;
+}
+
+.content {
+}
+
+.annex-item, .article-item {
+    background-color: var(--block-color-yellow);
+}
+
+.annex {
+    background-color: var(--tp-color-orange);
+    padding: var(--main-block-space);
+}
+
+.annex-item {
+    margin: var(--main-items-outer-space) 0 var(--main-items-outer-space) 0;
+    padding: var(--main-items-inner-space);
+}
+
+.article {
+    background-color: var(--block-color-green);
+    padding: var(--main-block-space);
+}
+
+.article-title {
+    padding: var(--main-items-inner-space) 0 var(--main-items-inner-space) 0;
+}
+
+.article-item {
+    margin: var(--main-items-outer-space) 0 var(--main-items-outer-space) 0;
+    padding: var(--main-items-inner-space);
+
+    border: 1px solid var(--border-color-dark-yellow);
+}
+
+.footer {
+    padding: var(--main-items-inner-space);
+    padding-bottom: 25px;
+}
+
+
+
+
+@media screen and (min-width: 1024px)
+{
+    body {
+        background-color: darkorchid;
+    }
+
+    .content {
+        display: flex;
+        align-content: stretch;
+
+        height: 100vh;
+    }
+
+    .annex {
+        width: 19%;
+    }
+
+    .article {
+        width: 62%;
+
+        
+    }
+
+    .article-list {
+        display: flex;
+        flex-wrap: wrap;
+        /*gap: 30px;*/
+        justify-content: space-around;
+    }
+
+    .article-item {
+        width: 35%;
+    }
+}
