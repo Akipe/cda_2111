@@ -89,10 +89,6 @@ p {
 
 @media screen and (min-width: 1024px)
 {
-    body {
-        background-color: darkorchid;
-    }
-
     .content {
         display: flex;
         align-content: stretch;
