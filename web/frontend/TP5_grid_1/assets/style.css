@@ -1,0 +1,121 @@
+:root {
+    --tp-color-bleu: #BBCCFF;
+    --page-marge: 5px;
+    --blocks-marge-inner: 20px;
+    --blocks-marge-outter: 10px;
+}
+
+
+
+body {
+    margin: 0;
+    padding: var(--page-marge);
+}
+
+
+
+.header, .ads, .navigation, .article, .footer {
+    background-color: var(--tp-color-bleu);
+    margin: var(--blocks-marge-outter) 0;
+    padding: var(--blocks-marge-inner);
+}
+
+.header-title, .ads-title, .navigation-title, .article-header-title, .footer-title {
+    font-weight: bold;
+}
+
+
+
+.header {
+    margin-top: 0;
+}
+
+.article-item {
+    background-color: white;
+    padding: 15px 5px;
+    margin: 10px 0;
+}
+
+.footer {
+    margin-bottom: 0;
+}
+
+
+
+@media screen and (min-width: 1024px)
+{
+    body {
+        display: grid;
+        grid-template-columns: 0.6fr 2.0fr 0.4fr;
+        grid-template-rows: auto;
+        grid-template-areas:
+            "header header ads"
+            "navigation main main"
+            "navigation footer footer";
+        column-gap: 10px;
+        row-gap: 10px;
+    }
+
+
+    .header, .ads, .navigation, .article, .footer {
+        margin: 0;
+    }
+
+
+
+    .header {
+        grid-area: header;
+    }
+
+    .ads {
+        grid-area: ads;
+    }
+
+    .navigation {
+        grid-area: navigation;
+    }
+
+    .main {
+        grid-area: main;
+    }
+
+    .footer {
+        grid-area: footer;
+    }
+
+
+
+    .article {
+        display: grid;
+        grid-template-columns: 0.2fr 1.8fr;
+        grid-template-rows: auto;
+        grid-template-areas:
+            "header header"
+            "none list";
+    }
+
+    .article-header {
+        grid-area: header;
+    }
+
+    .article-list {
+        grid-area: list;
+
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+        /*grid-template-areas:
+            "item item"
+            "item item"
+            "item item";*/
+        align-items: stretch;
+        column-gap: 10px;
+        row-gap: 10px;
+
+        margin-bottom: 20px;;
+    }
+
+    .article-item {
+        margin: 0;
+    }
+}
