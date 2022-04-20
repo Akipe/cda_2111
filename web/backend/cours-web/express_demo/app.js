@@ -1,8 +1,15 @@
+const serverPort = '3000'
+
 // Importation de la bibliothèque express
 const express = require('express')
+const bodyParser = require('body-parser')
 
 // Création de l'instance de notre application
 const app = express()
+
+// body-parser : analyser le contenu d'une requete
+app.use(bodyParser.urlencoded())
+//app.use(bodyParser.json())
 
 // Middleware qui affiche dans la 
 // ! importance de l'ordre de définition des methodes
@@ -22,6 +29,6 @@ app.use('/public', express.static(__dirname + '/public'))
 
 app.use('/', router)
 
-app.listen(3000, () => {
-    console.log("Serveur disponible sur http://localhost:3000")
+app.listen(serverPort, () => {
+    console.log(`Serveur disponible sur http://localhost:${serverPort}`)
 })
