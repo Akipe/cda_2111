@@ -1,58 +1,36 @@
 // On importe les données de la BDD
 const database = require('./index')
+let repo = require('./baseRepository')
 
-exports.getAll = () => {
-    return new Promise((resolve, reject) => {
-        database.all( // Renvoit systèmatiquement un tableau
-            "SELECT id, lastname, firstname, slogan FROM candidates", // Requete SQL
-            [], // Parametres pour la requete SQL
-            (err, rows) => { // Fonction exécuté lors du traitement
-                if (err) {
-                    console.error('Erreur SQL : ' + err)
-                    reject(err)
-                } else {
-                    resolve(rows)
-                }
-            }
-        )
-    })
+exports.getAll = async () => {
+    return await repo.getAll(
+        "SELECT id, lastname, firstname, slogan FROM candidates"
+    )
+
+    //console.log(test)
+    //return test
+}
+
+exports.getCandidasA = () => {
+    return repo.getAll(
+        "SELECT id, lastname, firstname, slogan FROM candidates WHERE lastname LIKE ?",
+        ['%a']
+    )
 }
 
 exports.getById = (id) => {
-    return new Promise((resolve, reject) => {
-        database.get( // renvoie une seul entrée
-            "SELECT id, lastname, firstname, slogan FROM candidates WHERE id=?", // Requete SQL
-            [id], // Parametres pour la requete SQL
-            (err, rows) => { // Fonction exécuté lors du traitement
-                if (err) {
-                    console.error('Erreur SQL : ' + err)
-                    reject(err)
-                } else {
-                    resolve(rows)
-                }
-            }
-        )
-    })
+    return repo.getOne(
+        "SELECT id, lastname, firstname, slogan FROM candidates WHERE id=?",
+        [id]
+    )
 }
 
 exports.create = (model) => {
     return new Promise((resolve, reject) => {
-        const sqlCommand = `INSERT INTO candidates (lastname, firstname, slogan) VALUES (?, ?, ?)`
-        let sqlParams = [model.lastname, model.firstname, model.slogan]
+        const sql = `INSERT INTO candidates (lastname, firstname, slogan) VALUES (?, ?, ?)`
+        let params = [model.lastname, model.firstname, model.slogan]
 
-        database.run(
-            sqlCommand,
-            sqlParams,
-            function(err, result) {
-                if (err) {
-                    console.error('Erreur SQL : ' + err)
-                    reject(false)
-                } else {
-                    // result contient le nombre de lignes insérés
-                    resolve(this.lastID)
-                }
-            }
-        )
+        return repo.execute(sql, params)
     })
 }
 

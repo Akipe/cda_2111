@@ -1,0 +1,11 @@
+{% layout "base/index" %}
+
+{% block page_title %}Affichage du candidats {{ candidat.firstname }} {{ candidat.lastname }}{% endblock %}
+
+{% block main %}
+<section>
+    <h1>Candidat inconnu</h1>
+    
+    <p>Le candidat référencé {{ candidat_id }} n'existe pas</p>
+</section> 
+{% endblock %}

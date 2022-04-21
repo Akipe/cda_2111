@@ -27,6 +27,8 @@ const router = require('./routes')
 // Ressources web statiques
 app.use('/public', express.static(__dirname + '/public'))
 
+require('./middlewares/liquid')(app)
+
 app.use('/', router)
 
 app.listen(serverPort, () => {

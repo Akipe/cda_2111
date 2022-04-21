@@ -62,7 +62,7 @@ exports.update = async (req, res) => {
 
         //console.log(result.lastID)
         res.json({ done: true })
-        res.status(200)
+        res.status(201)
         res.end()
     } catch (err) {
         console.error(err)
