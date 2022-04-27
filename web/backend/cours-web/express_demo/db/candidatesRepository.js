@@ -1,71 +1,83 @@
 // On importe les données de la BDD
 const database = require('./index')
-let repo = require('./baseRepository')
+const baseRepository = require('./baseRepository')
+const Candidate = require('./Candidate')
 
-exports.getAll = async () => {
-    return await repo.getAll(
-        "SELECT id, lastname, firstname, slogan FROM candidates"
-    )
-
-    //console.log(test)
-    //return test
-}
-
-exports.getCandidasA = () => {
-    return repo.getAll(
-        "SELECT id, lastname, firstname, slogan FROM candidates WHERE lastname LIKE ?",
-        ['%a']
-    )
-}
-
-exports.getById = (id) => {
-    return repo.getOne(
-        "SELECT id, lastname, firstname, slogan FROM candidates WHERE id=?",
-        [id]
-    )
-}
-
-exports.create = (model) => {
-    return new Promise((resolve, reject) => {
-        const sql = `INSERT INTO candidates (lastname, firstname, slogan) VALUES (?, ?, ?)`
-        let params = [model.lastname, model.firstname, model.slogan]
-
-        return repo.execute(sql, params)
-    })
-}
-
-exports.update = (id, model) => {
-    return new Promise((resolve, reject) => {
-        const sqlCommand = `UPDATE candidates SET lastname=?, firstname=?, slogan=? WHERE id=?`
-        console.log(model.lastname)
-        let sqlParams = [model.lastname, model.firstname, model.slogan, id]
-
-        database.run(sqlCommand, sqlParams, (err, result) => {
-            if (err) {
-                console.log('Erreur SQL : ' + err)
-                reject(false)
-            } else {
-                resolve(true)
-            }
-        })
-    })
-}
-
-exports.delete = (id) => {
-    return new Promise((resolve, reject) => {
-        database.run(
-            'DELETE FROM candidates WHERE id=?',
-            [id],
-            (err, result) => {
-                if (err) {
-                    console.error('Erreur SQL : ' + err)
-                    reject(false)
-                } else {
-                    // result contient le nombre de lignes insérés
-                    console.log(database)
-                    resolve(true)
-                }
-            }
+class CandidateRepository
+{
+    async getAll()
+    {
+        let allCandidatesSql = await baseRepository.getAll(
+            "SELECT id, lastname, firstname, slogan FROM candidates"
         )
-    })
+        
+        let allCandidates = []
+        allCandidatesSql.forEach(candidatJson => {
+            allCandidates.push(this.generateCandidateFromJson(candidatJson))
+        });
+
+        return allCandidates
+    }
+    
+    async getById(id)
+    {
+        let candidateJson = await baseRepository.getOne(
+            "SELECT id, lastname, firstname, slogan FROM candidates WHERE id=?",
+            [id]
+        )
+    
+        return this.generateCandidateFromJson(candidateJson)
+    }
+    
+    async create(_candidate)
+    {
+        let jsonCandidate = this.getJsonFromCandidate(_candidate)
+
+        return await baseRepository.execute(
+            `INSERT INTO candidates (lastname, firstname, slogan) VALUES (?, ?, ?)`,
+            [jsonCandidate.lastname, jsonCandidate.firstname, jsonCandidate.slogan]
+        )
+    }
+    
+    async update(id, _candidate)
+    {
+        let jsonCandidate = this.getJsonFromCandidate(_candidate)
+
+        return await baseRepository.execute(
+            `UPDATE candidates SET lastname=?, firstname=?, slogan=? WHERE id=?`,
+            [jsonCandidate.lastname, jsonCandidate.firstname, jsonCandidate.slogan, id]
+        )
+    }
+    
+    async delete(id)
+    {
+        return await baseRepository.execute(
+            'DELETE FROM candidates WHERE id=?',
+            [id]
+        )
+    }
+    
+    generateCandidateFromJson(_jsonCandidate)
+    {
+        return new Candidate(
+            _jsonCandidate.id,
+            _jsonCandidate.firstname,
+            _jsonCandidate.lastname,
+            _jsonCandidate.slogan
+        )
+    }
+
+    getJsonFromCandidate(_candidate)
+    {
+        let json = {
+            id: _candidate.id,
+            firstname: _candidate.firstname,
+            lastname: _candidate.lastname,
+            slogan: _candidate.slogan
+        }
+        
+        return json
+    }
 }
+
+module.exports = CandidateRepository

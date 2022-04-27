@@ -7,8 +7,15 @@
     <h1>{{ title }}</h1>
 
     <p>
-        <a href="candidat/">Ajouter un candidat</a>
+        <a href="/candidates/add">Ajouter un candidat</a>
     </p>
+
+    {% if flashMessage != "" %}
+    <p>
+        <b>{{ flashMessage }}</b>
+    </p>
+    {% endif %}
+    
     <table>
         <thead>
             <tr>
@@ -20,13 +27,17 @@
             </tr>
         </thead>
         <tbody>
-            {% for candidat in model %}
+            {% for candidat in allCandidates %}
             <tr>
                 <td>{{ candidat.id }}</td>
                 <td>{{ candidat.lastname }}</td>
                 <td>{{ candidat.firstname }}</td>
                 <td>{{ candidat.slogan }}</td>
-                <td><a href="{{ candidat.id }}">Afficher</a></td>
+                <td>
+                    <a href="/candidates/{{ candidat.id }}">Afficher</a>
+                    <a href="/candidates/edit/{{ candidat.id }}">Modifier</a>
+                    <a href="/candidates/delete/{{ candidat.id }}">Supprimer</a>
+                </td>
             </tr>
             {% endfor %}
         </tbody>

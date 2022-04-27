@@ -1,12 +1,8 @@
 const { Liquid } = require('liquidjs')
 const path = require('path')
+//viens on fout le bordel ici
 
-const viewPath = path.join(__dirname, '../', 'view')
-
-const viewEngine = new Liquid({
-    root: viewPath, // Répértoire où chercher les vues
-    extname: '.html'
-})
+const viewPath = path.join(__dirname, '../', 'views')
 
 // Sans l'application
 //module.exports = viewEngine
@@ -24,4 +20,7 @@ module.exports = (app) => {
     app.engine('html', viewEngine.express())
     // Le moteur de vue principal sera celui défini pour les fichiers d'extension .html
     app.set('view engine', 'html')
+    // coucou
+    //tu fais quoi ici
+    // slt BB
 }

@@ -1,4 +1,4 @@
-const serverPort = '3000'
+const serverPort = '5000'
 
 // Importation de la bibliothèque express
 const express = require('express')
@@ -8,7 +8,7 @@ const bodyParser = require('body-parser')
 const app = express()
 
 // body-parser : analyser le contenu d'une requete
-app.use(bodyParser.urlencoded())
+app.use(bodyParser.urlencoded({extended: true}))
 //app.use(bodyParser.json())
 
 // Middleware qui affiche dans la 
@@ -22,13 +22,12 @@ app.use((req, res, next) => {
     next() // Tu passe à la fonction middleware suivante ou à la route
 })
 
-const router = require('./routes')
-
 // Ressources web statiques
 app.use('/public', express.static(__dirname + '/public'))
 
 require('./middlewares/liquid')(app)
 
+const router = require('./routes/index.js')
 app.use('/', router)
 
 app.listen(serverPort, () => {

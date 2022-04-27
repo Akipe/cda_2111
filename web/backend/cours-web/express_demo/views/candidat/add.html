@@ -1,0 +1,21 @@
+{% layout "base/index.html" %}
+
+{% block page_title %}Ajout d'un candidat{% endblock %}
+
+{% block main %}
+<section>
+    <h1>Ajout d'un candidat</h1>
+
+    <p><a href="/candidates">Retour à la liste des candidats</a></p>
+
+    
+    <form action="/candidates/add" method="post">
+
+        {% include "./form/candidate.html" %}
+
+        <div>
+            <button type="submit">Enregistrer le nouveau candidat</button>
+        </div>
+    </form>
+</section>
+{% endblock %}

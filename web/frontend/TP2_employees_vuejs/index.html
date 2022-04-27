@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- on charge un shim pour les modules ES6 -->
+    <script src="https://unpkg.com/es-module-shims@1/dist/es-module-shims.js" defer></script>
+    <!-- on charge Vue -->
+    <script type="importmap" defer>
+        {
+          "imports": {
+            "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+          }
+        }
+      </script>
+    <script src="./assets/app.js" type="module" defer></script>
+</head>
+<body>
+    <div id="app">
+        <h1 @click="fetchEmployeesData">{{ message }}</h1>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Full Name</th>
+              <th>Email</th>
+              <th>Monthly salary</th>
+              <th>Year of birth</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="employee in employeesData" :key="id">
+              <td>{{ employee.id }}</td>
+              <td>{{ employee.employee_name }}</td>
+              <td>{{ getEmployeeEmail(employee.employee_name) }}</td>
+              <td>{{ employee.employee_age }}</td>
+              <td>{{ employee.profile_image }}</td>
+              <td>
+                <butto @click="deleteEmployee(employee)">X</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+</body>
+</html>

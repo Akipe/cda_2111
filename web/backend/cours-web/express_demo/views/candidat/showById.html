@@ -1,20 +1,11 @@
 {% layout "base/index" %}
 
-{% block page_title %}Affichage du candidats {{ model.firstname }} {{ model.lastname }}{% endblock %}
+{% block page_title %}Affichage du candidats {{ candidate.firstname }} {{ candidate.lastname }}{% endblock %}
 
 {% block main %}
 <section>
-    <h1>Affichage du candidat {{ model.id }}</h1>
+    <h1>Affichage du candidat {{ candidate.id }}</h1>
 
-    <dl>
-        <dt>Prénom :</dt>
-        <dd>{{ model.firstname }}</dd>
-        <dt>Nom : </dt>
-        <dd>{{ model.lastname }}</dd>
-        <dt>Slogan :</dt>
-        <dd>{{ model.slogan }}</dd>
-        <dt>ID :</dt>
-        <dd>{{ model.id }}</dd>
-    </dl>
+    {% include "./show/candidate.html" %}
 </section>
 {% endblock %}

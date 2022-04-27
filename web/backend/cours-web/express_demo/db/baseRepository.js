@@ -31,7 +31,6 @@ class BaseRepository
                         console.error('Erreur SQL : ' + err)
                         reject(err)
                     } else {
-                        console.log(database)
                         resolve(result)
                     }
                 }
@@ -56,7 +55,6 @@ class BaseRepository
                         console.error('Erreur SQL : ' + err)
                         reject(err)
                     } else {
-                        console.log(database)
                         resolve(result)
                     }
                 }
@@ -73,10 +71,9 @@ class BaseRepository
                 (err, result) => {
                     if (err) {
                         console.error('Erreur SQL : ' + err)
-                        reject(err)
+                        reject(false)
                     } else {
-                        console.log(database)
-                        resolve(result)
+                        resolve(true)
                     }
                 }
                 /*
@@ -84,16 +81,6 @@ class BaseRepository
                 */
             )
         })
-    }
-
-    afterSqlRequest(_err, _result) {
-        if (_err) {
-            console.error('Erreur SQL : ' + _err)
-            reject(_err)
-        } else {
-            console.log(database)
-            resolve(_result)
-        }
     }
 }
 

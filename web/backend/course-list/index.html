@@ -7,9 +7,24 @@
     <script src="app.js" defer></script>
   </head>
   <body>
+      <header>
+        <h1>Liste de courses</h1>
+        <p>Exercice d'entrainement de <a href="https://developer.mozilla.org/fr/docs/Learn/JavaScript/Client-side_web_APIs/Manipulating_documents">MDN Network en JS</a></p>
+      </header>
       <section>
-        <img src="dinosaur.png" alt="A red Tyrannosaurus Rex: A two legged dinosaur standing upright like a human, with small arms, and a large head with lots of sharp teeth.">
-        <p>Here we will add a link to the <a href="https://www.mozilla.org/">Mozilla homepage</a></p>
+        <header>
+          <h2>A acheter :</h2>
+          <form id="formShop">
+            <label for="addItem">Ajouter un élément :</label>
+            <input type="text" name="addItem" id="formAddItemShop">
+            <input type="submit" value="Ajouter l'élément">
+          </form>
+          <ul id="listItemShop">
+          </ul>
+        </header>
       </section>
+      <footer>
+        <p>Licence : MIT 2022 Akipe - MILLETRE Julien</p>
+      </footer>
   </body>
 </html>

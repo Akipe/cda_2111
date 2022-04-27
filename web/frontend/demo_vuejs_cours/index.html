@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- on charge un shim pour les modules ES6 -->
+    <script src="https://unpkg.com/es-module-shims@1/dist/es-module-shims.js" defer></script>
+    <!-- on charge Vue -->
+    <script type="importmap" defer>
+        {
+          "imports": {
+            "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+          }
+        }
+      </script>
+    <script src="./assets/app.js" type="module" defer></script>
+</head>
+<body>
+    <div id="app">
+        <p>{{ message }}</p> <!--  pour afficher les variable de notre application
+                            alias "moustaches"
+                            Changement est réalisé dynamiquement -->
+        <p>{{ message.split(" ").reverse().join(" ") }}</p>
+        <p>{{ toto }}</p>
+        <p v-if="toto2">
+            Bonjour {{ toto2 }}
+        </p>
+    </div>
+</body>
+</html>

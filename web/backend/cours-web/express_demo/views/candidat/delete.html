@@ -1,0 +1,16 @@
+{% layout "base/index.html" %}
+
+{% block page_title %}Affichage du candidats {{ candidate.firstname }} {{ candidate.lastname }}{% endblock %}
+
+{% block main %}
+<section>
+    <h1>Suppression du condidat {{ candidate.id }}</h1>
+
+    {% include "./show/candidate.html" %}
+
+    <form action="/candidates/delete/{{ candidate.id }}" method="post">
+        <button type="submit">Confirmer la suppression</button>
+        <a href="/candidates">Annuler la suppression</a>
+    </form>
+</section>
+{% endblock %}

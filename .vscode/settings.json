@@ -1,0 +1,7 @@
+{
+    "editor.renderWhitespace": "all",
+    "emmet.includeLanguages": {
+        "vue": "html",
+        "vue-html": "html"
+    }
+}

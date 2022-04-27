@@ -1,0 +1,36 @@
+
+<input type="hidden" name="id" value="{{ model.id }}">
+
+<div>
+    <label for="lastname">Nom: </label>
+    <input 
+        type="text"
+        id="lastname"
+        name="lastname"
+        value="{{ candidate.lastname }}"
+        
+        title="Toto n'est pas content"
+        required
+    ><!-- pattern="[a-zA-Z]{2,16}" -->
+</div>
+
+<div>
+    <label for="firstname">Prénom: </label>
+    <input 
+        type="text"
+        id="firstname"
+        name="firstname"
+        value="{{ candidate.firstname }}"
+        required
+    >
+</div>
+
+<div>
+    <label for="slogan">Slogan: </label>
+    <input 
+        type="text"
+        id="slogan"
+        name="slogan"
+        value="{{ candidate.slogan }}"
+    >
+</div>

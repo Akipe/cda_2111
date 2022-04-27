@@ -1,10 +1,12 @@
 // La logique de d'interargir à la BDD reste dans le repository
 const database = require('../db');
-const repository = require('../db/candidatesRepository')
+const CandidatesRepository = require('../db/CandidatesRepository')
+
+let candidatesRepository = new CandidatesRepository()
 
 // Le controlleur : il met en relation les données avec les vues
 
-exports.index = async (req, res) => {
+exports.index = (req, res) => {
 
     /* similaire au block suivant
     repository.getAll()
@@ -15,7 +17,7 @@ exports.index = async (req, res) => {
     })*/
 
     try {
-        let result = await repository.getAll()
+        let result = candidatesRepository.getAll()
         
         res.json(result);
         res.end(); // On est obliger de forcer la fin de la requete
@@ -25,11 +27,11 @@ exports.index = async (req, res) => {
     }
 }
 
-exports.getById = async (req, res) => {
+exports.getById = (req, res) => {
     const { id } = req.params // Desctructuration
 
     try {
-        let result = await repository.getById(id)
+        let result = candidatesRepository.getById(id)
 
         if (result === undefined) {
             res.status(404)
@@ -44,21 +46,21 @@ exports.getById = async (req, res) => {
     }
 }
 
-exports.add = async (req, res) => {
+exports.add = (req, res) => {
     console.log(req.body)
     // controle de saisie dans l'objet req.body
     const model = req.body // On vérifie et on formate de la bonne manière les données
-    let result = await repository.create(model)
+    let result = candidatesRepository.create(model)
     res.json(result)
 }
 
-exports.update = async (req, res) => {
+exports.update = (req, res) => {
     const { id } = req.params
     console.log(req.body)
     const model = req.body
 
     try {
-        let result = await repository.update(id, model)
+        let result = candidatesRepository.update(id, model)
 
         //console.log(result.lastID)
         res.json({ done: true })
@@ -70,11 +72,11 @@ exports.update = async (req, res) => {
     }
 }
 
-exports.remove = async (req, res) => {
+exports.remove = (req, res) => {
     const { id } = req.params
     
     try {
-        let result = await repository.delete(id)
+        let result = candidatesRepository.delete(id)
 
         if (result === undefined) {
             result = {error: "404"}

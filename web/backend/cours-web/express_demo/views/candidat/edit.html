@@ -1,0 +1,21 @@
+{% layout "base/index.html" %}
+
+{% block page_title %}Edition du candidat {{ candidate.id }}{% endblock %}
+
+{% block main %}
+<section>
+    <h1>Edition du candidat référencé {{ candidate.id }}</h1>
+
+    <p><a href^="/candidates">Retour à la liste des candidats</a></p>
+
+
+    <form action="/candidates/edit/{{ candidate.id }}" method="post">
+
+        {% include "./form/candidate.html" %}
+
+        <div>
+            <button type="submit">Enregistrer les modifications</button>
+        </div>
+    </form>
+</section>
+{% endblock %}

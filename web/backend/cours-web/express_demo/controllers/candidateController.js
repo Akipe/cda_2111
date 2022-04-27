@@ -1,69 +1,182 @@
-/*
-    index   Lister les candidats (accueil du controlleur)
-    getById Afficher les détailles d'un candidat
-    add     Ajouter un candidat
-    update  Modifier un candidat existant
-    remove  Supprimer un candidat existant
-*/
+const candidateRepositoryClass = require('../db/candidatesRepository')
+const { validationResult } = require('express-validator')
+const urlModule = require('url')
 
-const repository = require('../db/candidatesRepository')
+class CandidateController
+{
+    constructor()
+    {
+        this.viewListAll = 'candidat/listAll.html'
+        this.viewNotFound = 'candidat/notFound.html'
+        this.viewShowById = 'candidat/showById.html'
+        this.viewAdd = 'candidat/add.html'
+        this.viewEdit = 'candidat/edit.html'
+        this.viewDelete = 'candidat/delete.html'
+        this.candidateRepository = new candidateRepositoryClass()
+    }
 
-module.exports = {
-    async index(req, res) {
-        // Si sous répertoir
-        // res.render('dossier/index')
-
+    async listAll(req, res)
+    {
         try {
-            let result = await repository.getAll()
+            let allCandidates = await this.candidateRepository.getAll()
             res.render(
-                'candidat/index',
+                'candidat/listAll.html',
                 {
-                    model: result,
-                    title: "Liste des candidats"
+                    allCandidates,
+                    title: "Liste des candidats",
+                    flashMessage: req.query.flashMessage
                 }
             )
         } catch (err) {
+            console.log(err)
             res.status(500).end()
         }
-    },
+    }
 
-    async getById(req, res) {
+    async getById(req, res)
+    {
         const { id } = req.params
 
         try {
-            let result = await repository.getById(id)
+            let result = await this.candidateRepository.getById(id)
 
-            console.log(result)
             if (result === undefined) {
                 res.status(404)
                 res.render(
-                    'candidat/notFound',
+                    this.viewNotFound,
                     {
                         candidat_id: id,
                     }
                 )
             } else {
                 res.render(
-                    'candidat/showById',
+                    this.viewShowById,
                     {
-                        model: result
+                        candidate: result
                     }
                 )
             }
         } catch (err) {
+            console.log(err)
             res.status(500).end()
         }
-    },
+    }
 
-    add(req, res) {
+    add(req, res)
+    {
+        res.render(
+            this.viewAdd
+        )
+    }
 
-    },
+    addPost(req, res)
+    {
+        try {
+            const validationErrors = validationResult(req)
+            console.log(validationErrors.array())
+            console.log(validationErrors.mapped())
+            const candidate = req.body
 
-    update(req, res) {
+            let result = this.candidateRepository.create(candidate)
 
-    },
+            let url = this.generateUrlWithFlashMessage(
+                '/candidates',
+                `Le candidat ${candidate.firstname} ${candidate.lastname} a été correctement enregistré.`
+            )
 
-    remove(req, res) {
+            res.redirect(url)
+        } catch (err) {
+            console.log(err)
+            res.status(500).end()
+        }
+    }
 
+    async update(req, res)
+    {
+        try {
+            const { id } = req.params
+
+            let candidate = await this.candidateRepository.getById(id)
+            console.log(candidate)
+
+            res.render(
+                this.viewEdit,
+                {
+                    candidate
+                }
+            )
+        } catch (err) {
+            console.log(err)
+            res.status(500).end()
+        }
+    }
+
+    async updatePost(req, res)
+    {
+        try {
+            let candidate = req.body
+            const { id } = req.params
+
+            let result = await this.candidateRepository.update(id, candidate)
+
+            let url = this.generateUrlWithFlashMessage(
+                '/candidates',
+                `Le candidat référencé ${id} a été correctement modifié.`
+            )
+
+            res.redirect(url)
+        } catch(err) {
+            console.log(err)
+            res.status(500).end()
+        }
+    }
+
+    async remove(req, res)
+    {
+        try {
+            const { id } = req.params
+
+            let candidateToRemove = await this.candidateRepository.getById(id)
+    
+            res.render(
+                this.viewDelete,
+                {
+                    candidate: candidateToRemove
+                }
+            )
+        } catch (err) {
+            console.log(err)
+            res.status(500).end()
+        }
+    }
+
+    removePost(req, res)
+    {
+        try {
+            const { id } = req.params
+
+            let result = this.candidateRepository.delete(id)
+
+            let url = this.generateUrlWithFlashMessage('/candidates', `Le candidat référencé ${id} a été correctement supprimé.`)
+
+            res.redirect(url)
+        } catch(err) {
+            console.log(err)
+            res.status(500).end()
+        }
+    }
+
+    generateUrlWithFlashMessage(_url, _flashMessage)
+    {
+        let url = urlModule.format({
+            pathname: _url,
+            query: {
+                flashMessage: _flashMessage
+            }
+        })
+
+        return url
     }
 }
+
+module.exports = CandidateController

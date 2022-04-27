@@ -148,6 +148,11 @@ app.get('/hello/:name/edit/:id', (req, res) => {
 
 ## Verbes HTTP
 
+Tableau : get et post
+
+Valeurs simple : get post put delete
+
+
 ### Get
 Récupérer une page ou en API un élément.
 
@@ -165,12 +170,27 @@ Formulaire et ajout d'un éléments en API
 ### Put
 API : mettre à jour
 
+**patch** : mettre à jour certains éléments d'un document : on envoie que les éléments à changer
+
+**put** : servait à remplacer un document par un autre : on envoit donc toutes les données dans le put, notamment les éléments non modifiés
+
 ### Delete
 API : supprimer un élément
+
+## Bodyparser
+Module Nodejs qui permet d'analyser le corp d'une requete, quel que soit le verbe utilisé.
+
+```bash
+npm install body-parser
+```
 
 ## Middlewares
 
 Pour chacune de mes routes, j'aimerai afficher le chemin dans le terminal : utilisation d'un middleware.
+
+bout de code qui s'executeront à un événement défini, par exemple sur expressjs par rapport aux routes.
+
+Elle s'executeront selon le contexte.
 
 Associé à un chemin : executer uniquement sur le chemin
 Non associé : executer sur toutes les routes.
@@ -178,13 +198,15 @@ Non associé : executer sur toutes les routes.
 Il est important de définir les middlewares avant la définition des pages, car elle seront executé avant.
 
 ```js
-app.use((req, res, next) => {
+app.use((req, res, next) => { // Création du middleware
     
     next() // Tu passe à la fonction middleware suivante ou à la route
 })
 ```
 
 ## Routeur
+
+Il doit mettre en relation un chemin (url) du site avec un controlleur.
 
 Possible de les définir dans un autre fichier pour une meilleures organisation, dans une dossier "/routes/index.js" et en plusieurs fichiers.
 
@@ -202,6 +224,7 @@ router.get('/about', (req, res) => {
     res.send('A propos')
 })
 
+// sur l'entrée :name sera appliqué la fonction "trim"
 router.get('/hello/:name', (req, res) => {
     let name = req.params.name // On récupére le marqueur "name" de la route
     res.send(`Hello ${name} !`)
@@ -247,6 +270,8 @@ app.use('/public', express.static(__dirname + '/public'))
 
 ## Controlleurs
 
+Il met en relation les données avec les vues.
+
 C'est le code qui prend en charge la requette et la réponse aproprié : "Un chemin améne à une fonction".
 
 Ils ne contiennent que des fonctions de rappelles.
@@ -257,15 +282,14 @@ Utilisable avec les classes ou en mode Nodejs :
 ```js
 // Orienté classe, utilisable dans d'autre contexte
 
-class HomeController
-{
+class HomeController {
+
     index(req, res) {
-        // On prend en charge la requette
         res.send("Accueil du controlleur")
     }
 }
 
-module.exports = new HomeController();
+module.exports = new HomeController(); 
 ```
 
 ```js
@@ -315,9 +339,13 @@ module.exports = database
 
 ### Repository
 
-Un repository par table, qui s'occupe du crud de la table.
+Il gére l'interraction à la BDD d'une entité.
+
+Un repository par table, qui s'occupe du crud de la table. On aura un repository par table.
 
 Il existe des couches d'absctraction car les repository sont très similaires, on peut donc les simplifier (à voir prochainement).
+
+On défini également les requêtes spécifique dans le repository (exemple : récupérer les nom commençant par une certaine lettre, etc).
 
 Plusieurs variant de nommage des methodes :
 - create
@@ -329,6 +357,8 @@ Plusieurs variant de nommage des methodes :
 Lors d'un appel à la base de donnée, JS risque de se bloqué car il n'est pas multitache, il faut donc créer une fonction asynchrone qui permet de ne pas bloquer le reste de l'application.
 
 On utilise les promesses : on ne sait pas quand la réponse se termine et si elle se réalisera correctement.
+
+Classe DAO : Direct Access Object : à préciser.
 
 ```js
 // candidatesRepository.js
@@ -387,10 +417,55 @@ database.all(
 )
 ```
 
+## ORM
+
+Object relation mapper.
+
+Sur nodejs, le plus connu est Sequelize [https://sequelize.org/](https://sequelize.org/).
+
 ## Les vue
 
 ### LiquidJS
 [https://liquidjs.com/](https://liquidjs.com/)
+
+```bash
+npm install liquidjs
+```
+
+```js
+const { Liquid } = require('liquidjs')
+const path = require('path')
+
+const viewPath = path.join(__dirname, '../', 'view')
+
+const viewEngine = new Liquid({
+    root: viewPath, // Répértoire où chercher les vues
+    extname: '.html'
+})
+
+// Sans l'application
+//module.exports = viewEngine
+
+// Avec l'application
+// pour avoir accés à l'instance d'ExpressJS
+module.exports = (app) => {
+    // Créer l'instance de l'app de gestion de vue
+    const viewEngine = new Liquid({
+        root: viewPath, // Répértoire où chercher les vues
+        extname: '.html' // Nos fichier liquidjs auront l'extension .html (coté liquijs)
+    })
+    
+    // On précise à ExpressJS qu'il faudra executer viewEngine (liquidjs) pour les fichier .html
+    app.engine('html', viewEngine)
+    // Le moteur de vue principal sera celui défini pour les fichiers d'extension .html
+    app.set('view engine', 'html')
+}
+```
+
+## Postman
+
+Outil pour tester les requetes vers les API.
+[https://www.postman.com/downloads/?utm_source=postman-home](https://www.postman.com/downloads/?utm_source=postman-home)
 
 ## Autre
 Pour définir une valeur par défaut en JS :
@@ -401,3 +476,105 @@ let name = variable_maybe_null ?? "toto"
 L'utilisation des `use` de express sont insensible à l'ordre.
 
 __dirname : correspond au repertoire du fichier actuelle.
+
+Si on ne termine pas les requetes (avec `res.end()`) le navigateur attendra la fin de la requete. 
+
+### Trim
+Supprime les espaces en début et fin de chaine de caractère.
+
+### Destructuration
+```js
+const { id } = req.params
+// similaire à
+const id = req.params.id
+
+const { id, name } = req.params
+// ==
+const id = req.params.id
+const name = req.params.name
+```
+
+
+## Générateur de base express
+
+# Node
+
+## import/ exportation
+
+### Fonction
+```js
+exports.functionA = () => {}
+exports.functionB = (id) => {}
+exports.functionC = (model) => {}
+// ==
+module.exports = {
+    functionA(id) {
+
+    },
+
+    functionB(model) {
+
+    },
+
+    functionC() {
+
+    }
+}
+```
+### Class
+
+```js
+class Test {}
+
+// Export de la classe
+module.exports = Test;
+// Export d'une instance
+module.exports = new Test();
+```
+
+### Importation
+```js
+require('./mon/fichier')
+let parametre
+require('./mon/fichier')(parametre)
+```
+
+
+# TLDR
+
+## Arborescence
+```
+app/
+    controllers/                    # Controleurs
+        ...
+    db/                             # Base de données
+        data/                       # Stockage de la base de donnée
+            example.db              # ex: sqlite
+        candidatesRepository.js     # Repository de l'entité
+        index.js                    # Chargement de la base de donnée
+    node_modules/                   # Ensemble des bibliothèques externes
+    public/                         # Fichiers statiques
+        assets/
+            css/
+            js/
+            ...
+    routes/                         # Ensemble de la configuration des routes
+        index.js
+        ...
+    app.js                          # Point d'entrée de notre site
+    package-lock.json
+    package.json                    # Configuration de notre site
+```
+
+```bash
+npm install express-generator -g
+express
+npm install
+```
+
+Avec typescript
+
+```bash
+npm install --save-dev typescript
+npm install -save-dev @types/express
+```
