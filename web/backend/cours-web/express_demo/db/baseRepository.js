@@ -51,6 +51,8 @@ class BaseRepository
                 _sql,
                 _params,
                 (err, result) => {
+                    console.log(result)
+                    console.log(err)
                     if (err) {
                         console.error('Erreur SQL : ' + err)
                         reject(err)

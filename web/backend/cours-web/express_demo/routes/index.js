@@ -1,6 +1,7 @@
 const express = require("express")
 const router = express.Router() // On récupére le routeur d'express
 const { validationResult } = require('express-validator')
+const path = require("path")
 
 //const controllerPath = "../controllers"
 const homeController = require(`../controllers/homeController`)
@@ -37,7 +38,8 @@ router.get('/api/:id', apiController.getById)
 router.put('/api/:id', apiController.update)
 router.delete('/api/:id', apiController.remove)
 
-
+const staticPath = path.join(__dirname, '../', 'public')
+router.use('/public', express.static(staticPath))
 
 router.all('*', errorController.error404)
 

@@ -1,35 +1,24 @@
-const serverPort = '5000'
-
-// Importation de la bibliothèque express
 const express = require('express')
 const bodyParser = require('body-parser')
 
-// Création de l'instance de notre application
+/* Configuration */
+const serverPort = '5000'
+
+/* Instanciation de l'application */
 const app = express()
 
-// body-parser : analyser le contenu d'une requete
-app.use(bodyParser.urlencoded({extended: true}))
-//app.use(bodyParser.json())
-
-// Middleware qui affiche dans la 
-// ! importance de l'ordre de définition des methodes
-// toujours mettre les middleware avant
-app.use((req, res, next) => {
-    // Récupération de la route
-    let method = req.method
-    let path = req.originalUrl
-    console.log(`${method} ${path}`)
-    next() // Tu passe à la fonction middleware suivante ou à la route
-})
-
-// Ressources web statiques
-app.use('/public', express.static(__dirname + '/public'))
-
+/* Middleware */
+require('./middlewares/log')(app)
+require('./middlewares/bodyparser')(app)
 require('./middlewares/liquid')(app)
+require('./middlewares/cookie.js')(app)
+require('./middlewares/csrf.js')(app)
 
+/* Router */
 const router = require('./routes/index.js')
 app.use('/', router)
 
+/* Lancement de l'application */
 app.listen(serverPort, () => {
     console.log(`Serveur disponible sur http://localhost:${serverPort}`)
 })

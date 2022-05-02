@@ -6,18 +6,9 @@ let candidatesRepository = new CandidatesRepository()
 
 // Le controlleur : il met en relation les données avec les vues
 
-exports.index = (req, res) => {
-
-    /* similaire au block suivant
-    repository.getAll()
-    .then(result => {
-        res.json(result)
-    }).catch((err) => {
-        console.error(err)
-    })*/
-
+exports.index = async (req, res) => {
     try {
-        let result = candidatesRepository.getAll()
+        let result = await candidatesRepository.getAll()
         
         res.json(result);
         res.end(); // On est obliger de forcer la fin de la requete
@@ -27,11 +18,11 @@ exports.index = (req, res) => {
     }
 }
 
-exports.getById = (req, res) => {
+exports.getById = async (req, res) => {
     const { id } = req.params // Desctructuration
 
     try {
-        let result = candidatesRepository.getById(id)
+        let result = await candidatesRepository.getById(id)
 
         if (result === undefined) {
             res.status(404)

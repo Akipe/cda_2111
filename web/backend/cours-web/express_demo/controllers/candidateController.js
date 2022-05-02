@@ -65,26 +65,46 @@ class CandidateController
     add(req, res)
     {
         res.render(
-            this.viewAdd
+            this.viewAdd,
+            {
+                csrfToken: req.session.csrf
+            }
         )
     }
 
     addPost(req, res)
     {
         try {
-            const validationErrors = validationResult(req)
-            console.log(validationErrors.array())
-            console.log(validationErrors.mapped())
             const candidate = req.body
+            const formErrors = validationResult(req)
+            const csrfTokenServer = req.session.csrf
+            const csrfTokenClient = req.body.csrfToken
 
-            let result = this.candidateRepository.create(candidate)
+            if (csrfTokenClient != csrfTokenServer) {
+                let url = this.generateUrlWithFlashMessage(
+                    '/candidates',
+                    `Formulaire invalide, veuillez réessayer.`
+                )
+                console.error(`Token form is not valided`)
+                res.redirect(url)
+            } else if (formErrors.isEmpty()) {
+                this.candidateRepository.create(candidate)
 
-            let url = this.generateUrlWithFlashMessage(
-                '/candidates',
-                `Le candidat ${candidate.firstname} ${candidate.lastname} a été correctement enregistré.`
-            )
+                let url = this.generateUrlWithFlashMessage(
+                    '/candidates',
+                    `Le candidat ${candidate.firstname} ${candidate.lastname} a été correctement enregistré.`
+                )
 
-            res.redirect(url)
+                res.redirect(url)
+            } else {
+                res.render(
+                    this.viewAdd,
+                    {
+                        candidate,
+                        errorForm: formErrors.mapped(),
+                    }
+                )
+            }
         } catch (err) {
             console.log(err)
             res.status(500).end()
@@ -102,7 +122,8 @@ class CandidateController
             res.render(
                 this.viewEdit,
                 {
-                    candidate
+                    candidate,
+                    csrfToken: req.session.csrf
                 }
             )
         } catch (err) {
@@ -114,17 +135,40 @@ class CandidateController
     async updatePost(req, res)
     {
         try {
-            let candidate = req.body
+            const candidate = req.body
             const { id } = req.params
+            const formErrors = validationResult(req)
+            const csrfTokenServer = req.session.csrf
+            const csrfTokenClient = req.body.csrfToken
 
-            let result = await this.candidateRepository.update(id, candidate)
+            console.log(formErrors.mapped())
 
-            let url = this.generateUrlWithFlashMessage(
-                '/candidates',
-                `Le candidat référencé ${id} a été correctement modifié.`
-            )
+            if (csrfTokenClient != csrfTokenServer) {
+                let url = this.generateUrlWithFlashMessage(
+                    '/candidates',
+                    `Formulaire invalide, veuillez réessayer.`
+                )
+                console.error(`Token form is not valided`)
+                res.redirect(url)
+            } else if (formErrors.isEmpty()) {
+                await this.candidateRepository.update(id, candidate)
 
-            res.redirect(url)
+                let url = this.generateUrlWithFlashMessage(
+                    '/candidates',
+                    `Le candidat référencé ${id} a été correctement modifié.`
+                )
+
+                res.redirect(url)
+            } else {
+                candidate.id = id
+                res.render(
+                    this.viewEdit,
+                    {
+                        candidate,
+                        errorForm: formErrors.mapped()
+                    }
+                )
+            }
         } catch(err) {
             console.log(err)
             res.status(500).end()
@@ -137,13 +181,22 @@ class CandidateController
             const { id } = req.params
 
             let candidateToRemove = await this.candidateRepository.getById(id)
-    
-            res.render(
-                this.viewDelete,
-                {
-                    candidate: candidateToRemove
-                }
-            )
+
+            if (!candidateToRemove) {
+                let url = this.generateUrlWithFlashMessage(
+                    '/candidates',
+                    `Le candidat référencé ${id} n'existe pas.`
+                )
+                res.redirect(url)
+            } else {
+                res.render(
+                    this.viewDelete,
+                    {
+                        candidate: candidateToRemove,
+                        csrfToken: req.session.csrf
+                    }
+                )
+            }
         } catch (err) {
             console.log(err)
             res.status(500).end()
@@ -154,12 +207,29 @@ class CandidateController
     {
         try {
             const { id } = req.params
+            const csrfTokenServer = req.session.csrf
+            const csrfTokenClient = req.body.csrfToken
 
-            let result = this.candidateRepository.delete(id)
+            let candidate = this.candidateRepository.getById(id)
 
-            let url = this.generateUrlWithFlashMessage('/candidates', `Le candidat référencé ${id} a été correctement supprimé.`)
-
-            res.redirect(url)
+            if (csrfTokenClient != csrfTokenServer) {
+                let url = this.generateUrlWithFlashMessage(
+                    '/candidates',
+                    `Formulaire invalide, veuillez réessayer.`
+                )
+                console.error(`Token form is not valided`)
+                res.redirect(url)
+            } else if (!candidate) {
+                let url = this.generateUrlWithFlashMessage(
+                    '/candidates',
+                    `Le candidat référencé ${id} n'existe pas.`
+                )
+                res.redirect(url)
+            } else {
+                this.candidateRepository.delete(id)
+                let url = this.generateUrlWithFlashMessage('/candidates', `Le candidat référencé ${id} a été correctement supprimé.`)
+                res.redirect(url)
+            }
         } catch(err) {
             console.log(err)
             res.status(500).end()

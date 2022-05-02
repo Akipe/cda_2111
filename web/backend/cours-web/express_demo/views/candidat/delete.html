@@ -9,6 +9,9 @@
     {% include "./show/candidate.html" %}
 
     <form action="/candidates/delete/{{ candidate.id }}" method="post">
+        
+        <input type="hidden" name="csrfToken" value="{{ csrfToken }}">
+
         <button type="submit">Confirmer la suppression</button>
         <a href="/candidates">Annuler la suppression</a>
     </form>

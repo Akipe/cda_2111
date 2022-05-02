@@ -2,11 +2,15 @@ const { checkSchema } = require('express-validator')
 
 // https://express-validator.github.io/docs/schema-validation.html
 module.exports = checkSchema({
-    id: {
+    /*id: {
         isInt: true,
         toInt: true
-    },
+    },*/
     firstname: { // Le champ est requis, aucun chiffre, autorise les espaces et les tirets "-".
+        matches: {
+            options: '^[a-zA-ZÀ-ÿ]+(-| )?[a-zA-ZÀ-ÿ]+$',
+            errorMessage: "Le prénom ne doit contenir que des lettres."
+        },
         notEmpty : {
             options: {
                 ignore_whitespace: true
@@ -20,56 +24,43 @@ module.exports = checkSchema({
             },
             errorMessage: "Le prénom doit être avoir entre 4 et 24 caractères."
         },
-        isAlpha: {
-            locale: 'fr-FR',
-            options: {
-                ignore: '\-'
-            },
-            errorMessage: "Le prénom ne doit contenir que des lettres."
-        }
     },
     lastname: { // Le champ est requis, aucun chiffre, autorise les espaces et les tirets "-".
+        matches: {
+            options: '^[a-zA-ZÀ-ÿ]+(-| )?[a-zA-ZÀ-ÿ]+$',
+            errorMessage: "Le nom ne doit contenir que des lettres."
+        },
         notEmpty : {
             options: {
                 ignore_whitespace: true
             },
-            errorMessage: "Le prénom est requis"
+            errorMessage: "Le nom est requis"
         },
         isLength: {
             options: {
                 min: 4,
                 max: 24
             },
-            errorMessage: "Le prénom doit être avoir entre 4 et 24 caractères."
+            errorMessage: "Le nom doit être avoir entre 4 et 24 caractères."
         },
-        /*isAlpha: {
-            locale: 'fr-FR',
-            options: {
-                ignore: ["-", " "]
-            },
-            errorMessage: "Le prénom ne doit contenir que des lettres."
-        }*/
     },
     slogan: { // Le champ est requis, aucun chiffre, autorise les espaces.
+        matches: {
+            options: '^[a-zA-ZÀ-ÿ\-, ]*$',
+            errorMessage: "Le slogan ne doit contenir que des lettres."
+        },
         notEmpty : {
             options: {
                 ignore_whitespace: true
             },
-            errorMessage: "Le prénom est requis"
+            errorMessage: "Le slogan est requis"
         },
         isLength: {
             options: {
                 min: 4,
                 max: 24
             },
-            errorMessage: "Le prénom doit être avoir entre 4 et 24 caractères."
+            errorMessage: "Le slogan doit être avoir entre 4 et 24 caractères."
         },
-        /*isAlpha: {
-            locale: 'fr-FR',
-            options: {
-                ignore: " "
-            },
-            errorMessage: "Le prénom ne doit contenir que des lettres."
-        }*/
     }
 })

@@ -1,5 +1,4 @@
 // On importe les données de la BDD
-const database = require('./index')
 const baseRepository = require('./baseRepository')
 const Candidate = require('./Candidate')
 
@@ -26,7 +25,11 @@ class CandidateRepository
             [id]
         )
     
-        return this.generateCandidateFromJson(candidateJson)
+        if (candidateJson != null) {
+            return this.generateCandidateFromJson(candidateJson)
+        } else {
+            return false
+        }
     }
     
     async create(_candidate)
