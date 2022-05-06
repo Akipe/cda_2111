@@ -1,12 +1,17 @@
 import { Request, Response } from "express";
-import { baseRepository } from "../database/BaseRepository";
+import { productRepository } from "../database/ProductRepository";
+import { userRepository } from "../database/UserRepository";
 
 export class HomeController
 {
     async showHome(req: Request, res: Response): Promise<void>
     {
-        let testDatabase = await baseRepository.getAll("SELECT * FROM users")
-        console.log(testDatabase)
+        let allUsers = await userRepository.getAll()
+        console.log(allUsers)
+
+        let allProducts = await productRepository.getById(1)
+        console.log(allProducts)
+
         res.render('home/show')
     }
 }
