@@ -1,0 +1,43 @@
+<form action="{{ action }}" method="{{ method }}">
+    <label for="name">Nom :
+        <input
+            type="text"
+            id="name"
+            name="name"
+            value="{{ user.name }}"
+            placeholder="Nom de l'utilisateur"
+            required
+        >
+        <p>{{ errors.name.msg }}</p>
+    </label>
+
+    <label for="password">Mot de passe :
+        <input
+            type="password"
+            id="password"
+            name="password"
+            value="{{ user.password }}"
+            placeholder="Mot de passe de l'utilisateur"
+            required
+        >
+        <p>{{ errors.password.msg }}</p>
+    </label>
+
+    <label for="quote">Citation :
+        <input
+            type="text"
+            id="quote"
+            name="quote"
+            value="{{ user.quote }}"
+            placeholder="Citation de l'utilisateur"
+            required
+        >
+        <p>{{ errors.quote.msg }}</p>
+    </label>
+
+    <div>
+        <button type="submit">
+            {{ submit_button_content }}
+        </button>
+    </div>
+</form>

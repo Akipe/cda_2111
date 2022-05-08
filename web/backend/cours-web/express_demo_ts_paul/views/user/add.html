@@ -1,0 +1,17 @@
+{% layout "layout/index" %}
+
+{% block title %}Ajouter un utilisateur{% endblock %}
+
+{% block content %}
+<h1>Ajouter un utilisateur</h1>
+
+{% 
+    render "./form/user.html",
+    action: form_destination,
+    method: form_send_method,
+    errors: form_errors,
+    user: user,
+    submit_button_content: "sauvegarder"
+%}
+
+{% endblock %}
