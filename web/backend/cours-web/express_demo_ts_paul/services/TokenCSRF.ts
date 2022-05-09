@@ -3,7 +3,7 @@ import { randomBytes } from "crypto";
 import CookieSessionObject from "cookie-session";
 import { Session } from "inspector";
 
-export class tokenCSRF
+export class TokenCsrf
 {
     private currentSession: any
 

@@ -35,6 +35,12 @@
         <p>{{ errors.quote.msg }}</p>
     </label>
 
+    <input
+        type="hidden"
+        name="tokenCsrf"
+        value="{{ tokenCsrf }}"
+    >
+
     <div>
         <button type="submit">
             {{ submit_button_content }}
