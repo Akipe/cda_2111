@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/es-module-shims@1/dist/es-module-shims.js" defer></script>
+    <script type="importmap" defer>
+        {
+            "imports": {
+                "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+            }
+        }
+    </script>
+    <script src="./app.js" type="module" defer></script>
+</head>
+<body>
+    <div id="app">
+        <p>{{ message }}</p>
+        <header>
+            <h1>Cereals</h1>
+            <form action="">
+                <fieldset>
+                    <legend>
+                        <label for="rechercher">Rechercher</label>
+                    </legend>
+                    <input @input="setFilterByName" type="search" name="rechercher" id="rechercher">
+                </fieldset>
+                <fieldset class="nutriscore-container">
+                    <legend>Filtrer</legend>
+                    <label for="a">A</label>
+                    <input @change="setFilterByNutriscore" type="checkbox" name="nutriscore" id="a" value="a">
+                    <label for="b">B</label>
+                    <input @change="setFilterByNutriscore" type="checkbox" name="nutriscore" id="b" value="b">
+                    <label for="c">C</label>
+                    <input @change="setFilterByNutriscore" type="checkbox" name="nutriscore" id="c" value="c">
+                    <label for="d">D</label>
+                    <input @change="setFilterByNutriscore" type="checkbox" name="nutriscore" id="d" value="d">
+                    <label for="e">E</label>
+                    <input @change="setFilterByNutriscore" type="checkbox" name="nutriscore" id="e" value="e">
+                </fieldset>
+
+                <fieldset>
+                    <legend>
+                        <label for="categories">Catégorie</label>
+                    </legend>
+                    <select @change="setFilterByCategory" list="categories" id="categories-list">
+                        <option value="tous" id="value">tous</option>
+                        <option value="sans_sucre" id="value">Sans sucre</option>
+                        <option value="pauvre_sel" id="value">Pauvre en sel</option>
+                        <option value="boost" id="value">Boost</option>
+                    </select>
+                </fieldset>
+            </form>
+        </header>
+        <main>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>NOM</th>
+                        <th>CALORIES</th>
+                        <th>PROTEINES</th>
+                        <th>SEL</th>
+                        <th>FIBRES</th>
+                        <th>GLUCIDES</th>
+                        <th>SUCRE</th>
+                        <th>POTASSIUM</th>
+                        <th>VITAMINES</th>
+                        <th>EVALUATION</th>
+                        <th>NS</th>
+                        <th>DEL</th>
+                    </tr>
+                </thead>
+                <tbody id="cereals-table-body">
+                    <tr v-for="cereal in this.filteredCereals" :key="cereal.id">
+                        <td class="cereal_id">{{ cereal.id }}</td>
+                        <td>{{ cereal.name }}</td>
+                        <td>{{ cereal.calories }}</td>
+                        <td>{{ cereal.protein }}</td>
+                        <td>{{ cereal.sodium }}</td>
+                        <td>{{ cereal.fiber }}</td>
+                        <td>{{ cereal.carbo }}</td>
+                        <td>{{ cereal.sugars }}</td>
+                        <td>{{ cereal.potass }}</td>
+                        <td>{{ cereal.vitamins }}</td>
+                        <td :class="cereal.nutriscore">{{ cereal.rating }}</td>
+                        <td class="cereal_nutriscore">{{ cereal.nutriscore }}</td>
+                        <td>
+                            <button @click="removeCereal(cereal)">X</button>
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td></td>
+                        <td>{{ this.countCereals }} éléments</td>
+                        <td>Moyenne calories {{ this.averageCalories }}</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </main>
+    </div>
+</body>
+</html>
