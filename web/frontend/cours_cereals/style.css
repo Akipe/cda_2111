@@ -1,0 +1,32 @@
+:root {
+    --color-dark: #111;
+    --color-dark-lighter: #222;
+    --color-brown-dark: #333;
+    --color-brown-light: #444;
+    --color-grey: #664;
+    --color-white: white;
+    --color-grey-lighter: #FFFFFFCC;
+    --color-yellow-green: yellowgreen;
+    --color-yellow: yellow;
+    --color-dark-green: darkgreen;
+    --color-green: #009900CC;
+    --color-yellow-grey: #CCCC00CC;
+    --color-orange: #CC6600CC;
+    --color-red: #CC0000CC;
+}
+
+body {
+    color: var(--color-yellow-green);
+    background-color: var(--color-dark);
+}
+
+h1, thead {
+    color: var(--color-yellow-green)
+}
+
+fieldset {
+    background-color: var(--color-brown-dark);
+}
+input[type="search"] {
+    
+}

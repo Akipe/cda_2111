@@ -63,7 +63,7 @@ export class UserRepository extends BaseRepository
     public async add(user: User): Promise<void>
     {
         try {
-            this.repository.execute(
+            await this.repository.execute(
                 `INSERT INTO ${this.table} (name, password, quote) VALUES (?, ?, ?)`,
                 [user.name, user.password, user.quote]
             )
@@ -102,7 +102,7 @@ export class UserRepository extends BaseRepository
                 return false
             }
 
-            this.repository.execute(
+            await this.repository.execute(
                 `DELETE FROM ${this.table} WHERE id=?`,
                 [String(id)]
             )
