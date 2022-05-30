@@ -1,6 +1,6 @@
 ﻿namespace _01_MagicButton
 {
-    partial class Form1
+    partial class MagicForm
     {
         /// <summary>
         ///  Required designer variable.
@@ -33,22 +33,22 @@
             // 
             // magicButton
             // 
-            this.magicButton.Location = new System.Drawing.Point(12, 12);
+            this.magicButton.Location = new System.Drawing.Point(0, 0);
             this.magicButton.Name = "magicButton";
-            this.magicButton.Size = new System.Drawing.Size(75, 23);
+            this.magicButton.Size = new System.Drawing.Size(50, 50);
             this.magicButton.TabIndex = 0;
-            this.magicButton.Text = "Je suis";
+            this.magicButton.Text = "Clique";
             this.magicButton.UseVisualStyleBackColor = false;
             this.magicButton.Click += new System.EventHandler(this.magicButton_Click);
             // 
-            // Form1
+            // MagicForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(855, 488);
+            this.ClientSize = new System.Drawing.Size(784, 761);
             this.Controls.Add(this.magicButton);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "MagicForm";
+            this.Text = "MagicForm";
             this.ResumeLayout(false);
 
         }
