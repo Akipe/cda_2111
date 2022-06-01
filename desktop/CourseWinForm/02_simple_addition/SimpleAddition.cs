@@ -8,29 +8,41 @@ namespace _02_simple_addition
 {
     internal class SimpleAddition
     {
+        private const char OPERATOR_PLUS = '+';
+        private const string OPERATOR_EQUAL = " = ";
+
         private int ResultAddition { get; set; }
-        public string PrintableResult { get; private set; }
+        private StringBuilder ResultPrintRaw { get; set; }
 
         public SimpleAddition()
         {
             this.Reset();
+            this.ResultPrintRaw = new StringBuilder();
         }
 
         public void Add(int number)
         {
             this.ResultAddition += number;
-            this.PrintableResult += number + "+";
+            this.ResultPrintRaw.Append(number);
+            this.ResultPrintRaw.Append(OPERATOR_PLUS);
         }
 
         public void Calculate()
         {
-            this.PrintableResult += " = " + ResultAddition + "+";
+            this.ResultPrintRaw.Append(OPERATOR_EQUAL);
+            this.ResultPrintRaw.Append(ResultAddition);
+            this.ResultPrintRaw.Append(OPERATOR_PLUS);
         }
 
         public void Reset()
         {
             this.ResultAddition = 0;
-            this.PrintableResult = "";
+            this.ResultPrintRaw = new StringBuilder();
+        }
+
+        public string PrintableResult()
+        {
+            return this.ResultPrintRaw.ToString();
         }
     }
 }

@@ -36,7 +36,7 @@ namespace _02_simple_addition
 
         private void UpdateCalculateDisplay()
         {
-            this.TbCalculateDisplay.Text = SimpleAdditionInstance.PrintableResult;
+            this.TbCalculateDisplay.Text = SimpleAdditionInstance.PrintableResult();
         }
     }
 }
