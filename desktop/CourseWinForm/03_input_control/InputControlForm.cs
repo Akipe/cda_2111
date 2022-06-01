@@ -207,5 +207,27 @@ namespace _03_input_control
                 MessageBoxIcon.Question
             );
         }
+
+        private void TbName_Leave(object sender, EventArgs e)
+        {
+            //this.IsValid = true;
+
+            this.CheckNameInput();
+        }
+
+        private void MtbDate_Leave(object sender, EventArgs e)
+        {
+            this.CheckDateInput();
+        }
+
+        private void TbAmount_Leave(object sender, EventArgs e)
+        {
+            this.CheckAmountInput();
+        }
+
+        private void MtbZipcode_Leave(object sender, EventArgs e)
+        {
+            this.CheckZipcodeInput();
+        }
     }
 }

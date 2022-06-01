@@ -60,6 +60,7 @@
             this.TbName.Size = new System.Drawing.Size(151, 23);
             this.TbName.TabIndex = 1;
             this.TbName.TextChanged += new System.EventHandler(this.OnTextChanged);
+            this.TbName.Leave += new System.EventHandler(this.TbName_Leave);
             // 
             // LabelDate
             // 
@@ -116,6 +117,7 @@
             this.MtbDate.Size = new System.Drawing.Size(97, 23);
             this.MtbDate.TabIndex = 9;
             this.MtbDate.ValidatingType = typeof(System.DateTime);
+            this.MtbDate.Leave += new System.EventHandler(this.MtbDate_Leave);
             // 
             // MtbZipcode
             // 
@@ -124,6 +126,7 @@
             this.MtbZipcode.Name = "MtbZipcode";
             this.MtbZipcode.Size = new System.Drawing.Size(52, 23);
             this.MtbZipcode.TabIndex = 10;
+            this.MtbZipcode.Leave += new System.EventHandler(this.MtbZipcode_Leave);
             // 
             // TbAmount
             // 
@@ -132,6 +135,7 @@
             this.TbAmount.Size = new System.Drawing.Size(97, 23);
             this.TbAmount.TabIndex = 11;
             this.TbAmount.TextChanged += new System.EventHandler(this.OnTextChanged);
+            this.TbAmount.Leave += new System.EventHandler(this.TbAmount_Leave);
             // 
             // LabelDateExample
             // 
