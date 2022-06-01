@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Training02", "Training02\Tr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "01_MagicButton", "01_MagicButton\01_MagicButton.csproj", "{CF91EA09-7C99-4B32-A0F2-C0B54D444582}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02_simple_addition", "02_simple_addition\02_simple_addition.csproj", "{68B393FF-7FA4-4FC6-BCA8-0244190D307B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "02_simple_addition", "02_simple_addition\02_simple_addition.csproj", "{68B393FF-7FA4-4FC6-BCA8-0244190D307B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "03_input_control", "03_input_control\03_input_control.csproj", "{5A44330F-0310-4692-BAC3-B3155E852746}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{68B393FF-7FA4-4FC6-BCA8-0244190D307B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{68B393FF-7FA4-4FC6-BCA8-0244190D307B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{68B393FF-7FA4-4FC6-BCA8-0244190D307B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A44330F-0310-4692-BAC3-B3155E852746}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A44330F-0310-4692-BAC3-B3155E852746}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A44330F-0310-4692-BAC3-B3155E852746}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A44330F-0310-4692-BAC3-B3155E852746}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
