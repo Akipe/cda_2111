@@ -41,7 +41,9 @@
             this.TbAmount = new System.Windows.Forms.TextBox();
             this.LabelDateExample = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider2 = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).BeginInit();
             this.SuspendLayout();
             // 
             // LabelName
@@ -60,7 +62,7 @@
             this.TbName.Size = new System.Drawing.Size(151, 23);
             this.TbName.TabIndex = 1;
             this.TbName.TextChanged += new System.EventHandler(this.OnTextChanged);
-            this.TbName.Leave += new System.EventHandler(this.TbName_Leave);
+            this.TbName.Validating += new System.ComponentModel.CancelEventHandler(this.TbName_Validating);
             // 
             // LabelDate
             // 
@@ -94,7 +96,7 @@
             this.BtnValidate.Location = new System.Drawing.Point(290, 119);
             this.BtnValidate.Name = "BtnValidate";
             this.BtnValidate.Size = new System.Drawing.Size(75, 23);
-            this.BtnValidate.TabIndex = 7;
+            this.BtnValidate.TabIndex = 5;
             this.BtnValidate.Text = "Valider";
             this.BtnValidate.UseVisualStyleBackColor = true;
             this.BtnValidate.Click += new System.EventHandler(this.BtnValidate_Click);
@@ -104,7 +106,7 @@
             this.BtnClear.Location = new System.Drawing.Point(290, 148);
             this.BtnClear.Name = "BtnClear";
             this.BtnClear.Size = new System.Drawing.Size(75, 23);
-            this.BtnClear.TabIndex = 8;
+            this.BtnClear.TabIndex = 6;
             this.BtnClear.Text = "Effacer";
             this.BtnClear.UseVisualStyleBackColor = true;
             this.BtnClear.Click += new System.EventHandler(this.BtnClear_Click);
@@ -115,9 +117,9 @@
             this.MtbDate.Mask = "00/00/0000";
             this.MtbDate.Name = "MtbDate";
             this.MtbDate.Size = new System.Drawing.Size(97, 23);
-            this.MtbDate.TabIndex = 9;
+            this.MtbDate.TabIndex = 2;
             this.MtbDate.ValidatingType = typeof(System.DateTime);
-            this.MtbDate.Leave += new System.EventHandler(this.MtbDate_Leave);
+            this.MtbDate.Validating += new System.ComponentModel.CancelEventHandler(this.MtbDate_Validating);
             // 
             // MtbZipcode
             // 
@@ -125,7 +127,7 @@
             this.MtbZipcode.Mask = "00000";
             this.MtbZipcode.Name = "MtbZipcode";
             this.MtbZipcode.Size = new System.Drawing.Size(52, 23);
-            this.MtbZipcode.TabIndex = 10;
+            this.MtbZipcode.TabIndex = 4;
             this.MtbZipcode.Leave += new System.EventHandler(this.MtbZipcode_Leave);
             // 
             // TbAmount
@@ -133,7 +135,7 @@
             this.TbAmount.Location = new System.Drawing.Point(107, 87);
             this.TbAmount.Name = "TbAmount";
             this.TbAmount.Size = new System.Drawing.Size(97, 23);
-            this.TbAmount.TabIndex = 11;
+            this.TbAmount.TabIndex = 3;
             this.TbAmount.TextChanged += new System.EventHandler(this.OnTextChanged);
             this.TbAmount.Leave += new System.EventHandler(this.TbAmount_Leave);
             // 
@@ -149,6 +151,10 @@
             // errorProvider1
             // 
             this.errorProvider1.ContainerControl = this;
+            // 
+            // errorProvider2
+            // 
+            this.errorProvider2.ContainerControl = this;
             // 
             // InputControlesForm
             // 
@@ -172,6 +178,7 @@
             this.Text = "Les contrôles";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.InputControlesForm_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -191,5 +198,6 @@
         private TextBox TbAmount;
         private MaskedTextBox MtbZipcode;
         private ErrorProvider errorProvider1;
+        private ErrorProvider errorProvider2;
     }
 }

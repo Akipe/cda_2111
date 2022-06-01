@@ -141,6 +141,9 @@ namespace _03_input_control
                     inputElement, message
                 );
                 this.IsValid = false;
+            } else
+            {
+                errorProvider1.SetError(inputElement, null);
             }
         }
 
@@ -166,7 +169,7 @@ namespace _03_input_control
 
         private void OnTextChanged(object sender, EventArgs e)
         {
-            errorProvider1.Clear();
+            //errorProvider1.Clear();
         }
 
         private void BtnClear_Click(object sender, EventArgs e)
@@ -180,6 +183,7 @@ namespace _03_input_control
             };
 
             this.ClearContentInput(allInputs);
+            errorProvider1.Clear();
         }
 
         private void ClearContentInput(TextBoxBase[] elements)
@@ -208,12 +212,12 @@ namespace _03_input_control
             );
         }
 
-        private void TbName_Leave(object sender, EventArgs e)
+        /*private void TbName_Leave(object sender, EventArgs e)
         {
             //this.IsValid = true;
 
             this.CheckNameInput();
-        }
+        }*/
 
         private void MtbDate_Leave(object sender, EventArgs e)
         {
@@ -228,6 +232,16 @@ namespace _03_input_control
         private void MtbZipcode_Leave(object sender, EventArgs e)
         {
             this.CheckZipcodeInput();
+        }
+
+        private void TbName_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            this.CheckNameInput();
+        }
+
+        private void MtbDate_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            this.CheckDateInput();
         }
     }
 }
