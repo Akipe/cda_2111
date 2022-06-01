@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "01_MagicButton", "01_MagicB
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "02_simple_addition", "02_simple_addition\02_simple_addition.csproj", "{68B393FF-7FA4-4FC6-BCA8-0244190D307B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "03_input_control", "03_input_control\03_input_control.csproj", "{5A44330F-0310-4692-BAC3-B3155E852746}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "03_input_control", "03_input_control\03_input_control.csproj", "{5A44330F-0310-4692-BAC3-B3155E852746}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "04_CheckboxRadio", "04_CheckboxRadio\04_CheckboxRadio.csproj", "{F46D2DEC-7B22-4B52-8C3C-09CD63AF3E37}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{5A44330F-0310-4692-BAC3-B3155E852746}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5A44330F-0310-4692-BAC3-B3155E852746}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5A44330F-0310-4692-BAC3-B3155E852746}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F46D2DEC-7B22-4B52-8C3C-09CD63AF3E37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F46D2DEC-7B22-4B52-8C3C-09CD63AF3E37}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F46D2DEC-7B22-4B52-8C3C-09CD63AF3E37}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F46D2DEC-7B22-4B52-8C3C-09CD63AF3E37}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
