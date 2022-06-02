@@ -55,7 +55,6 @@
             this.LElementToAdd.Size = new System.Drawing.Size(96, 15);
             this.LElementToAdd.TabIndex = 0;
             this.LElementToAdd.Text = "Nouvel Elément";
-            this.LElementToAdd.Click += new System.EventHandler(this.label1_Click);
             // 
             // TbElementToAdd
             // 
@@ -77,9 +76,9 @@
             this.LIndexElement.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.LIndexElement.Location = new System.Drawing.Point(172, 9);
             this.LIndexElement.Name = "LIndexElement";
-            this.LIndexElement.Size = new System.Drawing.Size(96, 15);
+            this.LIndexElement.Size = new System.Drawing.Size(88, 15);
             this.LIndexElement.TabIndex = 2;
-            this.LIndexElement.Text = "Nouvel Elément";
+            this.LIndexElement.Text = "Index Elément";
             // 
             // LbList
             // 
@@ -89,6 +88,7 @@
             this.LbList.Name = "LbList";
             this.LbList.Size = new System.Drawing.Size(120, 94);
             this.LbList.TabIndex = 3;
+            this.LbList.SelectedIndexChanged += new System.EventHandler(this.LbList_SelectedIndexChanged);
             // 
             // LShowList
             // 
@@ -108,6 +108,7 @@
             this.BAddElement.TabIndex = 2;
             this.BAddElement.Text = "Ajout Liste";
             this.BAddElement.UseVisualStyleBackColor = true;
+            this.BAddElement.Click += new System.EventHandler(this.BAddElement_Click);
             // 
             // BShowIndex
             // 
@@ -117,6 +118,7 @@
             this.BShowIndex.TabIndex = 5;
             this.BShowIndex.Text = "Sélectionner";
             this.BShowIndex.UseVisualStyleBackColor = true;
+            this.BShowIndex.Click += new System.EventHandler(this.BShowIndex_Click);
             // 
             // LProperties
             // 
@@ -139,9 +141,9 @@
             // 
             // ListCount
             // 
-            this.ListCount.Enabled = false;
             this.ListCount.Location = new System.Drawing.Point(259, 114);
             this.ListCount.Name = "ListCount";
+            this.ListCount.ReadOnly = true;
             this.ListCount.Size = new System.Drawing.Size(30, 23);
             this.ListCount.TabIndex = 12;
             // 
@@ -153,13 +155,13 @@
             this.LSelectedIndex.Size = new System.Drawing.Size(80, 15);
             this.LSelectedIndex.TabIndex = 13;
             this.LSelectedIndex.Text = "SelectedIndex";
-            this.LSelectedIndex.Click += new System.EventHandler(this.label5_Click);
             // 
             // TbSelectedIndex
             // 
             this.TbSelectedIndex.Enabled = false;
             this.TbSelectedIndex.Location = new System.Drawing.Point(259, 143);
             this.TbSelectedIndex.Name = "TbSelectedIndex";
+            this.TbSelectedIndex.ReadOnly = true;
             this.TbSelectedIndex.Size = new System.Drawing.Size(30, 23);
             this.TbSelectedIndex.TabIndex = 14;
             // 
@@ -168,6 +170,7 @@
             this.TbSelectedElement.Enabled = false;
             this.TbSelectedElement.Location = new System.Drawing.Point(259, 172);
             this.TbSelectedElement.Name = "TbSelectedElement";
+            this.TbSelectedElement.ReadOnly = true;
             this.TbSelectedElement.Size = new System.Drawing.Size(84, 23);
             this.TbSelectedElement.TabIndex = 16;
             // 
@@ -188,6 +191,7 @@
             this.BEmptyingList.TabIndex = 6;
             this.BEmptyingList.Text = "Vider la Liste";
             this.BEmptyingList.UseVisualStyleBackColor = true;
+            this.BEmptyingList.Click += new System.EventHandler(this.BEmptyingList_Click);
             // 
             // ListBoxMainForm
             // 
