@@ -1,3 +1,5 @@
+using System.Diagnostics;
+
 namespace _07_ScrollColorChoose
 {
     public partial class ScrollColorChooseMainForm : Form
@@ -21,17 +23,20 @@ namespace _07_ScrollColorChoose
         // Initialisation des valeurs pour les différents controls
         private void InitMinMaxColorLevel()
         {
-            foreach(Control control in PColorChoose.Controls)
+            foreach(Panel panel in PColorChoose.Controls)
             {
-                if (control is ScrollBar scrollBar)
+                foreach(Control control in panel.Controls)
                 {
-                    scrollBar.Minimum = ColorChooser.MIN_COLOR_LEVEL;
-                    scrollBar.Maximum = ColorChooser.MAX_COLOR_LEVEL;
-                }
-                if (control is NumericUpDown numericInput)
-                {
-                    numericInput.Minimum = ColorChooser.MIN_COLOR_LEVEL;
-                    numericInput.Maximum = ColorChooser.MAX_COLOR_LEVEL;
+                    if (control is HScrollBar scrollBar)
+                    {
+                        scrollBar.Minimum = ColorChooser.MIN_COLOR_LEVEL;
+                        scrollBar.Maximum = ColorChooser.MAX_COLOR_LEVEL + scrollBar.LargeChange + 1;
+                    }
+                    if (control is NumericUpDown numericInput)
+                    {
+                        numericInput.Minimum = ColorChooser.MIN_COLOR_LEVEL;
+                        numericInput.Maximum = ColorChooser.MAX_COLOR_LEVEL;
+                    }
                 }
             }
         }
@@ -159,10 +164,13 @@ namespace _07_ScrollColorChoose
         private void ControlChangePrimaryColorValue(object sender, ScrollEventArgs e)
         {
             if (sender is ScrollBar scrollbar)
+            {
+                int colorLevel = scrollbar.Value > 255 ? 255 : scrollbar.Value;
                 UpdateColor(
                     (PrimaryColor)scrollbar.Tag,
-                    scrollbar.Value
+                    colorLevel
                 );
+            }
         }
 
         // Maj de la couleur au changement de la valeur de la barre horizontal

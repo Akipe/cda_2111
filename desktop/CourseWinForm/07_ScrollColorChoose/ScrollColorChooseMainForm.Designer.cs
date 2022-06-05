@@ -75,7 +75,7 @@
             0});
             this.NudColorLevelRed.Name = "NudColorLevelRed";
             this.NudColorLevelRed.Size = new System.Drawing.Size(62, 23);
-            this.NudColorLevelRed.TabIndex = 3;
+            this.NudColorLevelRed.TabIndex = 1;
             this.NudColorLevelRed.ValueChanged += new System.EventHandler(this.ControlChangePrimaryColorValue);
             // 
             // HsbColorLevelRed
@@ -84,7 +84,8 @@
             this.HsbColorLevelRed.Maximum = 255;
             this.HsbColorLevelRed.Name = "HsbColorLevelRed";
             this.HsbColorLevelRed.Size = new System.Drawing.Size(165, 17);
-            this.HsbColorLevelRed.TabIndex = 2;
+            this.HsbColorLevelRed.TabIndex = 0;
+            this.HsbColorLevelRed.TabStop = true;
             this.HsbColorLevelRed.Scroll += new System.Windows.Forms.ScrollEventHandler(this.ControlChangePrimaryColorValue);
             this.HsbColorLevelRed.ValueChanged += new System.EventHandler(this.ControlChangePrimaryColorValue);
             // 
@@ -135,6 +136,7 @@
             this.HsbColorLevelGreen.Name = "HsbColorLevelGreen";
             this.HsbColorLevelGreen.Size = new System.Drawing.Size(165, 17);
             this.HsbColorLevelGreen.TabIndex = 2;
+            this.HsbColorLevelGreen.TabStop = true;
             this.HsbColorLevelGreen.Scroll += new System.Windows.Forms.ScrollEventHandler(this.ControlChangePrimaryColorValue);
             this.HsbColorLevelGreen.ValueChanged += new System.EventHandler(this.ControlChangePrimaryColorValue);
             // 
@@ -175,7 +177,7 @@
             0});
             this.NudColorLevelBlue.Name = "NudColorLevelBlue";
             this.NudColorLevelBlue.Size = new System.Drawing.Size(62, 23);
-            this.NudColorLevelBlue.TabIndex = 3;
+            this.NudColorLevelBlue.TabIndex = 5;
             this.NudColorLevelBlue.ValueChanged += new System.EventHandler(this.ControlChangePrimaryColorValue);
             // 
             // HsbColorLevelBlue
@@ -184,7 +186,8 @@
             this.HsbColorLevelBlue.Maximum = 255;
             this.HsbColorLevelBlue.Name = "HsbColorLevelBlue";
             this.HsbColorLevelBlue.Size = new System.Drawing.Size(165, 17);
-            this.HsbColorLevelBlue.TabIndex = 2;
+            this.HsbColorLevelBlue.TabIndex = 4;
+            this.HsbColorLevelBlue.TabStop = true;
             this.HsbColorLevelBlue.Scroll += new System.Windows.Forms.ScrollEventHandler(this.ControlChangePrimaryColorValue);
             this.HsbColorLevelBlue.ValueChanged += new System.EventHandler(this.ControlChangePrimaryColorValue);
             // 
