@@ -5,41 +5,32 @@ namespace _07_ScrollColorChoose
         public ScrollColorChooseMainForm()
         {
             InitializeComponent();
-            InitHsbColorLevel();
-            InitNupColorLevel();
+            InitMinMaxColorLevel();
             InitTagsColorButtons();
             UserColor = new ColorChooser();
+            InitColorShow();
         }
 
         public ColorChooser UserColor { get; set;}
 
         #region Init
 
-        // Initialisation des valeurs pour les barres de défilement
-        private void InitHsbColorLevel()
+        // Initialisation des valeurs pour les différents controls
+        private void InitMinMaxColorLevel()
         {
-            SetMinMaxColorValueForScollBar(HsbColorLevelRed);
-            SetMinMaxColorValueForScollBar(HsbColorLevelGreen);
-            SetMinMaxColorValueForScollBar(HsbColorLevelRed);
-        }
-
-        private void SetMinMaxColorValueForScollBar(ScrollBar scrollBar)
-        {
-            scrollBar.Minimum = ColorChooser.MIN_COLOR_LEVEL;
-            scrollBar.Maximum = ColorChooser.MAX_COLOR_LEVEL;
-        }
-        
-        // Initialisation des valeurs pour les champs numériques
-        private void InitNupColorLevel()
-        {
-            SetMinMaxColorValueForNumericInput(NudColorLevelRed);
-            SetMinMaxColorValueForNumericInput(NudColorLevelGreen);
-            SetMinMaxColorValueForNumericInput(NudColorLevelBlue);
-        }
-        private void SetMinMaxColorValueForNumericInput(NumericUpDown input)
-        {
-            input.Minimum = ColorChooser.MIN_COLOR_LEVEL;
-            input.Maximum = ColorChooser.MAX_COLOR_LEVEL;
+            foreach(Control control in PColorChoose.Controls)
+            {
+                if (control is ScrollBar scrollBar)
+                {
+                    scrollBar.Minimum = ColorChooser.MIN_COLOR_LEVEL;
+                    scrollBar.Maximum = ColorChooser.MAX_COLOR_LEVEL;
+                }
+                if (control is NumericUpDown numericInput)
+                {
+                    numericInput.Minimum = ColorChooser.MIN_COLOR_LEVEL;
+                    numericInput.Maximum = ColorChooser.MAX_COLOR_LEVEL;
+                }
+            }
         }
 
         // Initialisation des tags couleurs des différents boutons
@@ -67,6 +58,15 @@ namespace _07_ScrollColorChoose
             }
         }
 
+        // Initialisation de l'affichage de la couleur
+        private void InitColorShow()
+        {
+            UpdateColor(PrimaryColor.Red, UserColor.Red);
+            UpdateColor(PrimaryColor.Green, UserColor.Green);
+            UpdateColor(PrimaryColor.Blue, UserColor.Blue);
+            UpdateFinalColorPreview();
+        }
+
         #endregion
 
         #region Logic
@@ -82,20 +82,20 @@ namespace _07_ScrollColorChoose
             switch(targetColor)
             {
                 case PrimaryColor.Red:
-                    UpdateValuePrimaryColorButtons(PColorChooseRed, colorValue);
                     UserColor.Red = (byte)colorValue;
+                    UpdateValuePrimaryColorButtons(PColorChooseRed, colorValue);
                     break;
                 case PrimaryColor.Green:
-                    UpdateValuePrimaryColorButtons(PColorChooseGreen, colorValue);
                     UserColor.Green = (byte)colorValue;
+                    UpdateValuePrimaryColorButtons(PColorChooseGreen, colorValue);
                     break;
                 case PrimaryColor.Blue:
-                    UpdateValuePrimaryColorButtons(PColorChooseBlue, colorValue);
                     UserColor.Blue = (byte)colorValue;
+                    UpdateValuePrimaryColorButtons(PColorChooseBlue, colorValue);
                     break;
             }
 
-            UpdateColorPreview(targetColor, colorValue);
+            UpdateColorPreview(targetColor);
             UpdateFinalColorPreview();
         }
 
@@ -119,18 +119,18 @@ namespace _07_ScrollColorChoose
         }
 
         // Mise à jour de l'affichage des couleurs
-        private void UpdateColorPreview(PrimaryColor targetColor, int colorValue)
+        private void UpdateColorPreview(PrimaryColor targetColor)
         {
             switch (targetColor)
             {
                 case PrimaryColor.Red:
-                    LColorPreviewRed.BackColor = Color.FromArgb(colorValue, 0, 0);
+                    LColorPreviewRed.BackColor = Color.FromArgb(UserColor.Red, 0, 0);
                     break;
                 case PrimaryColor.Green:
-                    LColorPreviewGreen.BackColor = Color.FromArgb(0, colorValue, 0);
+                    LColorPreviewGreen.BackColor = Color.FromArgb(0, UserColor.Green, 0);
                     break;
                 case PrimaryColor.Blue:
-                    LColorPreviewBlue.BackColor = Color.FromArgb(0, 0, colorValue);
+                    LColorPreviewBlue.BackColor = Color.FromArgb(0, 0, UserColor.Blue);
                     break;
             }
         }

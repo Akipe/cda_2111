@@ -44,12 +44,14 @@
             this.LColorPreviewBlue = new System.Windows.Forms.Label();
             this.LColorBlue = new System.Windows.Forms.Label();
             this.LColorPreview = new System.Windows.Forms.Label();
+            this.PColorChoose = new System.Windows.Forms.Panel();
             this.PColorChooseRed.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NudColorLevelRed)).BeginInit();
             this.PColorChooseGreen.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NudColorLevelGreen)).BeginInit();
             this.PColorChooseBlue.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NudColorLevelBlue)).BeginInit();
+            this.PColorChoose.SuspendLayout();
             this.SuspendLayout();
             // 
             // PColorChooseRed
@@ -58,7 +60,7 @@
             this.PColorChooseRed.Controls.Add(this.HsbColorLevelRed);
             this.PColorChooseRed.Controls.Add(this.LColorPreviewRed);
             this.PColorChooseRed.Controls.Add(this.LColorRed);
-            this.PColorChooseRed.Location = new System.Drawing.Point(12, 25);
+            this.PColorChooseRed.Location = new System.Drawing.Point(3, 3);
             this.PColorChooseRed.Name = "PColorChooseRed";
             this.PColorChooseRed.Size = new System.Drawing.Size(343, 28);
             this.PColorChooseRed.TabIndex = 0;
@@ -108,7 +110,7 @@
             this.PColorChooseGreen.Controls.Add(this.HsbColorLevelGreen);
             this.PColorChooseGreen.Controls.Add(this.LColorPreviewGreen);
             this.PColorChooseGreen.Controls.Add(this.LColorGreen);
-            this.PColorChooseGreen.Location = new System.Drawing.Point(12, 56);
+            this.PColorChooseGreen.Location = new System.Drawing.Point(3, 34);
             this.PColorChooseGreen.Name = "PColorChooseGreen";
             this.PColorChooseGreen.Size = new System.Drawing.Size(343, 28);
             this.PColorChooseGreen.TabIndex = 4;
@@ -158,7 +160,7 @@
             this.PColorChooseBlue.Controls.Add(this.HsbColorLevelBlue);
             this.PColorChooseBlue.Controls.Add(this.LColorPreviewBlue);
             this.PColorChooseBlue.Controls.Add(this.LColorBlue);
-            this.PColorChooseBlue.Location = new System.Drawing.Point(12, 87);
+            this.PColorChooseBlue.Location = new System.Drawing.Point(3, 65);
             this.PColorChooseBlue.Name = "PColorChooseBlue";
             this.PColorChooseBlue.Size = new System.Drawing.Size(343, 28);
             this.PColorChooseBlue.TabIndex = 5;
@@ -209,15 +211,23 @@
             this.LColorPreview.Size = new System.Drawing.Size(340, 76);
             this.LColorPreview.TabIndex = 6;
             // 
+            // PColorChoose
+            // 
+            this.PColorChoose.Controls.Add(this.PColorChooseRed);
+            this.PColorChoose.Controls.Add(this.PColorChooseGreen);
+            this.PColorChoose.Controls.Add(this.PColorChooseBlue);
+            this.PColorChoose.Location = new System.Drawing.Point(12, 30);
+            this.PColorChoose.Name = "PColorChoose";
+            this.PColorChoose.Size = new System.Drawing.Size(348, 100);
+            this.PColorChoose.TabIndex = 7;
+            // 
             // ScrollColorChooseMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(374, 228);
+            this.Controls.Add(this.PColorChoose);
             this.Controls.Add(this.LColorPreview);
-            this.Controls.Add(this.PColorChooseBlue);
-            this.Controls.Add(this.PColorChooseGreen);
-            this.Controls.Add(this.PColorChooseRed);
             this.Name = "ScrollColorChooseMainForm";
             this.Text = "Defilement";
             this.PColorChooseRed.ResumeLayout(false);
@@ -229,6 +239,7 @@
             this.PColorChooseBlue.ResumeLayout(false);
             this.PColorChooseBlue.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NudColorLevelBlue)).EndInit();
+            this.PColorChoose.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -251,5 +262,6 @@
         private Label LColorPreviewBlue;
         private Label LColorBlue;
         private Label LColorPreview;
+        private Panel PColorChoose;
     }
 }
