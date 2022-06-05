@@ -2,12 +2,15 @@ namespace _07_ScrollColorChoose
 {
     public partial class ScrollColorChooseMainForm : Form
     {
+        private const int DEFAULT_PRIMARY_COLOR_LEVEL = 255;
+
         public ScrollColorChooseMainForm()
         {
             InitializeComponent();
             InitMinMaxColorLevel();
             InitTagsColorButtons();
             UserColor = new ColorChooser();
+            InitPrimariesColors();
             InitColorShow();
         }
 
@@ -56,6 +59,14 @@ namespace _07_ScrollColorChoose
             {
                 control.Tag = primaryColor;
             }
+        }
+
+
+        private void InitPrimariesColors()
+        {
+            UpdateColor(PrimaryColor.Red, DEFAULT_PRIMARY_COLOR_LEVEL);
+            UpdateColor(PrimaryColor.Green, DEFAULT_PRIMARY_COLOR_LEVEL);
+            UpdateColor(PrimaryColor.Blue, DEFAULT_PRIMARY_COLOR_LEVEL);
         }
 
         // Initialisation de l'affichage de la couleur
