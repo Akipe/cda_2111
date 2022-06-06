@@ -40,6 +40,16 @@ namespace _08_BorrowCalc
 
         #region Logic
 
+        // Définition et affichage de notre emprunt par rapport à notre formulaire
+        private void UpdateBorrowFromForm()
+        {
+            if (IsAllUserInputsAreValid())
+            {
+                SetBorrowSettingsFromForm();
+                UpdateBorrowResultShowed();
+            }
+        }
+
         #region Logic form test
 
         // Est ce que l'ensemble des entrées de l'utilisateurs sont valides
@@ -92,18 +102,13 @@ namespace _08_BorrowCalc
 
         #region Logic data pick
 
-        // On met à jour l'emprunt par rapport à toutes les entrées de l'utilisateur
-        private void UpdateBorrowFromForm()
+        // On mets à jour l'emprunt par rapport à l'ensemble des entrées de l'utilisateur
+        private void SetBorrowSettingsFromForm()
         {
-            if (IsAllUserInputsAreValid())
-            {
-                SetAmountBorrowedFromForm();
-                SetDurationInMonthsFromForm();
-                SetRepaymentFrequencyFromForm();
-                SetInterestRateFromForm();
-
-                UpdateBorrowResultShowed();
-            }
+            SetAmountBorrowedFromForm();
+            SetDurationInMonthsFromForm();
+            SetRepaymentFrequencyFromForm();
+            SetInterestRateFromForm();
         }
 
         // On défini le capital emprunté depuis l'entrée de l'utilisateur
@@ -115,7 +120,8 @@ namespace _08_BorrowCalc
         // On défini la durée en mois du remboursement depuis l'entrée de l'utilisateur
         private void SetDurationInMonthsFromForm()
         {
-
+            // ...
+            UpdateDurationInMonthsShowed();
         }
 
         // On défini la périodicité du remboursement
