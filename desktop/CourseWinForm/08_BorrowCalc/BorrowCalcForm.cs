@@ -2,15 +2,21 @@ namespace _08_BorrowCalc
 {
     public partial class BorrowCalcForm : Form
     {
+        private const string FREQUENCY_MONTHLY = "Mensuelle";
+        private const string FREQUENCY_BIMONTHLY = "Bimestrielle";
+        private const string FREQUENCY_QUARTERLY = "Trimestrielle";
+        private const string FREQUENCY_SEMIANNUAL = "Semestrielle";
+        private const string FREQUENCY_ANNUAL = "Annuelle";
+
         private BorrowCalculation borrowCalculation { get; set; }
 
         public BorrowCalcForm()
         {
             InitializeComponent();
 
-            InitDefaultBorrowValue();
             InitFocusToName();
             InitRepaymentFrequencyValues();
+            InitDefaultBorrowValue();
         }
 
         #region Init
@@ -21,22 +27,36 @@ namespace _08_BorrowCalc
         // - périodicité de remboursement en mensuelle
         private void InitDefaultBorrowValue()
         {
+            RbInterestRate7Percent.Checked = true;
+            SetDurationMonthsRepaymentValue(1);
 
         }
 
         // Initialise le focus sur le champ du nom
         private void InitFocusToName()
         {
-
+            TbName.Focus();
         }
 
         // On initialise la liste de choix pour la périodicité des remboursements
         private void InitRepaymentFrequencyValues()
         {
+            string[] listFrequencies = new string[]
+            {
+                FREQUENCY_MONTHLY,
+                FREQUENCY_BIMONTHLY,
+                FREQUENCY_QUARTERLY,
+                FREQUENCY_SEMIANNUAL,
+                FREQUENCY_ANNUAL
+            };
 
+            foreach (string frequency in listFrequencies)
+            {
+                LbRepaymentFrequency.Items.Add(frequency);
+            }
         }
 
-        #endregion
+        #endregion Init
 
         #region Logic
 
@@ -48,6 +68,12 @@ namespace _08_BorrowCalc
                 SetBorrowSettingsFromForm();
                 UpdateBorrowResultShowed();
             }
+        }
+
+        // Réinitialiser l'ensemble des valeurs des entrées de l'utilisateur
+        private void ResetBorrowForm()
+        {
+
         }
 
         #region Logic form test
@@ -98,7 +124,7 @@ namespace _08_BorrowCalc
             return true;
         }
 
-        #endregion
+        #endregion Logic form test
 
         #region Logic data pick
 
@@ -136,7 +162,18 @@ namespace _08_BorrowCalc
 
         }
 
-        #endregion
+        #endregion Logic data pick
+
+        #region Logic form control set
+
+        // Définir la durée de remboursement en mois
+        private void SetDurationMonthsRepaymentValue(int howManyMonths)
+        {
+            // ...
+            UpdateDurationInMonthsShowed();
+        }
+
+        #endregion Logic form set
 
         #region Logic update result
 
@@ -165,9 +202,9 @@ namespace _08_BorrowCalc
 
         }
 
-        #endregion
+        #endregion Logic update result
 
-        #endregion
+        #endregion Logic
 
         #region Events
 
@@ -181,6 +218,11 @@ namespace _08_BorrowCalc
             UpdateBorrowFromForm();
         }
 
-        #endregion
+        private void BReset_Click(object sender, EventArgs e)
+        {
+            ResetBorrowForm();
+        }
+
+        #endregion Events
     }
 }
