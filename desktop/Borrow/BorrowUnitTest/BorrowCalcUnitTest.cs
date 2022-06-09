@@ -3,9 +3,9 @@ namespace BorrowUnitTest
     [TestClass]
     public class BorrowCalcUnitTest
     {
-        [TestMethod]
+        /*[TestMethod]
         public void TestMethod1()
         {
-        }
+        }*/
     }
 }
