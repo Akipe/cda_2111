@@ -7,18 +7,18 @@ using System.Threading.Tasks;
 
 namespace BorrowCore.Validation
 {
-    public class CapitalBorrowValidation : DataValidation
+    public static class CapitalBorrowValidation
     {
         // Est ce que le champ capital emprunté respecte les contraintes
         // - que des chiffres
         // - maximum 10 chiffres
         // - pas de decimal
         // - obligatoire
-        public override bool IsValid(string capitalBorrow)
+        public static bool IsValid(string capitalBorrow)
         {
-            _regexControl = new Regex(@"^\d{1,10}$");
+            Regex regexRule = new Regex(@"^\d{1,10}$");
 
-            return _regexControl.IsMatch(capitalBorrow);
+            return regexRule.IsMatch(capitalBorrow);
         }
     }
 }

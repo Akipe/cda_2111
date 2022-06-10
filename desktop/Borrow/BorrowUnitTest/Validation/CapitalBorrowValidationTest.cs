@@ -8,43 +8,66 @@ using System.Threading.Tasks;
 namespace BorrowUnitTest.Validation
 {
     [TestClass]
-    public class CapitalBorrowValidationTest : DataValidationTest
+    public class CapitalBorrowValidationTest
     {
-        public CapitalBorrowValidationTest()
-            : base(new CapitalBorrowValidation())
-        {}
 
         [TestMethod]
         public void TestZeroNumber()
         {
-            Assert.IsTrue(Validator.IsValid("0"));
+            Assert.IsTrue(
+                CapitalBorrowValidation.IsValid("0")
+            );
         }
 
         [TestMethod]
         public void TestRangeNumber()
         {
-            Assert.IsTrue(Validator.IsValid("1"));
-            Assert.IsTrue(Validator.IsValid("0123456789"));
-            Assert.IsFalse(Validator.IsValid("-1"));
-            Assert.IsFalse(Validator.IsValid("01234567899"));
+            Assert.IsTrue(
+                CapitalBorrowValidation.IsValid("1")
+                );
+            Assert.IsTrue(
+                CapitalBorrowValidation.IsValid("0123456789")
+                );
+            Assert.IsFalse(
+                CapitalBorrowValidation.IsValid("-1")
+                );
+            Assert.IsFalse(
+                CapitalBorrowValidation.IsValid("01234567899")
+                );
         }
 
         [TestMethod]
         public void TestInvalidCharacteres()
         {
-            Assert.IsFalse(Validator.IsValid("azerty"));
-            Assert.IsFalse(Validator.IsValid("é"));
-            Assert.IsFalse(Validator.IsValid("@"));
+            Assert.IsFalse(
+                CapitalBorrowValidation.IsValid("azerty")
+                );
+            Assert.IsFalse(
+                CapitalBorrowValidation.IsValid("é")
+                );
+            Assert.IsFalse(
+                CapitalBorrowValidation.IsValid("@")
+                );
         }
 
         [TestMethod]
         public void TestInvalidEmpty()
         {
-            Assert.IsFalse(Validator.IsValid(""));
-            Assert.IsFalse(Validator.IsValid(" "));
-            Assert.IsFalse(Validator.IsValid(String.Empty));
-            Assert.IsFalse(Validator.IsValid(System.Environment.NewLine));
-            Assert.IsFalse(Validator.IsValid('\t'.ToString()));
+            Assert.IsFalse(
+                CapitalBorrowValidation.IsValid("")
+                );
+            Assert.IsFalse(
+                CapitalBorrowValidation.IsValid(" ")
+                );
+            Assert.IsFalse(
+                CapitalBorrowValidation.IsValid(String.Empty)
+                );
+            Assert.IsFalse(
+                CapitalBorrowValidation.IsValid(System.Environment.NewLine)
+                );
+            Assert.IsFalse(
+                CapitalBorrowValidation.IsValid('\t'.ToString())
+                );
         }
     }
 }

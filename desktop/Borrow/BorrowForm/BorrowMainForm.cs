@@ -1,3 +1,5 @@
+using BorrowCore;
+
 namespace BorrowForm
 {
     public partial class BorrowMainForm : Form
@@ -7,8 +9,6 @@ namespace BorrowForm
         private const string FREQUENCY_QUARTERLY = "Trimestrielle";
         private const string FREQUENCY_SEMIANNUAL = "Semestrielle";
         private const string FREQUENCY_ANNUAL = "Annuelle";
-
-        private BorrowCalculation borrowCalculation { get; set; }
 
         public BorrowMainForm()
         {

@@ -7,18 +7,18 @@ using System.Threading.Tasks;
 
 namespace BorrowCore.Validation
 {
-    public class UserNameValidation : DataValidation
+    public static class UserNameValidation
     {
         // Est ce que le champ nom respecte les contraintes
         // - il est optionnel
         // - uniquement des caractères alphabétiques, avec le tiret
-        public override bool IsValid(string userName)
+        public static bool IsValid(string userName)
         {
-            _regexControl = new Regex(
+            Regex regexRule = new Regex(
                 @"^([a-zA-ZÀ-ÿ]+((-)?[a-zA-ZÀ-ÿ]+)*)*$"
             );
 
-            return _regexControl.IsMatch(userName);
+            return regexRule.IsMatch(userName);
         }
     }
 }

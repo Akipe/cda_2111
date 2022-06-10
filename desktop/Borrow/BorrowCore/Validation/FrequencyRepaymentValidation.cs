@@ -6,8 +6,32 @@ using System.Threading.Tasks;
 
 namespace BorrowCore.Validation
 {
-    // Est ce que la périodicité du remboursement est valide
-    /*internal class FrequencyRepaymentValidation : DataValidation
+    public static class FrequencyRepaymentValidation
     {
-    }*/
+        public static readonly string[] ALLOWED = new string[] {
+            "Mensuelle",
+            "Bimestrielle",
+            "Trimestrielle",
+            "Semestrielle",
+            "Annuelle"
+        };
+
+        // Est ce que la périodicité du remboursement est valide
+        // - doit être :
+        //      * Mensuelle
+        //      * Bimestrielle
+        //      * Trimestrielle
+        //      * Semestrielle
+        //      * Annuelle
+        public static bool IsValid(string frequency)
+        {
+            foreach (string frequencyAllowed in ALLOWED)
+            {
+                if (String.Equals(frequencyAllowed.ToLower(), frequency.Trim().ToLower()))
+                    return true;
+            }
+
+            return false;
+        }
+    }
 }

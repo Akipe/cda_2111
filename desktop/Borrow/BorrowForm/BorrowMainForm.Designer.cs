@@ -136,7 +136,7 @@
             this.panel1.Controls.Add(this.LRepaymentFrequency);
             this.panel1.Location = new System.Drawing.Point(12, 118);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(232, 100);
+            this.panel1.Size = new System.Drawing.Size(232, 103);
             this.panel1.TabIndex = 1;
             // 
             // LbRepaymentFrequency
@@ -145,7 +145,7 @@
             this.LbRepaymentFrequency.ItemHeight = 15;
             this.LbRepaymentFrequency.Location = new System.Drawing.Point(0, 18);
             this.LbRepaymentFrequency.Name = "LbRepaymentFrequency";
-            this.LbRepaymentFrequency.Size = new System.Drawing.Size(217, 64);
+            this.LbRepaymentFrequency.Size = new System.Drawing.Size(217, 79);
             this.LbRepaymentFrequency.TabIndex = 3;
             this.LbRepaymentFrequency.SelectedIndexChanged += new System.EventHandler(this.GeneralControls_DataChanged);
             // 
@@ -217,12 +217,12 @@
             this.panel2.Controls.Add(this.LPresentRefund);
             this.panel2.Location = new System.Drawing.Point(250, 118);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(146, 100);
+            this.panel2.Size = new System.Drawing.Size(146, 103);
             this.panel2.TabIndex = 3;
             // 
             // BReset
             // 
-            this.BReset.Location = new System.Drawing.Point(35, 59);
+            this.BReset.Location = new System.Drawing.Point(35, 65);
             this.BReset.Name = "BReset";
             this.BReset.Size = new System.Drawing.Size(75, 23);
             this.BReset.TabIndex = 9;
@@ -234,7 +234,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.Color.Red;
-            this.label1.Location = new System.Drawing.Point(12, 11);
+            this.label1.Location = new System.Drawing.Point(12, 17);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(13, 15);
             this.label1.TabIndex = 8;
@@ -244,7 +244,7 @@
             // 
             this.LRefundTotal.AutoSize = true;
             this.LRefundTotal.ForeColor = System.Drawing.Color.Red;
-            this.LRefundTotal.Location = new System.Drawing.Point(72, 34);
+            this.LRefundTotal.Location = new System.Drawing.Point(72, 40);
             this.LRefundTotal.Name = "LRefundTotal";
             this.LRefundTotal.Size = new System.Drawing.Size(37, 15);
             this.LRefundTotal.TabIndex = 7;
@@ -254,7 +254,7 @@
             // 
             this.LPresentRefund.AutoSize = true;
             this.LPresentRefund.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.LPresentRefund.Location = new System.Drawing.Point(29, 9);
+            this.LPresentRefund.Location = new System.Drawing.Point(29, 15);
             this.LPresentRefund.Name = "LPresentRefund";
             this.LPresentRefund.Size = new System.Drawing.Size(109, 17);
             this.LPresentRefund.TabIndex = 6;
@@ -265,16 +265,16 @@
             this.errorProviderOptions1.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.errorProviderOptions1.ContainerControl = this;
             // 
-            // BorrowCalcForm
+            // BorrowMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(414, 226);
+            this.ClientSize = new System.Drawing.Size(414, 230);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.GbInterestRate);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.PDefineOptionsBorrow);
-            this.Name = "BorrowCalcForm";
+            this.Name = "BorrowMainForm";
             this.Text = "Emprunts";
             this.PDefineOptionsBorrow.ResumeLayout(false);
             this.PDefineOptionsBorrow.PerformLayout();
