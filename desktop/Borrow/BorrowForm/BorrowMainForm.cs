@@ -8,6 +8,7 @@ namespace BorrowForm
     public partial class BorrowMainForm : Form
     {
         private const int DEFAULT_DURATION_MONTHS_REPAYMENT = 1;
+        private const TimeFrequency DEFAULT_TIME_FREQUENCY = TimeFrequency.Monthly;
         private RadioButton DEFAULT_INTEREST_RATE;
         private BorrowCalculation calculator;
 
@@ -27,7 +28,7 @@ namespace BorrowForm
             InitFocusToName();
             InitRepaymentFrequencyValues();
             InitDefaultBorrowValue();
-            InitDurationMonthsRepaymentRange();
+            InitDurationMonthsRepayment();
         }
 
         // Initialise les valeurs par défaut de l'emprunt
@@ -52,13 +53,19 @@ namespace BorrowForm
             foreach (Tuple<TimeFrequency, string> frequency in TimeFrequencyConversion.CORRESPONDENCE)
             {
                 LbRepaymentFrequency.Items.Add(frequency.Item2);
+
+                if (frequency.Item1 == DEFAULT_TIME_FREQUENCY)
+                {
+                    int lastIndex = LbRepaymentFrequency.Items.Count - 1;
+                    LbRepaymentFrequency.SelectedIndex = lastIndex;
+                }
             }
         }
 
-        private void InitDurationMonthsRepaymentRange()
+        // On initialise les propriétés de la barre de défillement
+        private void InitDurationMonthsRepayment()
         {
-            HsbDurationMonthsRepayment.Minimum = NumberMonthRefundValidation.MIN;
-            HsbDurationMonthsRepayment.Maximum = NumberMonthRefundValidation.MAX;
+            SetDurationMonthRepaymentFromRefundFrequency();
         }
 
         #endregion Init
@@ -202,6 +209,19 @@ namespace BorrowForm
             }
         }
 
+        private TimeFrequency GetRefundFrequency()
+        {
+            if (!TimeFrequencyValidation.IsValid(
+                LbRepaymentFrequency.SelectedItem.ToString() ?? String.Empty
+            )) {
+                throw new Exception("La valeur de la frequence de remboursement n'est pas valide");
+            }
+
+            return TimeFrequencyConversion.Convert(
+                LbRepaymentFrequency.SelectedItem.ToString()
+            );
+        }
+
         // On défini la périodicité du remboursement
         private void SetRepaymentFrequencyFromForm()
         {
@@ -254,6 +274,45 @@ namespace BorrowForm
             UpdateDurationInMonthsShowed();
         }
 
+        // Défini les paramètre de la barre de défilement,
+        // notamment par rapport à la fréquence de remboursement
+        private void SetDurationMonthRepaymentFromRefundFrequency()
+        {
+            TimeFrequency refundFrequency = GetRefundFrequency();
+
+            HsbDurationMonthsRepayment.Minimum = (int)refundFrequency;
+            HsbDurationMonthsRepayment.LargeChange = 10 * (int)refundFrequency;
+            HsbDurationMonthsRepayment.SmallChange = 1 * (int)refundFrequency;
+            HsbDurationMonthsRepayment.Maximum =
+                NumberMonthRefundValidation.MAX + HsbDurationMonthsRepayment.LargeChange - 1;
+
+            if (HsbDurationMonthsRepayment.Value < (int)refundFrequency)
+            {
+                HsbDurationMonthsRepayment.Value = (int)refundFrequency;
+            }
+
+            UpdateCurrentDurationMonthRespectMultiple();
+        }
+
+        // On change le nombre de mois selectionnés en respectant le multiple des fréquences
+        // mensuelle : de 1 en 1 en partant de 1
+        // bimensuelle : de 2 en 2 en partant de 2
+        // trimestrielle : de 3 en 3 en partant de 3
+        private void UpdateCurrentDurationMonthRespectMultiple()
+        {
+            TimeFrequency refundFrequency = GetRefundFrequency();
+
+            if ((double)HsbDurationMonthsRepayment.Value % (double)refundFrequency != 0.0)
+            {
+                int result = (HsbDurationMonthsRepayment.Value / (int)refundFrequency) * (int)refundFrequency + (int)refundFrequency;
+
+                HsbDurationMonthsRepayment.Value = result;
+
+            }
+
+            UpdateDurationInMonthsShowed();
+        }
+
         #endregion Logic form set
 
         #region Logic update result
@@ -278,6 +337,13 @@ namespace BorrowForm
         // On met à jour le nombre de remboursement à effectuer
         private void UpdateNumberRefundToDo()
         {
+            StringBuilder builder = new StringBuilder();
+
+            builder.Append("Remboursement");
+            if (calculator.GetNumberRefund() > 1)
+                builder.Append('s');
+
+            LPresentRefund.Text = builder.ToString();
             LAmountRefund.Text = calculator.GetNumberRefund().ToString();
         }
 
@@ -296,6 +362,11 @@ namespace BorrowForm
         private void GeneralControls_DataChanged(object sender, EventArgs e)
         {
             UpdateBorrowFromForm();
+
+            if (sender is ListBox)
+            {
+                SetDurationMonthRepaymentFromRefundFrequency();
+            }
         }
 
         private void ScrollBarControls_DataChanged(object sender, ScrollEventArgs e)

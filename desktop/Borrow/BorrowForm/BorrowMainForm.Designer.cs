@@ -166,7 +166,7 @@
             this.GbInterestRate.Controls.Add(this.RbInterestRate7Percent);
             this.GbInterestRate.Location = new System.Drawing.Point(303, 12);
             this.GbInterestRate.Name = "GbInterestRate";
-            this.GbInterestRate.Size = new System.Drawing.Size(93, 100);
+            this.GbInterestRate.Size = new System.Drawing.Size(103, 100);
             this.GbInterestRate.TabIndex = 2;
             this.GbInterestRate.TabStop = false;
             this.GbInterestRate.Text = "Taux d\'intérêt";
@@ -174,7 +174,7 @@
             // RbInterestRate9Percent
             // 
             this.RbInterestRate9Percent.AutoSize = true;
-            this.RbInterestRate9Percent.Location = new System.Drawing.Point(23, 72);
+            this.RbInterestRate9Percent.Location = new System.Drawing.Point(30, 72);
             this.RbInterestRate9Percent.Name = "RbInterestRate9Percent";
             this.RbInterestRate9Percent.Size = new System.Drawing.Size(44, 19);
             this.RbInterestRate9Percent.TabIndex = 6;
@@ -187,7 +187,7 @@
             // RbInterestRate8Percent
             // 
             this.RbInterestRate8Percent.AutoSize = true;
-            this.RbInterestRate8Percent.Location = new System.Drawing.Point(23, 47);
+            this.RbInterestRate8Percent.Location = new System.Drawing.Point(30, 47);
             this.RbInterestRate8Percent.Name = "RbInterestRate8Percent";
             this.RbInterestRate8Percent.Size = new System.Drawing.Size(44, 19);
             this.RbInterestRate8Percent.TabIndex = 5;
@@ -200,7 +200,7 @@
             // RbInterestRate7Percent
             // 
             this.RbInterestRate7Percent.AutoSize = true;
-            this.RbInterestRate7Percent.Location = new System.Drawing.Point(23, 22);
+            this.RbInterestRate7Percent.Location = new System.Drawing.Point(30, 22);
             this.RbInterestRate7Percent.Name = "RbInterestRate7Percent";
             this.RbInterestRate7Percent.Size = new System.Drawing.Size(44, 19);
             this.RbInterestRate7Percent.TabIndex = 4;
@@ -218,12 +218,12 @@
             this.panel2.Controls.Add(this.LPresentRefund);
             this.panel2.Location = new System.Drawing.Point(250, 118);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(146, 103);
+            this.panel2.Size = new System.Drawing.Size(159, 103);
             this.panel2.TabIndex = 3;
             // 
             // BReset
             // 
-            this.BReset.Location = new System.Drawing.Point(35, 65);
+            this.BReset.Location = new System.Drawing.Point(45, 65);
             this.BReset.Name = "BReset";
             this.BReset.Size = new System.Drawing.Size(75, 23);
             this.BReset.TabIndex = 9;
@@ -253,11 +253,10 @@
             // 
             // LPresentRefund
             // 
-            this.LPresentRefund.AutoSize = true;
             this.LPresentRefund.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.LPresentRefund.Location = new System.Drawing.Point(34, 15);
             this.LPresentRefund.Name = "LPresentRefund";
-            this.LPresentRefund.Size = new System.Drawing.Size(109, 17);
+            this.LPresentRefund.Size = new System.Drawing.Size(122, 17);
             this.LPresentRefund.TabIndex = 6;
             this.LPresentRefund.Text = "Remboursement";
             // 
@@ -270,7 +269,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(414, 230);
+            this.ClientSize = new System.Drawing.Size(430, 235);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.GbInterestRate);
             this.Controls.Add(this.panel1);
@@ -285,7 +284,6 @@
             this.GbInterestRate.ResumeLayout(false);
             this.GbInterestRate.PerformLayout();
             this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderOptions1)).EndInit();
             this.ResumeLayout(false);
 
