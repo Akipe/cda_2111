@@ -46,7 +46,7 @@
             this.RbInterestRate7Percent = new System.Windows.Forms.RadioButton();
             this.panel2 = new System.Windows.Forms.Panel();
             this.BReset = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.LAmountRefund = new System.Windows.Forms.Label();
             this.LRefundTotal = new System.Windows.Forms.Label();
             this.LPresentRefund = new System.Windows.Forms.Label();
             this.errorProviderOptions1 = new System.Windows.Forms.ErrorProvider(this.components);
@@ -77,6 +77,7 @@
             this.HsbDurationMonthsRepayment.Name = "HsbDurationMonthsRepayment";
             this.HsbDurationMonthsRepayment.Size = new System.Drawing.Size(127, 17);
             this.HsbDurationMonthsRepayment.TabIndex = 2;
+            this.HsbDurationMonthsRepayment.TabStop = true;
             this.HsbDurationMonthsRepayment.Scroll += new System.Windows.Forms.ScrollEventHandler(this.ScrollBarControls_DataChanged);
             // 
             // LHowManyMonthsRepayment
@@ -212,7 +213,7 @@
             // panel2
             // 
             this.panel2.Controls.Add(this.BReset);
-            this.panel2.Controls.Add(this.label1);
+            this.panel2.Controls.Add(this.LAmountRefund);
             this.panel2.Controls.Add(this.LRefundTotal);
             this.panel2.Controls.Add(this.LPresentRefund);
             this.panel2.Location = new System.Drawing.Point(250, 118);
@@ -230,31 +231,31 @@
             this.BReset.UseVisualStyleBackColor = true;
             this.BReset.Click += new System.EventHandler(this.BReset_Click);
             // 
-            // label1
+            // LAmountRefund
             // 
-            this.label1.AutoSize = true;
-            this.label1.ForeColor = System.Drawing.Color.Red;
-            this.label1.Location = new System.Drawing.Point(12, 17);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(13, 15);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "0";
+            this.LAmountRefund.ForeColor = System.Drawing.Color.Red;
+            this.LAmountRefund.Location = new System.Drawing.Point(3, 17);
+            this.LAmountRefund.Name = "LAmountRefund";
+            this.LAmountRefund.Size = new System.Drawing.Size(33, 15);
+            this.LAmountRefund.TabIndex = 8;
+            this.LAmountRefund.Text = "0";
+            this.LAmountRefund.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // LRefundTotal
             // 
-            this.LRefundTotal.AutoSize = true;
             this.LRefundTotal.ForeColor = System.Drawing.Color.Red;
-            this.LRefundTotal.Location = new System.Drawing.Point(72, 40);
+            this.LRefundTotal.Location = new System.Drawing.Point(26, 40);
             this.LRefundTotal.Name = "LRefundTotal";
-            this.LRefundTotal.Size = new System.Drawing.Size(37, 15);
+            this.LRefundTotal.Size = new System.Drawing.Size(94, 15);
             this.LRefundTotal.TabIndex = 7;
             this.LRefundTotal.Text = "0,00 €";
+            this.LRefundTotal.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // LPresentRefund
             // 
             this.LPresentRefund.AutoSize = true;
             this.LPresentRefund.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.LPresentRefund.Location = new System.Drawing.Point(29, 15);
+            this.LPresentRefund.Location = new System.Drawing.Point(34, 15);
             this.LPresentRefund.Name = "LPresentRefund";
             this.LPresentRefund.Size = new System.Drawing.Size(109, 17);
             this.LPresentRefund.TabIndex = 6;
@@ -276,6 +277,7 @@
             this.Controls.Add(this.PDefineOptionsBorrow);
             this.Name = "BorrowMainForm";
             this.Text = "Emprunts";
+            this.Load += new System.EventHandler(this.BorrowMainForm_Load);
             this.PDefineOptionsBorrow.ResumeLayout(false);
             this.PDefineOptionsBorrow.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -307,7 +309,7 @@
         private RadioButton RbInterestRate8Percent;
         private RadioButton RbInterestRate7Percent;
         private Panel panel2;
-        private Label label1;
+        private Label LAmountRefund;
         private Label LRefundTotal;
         private Label LPresentRefund;
         private ErrorProvider errorProviderOptions1;

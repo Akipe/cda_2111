@@ -1,35 +1,56 @@
 ﻿namespace BorrowCore
 {
-    public static class BorrowCalculation
+    public class BorrowCalculation
     {
-        public static long CapitalBorrow { get; set; }
-        public static int AnnualRatePercent { get; set; }
-        public static int DurationInMonths { get; set; }
-        public static TimeFrequency RepaymentFrequency { get; set; }
+        public int CapitalBorrow { get; set; }
+        public int AnnualRatePercent { get; set; }
+        public int DurationInMonths { get; set; }
+        public TimeFrequency RepaymentFrequency { get; set; }
 
-        public static int GetNumberRefund()
+        public BorrowCalculation()
+        {
+            Reset();
+        }
+
+        public int GetNumberRefund()
         {
             return DurationInMonths / (int)RepaymentFrequency;
         }
 
-        public static Decimal GetRefundAmount()
+        public double GetRefundAmount()
         {
             return RefundFormula();
         }
 
+        public void Reset()
+        {
+            CapitalBorrow = 0;
+            AnnualRatePercent = 0;
+            DurationInMonths = 0;
+            RepaymentFrequency = TimeFrequency.Monthly;
+        }
+
         // Formula : K * (t / (1 - (1 + t) pow (-n)))
         // K -> CapitalBorrow
-        // t -> GetMonthlyRatePercent()
+        // t -> AnnualRatePercent
         // n -> GetNumberRefund()
-        private static Decimal RefundFormula()
+        private double RefundFormula()
         {
-            return (decimal)(
-                CapitalBorrow * (GetRatePercentFromFreqency() / (1 - Math.Pow(1 + GetRatePercentFromFreqency(), -GetNumberRefund())))
-            );
+            double K = CapitalBorrow;
+            double t = GetAnualRateCompareFrequency();
+            double n = GetNumberRefund();
+
+            return K * (t / (1.0 - Math.Pow(1.0 + t, -n)));
         }
-        static private double GetRatePercentFromFreqency()
+
+        private int GetHowManyRefundPerYear()
         {
-            return AnnualRatePercent / (int)RepaymentFrequency / 100;
+            return (int)(12 / (int)RepaymentFrequency);
+        }
+
+        private double GetAnualRateCompareFrequency()
+        {
+            return ((double)AnnualRatePercent / 100.0) / GetHowManyRefundPerYear();
         }
     }
 }

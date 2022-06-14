@@ -1,4 +1,5 @@
-﻿using BorrowCore.Validation;
+﻿using BorrowCore.Convertion;
+using BorrowCore.Validation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,22 +14,22 @@ namespace BorrowUnitTest.Validation
         [TestMethod]
         public void TestAllowedValues()
         {
-            foreach(string frequencyAllowed in FrequencyRepaymentValidation.ALLOWED)
+            foreach(var frequencyAllowed in TimeFrequencyConversion.CORRESPONDENCE)
             {
                 Assert.IsTrue(
-                    FrequencyRepaymentValidation.IsValid(frequencyAllowed)
+                    TimeFrequencyValidation.IsValid(frequencyAllowed.Item2)
                 );
 
                 Assert.IsTrue(
-                    FrequencyRepaymentValidation.IsValid(frequencyAllowed.ToUpper())
+                    TimeFrequencyValidation.IsValid(frequencyAllowed.Item2.ToUpper())
                 );
 
                 Assert.IsTrue(
-                    FrequencyRepaymentValidation.IsValid(frequencyAllowed.ToLower())
+                    TimeFrequencyValidation.IsValid(frequencyAllowed.Item2.ToLower())
                 );
 
                 Assert.IsTrue(
-                    FrequencyRepaymentValidation.IsValid(" " + frequencyAllowed + " ")
+                    TimeFrequencyValidation.IsValid(" " + frequencyAllowed.Item2 + " ")
                 );
             }
         }
@@ -37,7 +38,7 @@ namespace BorrowUnitTest.Validation
         public void TestRandomValues()
         {
             Assert.IsFalse(
-                FrequencyRepaymentValidation.IsValid(
+                TimeFrequencyValidation.IsValid(
                     GeneralValidation.GetRandomString(25)
                 )
             );
@@ -47,19 +48,19 @@ namespace BorrowUnitTest.Validation
         public void TestEmptyValues()
         {
             Assert.IsFalse(
-                FrequencyRepaymentValidation.IsValid("")
+                TimeFrequencyValidation.IsValid("")
                 );
             Assert.IsFalse(
-                FrequencyRepaymentValidation.IsValid(" ")
+                TimeFrequencyValidation.IsValid(" ")
                 );
             Assert.IsFalse(
-                FrequencyRepaymentValidation.IsValid(String.Empty)
+                TimeFrequencyValidation.IsValid(String.Empty)
                 );
             Assert.IsFalse(
-                FrequencyRepaymentValidation.IsValid(System.Environment.NewLine)
+                TimeFrequencyValidation.IsValid(System.Environment.NewLine)
                 );
             Assert.IsFalse(
-                FrequencyRepaymentValidation.IsValid('\t'.ToString())
+                TimeFrequencyValidation.IsValid('\t'.ToString())
                 );
         }
     }
