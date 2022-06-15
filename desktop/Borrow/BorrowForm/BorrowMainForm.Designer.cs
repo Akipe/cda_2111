@@ -68,7 +68,7 @@
             this.PDefineOptionsBorrow.Controls.Add(this.LName);
             this.PDefineOptionsBorrow.Location = new System.Drawing.Point(12, 12);
             this.PDefineOptionsBorrow.Name = "PDefineOptionsBorrow";
-            this.PDefineOptionsBorrow.Size = new System.Drawing.Size(285, 100);
+            this.PDefineOptionsBorrow.Size = new System.Drawing.Size(295, 100);
             this.PDefineOptionsBorrow.TabIndex = 0;
             // 
             // HsbDurationMonthsRepayment
@@ -164,9 +164,9 @@
             this.GbInterestRate.Controls.Add(this.RbInterestRate9Percent);
             this.GbInterestRate.Controls.Add(this.RbInterestRate8Percent);
             this.GbInterestRate.Controls.Add(this.RbInterestRate7Percent);
-            this.GbInterestRate.Location = new System.Drawing.Point(303, 12);
+            this.GbInterestRate.Location = new System.Drawing.Point(313, 12);
             this.GbInterestRate.Name = "GbInterestRate";
-            this.GbInterestRate.Size = new System.Drawing.Size(103, 100);
+            this.GbInterestRate.Size = new System.Drawing.Size(96, 100);
             this.GbInterestRate.TabIndex = 2;
             this.GbInterestRate.TabStop = false;
             this.GbInterestRate.Text = "Taux d\'intérêt";
@@ -174,7 +174,7 @@
             // RbInterestRate9Percent
             // 
             this.RbInterestRate9Percent.AutoSize = true;
-            this.RbInterestRate9Percent.Location = new System.Drawing.Point(30, 72);
+            this.RbInterestRate9Percent.Location = new System.Drawing.Point(26, 72);
             this.RbInterestRate9Percent.Name = "RbInterestRate9Percent";
             this.RbInterestRate9Percent.Size = new System.Drawing.Size(44, 19);
             this.RbInterestRate9Percent.TabIndex = 6;
@@ -187,7 +187,7 @@
             // RbInterestRate8Percent
             // 
             this.RbInterestRate8Percent.AutoSize = true;
-            this.RbInterestRate8Percent.Location = new System.Drawing.Point(30, 47);
+            this.RbInterestRate8Percent.Location = new System.Drawing.Point(26, 47);
             this.RbInterestRate8Percent.Name = "RbInterestRate8Percent";
             this.RbInterestRate8Percent.Size = new System.Drawing.Size(44, 19);
             this.RbInterestRate8Percent.TabIndex = 5;
@@ -200,7 +200,7 @@
             // RbInterestRate7Percent
             // 
             this.RbInterestRate7Percent.AutoSize = true;
-            this.RbInterestRate7Percent.Location = new System.Drawing.Point(30, 22);
+            this.RbInterestRate7Percent.Location = new System.Drawing.Point(26, 22);
             this.RbInterestRate7Percent.Name = "RbInterestRate7Percent";
             this.RbInterestRate7Percent.Size = new System.Drawing.Size(44, 19);
             this.RbInterestRate7Percent.TabIndex = 4;
@@ -244,11 +244,11 @@
             // LRefundTotal
             // 
             this.LRefundTotal.ForeColor = System.Drawing.Color.Red;
-            this.LRefundTotal.Location = new System.Drawing.Point(26, 40);
+            this.LRefundTotal.Location = new System.Drawing.Point(3, 40);
             this.LRefundTotal.Name = "LRefundTotal";
-            this.LRefundTotal.Size = new System.Drawing.Size(94, 15);
+            this.LRefundTotal.Size = new System.Drawing.Size(142, 15);
             this.LRefundTotal.TabIndex = 7;
-            this.LRefundTotal.Text = "0,00 €";
+            this.LRefundTotal.Text = "Données manquantes";
             this.LRefundTotal.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // LPresentRefund
@@ -269,11 +269,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(430, 235);
+            this.ClientSize = new System.Drawing.Size(419, 235);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.GbInterestRate);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.PDefineOptionsBorrow);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "BorrowMainForm";
             this.Text = "Emprunts";
             this.Load += new System.EventHandler(this.BorrowMainForm_Load);

@@ -2,7 +2,7 @@
 {
     public class BorrowCalculation
     {
-        public int CapitalBorrow { get; set; }
+        public long CapitalBorrow { get; set; }
         public int AnnualRatePercent { get; set; }
         public int DurationInMonths { get; set; }
         public TimeFrequency RepaymentFrequency { get; set; }
@@ -17,7 +17,7 @@
             return DurationInMonths / (int)RepaymentFrequency;
         }
 
-        public double GetRefundAmount()
+        public decimal GetRefundAmount()
         {
             return RefundFormula();
         }
@@ -34,13 +34,13 @@
         // K -> CapitalBorrow
         // t -> AnnualRatePercent
         // n -> GetNumberRefund()
-        private double RefundFormula()
+        private decimal RefundFormula()
         {
             double K = CapitalBorrow;
             double t = GetAnualRateCompareFrequency();
             double n = GetNumberRefund();
 
-            return K * (t / (1.0 - Math.Pow(1.0 + t, -n)));
+            return (decimal)((decimal)K * ((decimal)t / ((decimal)1 - (decimal)Math.Pow(1.0 + t, -n))));
         }
 
         private int GetHowManyRefundPerYear()

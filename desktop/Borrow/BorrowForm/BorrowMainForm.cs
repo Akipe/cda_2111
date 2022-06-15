@@ -1,34 +1,46 @@
 using BorrowCore;
 using BorrowCore.Convertion;
 using BorrowCore.Validation;
+using BorrowForm.Properties;
 using System.Text;
 
 namespace BorrowForm
 {
     public partial class BorrowMainForm : Form
     {
-        private const int DEFAULT_DURATION_MONTHS_REPAYMENT = 1;
         private const TimeFrequency DEFAULT_TIME_FREQUENCY = TimeFrequency.Monthly;
-        private RadioButton DEFAULT_INTEREST_RATE;
+        private const string DEFAULT_MESSAGE_ = "Données manquantes";
+
         private BorrowCalculation calculator;
+        private ErrorProvider errorProvider;
 
         public BorrowMainForm()
         {
             InitializeComponent();
+
+            InitErrorProvider();
         }
 
         #region Init
 
         private void BorrowMainForm_Load(object sender, EventArgs e)
         {
-            DEFAULT_INTEREST_RATE = RbInterestRate7Percent;
-
             calculator = new BorrowCalculation();
 
             InitFocusToName();
             InitRepaymentFrequencyValues();
             InitDefaultBorrowValue();
             InitDurationMonthsRepayment();
+            InitLabelRefundTotal();
+
+            LAmountRefund.Text = Settings.Default.NumberRefund.ToString();
+        }
+
+        // Initialiser l'error provider
+        private void InitErrorProvider()
+        {
+            errorProvider = new ErrorProvider();
+            errorProvider.BlinkStyle = ErrorBlinkStyle.NeverBlink;
         }
 
         // Initialise les valeurs par défaut de l'emprunt
@@ -37,8 +49,8 @@ namespace BorrowForm
         // - périodicité de remboursement en mensuelle
         private void InitDefaultBorrowValue()
         {
-            DEFAULT_INTEREST_RATE.Checked = true;
-            SetDurationMonthsRepaymentValue(DEFAULT_DURATION_MONTHS_REPAYMENT);
+            RbInterestRate7Percent.Checked = true;
+            SetDurationMonthsRepaymentValue(Settings.Default.DurationMonthRepayment);
         }
 
         // Initialise le focus sur le champ du nom
@@ -65,7 +77,12 @@ namespace BorrowForm
         // On initialise les propriétés de la barre de défillement
         private void InitDurationMonthsRepayment()
         {
-            SetDurationMonthRepaymentFromRefundFrequency();
+            SetDurationMonthsRepaymentValue();
+        }
+
+        private void InitLabelRefundTotal()
+        {
+            LRefundTotal.Text = Resources.NoValidsData;
         }
 
         #endregion Init
@@ -77,21 +94,29 @@ namespace BorrowForm
         {
             if (IsAllUserInputsAreValid())
             {
+                ResetAllErrors();
                 SetBorrowSettingsFromForm();
                 UpdateBorrowResultShowed();
             }
             else
             {
-                ResetResultShowed(); // todo : remplacer par ShowInvalidInputUser();
+                ShowErrorsOnInputForm();
+                ResetResultShowed();
             }
+        }
+
+        private void ShowErrorsOnInputForm()
+        {
+            ShowErrorsForName();
+            ShowErrorsOnBorrowAmout();
         }
 
         private void ResetResultShowed()
         {
             calculator.Reset();
 
-            LAmountRefund.Text = "0";
-            LRefundTotal.Text = "0,00 €";
+            LAmountRefund.Text = Settings.Default.NumberRefund.ToString();
+            LRefundTotal.Text = Resources.NoValidsData;
         }
 
         // Réinitialiser l'ensemble des valeurs des entrées de l'utilisateur
@@ -99,9 +124,9 @@ namespace BorrowForm
         {
             TbName.Text = String.Empty;
             TbBorrowedCapital.Text = String.Empty;
-            SetDurationMonthsRepaymentValue(DEFAULT_DURATION_MONTHS_REPAYMENT);
-            LbRepaymentFrequency.SelectedIndex = -1;
-            DEFAULT_INTEREST_RATE.Checked = true;
+            LbRepaymentFrequency.SelectedIndex = 0;
+
+            SetDurationMonthsRepaymentValue(Settings.Default.DurationMonthRepayment);
 
             ResetResultShowed();
         }
@@ -168,6 +193,36 @@ namespace BorrowForm
 
         #endregion Logic form test
 
+        #region Logic form error provider
+
+        private void ShowErrorsForName()
+        {
+            string errorMessage = IsNameIsValid() ? String.Empty : Resources.ErrorName;
+
+            errorProvider.SetError(TbName, errorMessage);
+        }
+
+        private void ResetAllErrors()
+        {
+            errorProvider.Clear();
+        }
+
+        private void ShowErrorsOnBorrowAmout()
+        {
+            string errorMessage = String.Empty;
+
+            if (
+                !IsBorrowedCapitalIsValid() &&
+                !String.IsNullOrEmpty(TbBorrowedCapital.Text)
+            ) {
+                errorMessage = Resources.ErrorBorrowAmount;
+            }
+
+            errorProvider.SetError(TbBorrowedCapital, errorMessage);
+        }
+
+        #endregion Logic form error provider
+
         #region Logic data pick
 
         // On mets à jour l'emprunt par rapport à l'ensemble des entrées de l'utilisateur
@@ -184,7 +239,7 @@ namespace BorrowForm
         {
             try
             {
-                calculator.CapitalBorrow = int.Parse(TbBorrowedCapital.Text);
+                calculator.CapitalBorrow = long.Parse(TbBorrowedCapital.Text);
             }
             catch (Exception)
             {
@@ -268,30 +323,29 @@ namespace BorrowForm
         #region Logic form control set
 
         // Définir la durée de remboursement en mois
-        private void SetDurationMonthsRepaymentValue(int howManyMonths)
+        private void SetDurationMonthsRepaymentValue(int? howManyMonths = null)
         {
-            HsbDurationMonthsRepayment.Value = howManyMonths;
-            UpdateDurationInMonthsShowed();
-        }
+            if (howManyMonths is not null)
+                HsbDurationMonthsRepayment.Value = (int)howManyMonths;
 
-        // Défini les paramètre de la barre de défilement,
-        // notamment par rapport à la fréquence de remboursement
-        private void SetDurationMonthRepaymentFromRefundFrequency()
-        {
             TimeFrequency refundFrequency = GetRefundFrequency();
 
             HsbDurationMonthsRepayment.Minimum = (int)refundFrequency;
             HsbDurationMonthsRepayment.LargeChange = 10 * (int)refundFrequency;
             HsbDurationMonthsRepayment.SmallChange = 1 * (int)refundFrequency;
+            // Pour avoir accès au nombre maximum, on doit utiliser une petite astuce
+            // MAX + LargeChange - 1
             HsbDurationMonthsRepayment.Maximum =
                 NumberMonthRefundValidation.MAX + HsbDurationMonthsRepayment.LargeChange - 1;
 
-            if (HsbDurationMonthsRepayment.Value < (int)refundFrequency)
-            {
-                HsbDurationMonthsRepayment.Value = (int)refundFrequency;
-            }
-
             UpdateCurrentDurationMonthRespectMultiple();
+
+            if (HsbDurationMonthsRepayment.Value < (int)refundFrequency)
+                HsbDurationMonthsRepayment.Value = (int)refundFrequency;
+
+            UpdateDurationInMonthsShowed();
+            UpdateNumberRefundToDo();
+            SetDurationInMonthsFromForm();
         }
 
         // On change le nombre de mois selectionnés en respectant le multiple des fréquences
@@ -304,13 +358,11 @@ namespace BorrowForm
 
             if ((double)HsbDurationMonthsRepayment.Value % (double)refundFrequency != 0.0)
             {
-                int result = (HsbDurationMonthsRepayment.Value / (int)refundFrequency) * (int)refundFrequency + (int)refundFrequency;
+                int result = 
+                    HsbDurationMonthsRepayment.Value / (int)refundFrequency * (int)refundFrequency + (int)refundFrequency;
 
                 HsbDurationMonthsRepayment.Value = result;
-
             }
-
-            UpdateDurationInMonthsShowed();
         }
 
         #endregion Logic form set
@@ -361,12 +413,12 @@ namespace BorrowForm
 
         private void GeneralControls_DataChanged(object sender, EventArgs e)
         {
-            UpdateBorrowFromForm();
-
             if (sender is ListBox)
             {
-                SetDurationMonthRepaymentFromRefundFrequency();
+                SetDurationMonthsRepaymentValue();
             }
+
+            UpdateBorrowFromForm();
         }
 
         private void ScrollBarControls_DataChanged(object sender, ScrollEventArgs e)
