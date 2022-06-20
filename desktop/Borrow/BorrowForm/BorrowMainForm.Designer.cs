@@ -100,9 +100,11 @@
             // TbBorrowedCapital
             // 
             this.TbBorrowedCapital.Location = new System.Drawing.Point(119, 32);
+            this.TbBorrowedCapital.MaxLength = 10;
             this.TbBorrowedCapital.Name = "TbBorrowedCapital";
             this.TbBorrowedCapital.Size = new System.Drawing.Size(155, 23);
             this.TbBorrowedCapital.TabIndex = 1;
+            this.TbBorrowedCapital.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.TbBorrowedCapital.TextChanged += new System.EventHandler(this.GeneralControls_DataChanged);
             // 
             // LBorrowedCapital
