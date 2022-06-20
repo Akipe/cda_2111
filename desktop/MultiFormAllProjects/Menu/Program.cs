@@ -1,4 +1,4 @@
-namespace MultiFormAllProjectsUI
+namespace Menu
 {
     internal static class Program
     {
