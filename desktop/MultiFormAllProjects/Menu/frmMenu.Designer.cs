@@ -42,6 +42,7 @@
             this.phase1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.phase2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.phase3ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fenêtresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ssStatusInfo.SuspendLayout();
             this.tsMediOption2.SuspendLayout();
             this.msMdiOptions.SuspendLayout();
@@ -124,7 +125,8 @@
             this.connectionToolStripMenuItem,
             this.phase1ToolStripMenuItem,
             this.phase2ToolStripMenuItem,
-            this.phase3ToolStripMenuItem});
+            this.phase3ToolStripMenuItem,
+            this.fenêtresToolStripMenuItem});
             this.msMdiOptions.Location = new System.Drawing.Point(0, 0);
             this.msMdiOptions.Name = "msMdiOptions";
             this.msMdiOptions.Size = new System.Drawing.Size(800, 24);
@@ -154,6 +156,12 @@
             this.phase3ToolStripMenuItem.Name = "phase3ToolStripMenuItem";
             this.phase3ToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
             this.phase3ToolStripMenuItem.Text = "Phase 3";
+            // 
+            // fenêtresToolStripMenuItem
+            // 
+            this.fenêtresToolStripMenuItem.Name = "fenêtresToolStripMenuItem";
+            this.fenêtresToolStripMenuItem.Size = new System.Drawing.Size(63, 20);
+            this.fenêtresToolStripMenuItem.Text = "Fenêtres";
             // 
             // frmMenu
             // 
@@ -194,5 +202,6 @@
         private ToolStripMenuItem phase1ToolStripMenuItem;
         private ToolStripMenuItem phase2ToolStripMenuItem;
         private ToolStripMenuItem phase3ToolStripMenuItem;
+        private ToolStripMenuItem fenêtresToolStripMenuItem;
     }
 }

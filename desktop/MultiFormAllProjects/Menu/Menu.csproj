@@ -8,4 +8,16 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Borrow\BorrowForm\BorrowForm.csproj" />
+    <ProjectReference Include="..\..\CourseWinForm\01_MagicButton\01_MagicButton.csproj" />
+    <ProjectReference Include="..\..\CourseWinForm\02_simple_addition\02_simple_addition.csproj" />
+    <ProjectReference Include="..\..\CourseWinForm\03_input_control\03_input_control.csproj" />
+    <ProjectReference Include="..\..\CourseWinForm\04_CheckboxRadio\04_CheckboxRadio.csproj" />
+    <ProjectReference Include="..\..\CourseWinForm\05_ListBox\05_ListBox.csproj" />
+    <ProjectReference Include="..\..\CourseWinForm\06_ListComboBox\06_ListComboBox.csproj" />
+    <ProjectReference Include="..\..\CourseWinForm\07_ScrollColorChoose\07_ScrollColorChoose.csproj" />
+    <ProjectReference Include="..\Core\Core.csproj" />
+  </ItemGroup>
+
 </Project>
