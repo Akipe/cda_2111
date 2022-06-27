@@ -13,6 +13,8 @@ namespace LoanCourse
 {
     public partial class PeriodUserControl : UserControl
     {
+        public event PropertyChangedEventHandler OnValuesUpdated;
+
         public int NbMonths
         {
             get
@@ -38,9 +40,12 @@ namespace LoanCourse
             new Periodicity("Annuelle", 12)
         };
 
-        public void OnValuesUpdated(object sender, EventArgs e)
+        private void ExecuteOnValuesUpdated()
         {
-            MessageBox.Show("Toto is not XOXO");
+            if (OnValuesUpdated is not null)
+            {
+                OnValuesUpdated(this, new PropertyChangedEventArgs(nameof(Period)));
+            }
         }
 
         public PeriodUserControl()
@@ -51,6 +56,7 @@ namespace LoanCourse
         private void PeriodUserControl_Load(object sender, EventArgs e)
         {
             lbPeriodicity.DataSource = periodicityUsed;
+
         }
 
         private void lbPeriodicity_SelectedIndexChanged(object sender, EventArgs e)
@@ -68,6 +74,9 @@ namespace LoanCourse
         private void scrollbarNbMonth_ValueChanged(object sender, EventArgs e)
         {
             labelNbMonth.Text = scrollbarNbMonth.Value.ToString();
+
+            ExecuteOnValuesUpdated();
         }
     }
 }
+e

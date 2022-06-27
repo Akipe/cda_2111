@@ -171,6 +171,7 @@
             this.periodUserControl1.Name = "periodUserControl1";
             this.periodUserControl1.Size = new System.Drawing.Size(243, 173);
             this.periodUserControl1.TabIndex = 15;
+            this.periodUserControl1.Load += new System.EventHandler(this.periodUserControl1_Load);
             // 
             // Form1
             // 
