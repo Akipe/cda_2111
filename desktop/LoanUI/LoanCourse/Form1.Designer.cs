@@ -97,6 +97,7 @@
             this.Rb9.Tag = "0,09";
             this.Rb9.Text = "9 %";
             this.Rb9.UseVisualStyleBackColor = true;
+            this.Rb9.CheckedChanged += new System.EventHandler(this.RbInterestAnnual_CheckedChanged);
             // 
             // Rb8
             // 
@@ -108,6 +109,7 @@
             this.Rb8.Tag = "0,08";
             this.Rb8.Text = "8 %";
             this.Rb8.UseVisualStyleBackColor = true;
+            this.Rb8.CheckedChanged += new System.EventHandler(this.RbInterestAnnual_CheckedChanged);
             // 
             // Rb7
             // 
@@ -121,6 +123,7 @@
             this.Rb7.Tag = "0,07";
             this.Rb7.Text = "7 %";
             this.Rb7.UseVisualStyleBackColor = true;
+            this.Rb7.CheckedChanged += new System.EventHandler(this.RbInterestAnnual_CheckedChanged);
             // 
             // btnOk
             // 
@@ -171,7 +174,6 @@
             this.periodUserControl1.Name = "periodUserControl1";
             this.periodUserControl1.Size = new System.Drawing.Size(243, 173);
             this.periodUserControl1.TabIndex = 15;
-            this.periodUserControl1.Load += new System.EventHandler(this.periodUserControl1_Load);
             // 
             // Form1
             // 
@@ -191,6 +193,7 @@
             this.Controls.Add(this.labelName);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.gbxInterests.ResumeLayout(false);
             this.gbxInterests.PerformLayout();
             this.ResumeLayout(false);

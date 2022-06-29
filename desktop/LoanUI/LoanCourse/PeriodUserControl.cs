@@ -1,5 +1,4 @@
-﻿using LoanCourse.Loan;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,14 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using LoanCourse.Models;
 
 namespace LoanCourse
 {
     public partial class PeriodUserControl : UserControl
     {
-        public event PropertyChangedEventHandler OnValuesUpdated;
+        public Loan Loan { get; set; }
 
-        public int NbMonths
+        private int NbMonths
         {
             get
             {
@@ -23,7 +23,7 @@ namespace LoanCourse
             }
         }
 
-        public int Period
+        private int Period
         {
             get
             {
@@ -40,17 +40,10 @@ namespace LoanCourse
             new Periodicity("Annuelle", 12)
         };
 
-        private void ExecuteOnValuesUpdated()
-        {
-            if (OnValuesUpdated is not null)
-            {
-                OnValuesUpdated(this, new PropertyChangedEventArgs(nameof(Period)));
-            }
-        }
-
         public PeriodUserControl()
         {
             InitializeComponent();
+            Loan = Loan.GetInstance();
         }
 
         private void PeriodUserControl_Load(object sender, EventArgs e)
@@ -67,16 +60,15 @@ namespace LoanCourse
             scrollbarNbMonth.Maximum = 
                 360 + scrollbarNbMonth.LargeChange - 1;
             scrollbarNbMonth.Value = Period;
-
+            Loan.Periodicity = Period;
             scrollbarNbMonth_ValueChanged(sender, new EventArgs());
         }
 
         private void scrollbarNbMonth_ValueChanged(object sender, EventArgs e)
         {
-            labelNbMonth.Text = scrollbarNbMonth.Value.ToString();
+            labelNbMonth.Text = NbMonths.ToString();
 
-            ExecuteOnValuesUpdated();
+            Loan.SetNumberMonths(NbMonths);
         }
     }
 }
-e

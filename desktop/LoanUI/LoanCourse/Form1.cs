@@ -1,4 +1,6 @@
+using System.ComponentModel;
 using System.Diagnostics;
+using LoanCourse.Models;
 
 namespace LoanCourse
 {
@@ -6,16 +8,17 @@ namespace LoanCourse
     {
         public int NbMonths { get; set; }
         public int Period { get; set; }
+        public Loan Loan { get; set; }
 
         public Form1()
         {
             InitializeComponent();
+            Loan = Loan.GetInstance();
         }
 
-        private void periodUserControl1_Load(object sender, EventArgs e)
+        private void Form1_Load(object sender, EventArgs e)
         {
-            periodUserControl1.OnValuesUpdated += UpdatePeriodData;
-            periodUserControl1.OnValuesUpdated += ShowMessageWhenPeriodUpdate;
+            Loan.OnUpdate += LoanUpdated;
         }
 
         private void tbxCapital_TextChanged(object sender, EventArgs e)
@@ -29,7 +32,9 @@ namespace LoanCourse
                 return;
             }
 
-            foreach (Control ctr in gbxInterests.Controls)
+            Loan.CapitalLoan = capital;
+
+            /*foreach (Control ctr in gbxInterests.Controls)
             {
                 RadioButton rb = (RadioButton)ctr;
 
@@ -38,19 +43,25 @@ namespace LoanCourse
                     labelRepaymentAmount.Text = (
                         capital + capital * float.Parse(rb.Tag.ToString())).ToString();
                 }
+            }*/
+
+        }
+
+        private void RbInterestAnnual_CheckedChanged(object sender, EventArgs e)
+        {
+            if (sender is RadioButton rb)
+            {
+                Loan.SetAnnualInterestRate(float.Parse(rb.Tag.ToString()));
             }
         }
 
-        private void UpdatePeriodData(object sender, EventArgs e)
+        private void LoanUpdated(object sender, PropertyChangedEventArgs e)
         {
-            NbMonths = periodUserControl1.NbMonths;
-            Period = periodUserControl1.Period;
-        }
-
-        private void ShowMessageWhenPeriodUpdate(object sender, EventArgs e)
-        {
-            MessageBox.Show(
-                $"number month : {periodUserControl1.NbMonths} and period : {periodUserControl1.Period}");
+            if (sender is Loan loanModel)
+            {
+                labelNbRepayment.Text = loanModel.NumberRepayments.ToString();
+                labelRepaymentAmount.Text = loanModel.GetSumPerPeriodicity().ToString();
+            }
         }
     }
 }
