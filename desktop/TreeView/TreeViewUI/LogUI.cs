@@ -8,15 +8,21 @@ namespace TreeViewUI
 {
     internal class LogUI
     {
+        Form form;
         ToolStripStatusLabel LogControl;
 
-        public LogUI(ToolStripStatusLabel logControl)
+        public LogUI(
+            Form form,
+            ToolStripStatusLabel logControl
+        )
         {
+            this.form = form;
             LogControl = logControl;
         }
 
         public void Msg(string message)
         {
+            form.Text = message;
             LogControl.Text = message;
         }
     }

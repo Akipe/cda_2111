@@ -10,44 +10,62 @@ namespace TreeViewUI
 {
     internal class NodeGeneratorUI
     {
-        private Dir Root { get; set; }
+        public Dir? Root { get; private set; }
         private TreeView Viewer { get; set; }
 
         public NodeGeneratorUI(TreeView viewer)
         {
             Viewer = viewer;
+            Root = null;
         }
 
         public void GenerateRoot(string dir)
         {
+            Root = null;
+
             // Clear the TreeView each time the method is called.
             Viewer.Nodes.Clear();
 
             // Suppress repainting the TreeView until all the objects have been created.
             Viewer.BeginUpdate();
 
-            NodeGenerator.SetRoot(dir);
-            Root = NodeGenerator.Root;
+            try
+            {
+                NodeGenerator.SetRoot(dir);
 
-            Viewer.Nodes.Add(Root.ToString());
+                Root = NodeGenerator.Root;
 
-            GenerateTree(Root, Viewer.Nodes[0]);
-
-            Viewer.EndUpdate();
+                Viewer.Nodes.Add(Root.ToString());
+                GenerateTree(Root, Viewer.Nodes[0]);
+            }
+            catch(ArgumentException)
+            {
+                throw new ArgumentException();
+            }
+            finally
+            {
+                Viewer.EndUpdate();
+            }
         }
 
         public void ExpandsAllNodes()
         {
-            Viewer.BeginUpdate();
-            ExpandNode(Viewer.Nodes[0]);
-            Viewer.EndUpdate();
+            if (Root is not null)
+            {
+                Viewer.BeginUpdate();
+                ExpandNode(Viewer.Nodes[0]);
+                Viewer.EndUpdate();
+            }
         }
 
         public void CollapseAllNodes()
         {
-            Viewer.BeginUpdate();
-            CollapseNode(Viewer.Nodes[0]);
-            Viewer.EndUpdate();
+            if (Root is not null)
+            {
+                Viewer.BeginUpdate();
+                CollapseNode(Viewer.Nodes[0]);
+                Viewer.EndUpdate();
+            }
         }
 
         private void GenerateTree(
@@ -89,7 +107,6 @@ namespace TreeViewUI
 
         private void CollapseNode(TreeNode node)
         {
-            // treeView1.SelectedNode.Collapse();
             node.Collapse();
 
             if (node.Nodes.Count > 0)

@@ -16,12 +16,14 @@ namespace TreeViewUI
         private void MainForm_Load(object sender, EventArgs e)
         {
             Generator = new NodeGeneratorUI(tvNodeTree);
-            Log = new LogUI(tsslSearchStatus);
+            Log = new LogUI(this, tsslSearchStatus);
+            TriggerCollapseExpandsBtn(false);
         }
 
         private void bShowDiskRoot_Click(object sender, EventArgs e)
         {
             Generator.GenerateRoot(@"C:\");
+            TriggerCollapseExpandsBtn(true);
         }
 
         private void tbRootPath_Leave(object sender, EventArgs e)
@@ -30,9 +32,11 @@ namespace TreeViewUI
             {
                 Log.Msg($"Recherche dans {tbRootPath.Text}");
                 Generator.GenerateRoot(tbRootPath.Text);
+                TriggerCollapseExpandsBtn(true);
             }
             catch(ArgumentException)
             {
+                TriggerCollapseExpandsBtn(false);
                 Log.Msg($"Le chemin {tbRootPath.Text} n'existe pas");
                 MessageBox.Show(
                     "Veuillez définir un dossier existant",
@@ -51,6 +55,12 @@ namespace TreeViewUI
         private void bCloseBranch_Click(object sender, EventArgs e)
         {
             Generator.CollapseAllNodes();
+        }
+
+        private void TriggerCollapseExpandsBtn(Boolean status)
+        {
+            bCloseBranch.Enabled = status;
+            bOpenBranch.Enabled = status;
         }
     }
 }
