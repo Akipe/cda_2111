@@ -134,9 +134,9 @@ namespace Menu
                 //string test = "_02_simple_addition.SimpleAdditionForm";
                 //Type formType = Type.GetType(test);
 
-                //Type formBuilderType = typeof(AppBuilder<>).MakeGenericType(new SimpleAdditionForm().GetType());
+                Type formBuilderType = typeof(AppBuilder<>).MakeGenericType(new SimpleAdditionForm().GetType());
 
-                //var instanceBuilder = Activator.CreateInstance(formBuilderType);
+                var instanceBuilder = Activator.CreateInstance(formBuilderType);
 
                 /*if (formType != null)
                 {
