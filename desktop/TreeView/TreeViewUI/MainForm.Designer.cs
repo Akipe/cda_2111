@@ -63,6 +63,7 @@
             this.bOpenBranch.TabIndex = 1;
             this.bOpenBranch.Text = "Expansion de l\'arbre";
             this.bOpenBranch.UseVisualStyleBackColor = true;
+            this.bOpenBranch.Click += new System.EventHandler(this.bOpenBranch_Click);
             // 
             // bCloseBranch
             // 
@@ -72,6 +73,7 @@
             this.bCloseBranch.TabIndex = 2;
             this.bCloseBranch.Text = "Reduction de l\'arbre";
             this.bCloseBranch.UseVisualStyleBackColor = true;
+            this.bCloseBranch.Click += new System.EventHandler(this.bCloseBranch_Click);
             // 
             // bShowDiskRoot
             // 

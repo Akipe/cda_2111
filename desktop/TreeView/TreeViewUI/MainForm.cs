@@ -42,5 +42,15 @@ namespace TreeViewUI
                 );
             }
         }
+
+        private void bOpenBranch_Click(object sender, EventArgs e)
+        {
+            Generator.ExpandsAllNodes();
+        }
+
+        private void bCloseBranch_Click(object sender, EventArgs e)
+        {
+            Generator.CollapseAllNodes();
+        }
     }
 }
