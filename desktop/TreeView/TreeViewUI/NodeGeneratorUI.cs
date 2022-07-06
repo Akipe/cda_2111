@@ -19,7 +19,7 @@ namespace TreeViewUI
             Root = null;
         }
 
-        public void GenerateRoot(string dir)
+        public void Generate(Dir dir)
         {
             Root = null;
 
@@ -29,23 +29,11 @@ namespace TreeViewUI
             // Suppress repainting the TreeView until all the objects have been created.
             Viewer.BeginUpdate();
 
-            try
-            {
-                NodeGenerator.SetRoot(dir);
+            Root = dir;
 
-                Root = NodeGenerator.Root;
-
-                Viewer.Nodes.Add(Root.ToString());
-                GenerateTree(Root, Viewer.Nodes[0]);
-            }
-            catch(ArgumentException)
-            {
-                throw new ArgumentException();
-            }
-            finally
-            {
-                Viewer.EndUpdate();
-            }
+            Viewer.Nodes.Add(Root.ToString());
+            GenerateTree(Root, Viewer.Nodes[0]);
+            Viewer.EndUpdate();
         }
 
         public void ExpandsAllNodes()

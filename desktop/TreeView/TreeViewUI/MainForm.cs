@@ -5,7 +5,7 @@ namespace TreeViewUI
 {
     public partial class MainForm : Form
     {
-        private NodeGeneratorUI Generator;
+        private NodeGeneratorUI UiGenerator;
         private LogUI Log;
 
         public MainForm()
@@ -15,46 +15,63 @@ namespace TreeViewUI
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            Generator = new NodeGeneratorUI(tvNodeTree);
+            UiGenerator = new NodeGeneratorUI(tvNodeTree);
             Log = new LogUI(this, tsslSearchStatus);
             TriggerCollapseExpandsBtn(false);
         }
 
         private void bShowDiskRoot_Click(object sender, EventArgs e)
         {
-            Generator.GenerateRoot(@"C:\");
-            TriggerCollapseExpandsBtn(true);
+            Log.Msg($"Recherche dans C:\\");
+
+            Thread seekThread = new Thread(() => GenerateTreeNode(@"C:\"));
+            seekThread.Start();
         }
 
         private void tbRootPath_Leave(object sender, EventArgs e)
         {
+                Log.Msg($"Recherche dans {tbRootPath.Text}");
+
+                Thread seekThread = new Thread(() => GenerateTreeNode(tbRootPath.Text));
+                seekThread.Start();
+        }
+
+        private void GenerateTreeNode(string path)
+        {
             try
             {
-                Log.Msg($"Recherche dans {tbRootPath.Text}");
-                Generator.GenerateRoot(tbRootPath.Text);
-                TriggerCollapseExpandsBtn(true);
+                NodeGenerator.SetRoot(path);
+                Dir root = NodeGenerator.Root;
+
+                this.Invoke(new MethodInvoker(() => {
+                    UiGenerator.Generate(root);
+                    TriggerCollapseExpandsBtn(true);
+                }));
             }
-            catch(ArgumentException)
+            catch (ArgumentException)
             {
-                TriggerCollapseExpandsBtn(false);
-                Log.Msg($"Le chemin {tbRootPath.Text} n'existe pas");
-                MessageBox.Show(
-                    "Veuillez définir un dossier existant",
-                    "Erreur de chemin",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
-                );
+                this.Invoke(new MethodInvoker(() =>
+                {
+                    TriggerCollapseExpandsBtn(false);
+                    Log.Msg($"Le chemin {tbRootPath.Text} n'existe pas");
+                    MessageBox.Show(
+                        "Veuillez définir un dossier existant",
+                        "Erreur de chemin",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error
+                    );
+                }));
             }
         }
 
         private void bOpenBranch_Click(object sender, EventArgs e)
         {
-            Generator.ExpandsAllNodes();
+            UiGenerator.ExpandsAllNodes();
         }
 
         private void bCloseBranch_Click(object sender, EventArgs e)
         {
-            Generator.CollapseAllNodes();
+            UiGenerator.CollapseAllNodes();
         }
 
         private void TriggerCollapseExpandsBtn(Boolean status)
