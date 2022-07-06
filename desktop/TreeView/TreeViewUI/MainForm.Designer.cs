@@ -83,7 +83,7 @@
             this.bShowDiskRoot.TabIndex = 3;
             this.bShowDiskRoot.Text = "Affichage du disque dur";
             this.bShowDiskRoot.UseVisualStyleBackColor = true;
-            this.bShowDiskRoot.Click += new System.EventHandler(this.bShowDiskRoot_Click);
+            this.bShowDiskRoot.Click += new System.EventHandler(this.SearchFiles_Execute);
             // 
             // tvNodeTree
             // 
@@ -107,7 +107,7 @@
             this.tbRootPath.Name = "tbRootPath";
             this.tbRootPath.Size = new System.Drawing.Size(214, 23);
             this.tbRootPath.TabIndex = 6;
-            this.tbRootPath.Leave += new System.EventHandler(this.tbRootPath_Leave);
+            this.tbRootPath.Leave += new System.EventHandler(this.SearchFiles_Execute);
             // 
             // MainForm
             // 

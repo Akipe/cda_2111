@@ -5,8 +5,9 @@ namespace TreeViewUI
 {
     public partial class MainForm : Form
     {
-        private NodeGeneratorUI UiGenerator;
         private LogUI Log;
+        private NodeTreeUI nodeTreeUI;
+        string? rootPath;
 
         public MainForm()
         {
@@ -15,25 +16,43 @@ namespace TreeViewUI
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            UiGenerator = new NodeGeneratorUI(tvNodeTree);
             Log = new LogUI(this, tsslSearchStatus);
-            TriggerCollapseExpandsBtn(false);
+            nodeTreeUI = new NodeTreeUI(
+                tvNodeTree,
+                bCloseBranch,
+                bOpenBranch
+            );
+            rootPath = null;
+
+            bShowDiskRoot.Tag = @"C:\";
+
+            Log.Msg($"Veuillez entrer un chemin");
         }
 
-        private void bShowDiskRoot_Click(object sender, EventArgs e)
+        private void SearchFiles_Execute(object sender, EventArgs e)
         {
-            Log.Msg($"Recherche dans C:\\");
+            string path = "";
 
-            Thread seekThread = new Thread(() => GenerateTreeNode(@"C:\"));
+            if (sender is Button btn)
+            {
+                if (btn.Tag is string btnPath)
+                {
+                    rootPath = btnPath;
+                }
+            }
+            if (sender is TextBox tb)
+            {
+                rootPath = tb.Text;
+            }
+
+            Log.Msg($"Recherche dans {rootPath}");
+
+            Thread seekThread = new Thread(() =>
+            {
+                GenerateTreeNode(rootPath);
+            }
+            );
             seekThread.Start();
-        }
-
-        private void tbRootPath_Leave(object sender, EventArgs e)
-        {
-                Log.Msg($"Recherche dans {tbRootPath.Text}");
-
-                Thread seekThread = new Thread(() => GenerateTreeNode(tbRootPath.Text));
-                seekThread.Start();
         }
 
         private void GenerateTreeNode(string path)
@@ -43,41 +62,43 @@ namespace TreeViewUI
                 NodeGenerator.SetRoot(path);
                 Dir root = NodeGenerator.Root;
 
+                List<TreeNode> rootNodes = NodeTreeUIGenerator.Generate(root);
+
                 this.Invoke(new MethodInvoker(() => {
-                    UiGenerator.Generate(root);
-                    TriggerCollapseExpandsBtn(true);
+                        nodeTreeUI.SetRootNode(rootNodes[0]);
                 }));
             }
             catch (ArgumentException)
             {
                 this.Invoke(new MethodInvoker(() =>
                 {
-                    TriggerCollapseExpandsBtn(false);
-                    Log.Msg($"Le chemin {tbRootPath.Text} n'existe pas");
-                    MessageBox.Show(
-                        "Veuillez définir un dossier existant",
-                        "Erreur de chemin",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Error
-                    );
+                    GenerateNotFound();
                 }));
             }
         }
 
+        private void GenerateNotFound()
+        {
+            nodeTreeUI.Clear();
+
+            Log.Msg($"Le chemin {rootPath} n'existe pas");
+
+            MessageBox.Show(
+                $"Le dossier \"${rootPath}\" n'existe pas.",
+                "Chemin de dossier inconnu",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error
+            );
+        }
+
         private void bOpenBranch_Click(object sender, EventArgs e)
         {
-            UiGenerator.ExpandsAllNodes();
+            nodeTreeUI.ExpandsAllNodes();
         }
 
         private void bCloseBranch_Click(object sender, EventArgs e)
         {
-            UiGenerator.CollapseAllNodes();
-        }
-
-        private void TriggerCollapseExpandsBtn(Boolean status)
-        {
-            bCloseBranch.Enabled = status;
-            bOpenBranch.Enabled = status;
+            nodeTreeUI.CollapseAllNodes();
         }
     }
 }
