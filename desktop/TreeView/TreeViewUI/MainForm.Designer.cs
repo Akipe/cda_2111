@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tsslSearchStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.bOpenBranch = new System.Windows.Forms.Button();
@@ -36,6 +37,8 @@
             this.tvNodeTree = new System.Windows.Forms.TreeView();
             this.lDirExplore = new System.Windows.Forms.Label();
             this.tbRootPath = new System.Windows.Forms.TextBox();
+            this.seekLoad = new System.Windows.Forms.Timer(this.components);
+            this.button1 = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -77,43 +80,54 @@
             // 
             // bShowDiskRoot
             // 
-            this.bShowDiskRoot.Location = new System.Drawing.Point(35, 6);
+            this.bShowDiskRoot.Location = new System.Drawing.Point(12, 12);
             this.bShowDiskRoot.Name = "bShowDiskRoot";
-            this.bShowDiskRoot.Size = new System.Drawing.Size(84, 48);
+            this.bShowDiskRoot.Size = new System.Drawing.Size(94, 57);
             this.bShowDiskRoot.TabIndex = 3;
-            this.bShowDiskRoot.Text = "Affichage du disque dur";
+            this.bShowDiskRoot.Text = "Affichage du contenu du disque C";
             this.bShowDiskRoot.UseVisualStyleBackColor = true;
             this.bShowDiskRoot.Click += new System.EventHandler(this.SearchFiles_Execute);
             // 
             // tvNodeTree
             // 
-            this.tvNodeTree.Location = new System.Drawing.Point(12, 66);
+            this.tvNodeTree.Location = new System.Drawing.Point(12, 75);
             this.tvNodeTree.Name = "tvNodeTree";
-            this.tvNodeTree.Size = new System.Drawing.Size(473, 303);
+            this.tvNodeTree.Size = new System.Drawing.Size(473, 294);
             this.tvNodeTree.TabIndex = 4;
             // 
             // lDirExplore
             // 
-            this.lDirExplore.Location = new System.Drawing.Point(145, 15);
+            this.lDirExplore.Location = new System.Drawing.Point(112, 22);
             this.lDirExplore.Name = "lDirExplore";
-            this.lDirExplore.Size = new System.Drawing.Size(111, 31);
+            this.lDirExplore.Size = new System.Drawing.Size(82, 31);
             this.lDirExplore.TabIndex = 5;
-            this.lDirExplore.Text = "Chemin du dossier à examiner";
+            this.lDirExplore.Text = "Répertoire à afficher";
             this.lDirExplore.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // tbRootPath
             // 
-            this.tbRootPath.Location = new System.Drawing.Point(271, 15);
+            this.tbRootPath.Location = new System.Drawing.Point(200, 22);
             this.tbRootPath.Name = "tbRootPath";
             this.tbRootPath.Size = new System.Drawing.Size(214, 23);
             this.tbRootPath.TabIndex = 6;
             this.tbRootPath.Leave += new System.EventHandler(this.SearchFiles_Execute);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(420, 22);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(65, 23);
+            this.button1.TabIndex = 7;
+            this.button1.Text = "Ouvir";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(497, 453);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.tbRootPath);
             this.Controls.Add(this.lDirExplore);
             this.Controls.Add(this.tvNodeTree);
@@ -145,5 +159,7 @@
         private Label lDirExplore;
         private TextBox tbRootPath;
         private ToolStripStatusLabel tsslSearchStatus;
+        private System.Windows.Forms.Timer seekLoad;
+        private Button button1;
     }
 }

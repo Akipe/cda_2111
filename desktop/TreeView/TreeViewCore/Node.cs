@@ -35,7 +35,7 @@ namespace TreeViewCore
         public string Name
         {
             get;
-            private set;
+            set;
         }
 
         public Dir? Parent

@@ -8,6 +8,7 @@ namespace TreeViewUI
         private LogUI Log;
         private NodeTreeUI nodeTreeUI;
         string? rootPath;
+        private int logSearchCount;
 
         public MainForm()
         {
@@ -23,16 +24,18 @@ namespace TreeViewUI
                 bOpenBranch
             );
             rootPath = null;
+            logSearchCount = 1;
 
             bShowDiskRoot.Tag = @"C:\";
+
+            seekLoad.Tick += new EventHandler(UpdateMsgSearch);
+            seekLoad.Interval = 1000;
 
             Log.Msg($"Veuillez entrer un chemin");
         }
 
         private void SearchFiles_Execute(object sender, EventArgs e)
         {
-            string path = "";
-
             if (sender is Button btn)
             {
                 if (btn.Tag is string btnPath)
@@ -45,11 +48,19 @@ namespace TreeViewUI
                 rootPath = tb.Text;
             }
 
-            Log.Msg($"Recherche dans {rootPath}");
+            ExecuteSearch(rootPath);
+        }
+
+        private void ExecuteSearch(string path)
+        {
+            Log.Msg($"Recherche dans {path}");
+
+            seekLoad.Enabled = true;
+            seekLoad.Start();
 
             Thread seekThread = new Thread(() =>
             {
-                GenerateTreeNode(rootPath);
+                GenerateTreeNode(path);
             }
             );
             seekThread.Start();
@@ -66,12 +77,16 @@ namespace TreeViewUI
 
                 this.Invoke(new MethodInvoker(() => {
                         nodeTreeUI.SetRootNode(rootNodes[0]);
+                        seekLoad.Stop();
+
+                        Log.Msg($"Recherche terminé.");
                 }));
             }
             catch (ArgumentException)
             {
                 this.Invoke(new MethodInvoker(() =>
                 {
+                    seekLoad.Stop();
                     GenerateNotFound();
                 }));
             }
@@ -99,6 +114,28 @@ namespace TreeViewUI
         private void bCloseBranch_Click(object sender, EventArgs e)
         {
             nodeTreeUI.CollapseAllNodes();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog folderBrowser = new FolderBrowserDialog();
+
+            if (folderBrowser.ShowDialog() == DialogResult.OK)
+            {
+                rootPath = folderBrowser.SelectedPath;
+                tbRootPath.Text = rootPath;
+
+                ExecuteSearch(rootPath);
+            }
+        }
+
+        private void UpdateMsgSearch(object? sender, EventArgs e)
+        {
+            if (logSearchCount > 3)
+            {
+                logSearchCount = 1;
+            }
+            Log.Msg($"Recherche {rootPath} en cours " + new String('.', logSearchCount++));
         }
     }
 }

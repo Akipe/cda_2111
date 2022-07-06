@@ -18,6 +18,7 @@ namespace TreeViewCore
             }
 
             Root = GenerateChildren(new Dir(dirPath));
+            Root.Name = Root.Path + Root.Name;
         }
 
         public static Dir Root
