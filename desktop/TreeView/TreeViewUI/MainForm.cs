@@ -9,6 +9,8 @@ namespace TreeViewUI
         private NodeTreeUI nodeTreeUI;
         string? rootPath;
         private int logSearchCount;
+        private Thread? seekThread;
+        private CancellationTokenSource seekThreadCts;
 
         public MainForm()
         {
@@ -30,6 +32,9 @@ namespace TreeViewUI
 
             seekLoad.Tick += new EventHandler(UpdateMsgSearch);
             seekLoad.Interval = 1000;
+
+            seekThread = null;
+            seekThreadCts = new CancellationTokenSource();
 
             Log.Msg($"Veuillez entrer un chemin");
         }
@@ -58,28 +63,45 @@ namespace TreeViewUI
             seekLoad.Enabled = true;
             seekLoad.Start();
 
-            Thread seekThread = new Thread(() =>
+            if (seekThread is not null)
             {
-                GenerateTreeNode(path);
+                seekThreadCts.Cancel();
+                seekThreadCts.Dispose();
+            }
+
+            seekThread = new Thread(() =>
+            {
+                seekThreadCts = new CancellationTokenSource();
+                GenerateTreeNode(path, seekThreadCts.Token);
             }
             );
             seekThread.Start();
         }
 
-        private void GenerateTreeNode(string path)
+        private void GenerateTreeNode(string path, CancellationToken cancellationToken)
         {
             try
             {
-                NodeGenerator.SetRoot(path);
-                Dir root = NodeGenerator.Root;
-
-                List<TreeNode> rootNodes = NodeTreeUIGenerator.Generate(root);
+                Dir root = NodeGenerator.Generate(path, cancellationToken);
+                List<TreeNode> rootNodes = NodeTreeUIGenerator.Generate(root, cancellationToken);
+                
+                string msgCountNodes = $"{NodeTreeUIGenerator.Count}";
+                if (NodeTreeUIGenerator.Count > 0)
+                {
+                    msgCountNodes += " éléments trouvés";
+                }
+                else
+                {
+                    msgCountNodes += " élément trouvé";
+                }
 
                 this.Invoke(new MethodInvoker(() => {
-                        nodeTreeUI.SetRootNode(rootNodes[0]);
-                        seekLoad.Stop();
+                    nodeTreeUI.SetRootNode(rootNodes[0]);
+                    seekLoad.Stop();
 
-                        Log.Msg($"Recherche terminé.");
+                    seekThread = null;
+
+                    Log.Msg($"Recherche terminé : {msgCountNodes}");
                 }));
             }
             catch (ArgumentException)
@@ -88,6 +110,20 @@ namespace TreeViewUI
                 {
                     seekLoad.Stop();
                     GenerateNotFound();
+                }));
+            }
+            catch (OperationCanceledException)
+            {
+                this.Invoke(new MethodInvoker(() =>
+                {
+                    seekLoad.Stop();
+                }));
+            }
+            finally
+            {
+                this.Invoke(new MethodInvoker(() =>
+                {
+                    seekThread = null;
                 }));
             }
         }

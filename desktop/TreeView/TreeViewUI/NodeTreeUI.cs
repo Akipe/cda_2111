@@ -46,36 +46,14 @@ namespace TreeViewUI
             TriggerCollapseExpandsBtn(false);
         }
 
-        public void ExpandsAllNodes()
-        {
-            if (Root is not null)
-            {
-                TreeView.BeginUpdate();
-                ExpandNode(TreeView.Nodes[0]);
-                TreeView.EndUpdate();
-            }
-        }
-
         public void CollapseAllNodes()
         {
             if (Root is not null)
             {
                 TreeView.BeginUpdate();
-                CollapseNode(TreeView.Nodes[0]);
+                TreeView.CollapseAll();
+                //CollapseNode(TreeView.Nodes[0]);
                 TreeView.EndUpdate();
-            }
-        }
-
-        private void ExpandNode(TreeNode node)
-        {
-            node.Expand();
-
-            if (node.Nodes.Count > 0)
-            {
-                foreach(TreeNode subNode in node.Nodes)
-                {
-                    ExpandNode(subNode);
-                }
             }
         }
 
@@ -88,6 +66,31 @@ namespace TreeViewUI
                 foreach (TreeNode subNode in node.Nodes)
                 {
                     CollapseNode(subNode);
+                }
+            }
+        }
+
+        public void ExpandsAllNodes()
+        {
+            if (Root is not null)
+            {
+                TreeView.BeginUpdate();
+                TreeView.ExpandAll();
+                //ExpandNode(TreeView.Nodes[0]);
+                TreeView.EndUpdate();
+            }
+
+        }
+
+        private void ExpandNode(TreeNode node)
+        {
+            node.Expand();
+
+            if (node.Nodes.Count > 0)
+            {
+                foreach(TreeNode subNode in node.Nodes)
+                {
+                    ExpandNode(subNode);
                 }
             }
         }

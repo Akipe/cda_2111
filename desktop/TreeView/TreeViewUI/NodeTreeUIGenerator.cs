@@ -10,30 +10,58 @@ namespace TreeViewUI
 {
     public static class NodeTreeUIGenerator
     {
+        private static int _count = 0;
+
+        public static int Count
+        {
+            get
+            {
+                return _count;
+            }
+
+            private set
+            {
+                _count = value;
+            }
+        }
+
         public static List<TreeNode> Generate(Dir dir)
         {
+            return Generate(dir, new CancellationToken());
+        }
+
+        public static List<TreeNode> Generate(Dir dir, CancellationToken cancelToken)
+        {
+            Count = 0;
             List<TreeNode> rootNodes = new List<TreeNode>();
             rootNodes.Add(new TreeNode(dir.ToString()));
 
-            GenerateTree(dir, rootNodes[0]);
+            GenerateTree(dir, rootNodes[0], cancelToken);
 
             return rootNodes;
         }
 
         private static void GenerateTree(
             Dir dir,
-            TreeNode collection
+            TreeNode collection,
+            CancellationToken cancelToken
         )
         {
+            cancelToken.ThrowIfCancellationRequested();
+
             for (int indexNode = 0; indexNode < dir.Children.Count; indexNode++)
             {
+                cancelToken.ThrowIfCancellationRequested();
+
                 collection.Nodes.Add(dir.Children[indexNode].ToString());
+                Count++;
 
                 if (dir.Children[indexNode] is Dir subDir)
                 {
                     GenerateTree(
                         subDir,
-                        collection.Nodes[indexNode]
+                        collection.Nodes[indexNode],
+                        cancelToken
                     );
 
                     if (collection.Nodes[indexNode].Nodes.Count == 0)

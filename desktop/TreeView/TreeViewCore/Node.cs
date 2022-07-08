@@ -41,7 +41,7 @@ namespace TreeViewCore
         public Dir? Parent
         {
             get;
-            private set;
+            protected set;
         }
 
         public override string ToString()

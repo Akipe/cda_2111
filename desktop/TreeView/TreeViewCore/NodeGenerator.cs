@@ -8,7 +8,16 @@ namespace TreeViewCore
 {
     public static class NodeGenerator
     {
-        public static void SetRoot(string dirPath)
+        private static EnumerationOptions nodeSearchOption = new EnumerationOptions {
+            IgnoreInaccessible = true
+        };
+
+        public static Dir Generate(string dirPath)
+        {
+            return Generate(dirPath, new CancellationToken());
+        }
+
+        public static Dir Generate(string dirPath, CancellationToken cancelToken)
         {
             if (!System.IO.Directory.Exists(dirPath))
             {
@@ -17,8 +26,11 @@ namespace TreeViewCore
                 );
             }
 
-            Root = GenerateChildren(new Dir(dirPath));
-            Root.Name = Root.Path + Root.Name;
+            Root = GenerateChildren(new Dir(dirPath), cancelToken);
+            //Root.Name = Root.Path + Root.Name;
+            Root.Name = Root.Path;
+
+            return Root;
         }
 
         public static Dir Root
@@ -26,14 +38,22 @@ namespace TreeViewCore
             get; private set;
         }
 
-        private static Dir GenerateChildren(Dir currentDir)
-        {
+        private static Dir GenerateChildren(
+            Dir currentDir,
+            CancellationToken cancelToken
+        ) {
+            cancelToken.ThrowIfCancellationRequested();
+
             string[]? dirs = null;
 
             try
             {
                 dirs =
-                    System.IO.Directory.GetDirectories(currentDir.Path);
+                    System.IO.Directory.GetDirectories(
+                        currentDir.Path,
+                        "*",
+                        nodeSearchOption
+                    );
             }
             catch { }
             finally
@@ -42,9 +62,11 @@ namespace TreeViewCore
                 {
                     foreach (string dir in dirs)
                     {
+                        cancelToken.ThrowIfCancellationRequested();
+
                         Dir subDir = new node.Dir(Path.GetFileName(dir), currentDir);
                         currentDir.Children.Add(
-                            GenerateChildren(subDir)
+                            GenerateChildren(subDir, cancelToken)
                         );
                     }
                 }
@@ -54,7 +76,11 @@ namespace TreeViewCore
             try
             {
                 files =
-                    System.IO.Directory.GetFiles(currentDir.Path);
+                    System.IO.Directory.GetFiles(
+                        currentDir.Path,
+                        "*",
+                        nodeSearchOption
+                    );
             }
             catch { }
             finally
@@ -63,6 +89,8 @@ namespace TreeViewCore
                 {
                     foreach (string file in files)
                     {
+                        cancelToken.ThrowIfCancellationRequested();
+
                         currentDir.Children.Add(
                             new node.File(Path.GetFileName(file), currentDir)
                         );

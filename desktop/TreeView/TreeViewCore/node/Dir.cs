@@ -22,5 +22,22 @@ namespace TreeViewCore.node
         {
             get; private set;
         }
+
+        public int CountSubNode
+        {
+            get
+            {
+                int currentNbSubNode = Children.Count;
+                foreach(Node child in Children)
+                {
+                    if (child is Dir subDir)
+                    {
+                        currentNbSubNode += subDir.CountSubNode;
+                    }
+                }
+
+                return currentNbSubNode;
+            }
+        }
     }
 }
