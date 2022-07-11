@@ -27,7 +27,6 @@ namespace TreeViewCore
             }
 
             Root = GenerateChildren(new Dir(dirPath), cancelToken);
-            //Root.Name = Root.Path + Root.Name;
             Root.Name = Root.Path;
 
             return Root;
@@ -56,21 +55,20 @@ namespace TreeViewCore
                     );
             }
             catch { }
-            finally
-            {
-                if (dirs is not null && dirs.Length > 0)
-                {
-                    foreach (string dir in dirs)
-                    {
-                        cancelToken.ThrowIfCancellationRequested();
 
-                        Dir subDir = new node.Dir(Path.GetFileName(dir), currentDir);
-                        currentDir.Children.Add(
-                            GenerateChildren(subDir, cancelToken)
-                        );
-                    }
+            if (dirs is not null && dirs.Length > 0)
+            {
+                foreach (string dir in dirs)
+                {
+                    cancelToken.ThrowIfCancellationRequested();
+
+                    Dir subDir = new node.Dir(Path.GetFileName(dir), currentDir);
+                    currentDir.Children.Add(
+                        GenerateChildren(subDir, cancelToken)
+                    );
                 }
             }
+
             string[]? files = null;
 
             try
@@ -83,18 +81,16 @@ namespace TreeViewCore
                     );
             }
             catch { }
-            finally
-            {
-                if (files is not null && files.Length > 0)
-                {
-                    foreach (string file in files)
-                    {
-                        cancelToken.ThrowIfCancellationRequested();
 
-                        currentDir.Children.Add(
-                            new node.File(Path.GetFileName(file), currentDir)
-                        );
-                    }
+            if (files is not null && files.Length > 0)
+            {
+                foreach (string file in files)
+                {
+                    cancelToken.ThrowIfCancellationRequested();
+
+                    currentDir.Children.Add(
+                        new node.File(Path.GetFileName(file), currentDir)
+                    );
                 }
             }
 

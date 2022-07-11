@@ -58,7 +58,8 @@ namespace TreeViewUI
 
                 if (dir.Children[indexNode] is Dir subDir)
                 {
-                    GenerateTree(
+                    // todo
+                    /*GenerateTree(
                         subDir,
                         collection.Nodes[indexNode],
                         cancelToken
@@ -67,6 +68,19 @@ namespace TreeViewUI
                     if (collection.Nodes[indexNode].Nodes.Count == 0)
                     {
                         collection.Nodes[indexNode].Nodes.Add(String.Empty);
+                    }*/
+
+                    if (subDir.Children.Count == 0)
+                    {
+                        collection.Nodes[indexNode].Nodes.Add(String.Empty);
+                    }
+                    else
+                    {
+                        GenerateTree(
+                        subDir,
+                        collection.Nodes[indexNode],
+                        cancelToken
+                        );
                     }
                 }
             }

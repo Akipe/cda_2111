@@ -31,8 +31,8 @@ namespace TreeViewUI
         {
             Root = node;
 
-            TreeView.Nodes.Clear();
             TreeView.BeginUpdate();
+            TreeView.Nodes.Clear();
             TreeView.Nodes.Add(node);
             TreeView.EndUpdate();
             TriggerCollapseExpandsBtn(true);
@@ -42,7 +42,9 @@ namespace TreeViewUI
         {
             Root = null;
 
+            TreeView.BeginUpdate();
             TreeView.Nodes.Clear();
+            TreeView.EndUpdate();
             TriggerCollapseExpandsBtn(false);
         }
 

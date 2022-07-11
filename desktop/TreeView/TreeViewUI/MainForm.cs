@@ -65,6 +65,18 @@ namespace TreeViewUI
 
             if (seekThread is not null)
             {
+                DialogResult response = MessageBox.Show(
+                    "Êtes-vous sûr de stopper la recherche actuelle ?",
+                    "Nouvelle recherche",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning
+                );
+
+                if (response != DialogResult.Yes)
+                {
+                    return;
+                }
+
                 seekThreadCts.Cancel();
                 seekThreadCts.Dispose();
             }
@@ -86,13 +98,11 @@ namespace TreeViewUI
                 List<TreeNode> rootNodes = NodeTreeUIGenerator.Generate(root, cancellationToken);
                 
                 string msgCountNodes = $"{NodeTreeUIGenerator.Count}";
+
+                string s = "";
                 if (NodeTreeUIGenerator.Count > 0)
                 {
-                    msgCountNodes += " éléments trouvés";
-                }
-                else
-                {
-                    msgCountNodes += " élément trouvé";
+                    s = "s";
                 }
 
                 this.Invoke(new MethodInvoker(() => {
@@ -101,7 +111,7 @@ namespace TreeViewUI
 
                     seekThread = null;
 
-                    Log.Msg($"Recherche terminé : {msgCountNodes}");
+                    Log.Msg($"Recherche terminé : élément{s} trouvé{s}");
                 }));
             }
             catch (ArgumentException)

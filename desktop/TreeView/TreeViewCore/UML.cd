@@ -10,23 +10,26 @@
   <Class Name="TreeViewCore.node.Dir">
     <Position X="4.75" Y="3.75" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAQAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>node\Dir.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="TreeViewCore.node.File">
-    <Position X="7" Y="3.5" Width="1.75" />
+    <Position X="7" Y="3.75" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>node\File.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="TreeViewCore.NodeGenerator">
-    <Position X="3" Y="0.75" Width="1.75" />
+    <Position X="1.75" Y="1.25" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAACAAAAAAAACAAAAAAAAAAAAAAAAAAAAAIAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAACAABAAAAAAAAAAAAAAAAAAIAEAAAAA=</HashCode>
       <FileName>NodeGenerator.cs</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Root" />
+    </ShowAsAssociation>
   </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>
