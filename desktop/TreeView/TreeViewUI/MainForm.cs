@@ -97,10 +97,10 @@ namespace TreeViewUI
                 Dir root = NodeGenerator.Generate(path, cancellationToken);
                 List<TreeNode> rootNodes = NodeTreeUIGenerator.Generate(root, cancellationToken);
                 
-                string msgCountNodes = $"{NodeTreeUIGenerator.Count}";
+                string msgCountNodes = $"{NodeTreeUIGenerator.NbSubNodes}";
 
                 string s = "";
-                if (NodeTreeUIGenerator.Count > 0)
+                if (NodeTreeUIGenerator.NbSubNodes > 0)
                 {
                     s = "s";
                 }

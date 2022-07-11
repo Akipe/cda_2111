@@ -10,19 +10,10 @@ namespace TreeViewUI
 {
     public static class NodeTreeUIGenerator
     {
-        private static int _count = 0;
-
-        public static int Count
+        public static int NbSubNodes
         {
-            get
-            {
-                return _count;
-            }
-
-            private set
-            {
-                _count = value;
-            }
+            get;
+            private set;
         }
 
         public static List<TreeNode> Generate(Dir dir)
@@ -32,7 +23,7 @@ namespace TreeViewUI
 
         public static List<TreeNode> Generate(Dir dir, CancellationToken cancelToken)
         {
-            Count = 0;
+            NbSubNodes = 0;
             List<TreeNode> rootNodes = new List<TreeNode>();
             rootNodes.Add(new TreeNode(dir.ToString()));
 
@@ -54,22 +45,10 @@ namespace TreeViewUI
                 cancelToken.ThrowIfCancellationRequested();
 
                 collection.Nodes.Add(dir.Children[indexNode].ToString());
-                Count++;
+                NbSubNodes++;
 
                 if (dir.Children[indexNode] is Dir subDir)
                 {
-                    // todo
-                    /*GenerateTree(
-                        subDir,
-                        collection.Nodes[indexNode],
-                        cancelToken
-                    );
-
-                    if (collection.Nodes[indexNode].Nodes.Count == 0)
-                    {
-                        collection.Nodes[indexNode].Nodes.Add(String.Empty);
-                    }*/
-
                     if (subDir.Children.Count == 0)
                     {
                         collection.Nodes[indexNode].Nodes.Add(String.Empty);
@@ -77,9 +56,9 @@ namespace TreeViewUI
                     else
                     {
                         GenerateTree(
-                        subDir,
-                        collection.Nodes[indexNode],
-                        cancelToken
+                            subDir,
+                            collection.Nodes[indexNode],
+                            cancelToken
                         );
                     }
                 }
