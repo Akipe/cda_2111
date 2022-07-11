@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ToutEmbalCore.BoxProduction">
+    <Position X="1.5" Y="1.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>EAAABABAACACAAAAABAICASBAAEQIAAAIAAABABAJgA=</HashCode>
+      <FileName>BoxProduction.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ToutEmbalCore.ProducerManager">
+    <Position X="6.25" Y="1.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAACAAAAAAAAAAAAAAAAAQAAAAIAAAAACAAAA=</HashCode>
+      <FileName>ProducerManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="ToutEmbalCore.IProducer">
+    <Position X="3.75" Y="1.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>EAAAAABAACAAAAAAABAAAAAAAAAAAAAAIAAAAAAABAA=</HashCode>
+      <FileName>IProducer.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="ToutEmbalCore.ProducerState">
+    <Position X="8.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAACAAAAAgAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ProducerState.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
