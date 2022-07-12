@@ -9,9 +9,13 @@ namespace ToutEmbalCore
     {
         void Start();
         void Stop();
-        long GetProduction();
+        void Shutdown();
+        int GetProduction();
         double GetLastHourRateDefect();
         double GetTotalRateDefect();
         string GetName();
+        int GetMilisecondsForCreateOne();
+        int GetNbWanted();
+        public event EventHandler OnMaxProduction;
     }
 }

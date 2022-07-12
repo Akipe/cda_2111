@@ -7,43 +7,41 @@ namespace ToutEmbalCore
 {
     public class ProducerManager
     {
-        public List<IProducer> Producers
+        public IProducer Unit
         {
             get;
             private set;
         }
 
-        public ProducerManager()
+        public Thread Runner
         {
-            Producers = new List<IProducer>();
+            get;
+            private set;
         }
 
-        public void Add(IProducer boxProduction)
+        public ProducerManager(IProducer unit)
         {
-            Producers.Add(boxProduction);
-        }
+            Unit = unit;
 
-        public void Stop(string name)
-        {
-            GetProducerFromName(name).Stop();
-        }
-
-        public void Start(string name)
-        {
-            GetProducerFromName(name).Start();
-        }
-
-        private IProducer GetProducerFromName(string name)
-        {
-            foreach (IProducer boxProduction in Producers)
+            Runner = new Thread(() =>
             {
-                if (String.Equals(boxProduction.GetName(), name))
-                {
-                    return boxProduction;
-                }
-            }
+                Unit.Start();
+            });
+        }
 
-            throw new ArgumentException("There is no elements found.");
+        public void Start()
+        {
+            Runner.Start();
+        }
+
+        public void Stop()
+        {
+            Unit.Stop();
+        }
+
+        public void Shutdown()
+        {
+            Unit.Shutdown();
         }
     }
 }

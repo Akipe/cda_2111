@@ -7,14 +7,16 @@ namespace ToutEmbalCore
 {
     public class BoxProduction : IProducer
     {
-        private const int MIN_RANDOM_DEFECT = 100;
-        private const int MAX_RANDOM_DEFECT = 1000;
-        private const int MAKE_DEFECT = 1;
+        private int _productivityPerHour;
 
-        private long _productivityPerHour;
-        private int _defectCounter;
+        public event EventHandler OnMaxProduction;
 
-        public long NbDone
+        public int RateDefectPercent
+        {
+            get; private set;
+        }
+
+        public int NbDone
         {
             get; private set;
         }
@@ -24,7 +26,7 @@ namespace ToutEmbalCore
             get; private set;
         }
 
-        public long ProductivityPerHour
+        public int ProductivityPerHour
         {
             get
             {
@@ -34,48 +36,23 @@ namespace ToutEmbalCore
             set
             {
                 _productivityPerHour = value;
-                MilisecondsForOneProduct = 3600000 / (int)value;
+                MilisecondsForOneProduct = 3600000 / value;
             }
         }
 
-        public long? MaxWanted
+        public int MaxWanted
         {
             get; set;
         }
 
         public ProducerState State
         {
-            get; set;
+            get; private set;
         }
 
         public string Name
         {
             get; set;
-        }
-
-        private int DefectCounter
-        {
-            get
-            {
-                if (_defectCounter > 1)
-                {
-                    return --_defectCounter;
-                }
-
-                _defectCounter = GenerateRandomDefectCounter();
-
-                return _defectCounter;
-            }
-            set
-            {
-                _defectCounter = value;
-            }
-        }
-
-        private int GenerateRandomDefectCounter()
-        {
-            Random rnd = new Random();
-            return rnd.Next(MIN_RANDOM_DEFECT, MAX_RANDOM_DEFECT);
         }
 
         public int MilisecondsForOneProduct
@@ -85,30 +62,36 @@ namespace ToutEmbalCore
 
         public BoxProduction(
             string name,
-            long productivityPerHour,
-            long? maxWanted
+            int productivityPerHour,
+            int maxWanted,
+            int rateDefectPercent
         )
         {
+            if (rateDefectPercent < 0 && rateDefectPercent > 100)
+            {
+                throw new Exception(
+                    "You have to set an rate defect between 0 and 100 (for a percent)"
+                );
+            }
+
             Name = name;
             ProductivityPerHour = productivityPerHour;
             MaxWanted = maxWanted;
+            RateDefectPercent = rateDefectPercent;
 
             NbDone = 0;
-            DefectCounter = GenerateRandomDefectCounter();
             Defects = new List<IProducerDefect>();
             State = ProducerState.stopped;
         }
 
-        public BoxProduction(
-            string name,
-            long productivityPerHour
-        ) : this(name, productivityPerHour, null)
-        {
-        }
-
         public double GetTotalRateDefect()
         {
-            return Defects.Count;
+            if (NbDone == 0)
+            {
+                return 0.0;
+            }
+
+            return (double)Defects.Count / (double)NbDone;
         }
 
         public double GetLastHourRateDefect()
@@ -118,13 +101,15 @@ namespace ToutEmbalCore
 
             foreach (IProducerDefect defect in Defects)
             {
-                if (defect.GetWhenOccurred() > DateTime.Now - oneHour)
+                var dateError = defect.GetWhenOccurred();
+                var nowMinusOneHour = DateTime.Now - oneHour;
+                if (defect.GetWhenOccurred() > (DateTime.Now - oneHour))
                 {
                     countDefect++;
                 }
             }
 
-            return countDefect;
+            return (double)countDefect / (double)ProductivityPerHour;
         }
 
         public string GetName()
@@ -132,7 +117,7 @@ namespace ToutEmbalCore
             return Name;
         }
 
-        public long GetProduction()
+        public int GetProduction()
         {
             return NbDone;
         }
@@ -150,13 +135,23 @@ namespace ToutEmbalCore
             {
                 Thread.Sleep(MilisecondsForOneProduct);
 
-                if (DefectCounter == MAKE_DEFECT)
+                if (IsBoxDefect())
                 {
                     Defects.Add(new ProduceDefect());
                 }
-                else
+                //else
+                //{
+                NbDone++;
+                //}
+
+                if (NbDone == MaxWanted)
                 {
-                    NbDone++;
+                    if (OnMaxProduction is not null)
+                    {
+                        OnMaxProduction(this, new EventArgs());
+                    }
+
+                    Shutdown();
                 }
             }
         }
@@ -164,6 +159,29 @@ namespace ToutEmbalCore
         public void Stop()
         {
             State = ProducerState.stopped;
+        }
+
+        public void Shutdown()
+        {
+            State = ProducerState.shutdown;
+        }
+
+        private bool IsBoxDefect()
+        {
+            Random rnd = new Random();
+            int luck = rnd.Next(0, 101);
+
+            return RateDefectPercent > luck;
+        }
+
+        public int GetMilisecondsForCreateOne()
+        {
+            return MilisecondsForOneProduct;
+        }
+
+        public int GetNbWanted()
+        {
+            return MaxWanted;
         }
     }
 }

@@ -20,7 +20,7 @@ namespace ToutEmbalCore
         }
         public DateTime GetWhenOccurred()
         {
-            throw new NotImplementedException();
+            return WhenOccured;
         }
     }
 }
