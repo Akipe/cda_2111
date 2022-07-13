@@ -8,8 +8,9 @@ namespace ToutEmbalCore
 {
     public enum ProducerState
     {
-        started,
+        created,
         stopped,
+        started,
         shutdown
     }
 }

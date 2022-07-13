@@ -28,23 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.menuApp = new System.Windows.Forms.MenuStrip();
             this.fichierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuiQuitApp = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuiStopApp = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuiShutdownProduction = new System.Windows.Forms.ToolStripMenuItem();
             this.productionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuiInit = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuiInitA = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuiInitB = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuiInitC = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuiShutdown = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuiShutdownA = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuiShutdownB = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuiShutdownC = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuiResume = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuiResumeA = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuiResumeB = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuiResumeC = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuiLaunch = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuiLaunchA = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuiLaunchB = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuiLaunchC = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuiStop = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuiStopA = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuiStopB = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuiStopC = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuiStart = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuiStartA = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuiStartB = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuiStartC = new System.Windows.Forms.ToolStripMenuItem();
             this.tabcProducersSpec = new System.Windows.Forms.TabControl();
             this.tabpA = new System.Windows.Forms.TabPage();
             this.producerSpecsA = new ToutEmbalUI.ProducerSpecs();
@@ -55,11 +56,27 @@
             this.producerLoadingA = new ToutEmbalUI.ProducerLoading();
             this.producerLoadingB = new ToutEmbalUI.ProducerLoading();
             this.producerLoadingC = new ToutEmbalUI.ProducerLoading();
+            this.statusBar = new System.Windows.Forms.StatusStrip();
+            this.statusProdA = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusProdB = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusProdC = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusTime = new System.Windows.Forms.ToolStripStatusLabel();
+            this.timerTime = new System.Windows.Forms.Timer(this.components);
+            this.bALaunch = new System.Windows.Forms.Button();
+            this.bAStop = new System.Windows.Forms.Button();
+            this.bAStart = new System.Windows.Forms.Button();
+            this.bBStart = new System.Windows.Forms.Button();
+            this.bBStop = new System.Windows.Forms.Button();
+            this.bBLaunch = new System.Windows.Forms.Button();
+            this.bCStart = new System.Windows.Forms.Button();
+            this.bCStop = new System.Windows.Forms.Button();
+            this.bCLaunch = new System.Windows.Forms.Button();
             this.menuApp.SuspendLayout();
             this.tabcProducersSpec.SuspendLayout();
             this.tabpA.SuspendLayout();
             this.tabpB.SuspendLayout();
             this.tabpC.SuspendLayout();
+            this.statusBar.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuApp
@@ -69,7 +86,7 @@
             this.productionToolStripMenuItem});
             this.menuApp.Location = new System.Drawing.Point(0, 0);
             this.menuApp.Name = "menuApp";
-            this.menuApp.Size = new System.Drawing.Size(486, 24);
+            this.menuApp.Size = new System.Drawing.Size(529, 24);
             this.menuApp.TabIndex = 2;
             this.menuApp.Text = "menuStrip1";
             // 
@@ -77,7 +94,7 @@
             // 
             this.fichierToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuiQuitApp,
-            this.menuiStopApp});
+            this.menuiShutdownProduction});
             this.fichierToolStripMenuItem.Name = "fichierToolStripMenuItem";
             this.fichierToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
             this.fichierToolStripMenuItem.Text = "Fichier";
@@ -87,120 +104,125 @@
             this.menuiQuitApp.Name = "menuiQuitApp";
             this.menuiQuitApp.Size = new System.Drawing.Size(188, 22);
             this.menuiQuitApp.Text = "Quitter";
+            this.menuiQuitApp.Click += new System.EventHandler(this.menuiQuitApp_Click);
             // 
-            // menuiStopApp
+            // menuiShutdownProduction
             // 
-            this.menuiStopApp.Name = "menuiStopApp";
-            this.menuiStopApp.Size = new System.Drawing.Size(188, 22);
-            this.menuiStopApp.Text = "Terminer l\'application";
-            this.menuiStopApp.Click += new System.EventHandler(this.Event_ShutdownAll);
+            this.menuiShutdownProduction.Name = "menuiShutdownProduction";
+            this.menuiShutdownProduction.Size = new System.Drawing.Size(188, 22);
+            this.menuiShutdownProduction.Text = "Terminer l\'application";
+            this.menuiShutdownProduction.Click += new System.EventHandler(this.Event_ShutdownAll);
             // 
             // productionToolStripMenuItem
             // 
             this.productionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuiInit,
-            this.menuiShutdown,
-            this.menuiResume});
+            this.menuiLaunch,
+            this.menuiStop,
+            this.menuiStart});
             this.productionToolStripMenuItem.Name = "productionToolStripMenuItem";
             this.productionToolStripMenuItem.Size = new System.Drawing.Size(78, 20);
             this.productionToolStripMenuItem.Text = "Production";
             // 
-            // menuiInit
+            // menuiLaunch
             // 
-            this.menuiInit.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuiInitA,
-            this.menuiInitB,
-            this.menuiInitC});
-            this.menuiInit.Name = "menuiInit";
-            this.menuiInit.Size = new System.Drawing.Size(180, 22);
-            this.menuiInit.Text = "Démarrer";
+            this.menuiLaunch.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuiLaunchA,
+            this.menuiLaunchB,
+            this.menuiLaunchC});
+            this.menuiLaunch.Name = "menuiLaunch";
+            this.menuiLaunch.Size = new System.Drawing.Size(127, 22);
+            this.menuiLaunch.Text = "Démarrer";
             // 
-            // menuiInitA
+            // menuiLaunchA
             // 
-            this.menuiInitA.Name = "menuiInitA";
-            this.menuiInitA.Size = new System.Drawing.Size(180, 22);
-            this.menuiInitA.Text = "A";
-            this.menuiInitA.Click += new System.EventHandler(this.Event_StartProduction);
+            this.menuiLaunchA.Name = "menuiLaunchA";
+            this.menuiLaunchA.Size = new System.Drawing.Size(82, 22);
+            this.menuiLaunchA.Text = "A";
+            this.menuiLaunchA.Click += new System.EventHandler(this.Event_LaunchProduction);
             // 
-            // menuiInitB
+            // menuiLaunchB
             // 
-            this.menuiInitB.Name = "menuiInitB";
-            this.menuiInitB.Size = new System.Drawing.Size(180, 22);
-            this.menuiInitB.Text = "B";
-            this.menuiInitB.Click += new System.EventHandler(this.Event_StartProduction);
+            this.menuiLaunchB.Name = "menuiLaunchB";
+            this.menuiLaunchB.Size = new System.Drawing.Size(82, 22);
+            this.menuiLaunchB.Text = "B";
+            this.menuiLaunchB.Click += new System.EventHandler(this.Event_LaunchProduction);
             // 
-            // menuiInitC
+            // menuiLaunchC
             // 
-            this.menuiInitC.Name = "menuiInitC";
-            this.menuiInitC.Size = new System.Drawing.Size(180, 22);
-            this.menuiInitC.Text = "C";
-            this.menuiInitC.Click += new System.EventHandler(this.Event_StartProduction);
+            this.menuiLaunchC.Name = "menuiLaunchC";
+            this.menuiLaunchC.Size = new System.Drawing.Size(82, 22);
+            this.menuiLaunchC.Text = "C";
+            this.menuiLaunchC.Click += new System.EventHandler(this.Event_LaunchProduction);
             // 
-            // menuiShutdown
+            // menuiStop
             // 
-            this.menuiShutdown.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuiShutdownA,
-            this.menuiShutdownB,
-            this.menuiShutdownC});
-            this.menuiShutdown.Name = "menuiShutdown";
-            this.menuiShutdown.Size = new System.Drawing.Size(180, 22);
-            this.menuiShutdown.Text = "Arrêter";
-            this.menuiShutdown.Click += new System.EventHandler(this.Event_StopProduction);
+            this.menuiStop.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuiStopA,
+            this.menuiStopB,
+            this.menuiStopC});
+            this.menuiStop.Name = "menuiStop";
+            this.menuiStop.Size = new System.Drawing.Size(127, 22);
+            this.menuiStop.Text = "Arrêter";
+            this.menuiStop.Click += new System.EventHandler(this.Event_StopProduction);
             // 
-            // menuiShutdownA
+            // menuiStopA
             // 
-            this.menuiShutdownA.Name = "menuiShutdownA";
-            this.menuiShutdownA.Size = new System.Drawing.Size(180, 22);
-            this.menuiShutdownA.Text = "A";
+            this.menuiStopA.Name = "menuiStopA";
+            this.menuiStopA.Size = new System.Drawing.Size(82, 22);
+            this.menuiStopA.Text = "A";
+            this.menuiStopA.Click += new System.EventHandler(this.Event_StopProduction);
             // 
-            // menuiShutdownB
+            // menuiStopB
             // 
-            this.menuiShutdownB.Name = "menuiShutdownB";
-            this.menuiShutdownB.Size = new System.Drawing.Size(180, 22);
-            this.menuiShutdownB.Text = "B";
-            this.menuiShutdownB.Click += new System.EventHandler(this.Event_StopProduction);
+            this.menuiStopB.Name = "menuiStopB";
+            this.menuiStopB.Size = new System.Drawing.Size(82, 22);
+            this.menuiStopB.Text = "B";
+            this.menuiStopB.Click += new System.EventHandler(this.Event_StopProduction);
             // 
-            // menuiShutdownC
+            // menuiStopC
             // 
-            this.menuiShutdownC.Name = "menuiShutdownC";
-            this.menuiShutdownC.Size = new System.Drawing.Size(180, 22);
-            this.menuiShutdownC.Text = "C";
-            this.menuiShutdownC.Click += new System.EventHandler(this.Event_StopProduction);
+            this.menuiStopC.Name = "menuiStopC";
+            this.menuiStopC.Size = new System.Drawing.Size(82, 22);
+            this.menuiStopC.Text = "C";
+            this.menuiStopC.Click += new System.EventHandler(this.Event_StopProduction);
             // 
-            // menuiResume
+            // menuiStart
             // 
-            this.menuiResume.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuiResumeA,
-            this.menuiResumeB,
-            this.menuiResumeC});
-            this.menuiResume.Name = "menuiResume";
-            this.menuiResume.Size = new System.Drawing.Size(180, 22);
-            this.menuiResume.Text = "Continuer";
+            this.menuiStart.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuiStartA,
+            this.menuiStartB,
+            this.menuiStartC});
+            this.menuiStart.Name = "menuiStart";
+            this.menuiStart.Size = new System.Drawing.Size(127, 22);
+            this.menuiStart.Text = "Continuer";
             // 
-            // menuiResumeA
+            // menuiStartA
             // 
-            this.menuiResumeA.Name = "menuiResumeA";
-            this.menuiResumeA.Size = new System.Drawing.Size(82, 22);
-            this.menuiResumeA.Text = "A";
+            this.menuiStartA.Name = "menuiStartA";
+            this.menuiStartA.Size = new System.Drawing.Size(82, 22);
+            this.menuiStartA.Text = "A";
+            this.menuiStartA.Click += new System.EventHandler(this.Event_StartProduction);
             // 
-            // menuiResumeB
+            // menuiStartB
             // 
-            this.menuiResumeB.Name = "menuiResumeB";
-            this.menuiResumeB.Size = new System.Drawing.Size(82, 22);
-            this.menuiResumeB.Text = "B";
+            this.menuiStartB.Name = "menuiStartB";
+            this.menuiStartB.Size = new System.Drawing.Size(82, 22);
+            this.menuiStartB.Text = "B";
+            this.menuiStartB.Click += new System.EventHandler(this.Event_StartProduction);
             // 
-            // menuiResumeC
+            // menuiStartC
             // 
-            this.menuiResumeC.Name = "menuiResumeC";
-            this.menuiResumeC.Size = new System.Drawing.Size(82, 22);
-            this.menuiResumeC.Text = "C";
+            this.menuiStartC.Name = "menuiStartC";
+            this.menuiStartC.Size = new System.Drawing.Size(82, 22);
+            this.menuiStartC.Text = "C";
+            this.menuiStartC.Click += new System.EventHandler(this.Event_StartProduction);
             // 
             // tabcProducersSpec
             // 
             this.tabcProducersSpec.Controls.Add(this.tabpA);
             this.tabcProducersSpec.Controls.Add(this.tabpB);
             this.tabcProducersSpec.Controls.Add(this.tabpC);
-            this.tabcProducersSpec.Location = new System.Drawing.Point(35, 27);
+            this.tabcProducersSpec.Location = new System.Drawing.Point(35, 59);
             this.tabcProducersSpec.Name = "tabcProducersSpec";
             this.tabcProducersSpec.SelectedIndex = 0;
             this.tabcProducersSpec.Size = new System.Drawing.Size(378, 161);
@@ -265,7 +287,7 @@
             // 
             // producerLoadingA
             // 
-            this.producerLoadingA.Location = new System.Drawing.Point(12, 194);
+            this.producerLoadingA.Location = new System.Drawing.Point(12, 226);
             this.producerLoadingA.Manager = null;
             this.producerLoadingA.Name = "producerLoadingA";
             this.producerLoadingA.Size = new System.Drawing.Size(459, 38);
@@ -273,7 +295,7 @@
             // 
             // producerLoadingB
             // 
-            this.producerLoadingB.Location = new System.Drawing.Point(12, 238);
+            this.producerLoadingB.Location = new System.Drawing.Point(12, 270);
             this.producerLoadingB.Manager = null;
             this.producerLoadingB.Name = "producerLoadingB";
             this.producerLoadingB.Size = new System.Drawing.Size(459, 40);
@@ -281,17 +303,146 @@
             // 
             // producerLoadingC
             // 
-            this.producerLoadingC.Location = new System.Drawing.Point(11, 284);
+            this.producerLoadingC.Location = new System.Drawing.Point(11, 316);
             this.producerLoadingC.Manager = null;
             this.producerLoadingC.Name = "producerLoadingC";
             this.producerLoadingC.Size = new System.Drawing.Size(459, 38);
             this.producerLoadingC.TabIndex = 6;
             // 
+            // statusBar
+            // 
+            this.statusBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.statusProdA,
+            this.statusProdB,
+            this.statusProdC,
+            this.statusTime});
+            this.statusBar.Location = new System.Drawing.Point(0, 381);
+            this.statusBar.Name = "statusBar";
+            this.statusBar.Size = new System.Drawing.Size(529, 22);
+            this.statusBar.TabIndex = 7;
+            this.statusBar.Text = "statusStrip1";
+            // 
+            // statusProdA
+            // 
+            this.statusProdA.Name = "statusProdA";
+            this.statusProdA.Size = new System.Drawing.Size(71, 17);
+            this.statusProdA.Text = "statusProdA";
+            // 
+            // statusProdB
+            // 
+            this.statusProdB.Name = "statusProdB";
+            this.statusProdB.Size = new System.Drawing.Size(70, 17);
+            this.statusProdB.Text = "statusProdB";
+            // 
+            // statusProdC
+            // 
+            this.statusProdC.Name = "statusProdC";
+            this.statusProdC.Size = new System.Drawing.Size(71, 17);
+            this.statusProdC.Text = "statusProdC";
+            // 
+            // statusTime
+            // 
+            this.statusTime.Name = "statusTime";
+            this.statusTime.Size = new System.Drawing.Size(64, 17);
+            this.statusTime.Text = "statusTime";
+            this.statusTime.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // bALaunch
+            // 
+            this.bALaunch.Location = new System.Drawing.Point(12, 27);
+            this.bALaunch.Name = "bALaunch";
+            this.bALaunch.Size = new System.Drawing.Size(65, 23);
+            this.bALaunch.TabIndex = 8;
+            this.bALaunch.Text = "A Launch";
+            this.bALaunch.UseVisualStyleBackColor = true;
+            // 
+            // bAStop
+            // 
+            this.bAStop.Location = new System.Drawing.Point(77, 27);
+            this.bAStop.Name = "bAStop";
+            this.bAStop.Size = new System.Drawing.Size(51, 23);
+            this.bAStop.TabIndex = 9;
+            this.bAStop.Text = "A Stop";
+            this.bAStop.UseVisualStyleBackColor = true;
+            // 
+            // bAStart
+            // 
+            this.bAStart.Location = new System.Drawing.Point(128, 27);
+            this.bAStart.Name = "bAStart";
+            this.bAStart.Size = new System.Drawing.Size(50, 23);
+            this.bAStart.TabIndex = 10;
+            this.bAStart.Text = "A Start";
+            this.bAStart.UseVisualStyleBackColor = true;
+            // 
+            // bBStart
+            // 
+            this.bBStart.Location = new System.Drawing.Point(300, 27);
+            this.bBStart.Name = "bBStart";
+            this.bBStart.Size = new System.Drawing.Size(50, 23);
+            this.bBStart.TabIndex = 13;
+            this.bBStart.Text = "B Start";
+            this.bBStart.UseVisualStyleBackColor = true;
+            // 
+            // bBStop
+            // 
+            this.bBStop.Location = new System.Drawing.Point(249, 27);
+            this.bBStop.Name = "bBStop";
+            this.bBStop.Size = new System.Drawing.Size(51, 23);
+            this.bBStop.TabIndex = 12;
+            this.bBStop.Text = "B Stop";
+            this.bBStop.UseVisualStyleBackColor = true;
+            // 
+            // bBLaunch
+            // 
+            this.bBLaunch.Location = new System.Drawing.Point(184, 27);
+            this.bBLaunch.Name = "bBLaunch";
+            this.bBLaunch.Size = new System.Drawing.Size(65, 23);
+            this.bBLaunch.TabIndex = 11;
+            this.bBLaunch.Text = "B Launch";
+            this.bBLaunch.UseVisualStyleBackColor = true;
+            // 
+            // bCStart
+            // 
+            this.bCStart.Location = new System.Drawing.Point(472, 27);
+            this.bCStart.Name = "bCStart";
+            this.bCStart.Size = new System.Drawing.Size(50, 23);
+            this.bCStart.TabIndex = 16;
+            this.bCStart.Text = "C Start";
+            this.bCStart.UseVisualStyleBackColor = true;
+            // 
+            // bCStop
+            // 
+            this.bCStop.Location = new System.Drawing.Point(421, 27);
+            this.bCStop.Name = "bCStop";
+            this.bCStop.Size = new System.Drawing.Size(51, 23);
+            this.bCStop.TabIndex = 15;
+            this.bCStop.Text = "C Stop";
+            this.bCStop.UseVisualStyleBackColor = true;
+            // 
+            // bCLaunch
+            // 
+            this.bCLaunch.Location = new System.Drawing.Point(356, 27);
+            this.bCLaunch.Name = "bCLaunch";
+            this.bCLaunch.Size = new System.Drawing.Size(65, 23);
+            this.bCLaunch.TabIndex = 14;
+            this.bCLaunch.Text = "C Launch";
+            this.bCLaunch.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(486, 328);
+            this.ClientSize = new System.Drawing.Size(529, 403);
+            this.Controls.Add(this.bCStart);
+            this.Controls.Add(this.bCStop);
+            this.Controls.Add(this.bCLaunch);
+            this.Controls.Add(this.bBStart);
+            this.Controls.Add(this.bBStop);
+            this.Controls.Add(this.bBLaunch);
+            this.Controls.Add(this.bAStart);
+            this.Controls.Add(this.bAStop);
+            this.Controls.Add(this.bALaunch);
+            this.Controls.Add(this.statusBar);
             this.Controls.Add(this.producerLoadingC);
             this.Controls.Add(this.producerLoadingB);
             this.Controls.Add(this.producerLoadingA);
@@ -300,6 +451,7 @@
             this.MainMenuStrip = this.menuApp;
             this.Name = "MainForm";
             this.Text = "Production des caisses";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.menuApp.ResumeLayout(false);
             this.menuApp.PerformLayout();
@@ -307,6 +459,8 @@
             this.tabpA.ResumeLayout(false);
             this.tabpB.ResumeLayout(false);
             this.tabpC.ResumeLayout(false);
+            this.statusBar.ResumeLayout(false);
+            this.statusBar.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -316,18 +470,18 @@
         private MenuStrip menuApp;
         private ToolStripMenuItem fichierToolStripMenuItem;
         private ToolStripMenuItem productionToolStripMenuItem;
-        private ToolStripMenuItem menuiInit;
-        private ToolStripMenuItem menuiInitA;
-        private ToolStripMenuItem menuiInitB;
-        private ToolStripMenuItem menuiInitC;
-        private ToolStripMenuItem menuiShutdown;
-        private ToolStripMenuItem menuiShutdownA;
-        private ToolStripMenuItem menuiShutdownB;
-        private ToolStripMenuItem menuiShutdownC;
-        private ToolStripMenuItem menuiResume;
-        private ToolStripMenuItem menuiResumeA;
-        private ToolStripMenuItem menuiResumeB;
-        private ToolStripMenuItem menuiResumeC;
+        private ToolStripMenuItem menuiLaunch;
+        private ToolStripMenuItem menuiLaunchA;
+        private ToolStripMenuItem menuiLaunchB;
+        private ToolStripMenuItem menuiLaunchC;
+        private ToolStripMenuItem menuiStop;
+        private ToolStripMenuItem menuiStopA;
+        private ToolStripMenuItem menuiStopB;
+        private ToolStripMenuItem menuiStopC;
+        private ToolStripMenuItem menuiStart;
+        private ToolStripMenuItem menuiStartA;
+        private ToolStripMenuItem menuiStartB;
+        private ToolStripMenuItem menuiStartC;
         private TabControl tabcProducersSpec;
         private TabPage tabpA;
         private TabPage tabpB;
@@ -337,9 +491,24 @@
         private ProducerLoading producerLoadingB;
         private ProducerLoading producerLoadingC;
         private ToolStripMenuItem menuiQuitApp;
-        private ToolStripMenuItem menuiStopApp;
+        private ToolStripMenuItem menuiShutdownProduction;
         private ProducerSpecs producerSpecsB;
         private ProducerSpecs producerSpecsC;
         private Label labelPRoduceA;
+        private StatusStrip statusBar;
+        private ToolStripStatusLabel statusProdA;
+        private ToolStripStatusLabel statusProdB;
+        private ToolStripStatusLabel statusProdC;
+        private ToolStripStatusLabel statusTime;
+        private System.Windows.Forms.Timer timerTime;
+        private Button bALaunch;
+        private Button bAStop;
+        private Button bAStart;
+        private Button bBStart;
+        private Button bBStop;
+        private Button bBLaunch;
+        private Button bCStart;
+        private Button bCStop;
+        private Button bCLaunch;
     }
 }

@@ -7,13 +7,15 @@ namespace ToutEmbalCore
 {
     public class ProducerManager
     {
+        public event EventHandler OnStateChanged;
+
         public IProducer Unit
         {
             get;
             private set;
         }
 
-        public Thread Runner
+        public Thread? Runner
         {
             get;
             private set;
@@ -23,15 +25,26 @@ namespace ToutEmbalCore
         {
             Unit = unit;
 
-            Runner = new Thread(() =>
-            {
-                Unit.Start();
-            });
+            Runner = null;
         }
 
-        public void Start()
+        public void Launch()
         {
-            Runner.Start();
+            if (Runner is null)
+            {
+
+                Runner = new Thread(() =>
+                {
+                    Unit.Launch();
+                });
+                Runner.Start();
+
+                /*while (Unit.GetState() == ProducerState.created)
+                {
+
+                }
+                Unit.RunEventsOnStateChanged();*/
+            }
         }
 
         public void Stop()
@@ -39,9 +52,19 @@ namespace ToutEmbalCore
             Unit.Stop();
         }
 
+        public void Start()
+        {
+            Unit.Start();
+        }
+
         public void Shutdown()
         {
             Unit.Shutdown();
+        }
+
+        public override string ToString()
+        {
+            return Unit.GetName();
         }
     }
 }

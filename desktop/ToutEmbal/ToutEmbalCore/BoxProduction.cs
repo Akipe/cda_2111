@@ -8,8 +8,11 @@ namespace ToutEmbalCore
     public class BoxProduction : IProducer
     {
         private int _productivityPerHour;
+        private int _nbDone;
 
         public event EventHandler OnMaxProduction;
+        public event EventHandler OnStateChanged;
+
 
         public int RateDefectPercent
         {
@@ -18,7 +21,32 @@ namespace ToutEmbalCore
 
         public int NbDone
         {
-            get; private set;
+            get
+            {
+                return _nbDone;
+            }
+            
+            private set
+            {
+                if (value > MaxWanted)
+                {
+                    throw new Exception(
+                        "You can't create more box than the limit : " + MaxWanted.ToString()
+                    );
+                }
+
+                _nbDone = value;
+
+                /*if (value == MaxWanted)
+                {
+                    if (OnMaxProduction is not null)
+                    {
+                        OnMaxProduction(this, new EventArgs());
+                    }
+
+                    Shutdown();
+                }*/
+            }
         }
 
         public List<IProducerDefect> Defects
@@ -81,7 +109,7 @@ namespace ToutEmbalCore
 
             NbDone = 0;
             Defects = new List<IProducerDefect>();
-            State = ProducerState.stopped;
+            State = ProducerState.created;
         }
 
         public double GetTotalRateDefect()
@@ -122,48 +150,87 @@ namespace ToutEmbalCore
             return NbDone;
         }
 
-        public void Start()
+        public void Launch()
         {
-            if (State != ProducerState.stopped)
+            if (State != ProducerState.created)
             {
                 return;
             }
 
             State = ProducerState.started;
+            OnStateChanged.Invoke(null, new EventArgs());
+            //ExecuteOnStateChanged(); // todo: execute outside thread
 
-            while (State == ProducerState.started)
+            while (State != ProducerState.shutdown)
             {
-                Thread.Sleep(MilisecondsForOneProduct);
-
-                if (IsBoxDefect())
+                if (State == ProducerState.started)
                 {
-                    Defects.Add(new ProduceDefect());
-                }
-                //else
-                //{
-                NbDone++;
-                //}
+                    Thread.Sleep(MilisecondsForOneProduct);
 
-                if (NbDone == MaxWanted)
-                {
-                    if (OnMaxProduction is not null)
+                    if (IsBoxDefect())
                     {
-                        OnMaxProduction(this, new EventArgs());
+                        Defects.Add(new ProduceDefect());
                     }
 
-                    Shutdown();
+                    // If we keep defect product in production count,
+                    // we don't remove it from the statistics
+                    //else
+                    //{
+                    NbDone++;
+                    //}
+
+                    if (NbDone == MaxWanted)
+                    {
+                        State = ProducerState.shutdown;
+                        OnStateChanged.Invoke(null, new EventArgs());
+                    }
                 }
+            }
+        }
+
+        public void Start()
+        {
+            if (
+                State != ProducerState.shutdown &&
+                State != ProducerState.created)
+            {
+                State = ProducerState.started;
+                ExecuteOnStateChanged();
             }
         }
 
         public void Stop()
         {
-            State = ProducerState.stopped;
+            if (
+                State != ProducerState.shutdown &&
+                State != ProducerState.created
+            )
+            {
+                State = ProducerState.stopped;
+                ExecuteOnStateChanged();
+            }
         }
 
         public void Shutdown()
         {
-            State = ProducerState.shutdown;
+            if (State != ProducerState.created)
+            {
+                State = ProducerState.shutdown;
+                ExecuteOnStateChanged();
+            }
+        }
+
+        private void ExecuteOnStateChanged()
+        {
+            if (OnStateChanged is not null)
+            {
+                OnStateChanged(this, new EventArgs());
+            }
+        }
+
+        public void RunEventsOnStateChanged()
+        {
+            ExecuteOnStateChanged();
         }
 
         private bool IsBoxDefect()
@@ -182,6 +249,11 @@ namespace ToutEmbalCore
         public int GetNbWanted()
         {
             return MaxWanted;
+        }
+
+        public ProducerState GetState()
+        {
+            return State;
         }
     }
 }

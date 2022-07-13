@@ -24,7 +24,7 @@ namespace ToutEmbalUI
 
         private void ProducerSpecs_Load(object? sender, EventArgs e)
         {
-            //UpdateSpecs(null, new EventArgs());
+            UpdateSpecs(null, new EventArgs());
         }
 
         public void UpdateSpecs(object? sender, EventArgs e)
