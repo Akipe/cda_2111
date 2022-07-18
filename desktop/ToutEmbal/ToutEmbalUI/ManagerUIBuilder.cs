@@ -75,7 +75,7 @@ namespace ToutEmbalUI
             return this;
         }
 
-        private void AddButton()
+        private void InitButtonIfNeeded()
         {
             if (Manager is null)
                 throw new MemberAccessException("You need a manager");
@@ -90,7 +90,7 @@ namespace ToutEmbalUI
 
         public ManagerUIBuilder AddLaunchButtons(object[] btns)
         {
-            AddButton();
+            InitButtonIfNeeded();
 
             foreach (object btn in btns)
             {
@@ -102,7 +102,7 @@ namespace ToutEmbalUI
 
         public ManagerUIBuilder AddStopButtons(object[] btns)
         {
-            AddButton();
+            InitButtonIfNeeded();
 
             foreach (object btn in btns)
             {
@@ -114,7 +114,7 @@ namespace ToutEmbalUI
 
         public ManagerUIBuilder AddStartButtons(object[] btns)
         {
-            AddButton();
+            InitButtonIfNeeded();
 
             foreach (object btn in btns)
             {

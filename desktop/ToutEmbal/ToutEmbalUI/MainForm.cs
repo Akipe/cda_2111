@@ -4,47 +4,48 @@ namespace ToutEmbalUI
 {
     public partial class MainForm : Form
     {
-        List<ProducerManager> prodManagers;
-
-        ProducerManager ManagerA { get; init; }
-        ProducerManager ManagerB { get; init; }
-        ProducerManager ManagerC { get; init; }
+        private List<ProducerManager> _managers;
 
         public MainForm()
         {
-            prodManagers = new List<ProducerManager>();
-
-            BoxProduction boxProdA = new BoxProduction(
-                "A",
-                10000,
-                20,
-                20
-            );
-            ManagerA = new ProducerManager(boxProdA);
-            prodManagers.Add(ManagerA);
-
-            BoxProduction boxProdB = new BoxProduction(
-                 "B",
-                5000,
-                25000,
-                5
-            );
-            ManagerB = new ProducerManager(boxProdB);
-            prodManagers.Add(ManagerB);
-
-            BoxProduction boxProdC = new BoxProduction(
-                "C",
-                10000,
-                120000,
-                10
-            );
-            ManagerC = new ProducerManager(boxProdC);
-            prodManagers.Add(ManagerC);
-
             InitializeComponent();
 
-            ManagerUIBuilder buildA = new ManagerUIBuilder(ManagerA);
-            buildA
+            _managers = new List<ProducerManager>();
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            InitTimeClockStatus();
+
+            ProducerManager managerA = new ProducerManager(
+                new BoxProduction(
+                    "A",
+                    10000,
+                    20,
+                    20
+                )
+            );
+
+            ProducerManager managerB = new ProducerManager(
+                new BoxProduction(
+                    "B",
+                    5000,
+                    25000,
+                    5
+                )
+            );
+
+            ProducerManager managerC = new ProducerManager(
+                new BoxProduction(
+                    "C",
+                    10000,
+                    120000,
+                    10
+                )
+            );
+
+            ManagerUIBuilder buildUIa = new ManagerUIBuilder(managerA);
+            buildUIa
                 .AddStatus(statusProdA)
                 .AddSpecs(producerSpecsA)
                 .AddLoading(producerLoadingA)
@@ -54,8 +55,8 @@ namespace ToutEmbalUI
                 .AddStartButtons(new object[] { menuiStartA, bStartA })
             ;
 
-            ManagerUIBuilder buildB = new ManagerUIBuilder(ManagerB);
-            buildB
+            ManagerUIBuilder buildUIb = new ManagerUIBuilder(managerB);
+            buildUIb
                 .AddStatus(statusProdB)
                 .AddSpecs(producerSpecsB)
                 .AddLoading(producerLoadingB)
@@ -65,8 +66,8 @@ namespace ToutEmbalUI
                 .AddStartButtons(new object[] { menuiStartB, bStartB })
             ;
 
-            ManagerUIBuilder buildC = new ManagerUIBuilder(ManagerC);
-            buildC
+            ManagerUIBuilder buildUIc = new ManagerUIBuilder(managerC);
+            buildUIc
                 .AddStatus(statusProdC)
                 .AddSpecs(producerSpecsC)
                 .AddLoading(producerLoadingC)
@@ -75,11 +76,8 @@ namespace ToutEmbalUI
                 .AddStopButtons(new object[] { menuiStopC, bStopC })
                 .AddStartButtons(new object[] { menuiStartC, bStartC })
             ;
-        }
 
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-            InitTimeClockStatus();
+            _managers = ManagerUIBuilder.Managers;
         }
 
         private void InitTimeClockStatus()
@@ -130,7 +128,7 @@ namespace ToutEmbalUI
 
         private void ShutdownAllProducers()
         {
-            foreach (ProducerManager manager in ManagerUIBuilder.Managers)
+            foreach (ProducerManager manager in _managers)
             {
                 manager.Shutdown();
             }
