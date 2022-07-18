@@ -11,6 +11,7 @@ namespace ToutEmbalCore
 
         private int _productivityPerHour;
         private int _nbDone;
+        private ProducerState _state;
 
         public event EventHandler OnMaxProduction;
         public event EventHandler OnStateChanged;
@@ -77,7 +78,30 @@ namespace ToutEmbalCore
 
         public ProducerState State
         {
-            get; private set;
+            get
+            {
+                return _state;
+            }
+            private set
+            {
+                _state = value;
+
+                if (_state == ProducerState.started || _state == ProducerState.stopped)
+                {
+                    try
+                    {
+                        OnStateChanged.Invoke(this, new EventArgs());
+                    }
+                    catch (Exception e)
+                    {
+                        ExecuteOnStateChanged();
+                    }
+                }
+                else
+                {
+                    ExecuteOnStateChanged();
+                }
+            }
         }
 
         public string Name
@@ -160,7 +184,6 @@ namespace ToutEmbalCore
             }
 
             State = ProducerState.started;
-            OnStateChanged.Invoke(this, new EventArgs());
 
             while (State != ProducerState.shutdown)
             {
@@ -183,7 +206,6 @@ namespace ToutEmbalCore
                     if (NbDone == MaxWanted)
                     {
                         State = ProducerState.shutdown;
-                        OnStateChanged.Invoke(this, new EventArgs());
                     }
                 }
             }
@@ -196,7 +218,6 @@ namespace ToutEmbalCore
                 State != ProducerState.created)
             {
                 State = ProducerState.started;
-                ExecuteOnStateChanged();
             }
         }
 
@@ -208,7 +229,6 @@ namespace ToutEmbalCore
             )
             {
                 State = ProducerState.stopped;
-                ExecuteOnStateChanged();
             }
         }
 
@@ -217,7 +237,6 @@ namespace ToutEmbalCore
             if (State != ProducerState.created)
             {
                 State = ProducerState.shutdown;
-                ExecuteOnStateChanged();
             }
         }
 
