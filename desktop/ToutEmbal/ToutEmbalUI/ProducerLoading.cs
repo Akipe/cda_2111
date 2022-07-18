@@ -29,18 +29,25 @@ namespace ToutEmbalUI
             pbTimeProduce.Minimum = 0;
             pbTimeProduce.Maximum = Manager.Unit.GetNbWanted();
 
-            UpdateProcessBar(null, new EventArgs());
+            UpdateProcessBarThreadSafe(null, new EventArgs());
         }
 
-        public void UpdateProcessBar(object? sender, EventArgs e)
+        public void UpdateProcessBarThreadSafe(object? sender, EventArgs e)
         {
             if (Manager != null)
             {
-                Invoke(test);
+                try
+                {
+                    Invoke(updateProcessBar);
+                }
+                catch (InvalidOperationException error)
+                {
+                    updateProcessBar();
+                }
             }
         }
 
-        private void test()
+        private void updateProcessBar()
         {
             pbTimeProduce.Value = Manager.Unit.GetProduction();
         }

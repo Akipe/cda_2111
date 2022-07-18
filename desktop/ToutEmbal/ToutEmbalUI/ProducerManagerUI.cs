@@ -56,8 +56,8 @@ namespace ToutEmbalUI
             StartObjsForm = new List<object>();
             ShutdownObjsForm = new List<object>();
 
-            Manager.Unit.OnCreateOne += LoadingUI.UpdateProcessBar;
-            Manager.Unit.OnCreateOne += SpecsUI.UpdateSpecs;
+            Manager.Unit.OnCreateOne += LoadingUI.UpdateProcessBarThreadSafe;
+            Manager.Unit.OnCreateOne += SpecsUI.UpdateSpecsThreadSafe;
 
         }
 

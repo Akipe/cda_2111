@@ -24,18 +24,25 @@ namespace ToutEmbalUI
 
         private void ProducerSpecs_Load(object? sender, EventArgs e)
         {
-            UpdateSpecs(null, new EventArgs());
+            UpdateSpecsThreadSafe(null, new EventArgs());
         }
 
-        public void UpdateSpecs(object? sender, EventArgs e)
+        public void UpdateSpecsThreadSafe(object? sender, EventArgs e)
         {
             if (Manager != null)
             {
-                this.Invoke(test);
+                try
+                {
+                    Invoke(UpdateSpecs);
+                }
+                catch (InvalidOperationException error)
+                {
+                    UpdateSpecs();
+                }
             }
         }
 
-        private void test()
+        private void UpdateSpecs()
         {
             tbNbProducts.Text = Manager.Unit.GetProduction().ToString();
             tbDefectRateLastHour.Text = Manager.Unit.GetLastHourRateDefect().ToString("0.0000");
