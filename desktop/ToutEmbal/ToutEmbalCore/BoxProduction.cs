@@ -7,12 +7,24 @@ namespace ToutEmbalCore
 {
     public class BoxProduction : IProducer
     {
+        private static Random? _rnd = null;
+
         private int _productivityPerHour;
         private int _nbDone;
 
         public event EventHandler OnMaxProduction;
         public event EventHandler OnStateChanged;
 
+
+        private static Random GetRdn()
+        {
+            if (BoxProduction._rnd is null)
+            {
+                BoxProduction._rnd = new Random();
+            }
+
+            return BoxProduction._rnd;
+        }
 
         public int RateDefectPercent
         {
@@ -36,16 +48,6 @@ namespace ToutEmbalCore
                 }
 
                 _nbDone = value;
-
-                /*if (value == MaxWanted)
-                {
-                    if (OnMaxProduction is not null)
-                    {
-                        OnMaxProduction(this, new EventArgs());
-                    }
-
-                    Shutdown();
-                }*/
             }
         }
 
@@ -158,8 +160,7 @@ namespace ToutEmbalCore
             }
 
             State = ProducerState.started;
-            OnStateChanged.Invoke(null, new EventArgs());
-            //ExecuteOnStateChanged(); // todo: execute outside thread
+            OnStateChanged.Invoke(this, new EventArgs());
 
             while (State != ProducerState.shutdown)
             {
@@ -182,7 +183,7 @@ namespace ToutEmbalCore
                     if (NbDone == MaxWanted)
                     {
                         State = ProducerState.shutdown;
-                        OnStateChanged.Invoke(null, new EventArgs());
+                        OnStateChanged.Invoke(this, new EventArgs());
                     }
                 }
             }
@@ -235,8 +236,7 @@ namespace ToutEmbalCore
 
         private bool IsBoxDefect()
         {
-            Random rnd = new Random();
-            int luck = rnd.Next(0, 101);
+            int luck = BoxProduction.GetRdn().Next(0, 101);
 
             return RateDefectPercent > luck;
         }

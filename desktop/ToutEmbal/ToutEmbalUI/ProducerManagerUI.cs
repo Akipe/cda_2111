@@ -49,7 +49,7 @@ namespace ToutEmbalUI
             LoadingUI.Manager = Manager;
             MainForm = form;
 
-            Manager.Unit.OnStateChanged += TriggerStatusManagerActions;
+            Manager.Unit.OnStateChanged += TriggerStatusManagerActionsOtherThread;
             Manager.Unit.OnStateChanged += UpdateStatusInfoEvent;
 
             LaunchObjsForm = new List<object>();
@@ -61,6 +61,7 @@ namespace ToutEmbalUI
             ProdTimer.Interval = Manager.Unit.GetMilisecondsForCreateOne() / 2;
             ProdTimer.Tick += LoadingUI.UpdateProcessBar;
             ProdTimer.Tick += SpecsUI.UpdateSpecs;
+
         }
 
         public void Launch()
@@ -110,31 +111,32 @@ namespace ToutEmbalUI
             {
                 menuItem.Tag = this;
             }
+
+            TriggerStatusManagerActions();
         }
 
         public void BindLaunch(object control)
         {
-            AttachOn(control);
             LaunchObjsForm.Add(control);
+            AttachOn(control);
         }
 
         public void BindStop(object control)
         {
-            AttachOn(control);
             StopObjsForm.Add(control);
+            AttachOn(control);
         }
 
         public void BindStart(object control)
         {
-            AttachOn(control);
             StartObjsForm.Add(control);
-
+            AttachOn(control);
         }
 
         public void BindShutdown(object control)
         {
-            AttachOn(control);
             ShutdownObjsForm.Add(control);
+            AttachOn(control);
         }
 
         public override string ToString()
@@ -147,39 +149,45 @@ namespace ToutEmbalUI
             TriggerStatusManagerActions(this, new EventArgs());
         }*/
 
-        private void TriggerStatusManagerActions(object? sender, EventArgs e)
+        private void TriggerStatusManagerActionsOtherThread(object? sender, EventArgs e)
         {
             MainForm.Invoke(new MethodInvoker(() =>
             {
-                var test = Manager.Unit.GetState();
-                switch (Manager.Unit.GetState())
-                {
-                    case ProducerState.created:
-                        EnableObjsForm(LaunchObjsForm);
-                        DisableObjsForm(StopObjsForm);
-                        DisableObjsForm(StartObjsForm);
-                        DisableObjsForm(ShutdownObjsForm);
-                        break;
-                    case ProducerState.started:
-                        DisableObjsForm(LaunchObjsForm);
-                        EnableObjsForm(StopObjsForm);
-                        DisableObjsForm(StartObjsForm);
-                        EnableObjsForm(ShutdownObjsForm);
-                        break;
-                    case ProducerState.stopped:
-                        DisableObjsForm(LaunchObjsForm);
-                        DisableObjsForm(StopObjsForm);
-                        EnableObjsForm(StartObjsForm);
-                        EnableObjsForm(ShutdownObjsForm);
-                        break;
-                    case ProducerState.shutdown:
-                        DisableObjsForm(LaunchObjsForm);
-                        DisableObjsForm(StopObjsForm);
-                        DisableObjsForm(StartObjsForm);
-                        DisableObjsForm(ShutdownObjsForm);
-                        break;
-                }
+                TriggerStatusManagerActions();
             }));
+        }
+
+        private void TriggerStatusManagerActions()
+        {
+            var debug = Manager.Unit.GetState();
+
+            switch (Manager.Unit.GetState())
+            {
+                case ProducerState.created:
+                    EnableObjsForm(LaunchObjsForm);
+                    DisableObjsForm(StopObjsForm);
+                    DisableObjsForm(StartObjsForm);
+                    DisableObjsForm(ShutdownObjsForm);
+                    break;
+                case ProducerState.started:
+                    DisableObjsForm(LaunchObjsForm);
+                    EnableObjsForm(StopObjsForm);
+                    DisableObjsForm(StartObjsForm);
+                    EnableObjsForm(ShutdownObjsForm);
+                    break;
+                case ProducerState.stopped:
+                    DisableObjsForm(LaunchObjsForm);
+                    DisableObjsForm(StopObjsForm);
+                    EnableObjsForm(StartObjsForm);
+                    EnableObjsForm(ShutdownObjsForm);
+                    break;
+                case ProducerState.shutdown:
+                    DisableObjsForm(LaunchObjsForm);
+                    DisableObjsForm(StopObjsForm);
+                    DisableObjsForm(StartObjsForm);
+                    DisableObjsForm(ShutdownObjsForm);
+                    break;
+            }
         }
 
         private void UpdateStatusInfoEvent(object? sender, EventArgs e)
@@ -230,7 +238,7 @@ namespace ToutEmbalUI
                 }
                 if (objForm is Control control)
                 {
-                    control.Enabled = false;
+                    control.Enabled = true;
                 }
             }
         }

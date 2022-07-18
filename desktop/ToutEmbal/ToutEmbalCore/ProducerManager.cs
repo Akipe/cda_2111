@@ -38,12 +38,6 @@ namespace ToutEmbalCore
                     Unit.Launch();
                 });
                 Runner.Start();
-
-                /*while (Unit.GetState() == ProducerState.created)
-                {
-
-                }
-                Unit.RunEventsOnStateChanged();*/
             }
         }
 

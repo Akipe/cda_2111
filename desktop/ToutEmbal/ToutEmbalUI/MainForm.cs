@@ -53,10 +53,6 @@ namespace ToutEmbalUI
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            /*prodManUIA.Manager.Start();
-            prodManUIB.Manager.Start();
-            prodManUIC.Manager.Start();*/
-
             statusTime.Text = DateTime.Now.ToString("HH:mm:ss");
             timerTime.Interval = 1000;
             timerTime.Tick += (object? sender, EventArgs e) =>
@@ -71,29 +67,29 @@ namespace ToutEmbalUI
                 {
                     case "A":
                         prodManUI.BindLaunch(menuiLaunchA);
-                        prodManUI.BindLaunch(bALaunch);
+                        prodManUI.BindLaunch(bLaunchA);
                         prodManUI.BindStop(menuiStopA);
-                        prodManUI.BindStop(bAStop);
+                        prodManUI.BindStop(bStopA);
                         prodManUI.BindStart(menuiStartA);
-                        prodManUI.BindStart(bAStart);
+                        prodManUI.BindStart(bStartA);
                         prodManUI.InfoStatus = statusProdA;
                         break;
                     case "B":
                         prodManUI.BindLaunch(menuiLaunchB);
-                        prodManUI.BindLaunch(bBLaunch);
+                        prodManUI.BindLaunch(bLaunchB);
                         prodManUI.BindStop(menuiStopB);
-                        prodManUI.BindStop(bBStop);
+                        prodManUI.BindStop(bStopB);
                         prodManUI.BindStart(menuiStartB);
-                        prodManUI.BindStart(bBStart);
+                        prodManUI.BindStart(bStartB);
                         prodManUI.InfoStatus = statusProdB;
                         break;
                     case "C":
                         prodManUI.BindLaunch(menuiLaunchC);
-                        prodManUI.BindLaunch(bALaunch);
+                        prodManUI.BindLaunch(bLaunchC);
                         prodManUI.BindStop(menuiStopC);
-                        prodManUI.BindStop(bCStop);
+                        prodManUI.BindStop(bStopC);
                         prodManUI.BindStart(menuiStartC);
-                        prodManUI.BindStart(bCStart);
+                        prodManUI.BindStart(bStartC);
                         prodManUI.InfoStatus = statusProdC;
                         break;
                 }
@@ -109,12 +105,26 @@ namespace ToutEmbalUI
 
         private void Event_LaunchProduction(object sender, EventArgs e)
         {
+            ProducerManagerUI? managerUI = null;
+
             if (sender is ToolStripMenuItem menuItem)
             {
-                if (menuItem.Tag is ProducerManagerUI managerUI)
+                if (menuItem.Tag is ProducerManagerUI)
                 {
-                    managerUI.Launch();
+                    managerUI = (ProducerManagerUI)menuItem.Tag;
                 }
+            }
+            if (sender is Control control)
+            {
+                if (control.Tag is ProducerManagerUI)
+                {
+                    managerUI = (ProducerManagerUI)control.Tag;
+                }
+            }
+
+            if (managerUI is not null)
+            {
+                managerUI.Launch();
             }
         }
 
@@ -127,6 +137,13 @@ namespace ToutEmbalUI
                     managerUI.Start();
                 }
             }
+            if (sender is Control control)
+            {
+                if (control.Tag is ProducerManagerUI managerUI)
+                {
+                    managerUI.Start();
+                }
+            }
         }
 
         private void Event_StopProduction(object sender, EventArgs e)
@@ -134,6 +151,13 @@ namespace ToutEmbalUI
             if (sender is ToolStripMenuItem menuItem)
             {
                 if (menuItem.Tag is ProducerManagerUI managerUI)
+                {
+                    managerUI.Stop();
+                }
+            }
+            if (sender is Control control)
+            {
+                if (control.Tag is ProducerManagerUI managerUI)
                 {
                     managerUI.Stop();
                 }

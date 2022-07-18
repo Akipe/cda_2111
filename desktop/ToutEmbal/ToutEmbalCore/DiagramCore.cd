@@ -3,13 +3,13 @@
   <Class Name="ToutEmbalCore.BoxProduction">
     <Position X="1" Y="1.5" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>EAAABABAACAAAAEAABAAACSAIAFQAAAAIAACBAAAJgA=</HashCode>
+      <HashCode>EAUABEBARCAAAAEAABAAASSAIAFQAAAAIAACBAAAJgA=</HashCode>
       <FileName>BoxProduction.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="ToutEmbalCore.ProduceDefect">
-    <Position X="3.75" Y="5.25" Width="1.75" />
+    <Position X="3.75" Y="5.75" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
       <FileName>ProduceDefect.cs</FileName>
@@ -17,16 +17,19 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="ToutEmbalCore.ProducerManager">
-    <Position X="6.25" Y="1.5" Width="2" />
+    <Position X="5" Y="1.75" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAACAAAAAAIAAAAAAAAAAAgAAAIAAAUAAAAAA=</HashCode>
+      <HashCode>AAAAAAAARCAAAAAEIAAAAQAAAAAAAAAAIAAAQAAAAAA=</HashCode>
       <FileName>ProducerManager.cs</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Unit" />
+    </ShowAsAssociation>
   </Class>
   <Interface Name="ToutEmbalCore.IProducer">
-    <Position X="3.75" Y="1.5" Width="2" />
+    <Position X="8.5" Y="2" Width="2" />
     <TypeIdentifier>
-      <HashCode>EAAAAABAACAAAAEAABAAACAAIAAAAAAAIAAAAAAABAA=</HashCode>
+      <HashCode>EAQAAEBARCAAAAEAABAAASAAIAAAAAAAIAAAAAAABAA=</HashCode>
       <FileName>IProducer.cs</FileName>
     </TypeIdentifier>
   </Interface>
@@ -38,9 +41,9 @@
     </TypeIdentifier>
   </Interface>
   <Enum Name="ToutEmbalCore.ProducerState">
-    <Position X="8.75" Y="1.5" Width="1.5" />
+    <Position X="6.75" Y="7.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAADAAAAAgAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAADAAAAAgAABAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>ProducerState.cs</FileName>
     </TypeIdentifier>
   </Enum>

@@ -19,7 +19,7 @@ namespace ToutEmbalCore
         int GetMilisecondsForCreateOne();
         int GetNbWanted();
         void RunEventsOnStateChanged();
-        public event EventHandler OnMaxProduction;
-        public event EventHandler OnStateChanged;
+        event EventHandler OnMaxProduction;
+        event EventHandler OnStateChanged;
     }
 }

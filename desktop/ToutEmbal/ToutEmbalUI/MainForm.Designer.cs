@@ -62,15 +62,15 @@
             this.statusProdC = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusTime = new System.Windows.Forms.ToolStripStatusLabel();
             this.timerTime = new System.Windows.Forms.Timer(this.components);
-            this.bALaunch = new System.Windows.Forms.Button();
-            this.bAStop = new System.Windows.Forms.Button();
-            this.bAStart = new System.Windows.Forms.Button();
-            this.bBStart = new System.Windows.Forms.Button();
-            this.bBStop = new System.Windows.Forms.Button();
-            this.bBLaunch = new System.Windows.Forms.Button();
-            this.bCStart = new System.Windows.Forms.Button();
-            this.bCStop = new System.Windows.Forms.Button();
-            this.bCLaunch = new System.Windows.Forms.Button();
+            this.bLaunchA = new System.Windows.Forms.Button();
+            this.bStopA = new System.Windows.Forms.Button();
+            this.bStartA = new System.Windows.Forms.Button();
+            this.bStartB = new System.Windows.Forms.Button();
+            this.bStopB = new System.Windows.Forms.Button();
+            this.bLaunchB = new System.Windows.Forms.Button();
+            this.bStartC = new System.Windows.Forms.Button();
+            this.bStopC = new System.Windows.Forms.Button();
+            this.bLaunchC = new System.Windows.Forms.Button();
             this.menuApp.SuspendLayout();
             this.tabcProducersSpec.SuspendLayout();
             this.tabpA.SuspendLayout();
@@ -349,99 +349,108 @@
             // 
             // bALaunch
             // 
-            this.bALaunch.Location = new System.Drawing.Point(12, 27);
-            this.bALaunch.Name = "bALaunch";
-            this.bALaunch.Size = new System.Drawing.Size(65, 23);
-            this.bALaunch.TabIndex = 8;
-            this.bALaunch.Text = "A Launch";
-            this.bALaunch.UseVisualStyleBackColor = true;
+            this.bLaunchA.Location = new System.Drawing.Point(12, 27);
+            this.bLaunchA.Name = "bALaunch";
+            this.bLaunchA.Size = new System.Drawing.Size(65, 23);
+            this.bLaunchA.TabIndex = 8;
+            this.bLaunchA.Text = "A Launch";
+            this.bLaunchA.UseVisualStyleBackColor = true;
+            this.bLaunchA.Click += new System.EventHandler(this.Event_LaunchProduction);
             // 
             // bAStop
             // 
-            this.bAStop.Location = new System.Drawing.Point(77, 27);
-            this.bAStop.Name = "bAStop";
-            this.bAStop.Size = new System.Drawing.Size(51, 23);
-            this.bAStop.TabIndex = 9;
-            this.bAStop.Text = "A Stop";
-            this.bAStop.UseVisualStyleBackColor = true;
+            this.bStopA.Location = new System.Drawing.Point(77, 27);
+            this.bStopA.Name = "bAStop";
+            this.bStopA.Size = new System.Drawing.Size(51, 23);
+            this.bStopA.TabIndex = 9;
+            this.bStopA.Text = "A Stop";
+            this.bStopA.UseVisualStyleBackColor = true;
+            this.bStopA.Click += new System.EventHandler(this.Event_StopProduction);
             // 
             // bAStart
             // 
-            this.bAStart.Location = new System.Drawing.Point(128, 27);
-            this.bAStart.Name = "bAStart";
-            this.bAStart.Size = new System.Drawing.Size(50, 23);
-            this.bAStart.TabIndex = 10;
-            this.bAStart.Text = "A Start";
-            this.bAStart.UseVisualStyleBackColor = true;
+            this.bStartA.Location = new System.Drawing.Point(128, 27);
+            this.bStartA.Name = "bAStart";
+            this.bStartA.Size = new System.Drawing.Size(50, 23);
+            this.bStartA.TabIndex = 10;
+            this.bStartA.Text = "A Start";
+            this.bStartA.UseVisualStyleBackColor = true;
+            this.bStartA.Click += new System.EventHandler(this.Event_StartProduction);
             // 
             // bBStart
             // 
-            this.bBStart.Location = new System.Drawing.Point(300, 27);
-            this.bBStart.Name = "bBStart";
-            this.bBStart.Size = new System.Drawing.Size(50, 23);
-            this.bBStart.TabIndex = 13;
-            this.bBStart.Text = "B Start";
-            this.bBStart.UseVisualStyleBackColor = true;
+            this.bStartB.Location = new System.Drawing.Point(300, 27);
+            this.bStartB.Name = "bBStart";
+            this.bStartB.Size = new System.Drawing.Size(50, 23);
+            this.bStartB.TabIndex = 13;
+            this.bStartB.Text = "B Start";
+            this.bStartB.UseVisualStyleBackColor = true;
+            this.bStartB.Click += new System.EventHandler(this.Event_StartProduction);
             // 
             // bBStop
             // 
-            this.bBStop.Location = new System.Drawing.Point(249, 27);
-            this.bBStop.Name = "bBStop";
-            this.bBStop.Size = new System.Drawing.Size(51, 23);
-            this.bBStop.TabIndex = 12;
-            this.bBStop.Text = "B Stop";
-            this.bBStop.UseVisualStyleBackColor = true;
+            this.bStopB.Location = new System.Drawing.Point(249, 27);
+            this.bStopB.Name = "bBStop";
+            this.bStopB.Size = new System.Drawing.Size(51, 23);
+            this.bStopB.TabIndex = 12;
+            this.bStopB.Text = "B Stop";
+            this.bStopB.UseVisualStyleBackColor = true;
+            this.bStopB.Click += new System.EventHandler(this.Event_StopProduction);
             // 
             // bBLaunch
             // 
-            this.bBLaunch.Location = new System.Drawing.Point(184, 27);
-            this.bBLaunch.Name = "bBLaunch";
-            this.bBLaunch.Size = new System.Drawing.Size(65, 23);
-            this.bBLaunch.TabIndex = 11;
-            this.bBLaunch.Text = "B Launch";
-            this.bBLaunch.UseVisualStyleBackColor = true;
+            this.bLaunchB.Location = new System.Drawing.Point(184, 27);
+            this.bLaunchB.Name = "bBLaunch";
+            this.bLaunchB.Size = new System.Drawing.Size(65, 23);
+            this.bLaunchB.TabIndex = 11;
+            this.bLaunchB.Text = "B Launch";
+            this.bLaunchB.UseVisualStyleBackColor = true;
+            this.bLaunchB.Click += new System.EventHandler(this.Event_LaunchProduction);
             // 
             // bCStart
             // 
-            this.bCStart.Location = new System.Drawing.Point(472, 27);
-            this.bCStart.Name = "bCStart";
-            this.bCStart.Size = new System.Drawing.Size(50, 23);
-            this.bCStart.TabIndex = 16;
-            this.bCStart.Text = "C Start";
-            this.bCStart.UseVisualStyleBackColor = true;
+            this.bStartC.Location = new System.Drawing.Point(472, 27);
+            this.bStartC.Name = "bCStart";
+            this.bStartC.Size = new System.Drawing.Size(50, 23);
+            this.bStartC.TabIndex = 16;
+            this.bStartC.Text = "C Start";
+            this.bStartC.UseVisualStyleBackColor = true;
+            this.bStartC.Click += new System.EventHandler(this.Event_StartProduction);
             // 
             // bCStop
             // 
-            this.bCStop.Location = new System.Drawing.Point(421, 27);
-            this.bCStop.Name = "bCStop";
-            this.bCStop.Size = new System.Drawing.Size(51, 23);
-            this.bCStop.TabIndex = 15;
-            this.bCStop.Text = "C Stop";
-            this.bCStop.UseVisualStyleBackColor = true;
+            this.bStopC.Location = new System.Drawing.Point(421, 27);
+            this.bStopC.Name = "bCStop";
+            this.bStopC.Size = new System.Drawing.Size(51, 23);
+            this.bStopC.TabIndex = 15;
+            this.bStopC.Text = "C Stop";
+            this.bStopC.UseVisualStyleBackColor = true;
+            this.bStopC.Click += new System.EventHandler(this.Event_StopProduction);
             // 
             // bCLaunch
             // 
-            this.bCLaunch.Location = new System.Drawing.Point(356, 27);
-            this.bCLaunch.Name = "bCLaunch";
-            this.bCLaunch.Size = new System.Drawing.Size(65, 23);
-            this.bCLaunch.TabIndex = 14;
-            this.bCLaunch.Text = "C Launch";
-            this.bCLaunch.UseVisualStyleBackColor = true;
+            this.bLaunchC.Location = new System.Drawing.Point(356, 27);
+            this.bLaunchC.Name = "bCLaunch";
+            this.bLaunchC.Size = new System.Drawing.Size(65, 23);
+            this.bLaunchC.TabIndex = 14;
+            this.bLaunchC.Text = "C Launch";
+            this.bLaunchC.UseVisualStyleBackColor = true;
+            this.bLaunchC.Click += new System.EventHandler(this.Event_LaunchProduction);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(529, 403);
-            this.Controls.Add(this.bCStart);
-            this.Controls.Add(this.bCStop);
-            this.Controls.Add(this.bCLaunch);
-            this.Controls.Add(this.bBStart);
-            this.Controls.Add(this.bBStop);
-            this.Controls.Add(this.bBLaunch);
-            this.Controls.Add(this.bAStart);
-            this.Controls.Add(this.bAStop);
-            this.Controls.Add(this.bALaunch);
+            this.Controls.Add(this.bStartC);
+            this.Controls.Add(this.bStopC);
+            this.Controls.Add(this.bLaunchC);
+            this.Controls.Add(this.bStartB);
+            this.Controls.Add(this.bStopB);
+            this.Controls.Add(this.bLaunchB);
+            this.Controls.Add(this.bStartA);
+            this.Controls.Add(this.bStopA);
+            this.Controls.Add(this.bLaunchA);
             this.Controls.Add(this.statusBar);
             this.Controls.Add(this.producerLoadingC);
             this.Controls.Add(this.producerLoadingB);
@@ -501,14 +510,14 @@
         private ToolStripStatusLabel statusProdC;
         private ToolStripStatusLabel statusTime;
         private System.Windows.Forms.Timer timerTime;
-        private Button bALaunch;
-        private Button bAStop;
-        private Button bAStart;
-        private Button bBStart;
-        private Button bBStop;
-        private Button bBLaunch;
-        private Button bCStart;
-        private Button bCStop;
-        private Button bCLaunch;
+        private Button bLaunchA;
+        private Button bStopA;
+        private Button bStartA;
+        private Button bStartB;
+        private Button bStopB;
+        private Button bLaunchB;
+        private Button bStartC;
+        private Button bStopC;
+        private Button bLaunchC;
     }
 }
