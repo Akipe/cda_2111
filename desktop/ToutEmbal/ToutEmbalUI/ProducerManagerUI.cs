@@ -43,9 +43,7 @@ namespace ToutEmbalUI
         {
             Manager = manager;
             SpecsUI = specsUI;
-            SpecsUI.Manager = Manager;
             LoadingUI = loadingUI;
-            LoadingUI.Manager = Manager;
             MainForm = form;
 
             Manager.Unit.OnStateChanged += TriggerStatusManagerActionsOtherThread;
@@ -55,15 +53,10 @@ namespace ToutEmbalUI
             StopObjsForm = new List<object>();
             StartObjsForm = new List<object>();
             ShutdownObjsForm = new List<object>();
-
-            Manager.Unit.OnCreateOne += LoadingUI.UpdateProcessBarThreadSafe;
-            Manager.Unit.OnCreateOne += SpecsUI.UpdateSpecsThreadSafe;
-
         }
 
         public void Launch()
         {
-            var test = Manager.Unit.GetState();
             /*if (Manager.Unit.GetState() == ProducerState.created)
             {*/
                 Manager.Launch();
@@ -147,8 +140,6 @@ namespace ToutEmbalUI
 
         private void TriggerStatusManagerActions()
         {
-            var debug = Manager.Unit.GetState();
-
             switch (Manager.Unit.GetState())
             {
                 case ProducerState.created:

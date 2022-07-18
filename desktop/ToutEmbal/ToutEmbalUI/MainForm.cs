@@ -5,46 +5,62 @@ namespace ToutEmbalUI
     public partial class MainForm : Form
     {
         List<ProducerManagerUI> prodManagersUI;
+        List<ProducerManager> prodManagers;
+
+        ProducerManager ManagerA { get; init; }
+        ProducerManager ManagerB { get; init; }
+        ProducerManager ManagerC { get; init; }
 
         public MainForm()
         {
-            InitializeComponent();
             prodManagersUI = new List<ProducerManagerUI>();
+            prodManagers = new List<ProducerManager>();
 
-            ProducerManager prodManA = new ProducerManager(new BoxProduction(
+            BoxProduction boxProdA = new BoxProduction(
                 "A",
                 10000,
                 20,
                 20
-            ));
+            );
+            ManagerA = new ProducerManager(boxProdA);
+            prodManagers.Add(ManagerA);
+
+            BoxProduction boxProdB = new BoxProduction(
+                 "B",
+                5000,
+                25000,
+                5
+            );
+            ManagerB = new ProducerManager(boxProdB);
+            prodManagers.Add(ManagerB);
+
+            BoxProduction boxProdC = new BoxProduction(
+                "C",
+                10000,
+                120000,
+                10
+            );
+            ManagerC = new ProducerManager(boxProdC);
+            prodManagers.Add(ManagerC);
+
+            InitializeComponent();
+
             prodManagersUI.Add(new ProducerManagerUI(
-                prodManA,
+                ManagerA,
                 producerSpecsA,
                 producerLoadingA,
                 this
             ));
 
-            ProducerManager prodManB = new ProducerManager(new BoxProduction(
-                 "B",
-                5000,
-                25000,
-                5
-            ));
             prodManagersUI.Add(new ProducerManagerUI(
-                prodManB,
+                ManagerB,
                 producerSpecsB,
                 producerLoadingB,
                 this
             ));
 
-            ProducerManager prodManC = new ProducerManager(new BoxProduction(
-                "C",
-                10000,
-                120000,
-                10
-            ));
             prodManagersUI.Add(new ProducerManagerUI(
-                prodManC,
+                ManagerC,
                 producerSpecsC,
                 producerLoadingC,
                 this
@@ -53,15 +69,9 @@ namespace ToutEmbalUI
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            statusTime.Text = DateTime.Now.ToString("HH:mm:ss");
-            timerTime.Interval = 1000;
-            timerTime.Tick += (object? sender, EventArgs e) =>
-            {
-                statusTime.Text = DateTime.Now.ToString("HH:mm:ss");
-            };
-            timerTime.Start();
+            InitTimeClockStatus();
 
-            foreach(ProducerManagerUI prodManUI in prodManagersUI)
+            foreach (ProducerManagerUI prodManUI in prodManagersUI)
             {
                 switch(prodManUI.ToString())
                 {
@@ -96,9 +106,16 @@ namespace ToutEmbalUI
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void InitTimeClockStatus()
         {
-            //boxProdA.Stop();
+            statusTime.Text = DateTime.Now.ToString("HH:mm:ss");
+
+            timerTime.Interval = 1000;
+            timerTime.Tick += (object? sender, EventArgs e) =>
+            {
+                statusTime.Text = DateTime.Now.ToString("HH:mm:ss");
+            };
+            timerTime.Start();
         }
 
         private void Event_LaunchProduction(object sender, EventArgs e)
@@ -118,10 +135,7 @@ namespace ToutEmbalUI
 
         private void Event_ShutdownAll(object? sender, EventArgs e)
         {
-            foreach (ProducerManagerUI prodManUI in prodManagersUI)
-            {
-                prodManUI.Shutdown();
-            }
+            ShutdownAllProducers();
         }
 
         private void menuiQuitApp_Click(object sender, EventArgs e)
@@ -131,16 +145,28 @@ namespace ToutEmbalUI
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (MessageBox.Show("Voulez vous quitter ?", "Quitter", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+            DialogResult response = MessageBox.Show(
+                "Voulez vous quitter ?",
+                "Quitter",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning
+            );
+
+            if (response == DialogResult.No)
             {
                 e.Cancel = true;
             }
             else
             {
-                foreach(ProducerManagerUI prodManUI in prodManagersUI)
-                {
-                    prodManUI.Shutdown();
-                }
+                ShutdownAllProducers();
+            }
+        }
+
+        private void ShutdownAllProducers()
+        {
+            foreach (ProducerManagerUI prodManUI in prodManagersUI)
+            {
+                prodManUI.Shutdown();
             }
         }
     }

@@ -13,13 +13,13 @@ namespace ToutEmbalUI
 {
     public partial class ProducerLoading : UserControl
     {
-        public ProducerManager? Manager { get; set; }
+        public ProducerManager Manager { get; init; }
 
-        public ProducerLoading()
+        public ProducerLoading(ProducerManager manager)
         {
             InitializeComponent();
 
-            Manager = null;
+            Manager = manager;
         }
 
         private void ProducerLoading_Load(object? sender, EventArgs e)
@@ -29,7 +29,8 @@ namespace ToutEmbalUI
             pbTimeProduce.Minimum = 0;
             pbTimeProduce.Maximum = Manager.Unit.GetNbWanted();
 
-            UpdateProcessBarThreadSafe(null, new EventArgs());
+            Manager.Unit.OnCreateOne += UpdateProcessBarThreadSafe;
+            UpdateProcessBarThreadSafe(null, EventArgs.Empty);
         }
 
         public void UpdateProcessBarThreadSafe(object? sender, EventArgs e)

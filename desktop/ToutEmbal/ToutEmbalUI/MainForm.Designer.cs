@@ -1,4 +1,6 @@
-﻿namespace ToutEmbalUI
+﻿using ToutEmbalCore;
+
+namespace ToutEmbalUI
 {
     partial class MainForm
     {
@@ -26,6 +28,7 @@
         ///  Required method for Designer support - do not modify
         ///  the contents of this method with the code editor.
         /// </summary>
+        /// 
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
@@ -48,14 +51,14 @@
             this.menuiStartC = new System.Windows.Forms.ToolStripMenuItem();
             this.tabcProducersSpec = new System.Windows.Forms.TabControl();
             this.tabpA = new System.Windows.Forms.TabPage();
-            this.producerSpecsA = new ToutEmbalUI.ProducerSpecs();
+            this.producerSpecsA = new ToutEmbalUI.ProducerSpecs(ManagerA);
             this.tabpB = new System.Windows.Forms.TabPage();
-            this.producerSpecsB = new ToutEmbalUI.ProducerSpecs();
+            this.producerSpecsB = new ToutEmbalUI.ProducerSpecs(ManagerB);
             this.tabpC = new System.Windows.Forms.TabPage();
-            this.producerSpecsC = new ToutEmbalUI.ProducerSpecs();
-            this.producerLoadingA = new ToutEmbalUI.ProducerLoading();
-            this.producerLoadingB = new ToutEmbalUI.ProducerLoading();
-            this.producerLoadingC = new ToutEmbalUI.ProducerLoading();
+            this.producerSpecsC = new ToutEmbalUI.ProducerSpecs(ManagerC);
+            this.producerLoadingA = new ToutEmbalUI.ProducerLoading(ManagerA);
+            this.producerLoadingB = new ToutEmbalUI.ProducerLoading(ManagerB);
+            this.producerLoadingC = new ToutEmbalUI.ProducerLoading(ManagerC);
             this.statusBar = new System.Windows.Forms.StatusStrip();
             this.statusProdA = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusProdB = new System.Windows.Forms.ToolStripStatusLabel();
@@ -242,7 +245,6 @@
             // producerSpecsA
             // 
             this.producerSpecsA.Location = new System.Drawing.Point(0, 0);
-            this.producerSpecsA.Manager = null;
             this.producerSpecsA.Name = "producerSpecsA";
             this.producerSpecsA.Size = new System.Drawing.Size(365, 135);
             this.producerSpecsA.TabIndex = 0;
@@ -261,7 +263,6 @@
             // producerSpecsB
             // 
             this.producerSpecsB.Location = new System.Drawing.Point(0, 0);
-            this.producerSpecsB.Manager = null;
             this.producerSpecsB.Name = "producerSpecsB";
             this.producerSpecsB.Size = new System.Drawing.Size(365, 135);
             this.producerSpecsB.TabIndex = 0;
@@ -280,7 +281,6 @@
             // producerSpecsC
             // 
             this.producerSpecsC.Location = new System.Drawing.Point(0, 0);
-            this.producerSpecsC.Manager = null;
             this.producerSpecsC.Name = "producerSpecsC";
             this.producerSpecsC.Size = new System.Drawing.Size(365, 135);
             this.producerSpecsC.TabIndex = 0;
@@ -288,7 +288,6 @@
             // producerLoadingA
             // 
             this.producerLoadingA.Location = new System.Drawing.Point(12, 226);
-            this.producerLoadingA.Manager = null;
             this.producerLoadingA.Name = "producerLoadingA";
             this.producerLoadingA.Size = new System.Drawing.Size(459, 38);
             this.producerLoadingA.TabIndex = 4;
@@ -296,7 +295,6 @@
             // producerLoadingB
             // 
             this.producerLoadingB.Location = new System.Drawing.Point(12, 270);
-            this.producerLoadingB.Manager = null;
             this.producerLoadingB.Name = "producerLoadingB";
             this.producerLoadingB.Size = new System.Drawing.Size(459, 40);
             this.producerLoadingB.TabIndex = 5;
@@ -304,7 +302,6 @@
             // producerLoadingC
             // 
             this.producerLoadingC.Location = new System.Drawing.Point(11, 316);
-            this.producerLoadingC.Manager = null;
             this.producerLoadingC.Name = "producerLoadingC";
             this.producerLoadingC.Size = new System.Drawing.Size(459, 38);
             this.producerLoadingC.TabIndex = 6;
@@ -503,7 +500,6 @@
         private ToolStripMenuItem menuiShutdownProduction;
         private ProducerSpecs producerSpecsB;
         private ProducerSpecs producerSpecsC;
-        private Label labelPRoduceA;
         private StatusStrip statusBar;
         private ToolStripStatusLabel statusProdA;
         private ToolStripStatusLabel statusProdB;

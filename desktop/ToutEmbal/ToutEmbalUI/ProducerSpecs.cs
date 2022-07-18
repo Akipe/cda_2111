@@ -13,18 +13,19 @@ namespace ToutEmbalUI
 {
     public partial class ProducerSpecs : UserControl
     {
-        public ProducerManager? Manager { get; set; }
+        public ProducerManager Manager { get; init; }
 
-        public ProducerSpecs()
+        public ProducerSpecs(ProducerManager manager)
         {
             InitializeComponent();
 
-            Manager = null;
+            Manager = manager;
         }
 
         private void ProducerSpecs_Load(object? sender, EventArgs e)
         {
-            UpdateSpecsThreadSafe(null, new EventArgs());
+            Manager.Unit.OnCreateOne += UpdateSpecsThreadSafe;
+            UpdateSpecsThreadSafe(null, EventArgs.Empty);
         }
 
         public void UpdateSpecsThreadSafe(object? sender, EventArgs e)
