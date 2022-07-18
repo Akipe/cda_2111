@@ -31,10 +31,15 @@ namespace ToutEmbalUI
         {
             if (Manager != null)
             {
-                tbNbProducts.Text = Manager.Unit.GetProduction().ToString();
-                tbDefectRateLastHour.Text = Manager.Unit.GetLastHourRateDefect().ToString("0.0000");
-                tbDefectRateAllTime.Text = Manager.Unit.GetTotalRateDefect().ToString("0.0000");
+                this.Invoke(test);
             }
+        }
+
+        private void test()
+        {
+            tbNbProducts.Text = Manager.Unit.GetProduction().ToString();
+            tbDefectRateLastHour.Text = Manager.Unit.GetLastHourRateDefect().ToString("0.0000");
+            tbDefectRateAllTime.Text = Manager.Unit.GetTotalRateDefect().ToString("0.0000");
         }
     }
 }

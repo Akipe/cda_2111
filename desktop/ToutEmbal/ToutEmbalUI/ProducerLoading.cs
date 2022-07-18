@@ -36,8 +36,13 @@ namespace ToutEmbalUI
         {
             if (Manager != null)
             {
-                pbTimeProduce.Value = Manager.Unit.GetProduction();
+                Invoke(test);
             }
+        }
+
+        private void test()
+        {
+            pbTimeProduce.Value = Manager.Unit.GetProduction();
         }
     }
 }

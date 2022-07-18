@@ -18,8 +18,8 @@ namespace ToutEmbalCore
         string GetName();
         int GetMilisecondsForCreateOne();
         int GetNbWanted();
-        void RunEventsOnStateChanged();
         event EventHandler OnMaxProduction;
         event EventHandler OnStateChanged;
+        event EventHandler OnCreateOne;
     }
 }

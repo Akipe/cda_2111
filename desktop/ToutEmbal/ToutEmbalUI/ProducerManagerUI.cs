@@ -16,7 +16,6 @@ namespace ToutEmbalUI
         public ProducerSpecs SpecsUI { get; init; }
         public ProducerLoading LoadingUI { get; init; }
         private Form MainForm { get; set; }
-        private Timer ProdTimer { get; init; }
 
         public List<object> LaunchObjsForm { get; private set; }
         public List<object> StopObjsForm { get; private set; }
@@ -57,10 +56,8 @@ namespace ToutEmbalUI
             StartObjsForm = new List<object>();
             ShutdownObjsForm = new List<object>();
 
-            ProdTimer = new Timer();
-            ProdTimer.Interval = Manager.Unit.GetMilisecondsForCreateOne() / 2;
-            ProdTimer.Tick += LoadingUI.UpdateProcessBar;
-            ProdTimer.Tick += SpecsUI.UpdateSpecs;
+            Manager.Unit.OnCreateOne += LoadingUI.UpdateProcessBar;
+            Manager.Unit.OnCreateOne += SpecsUI.UpdateSpecs;
 
         }
 
@@ -70,7 +67,6 @@ namespace ToutEmbalUI
             /*if (Manager.Unit.GetState() == ProducerState.created)
             {*/
                 Manager.Launch();
-                ProdTimer.Start();
             /*}*/
         }
 
@@ -79,7 +75,6 @@ namespace ToutEmbalUI
             /*if (Manager.Unit.GetState() == ProducerState.started)
             {*/
                 Manager.Stop();
-                ProdTimer.Stop();
             /*}*/
         }
 
@@ -88,7 +83,6 @@ namespace ToutEmbalUI
             /*if (Manager.Unit.GetState() == ProducerState.stopped)
             {*/
                 Manager.Start();
-                ProdTimer.Start();
             /*}*/
         }
 
@@ -97,7 +91,6 @@ namespace ToutEmbalUI
             /*if (Manager.Unit.GetState() != ProducerState.created)
             {*/
                 Manager.Shutdown();
-                ProdTimer.Stop();
             /*}*/
         }
 
@@ -143,11 +136,6 @@ namespace ToutEmbalUI
         {
             return Manager.ToString();
         }
-
-        /*public void UpdateStatusManagerActions()
-        {
-            TriggerStatusManagerActions(this, new EventArgs());
-        }*/
 
         private void TriggerStatusManagerActionsOtherThread(object? sender, EventArgs e)
         {

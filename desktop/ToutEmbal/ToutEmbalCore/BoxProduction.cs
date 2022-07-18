@@ -15,7 +15,7 @@ namespace ToutEmbalCore
 
         public event EventHandler OnMaxProduction;
         public event EventHandler OnStateChanged;
-
+        public event EventHandler OnCreateOne;
 
         private static Random GetRdn()
         {
@@ -49,6 +49,11 @@ namespace ToutEmbalCore
                 }
 
                 _nbDone = value;
+
+                if (_nbDone == MaxWanted)
+                {
+                    State = ProducerState.shutdown;
+                }
             }
         }
 
@@ -86,20 +91,23 @@ namespace ToutEmbalCore
             {
                 _state = value;
 
-                if (_state == ProducerState.started || _state == ProducerState.stopped)
+                if (OnStateChanged is not null)
                 {
-                    try
+                    if (_state == ProducerState.started || _state == ProducerState.stopped)
                     {
-                        OnStateChanged.Invoke(this, new EventArgs());
+                        try
+                        {
+                            OnStateChanged.Invoke(this, new EventArgs());
+                        }
+                        catch (Exception e)
+                        {
+                            OnStateChanged(this, new EventArgs());
+                        }
                     }
-                    catch (Exception e)
+                    else
                     {
-                        ExecuteOnStateChanged();
+                        OnStateChanged(this, new EventArgs());
                     }
-                }
-                else
-                {
-                    ExecuteOnStateChanged();
                 }
             }
         }
@@ -203,9 +211,9 @@ namespace ToutEmbalCore
                     NbDone++;
                     //}
 
-                    if (NbDone == MaxWanted)
+                    if (OnCreateOne is not null)
                     {
-                        State = ProducerState.shutdown;
+                        OnCreateOne.Invoke(this, new EventArgs());
                     }
                 }
             }
@@ -234,23 +242,10 @@ namespace ToutEmbalCore
 
         public void Shutdown()
         {
-            if (State != ProducerState.created)
-            {
+            /*if (State != ProducerState.created)
+            {*/
                 State = ProducerState.shutdown;
-            }
-        }
-
-        private void ExecuteOnStateChanged()
-        {
-            if (OnStateChanged is not null)
-            {
-                OnStateChanged(this, new EventArgs());
-            }
-        }
-
-        public void RunEventsOnStateChanged()
-        {
-            ExecuteOnStateChanged();
+            /*}*/
         }
 
         private bool IsBoxDefect()
