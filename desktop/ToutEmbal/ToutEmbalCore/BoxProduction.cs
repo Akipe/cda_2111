@@ -13,11 +13,11 @@ namespace ToutEmbalCore
         private int _nbDone;
         private ProducerState _state;
 
-        public event EventHandler OnMaxProduction;
-        public event EventHandler OnStateChanged;
-        public event EventHandler OnCreateOne;
+        public event EventHandler? OnMaxProduction;
+        public event EventHandler? OnStateChanged;
+        public event EventHandler? OnCreateOne;
 
-        private static Random GetRdn()
+        private static Random GetRandom()
         {
             if (BoxProduction._rnd is null)
             {
@@ -53,6 +53,7 @@ namespace ToutEmbalCore
                 if (_nbDone == MaxWanted)
                 {
                     State = ProducerState.shutdown;
+                    ExecOnMaxProduction();
                 }
             }
         }
@@ -91,24 +92,7 @@ namespace ToutEmbalCore
             {
                 _state = value;
 
-                if (OnStateChanged is not null)
-                {
-                    if (_state == ProducerState.started || _state == ProducerState.stopped)
-                    {
-                        try
-                        {
-                            OnStateChanged.Invoke(this, new EventArgs());
-                        }
-                        catch (Exception e)
-                        {
-                            OnStateChanged(this, new EventArgs());
-                        }
-                    }
-                    else
-                    {
-                        OnStateChanged(this, new EventArgs());
-                    }
-                }
+                ExecOnStateChanged();
             }
         }
 
@@ -140,6 +124,10 @@ namespace ToutEmbalCore
             ProductivityPerHour = productivityPerHour;
             MaxWanted = maxWanted;
             RateDefectPercent = rateDefectPercent;
+
+            OnMaxProduction = null;
+            OnStateChanged = null;
+            OnCreateOne = null;
 
             NbDone = 0;
             Defects = new List<IProducerDefect>();
@@ -211,10 +199,7 @@ namespace ToutEmbalCore
                     NbDone++;
                     //}
 
-                    if (OnCreateOne is not null)
-                    {
-                        OnCreateOne.Invoke(this, new EventArgs());
-                    }
+                    OnCreateOne?.Invoke(this, EventArgs.Empty);
                 }
             }
         }
@@ -250,7 +235,7 @@ namespace ToutEmbalCore
 
         private bool IsBoxDefect()
         {
-            int luck = BoxProduction.GetRdn().Next(0, 101);
+            int luck = BoxProduction.GetRandom().Next(0, 101);
 
             return RateDefectPercent > luck;
         }
@@ -268,6 +253,43 @@ namespace ToutEmbalCore
         public ProducerState GetState()
         {
             return State;
+        }
+
+        private void ExecOnMaxProduction()
+        {
+            if (OnMaxProduction is not null)
+            {
+                try
+                {
+                    OnMaxProduction.Invoke(this, EventArgs.Empty);
+                }
+                catch (Exception)
+                {
+                    OnMaxProduction(this, EventArgs.Empty);
+                }
+            }
+        }
+
+        private void ExecOnStateChanged()
+        {
+            if (OnStateChanged is not null)
+            {
+                if (_state == ProducerState.started || _state == ProducerState.stopped)
+                {
+                    try
+                    {
+                        OnStateChanged.Invoke(this, EventArgs.Empty);
+                    }
+                    catch (Exception)
+                    {
+                        OnStateChanged(this, EventArgs.Empty);
+                    }
+                }
+                else
+                {
+                    OnStateChanged(this, EventArgs.Empty);
+                }
+            }
         }
     }
 }

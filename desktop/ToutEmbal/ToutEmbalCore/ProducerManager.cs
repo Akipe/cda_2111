@@ -7,8 +7,6 @@ namespace ToutEmbalCore
 {
     public class ProducerManager
     {
-        public event EventHandler OnStateChanged;
-
         public IProducer Unit
         {
             get;

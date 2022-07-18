@@ -35,7 +35,7 @@ namespace ToutEmbalUI
                 {
                     Invoke(UpdateSpecs);
                 }
-                catch (InvalidOperationException error)
+                catch (InvalidOperationException)
                 {
                     UpdateSpecs();
                 }

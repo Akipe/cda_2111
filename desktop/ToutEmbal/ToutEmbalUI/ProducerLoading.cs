@@ -40,7 +40,7 @@ namespace ToutEmbalUI
                 {
                     Invoke(updateProcessBar);
                 }
-                catch (InvalidOperationException error)
+                catch (InvalidOperationException)
                 {
                     updateProcessBar();
                 }
