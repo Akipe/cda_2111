@@ -1,6 +1,6 @@
 ﻿namespace ToutEmbalUI
 {
-    partial class ProducerLoading
+    partial class ManagerLoading
     {
         /// <summary> 
         /// Required designer variable.
@@ -57,7 +57,6 @@
             this.Controls.Add(this.lProduceTime);
             this.Name = "ProducerLoading";
             this.Size = new System.Drawing.Size(459, 32);
-            this.Load += new System.EventHandler(this.ProducerLoading_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

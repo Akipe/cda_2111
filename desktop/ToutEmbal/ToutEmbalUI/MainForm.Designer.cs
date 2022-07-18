@@ -51,14 +51,14 @@ namespace ToutEmbalUI
             this.menuiStartC = new System.Windows.Forms.ToolStripMenuItem();
             this.tabcProducersSpec = new System.Windows.Forms.TabControl();
             this.tabpA = new System.Windows.Forms.TabPage();
-            this.producerSpecsA = new ToutEmbalUI.ProducerSpecs(ManagerA);
+            this.producerSpecsA = new ToutEmbalUI.ManagerSpecs();
             this.tabpB = new System.Windows.Forms.TabPage();
-            this.producerSpecsB = new ToutEmbalUI.ProducerSpecs(ManagerB);
+            this.producerSpecsB = new ToutEmbalUI.ManagerSpecs();
             this.tabpC = new System.Windows.Forms.TabPage();
-            this.producerSpecsC = new ToutEmbalUI.ProducerSpecs(ManagerC);
-            this.producerLoadingA = new ToutEmbalUI.ProducerLoading(ManagerA);
-            this.producerLoadingB = new ToutEmbalUI.ProducerLoading(ManagerB);
-            this.producerLoadingC = new ToutEmbalUI.ProducerLoading(ManagerC);
+            this.producerSpecsC = new ToutEmbalUI.ManagerSpecs();
+            this.producerLoadingA = new ToutEmbalUI.ManagerLoading();
+            this.producerLoadingB = new ToutEmbalUI.ManagerLoading();
+            this.producerLoadingC = new ToutEmbalUI.ManagerLoading();
             this.statusBar = new System.Windows.Forms.StatusStrip();
             this.statusProdA = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusProdB = new System.Windows.Forms.ToolStripStatusLabel();
@@ -139,23 +139,20 @@ namespace ToutEmbalUI
             // menuiLaunchA
             // 
             this.menuiLaunchA.Name = "menuiLaunchA";
-            this.menuiLaunchA.Size = new System.Drawing.Size(82, 22);
+            this.menuiLaunchA.Size = new System.Drawing.Size(180, 22);
             this.menuiLaunchA.Text = "A";
-            this.menuiLaunchA.Click += new System.EventHandler(this.Event_LaunchProduction);
             // 
             // menuiLaunchB
             // 
             this.menuiLaunchB.Name = "menuiLaunchB";
-            this.menuiLaunchB.Size = new System.Drawing.Size(82, 22);
+            this.menuiLaunchB.Size = new System.Drawing.Size(180, 22);
             this.menuiLaunchB.Text = "B";
-            this.menuiLaunchB.Click += new System.EventHandler(this.Event_LaunchProduction);
             // 
             // menuiLaunchC
             // 
             this.menuiLaunchC.Name = "menuiLaunchC";
-            this.menuiLaunchC.Size = new System.Drawing.Size(82, 22);
+            this.menuiLaunchC.Size = new System.Drawing.Size(180, 22);
             this.menuiLaunchC.Text = "C";
-            this.menuiLaunchC.Click += new System.EventHandler(this.Event_LaunchProduction);
             // 
             // menuiStop
             // 
@@ -166,28 +163,24 @@ namespace ToutEmbalUI
             this.menuiStop.Name = "menuiStop";
             this.menuiStop.Size = new System.Drawing.Size(127, 22);
             this.menuiStop.Text = "Arrêter";
-            this.menuiStop.Click += new System.EventHandler(this.Event_StopProduction);
             // 
             // menuiStopA
             // 
             this.menuiStopA.Name = "menuiStopA";
-            this.menuiStopA.Size = new System.Drawing.Size(82, 22);
+            this.menuiStopA.Size = new System.Drawing.Size(180, 22);
             this.menuiStopA.Text = "A";
-            this.menuiStopA.Click += new System.EventHandler(this.Event_StopProduction);
             // 
             // menuiStopB
             // 
             this.menuiStopB.Name = "menuiStopB";
-            this.menuiStopB.Size = new System.Drawing.Size(82, 22);
+            this.menuiStopB.Size = new System.Drawing.Size(180, 22);
             this.menuiStopB.Text = "B";
-            this.menuiStopB.Click += new System.EventHandler(this.Event_StopProduction);
             // 
             // menuiStopC
             // 
             this.menuiStopC.Name = "menuiStopC";
-            this.menuiStopC.Size = new System.Drawing.Size(82, 22);
+            this.menuiStopC.Size = new System.Drawing.Size(180, 22);
             this.menuiStopC.Text = "C";
-            this.menuiStopC.Click += new System.EventHandler(this.Event_StopProduction);
             // 
             // menuiStart
             // 
@@ -204,21 +197,18 @@ namespace ToutEmbalUI
             this.menuiStartA.Name = "menuiStartA";
             this.menuiStartA.Size = new System.Drawing.Size(82, 22);
             this.menuiStartA.Text = "A";
-            this.menuiStartA.Click += new System.EventHandler(this.Event_StartProduction);
             // 
             // menuiStartB
             // 
             this.menuiStartB.Name = "menuiStartB";
             this.menuiStartB.Size = new System.Drawing.Size(82, 22);
             this.menuiStartB.Text = "B";
-            this.menuiStartB.Click += new System.EventHandler(this.Event_StartProduction);
             // 
             // menuiStartC
             // 
             this.menuiStartC.Name = "menuiStartC";
             this.menuiStartC.Size = new System.Drawing.Size(82, 22);
             this.menuiStartC.Text = "C";
-            this.menuiStartC.Click += new System.EventHandler(this.Event_StartProduction);
             // 
             // tabcProducersSpec
             // 
@@ -245,6 +235,7 @@ namespace ToutEmbalUI
             // producerSpecsA
             // 
             this.producerSpecsA.Location = new System.Drawing.Point(0, 0);
+            this.producerSpecsA.Manager = null;
             this.producerSpecsA.Name = "producerSpecsA";
             this.producerSpecsA.Size = new System.Drawing.Size(365, 135);
             this.producerSpecsA.TabIndex = 0;
@@ -263,6 +254,7 @@ namespace ToutEmbalUI
             // producerSpecsB
             // 
             this.producerSpecsB.Location = new System.Drawing.Point(0, 0);
+            this.producerSpecsB.Manager = null;
             this.producerSpecsB.Name = "producerSpecsB";
             this.producerSpecsB.Size = new System.Drawing.Size(365, 135);
             this.producerSpecsB.TabIndex = 0;
@@ -281,6 +273,7 @@ namespace ToutEmbalUI
             // producerSpecsC
             // 
             this.producerSpecsC.Location = new System.Drawing.Point(0, 0);
+            this.producerSpecsC.Manager = null;
             this.producerSpecsC.Name = "producerSpecsC";
             this.producerSpecsC.Size = new System.Drawing.Size(365, 135);
             this.producerSpecsC.TabIndex = 0;
@@ -288,6 +281,7 @@ namespace ToutEmbalUI
             // producerLoadingA
             // 
             this.producerLoadingA.Location = new System.Drawing.Point(12, 226);
+            this.producerLoadingA.Manager = null;
             this.producerLoadingA.Name = "producerLoadingA";
             this.producerLoadingA.Size = new System.Drawing.Size(459, 38);
             this.producerLoadingA.TabIndex = 4;
@@ -295,6 +289,7 @@ namespace ToutEmbalUI
             // producerLoadingB
             // 
             this.producerLoadingB.Location = new System.Drawing.Point(12, 270);
+            this.producerLoadingB.Manager = null;
             this.producerLoadingB.Name = "producerLoadingB";
             this.producerLoadingB.Size = new System.Drawing.Size(459, 40);
             this.producerLoadingB.TabIndex = 5;
@@ -302,6 +297,7 @@ namespace ToutEmbalUI
             // producerLoadingC
             // 
             this.producerLoadingC.Location = new System.Drawing.Point(11, 316);
+            this.producerLoadingC.Manager = null;
             this.producerLoadingC.Name = "producerLoadingC";
             this.producerLoadingC.Size = new System.Drawing.Size(459, 38);
             this.producerLoadingC.TabIndex = 6;
@@ -344,95 +340,86 @@ namespace ToutEmbalUI
             this.statusTime.Text = "statusTime";
             this.statusTime.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // bALaunch
+            // bLaunchA
             // 
             this.bLaunchA.Location = new System.Drawing.Point(12, 27);
-            this.bLaunchA.Name = "bALaunch";
+            this.bLaunchA.Name = "bLaunchA";
             this.bLaunchA.Size = new System.Drawing.Size(65, 23);
             this.bLaunchA.TabIndex = 8;
             this.bLaunchA.Text = "A Launch";
             this.bLaunchA.UseVisualStyleBackColor = true;
-            this.bLaunchA.Click += new System.EventHandler(this.Event_LaunchProduction);
             // 
-            // bAStop
+            // bStopA
             // 
             this.bStopA.Location = new System.Drawing.Point(77, 27);
-            this.bStopA.Name = "bAStop";
+            this.bStopA.Name = "bStopA";
             this.bStopA.Size = new System.Drawing.Size(51, 23);
             this.bStopA.TabIndex = 9;
             this.bStopA.Text = "A Stop";
             this.bStopA.UseVisualStyleBackColor = true;
-            this.bStopA.Click += new System.EventHandler(this.Event_StopProduction);
             // 
-            // bAStart
+            // bStartA
             // 
             this.bStartA.Location = new System.Drawing.Point(128, 27);
-            this.bStartA.Name = "bAStart";
+            this.bStartA.Name = "bStartA";
             this.bStartA.Size = new System.Drawing.Size(50, 23);
             this.bStartA.TabIndex = 10;
             this.bStartA.Text = "A Start";
             this.bStartA.UseVisualStyleBackColor = true;
-            this.bStartA.Click += new System.EventHandler(this.Event_StartProduction);
             // 
-            // bBStart
+            // bStartB
             // 
             this.bStartB.Location = new System.Drawing.Point(300, 27);
-            this.bStartB.Name = "bBStart";
+            this.bStartB.Name = "bStartB";
             this.bStartB.Size = new System.Drawing.Size(50, 23);
             this.bStartB.TabIndex = 13;
             this.bStartB.Text = "B Start";
             this.bStartB.UseVisualStyleBackColor = true;
-            this.bStartB.Click += new System.EventHandler(this.Event_StartProduction);
             // 
-            // bBStop
+            // bStopB
             // 
             this.bStopB.Location = new System.Drawing.Point(249, 27);
-            this.bStopB.Name = "bBStop";
+            this.bStopB.Name = "bStopB";
             this.bStopB.Size = new System.Drawing.Size(51, 23);
             this.bStopB.TabIndex = 12;
             this.bStopB.Text = "B Stop";
             this.bStopB.UseVisualStyleBackColor = true;
-            this.bStopB.Click += new System.EventHandler(this.Event_StopProduction);
             // 
-            // bBLaunch
+            // bLaunchB
             // 
             this.bLaunchB.Location = new System.Drawing.Point(184, 27);
-            this.bLaunchB.Name = "bBLaunch";
+            this.bLaunchB.Name = "bLaunchB";
             this.bLaunchB.Size = new System.Drawing.Size(65, 23);
             this.bLaunchB.TabIndex = 11;
             this.bLaunchB.Text = "B Launch";
             this.bLaunchB.UseVisualStyleBackColor = true;
-            this.bLaunchB.Click += new System.EventHandler(this.Event_LaunchProduction);
             // 
-            // bCStart
+            // bStartC
             // 
             this.bStartC.Location = new System.Drawing.Point(472, 27);
-            this.bStartC.Name = "bCStart";
+            this.bStartC.Name = "bStartC";
             this.bStartC.Size = new System.Drawing.Size(50, 23);
             this.bStartC.TabIndex = 16;
             this.bStartC.Text = "C Start";
             this.bStartC.UseVisualStyleBackColor = true;
-            this.bStartC.Click += new System.EventHandler(this.Event_StartProduction);
             // 
-            // bCStop
+            // bStopC
             // 
             this.bStopC.Location = new System.Drawing.Point(421, 27);
-            this.bStopC.Name = "bCStop";
+            this.bStopC.Name = "bStopC";
             this.bStopC.Size = new System.Drawing.Size(51, 23);
             this.bStopC.TabIndex = 15;
             this.bStopC.Text = "C Stop";
             this.bStopC.UseVisualStyleBackColor = true;
-            this.bStopC.Click += new System.EventHandler(this.Event_StopProduction);
             // 
-            // bCLaunch
+            // bLaunchC
             // 
             this.bLaunchC.Location = new System.Drawing.Point(356, 27);
-            this.bLaunchC.Name = "bCLaunch";
+            this.bLaunchC.Name = "bLaunchC";
             this.bLaunchC.Size = new System.Drawing.Size(65, 23);
             this.bLaunchC.TabIndex = 14;
             this.bLaunchC.Text = "C Launch";
             this.bLaunchC.UseVisualStyleBackColor = true;
-            this.bLaunchC.Click += new System.EventHandler(this.Event_LaunchProduction);
             // 
             // MainForm
             // 
@@ -491,15 +478,15 @@ namespace ToutEmbalUI
         private TabControl tabcProducersSpec;
         private TabPage tabpA;
         private TabPage tabpB;
-        private ProducerSpecs producerSpecsA;
+        private ManagerSpecs producerSpecsA;
         private TabPage tabpC;
-        private ProducerLoading producerLoadingA;
-        private ProducerLoading producerLoadingB;
-        private ProducerLoading producerLoadingC;
+        private ManagerLoading producerLoadingA;
+        private ManagerLoading producerLoadingB;
+        private ManagerLoading producerLoadingC;
         private ToolStripMenuItem menuiQuitApp;
         private ToolStripMenuItem menuiShutdownProduction;
-        private ProducerSpecs producerSpecsB;
-        private ProducerSpecs producerSpecsC;
+        private ManagerSpecs producerSpecsB;
+        private ManagerSpecs producerSpecsC;
         private StatusStrip statusBar;
         private ToolStripStatusLabel statusProdA;
         private ToolStripStatusLabel statusProdB;

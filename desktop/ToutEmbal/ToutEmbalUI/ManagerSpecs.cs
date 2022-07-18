@@ -11,24 +11,39 @@ using ToutEmbalCore;
 
 namespace ToutEmbalUI
 {
-    public partial class ProducerSpecs : UserControl
+    public partial class ManagerSpecs : UserControl
     {
-        public ProducerManager Manager { get; init; }
+        private ProducerManager? _manager;
 
-        public ProducerSpecs(ProducerManager manager)
-        {
-            InitializeComponent();
+        public ProducerManager? Manager {
+            get
+            {
+                return _manager;
+            }
+            set
+            {
+                _manager = value;
 
-            Manager = manager;
+                if (Manager is not null)
+                {
+                    OnManagerDefine();
+                }
+            }
         }
 
-        private void ProducerSpecs_Load(object? sender, EventArgs e)
+        public ManagerSpecs()
+        {
+            InitializeComponent();
+            Manager = null;
+        }
+
+        private void OnManagerDefine()
         {
             Manager.Unit.OnCreateOne += UpdateSpecsThreadSafe;
             UpdateSpecsThreadSafe(null, EventArgs.Empty);
         }
 
-        public void UpdateSpecsThreadSafe(object? sender, EventArgs e)
+        private void UpdateSpecsThreadSafe(object? sender, EventArgs e)
         {
             if (Manager != null)
             {

@@ -11,18 +11,34 @@ using ToutEmbalCore;
 
 namespace ToutEmbalUI
 {
-    public partial class ProducerLoading : UserControl
+    public partial class ManagerLoading : UserControl
     {
-        public ProducerManager Manager { get; init; }
+        private ProducerManager? _manager;
+        public ProducerManager? Manager
+        {
+            get
+            {
+                return _manager;
+            }
+            set
+            {
+                _manager = value;
+                
+                if (Manager is not null)
+                {
+                    OnManagerDefine();
+                }
+            }
+        }
 
-        public ProducerLoading(ProducerManager manager)
+        public ManagerLoading()
         {
             InitializeComponent();
 
-            Manager = manager;
+            Manager = null;
         }
 
-        private void ProducerLoading_Load(object? sender, EventArgs e)
+        private void OnManagerDefine()
         {
             lProduceTime.Text = "Production " + Manager.Unit.GetName();
 

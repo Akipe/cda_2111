@@ -4,7 +4,6 @@ namespace ToutEmbalUI
 {
     public partial class MainForm : Form
     {
-        List<ProducerManagerUI> prodManagersUI;
         List<ProducerManager> prodManagers;
 
         ProducerManager ManagerA { get; init; }
@@ -13,7 +12,6 @@ namespace ToutEmbalUI
 
         public MainForm()
         {
-            prodManagersUI = new List<ProducerManagerUI>();
             prodManagers = new List<ProducerManager>();
 
             BoxProduction boxProdA = new BoxProduction(
@@ -45,92 +43,60 @@ namespace ToutEmbalUI
 
             InitializeComponent();
 
-            prodManagersUI.Add(new ProducerManagerUI(
-                ManagerA,
-                producerSpecsA,
-                producerLoadingA,
-                this
-            ));
+            ManagerUIBuilder buildA = new ManagerUIBuilder(ManagerA);
+            buildA
+                .AddStatus(statusProdA)
+                .AddSpecs(producerSpecsA)
+                .AddLoading(producerLoadingA)
+                .AddForm(this)
+                .AddLaunchButtons(new object[] { menuiLaunchA, bLaunchA })
+                .AddStopButtons(new object[] { menuiStopA, bStopA })
+                .AddStartButtons(new object[] { menuiStartA, bStartA })
+            ;
 
-            prodManagersUI.Add(new ProducerManagerUI(
-                ManagerB,
-                producerSpecsB,
-                producerLoadingB,
-                this
-            ));
+            ManagerUIBuilder buildB = new ManagerUIBuilder(ManagerB);
+            buildB
+                .AddStatus(statusProdB)
+                .AddSpecs(producerSpecsB)
+                .AddLoading(producerLoadingB)
+                .AddForm(this)
+                .AddLaunchButtons(new object[] { menuiLaunchB, bLaunchB })
+                .AddStopButtons(new object[] { menuiStopB, bStopB })
+                .AddStartButtons(new object[] { menuiStartB, bStartB })
+            ;
 
-            prodManagersUI.Add(new ProducerManagerUI(
-                ManagerC,
-                producerSpecsC,
-                producerLoadingC,
-                this
-            ));
+            ManagerUIBuilder buildC = new ManagerUIBuilder(ManagerC);
+            buildC
+                .AddStatus(statusProdC)
+                .AddSpecs(producerSpecsC)
+                .AddLoading(producerLoadingC)
+                .AddForm(this)
+                .AddLaunchButtons(new object[] { menuiLaunchC, bLaunchC })
+                .AddStopButtons(new object[] { menuiStopC, bStopC })
+                .AddStartButtons(new object[] { menuiStartC, bStartC })
+            ;
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
             InitTimeClockStatus();
-
-            foreach (ProducerManagerUI prodManUI in prodManagersUI)
-            {
-                switch(prodManUI.ToString())
-                {
-                    case "A":
-                        prodManUI.BindLaunch(menuiLaunchA);
-                        prodManUI.BindLaunch(bLaunchA);
-                        prodManUI.BindStop(menuiStopA);
-                        prodManUI.BindStop(bStopA);
-                        prodManUI.BindStart(menuiStartA);
-                        prodManUI.BindStart(bStartA);
-                        prodManUI.InfoStatus = statusProdA;
-                        break;
-                    case "B":
-                        prodManUI.BindLaunch(menuiLaunchB);
-                        prodManUI.BindLaunch(bLaunchB);
-                        prodManUI.BindStop(menuiStopB);
-                        prodManUI.BindStop(bStopB);
-                        prodManUI.BindStart(menuiStartB);
-                        prodManUI.BindStart(bStartB);
-                        prodManUI.InfoStatus = statusProdB;
-                        break;
-                    case "C":
-                        prodManUI.BindLaunch(menuiLaunchC);
-                        prodManUI.BindLaunch(bLaunchC);
-                        prodManUI.BindStop(menuiStopC);
-                        prodManUI.BindStop(bStopC);
-                        prodManUI.BindStart(menuiStartC);
-                        prodManUI.BindStart(bStartC);
-                        prodManUI.InfoStatus = statusProdC;
-                        break;
-                }
-            }
         }
 
         private void InitTimeClockStatus()
         {
-            statusTime.Text = DateTime.Now.ToString("HH:mm:ss");
+            setCurrentTime();
 
             timerTime.Interval = 1000;
             timerTime.Tick += (object? sender, EventArgs e) =>
             {
-                statusTime.Text = DateTime.Now.ToString("HH:mm:ss");
+                setCurrentTime();
             };
             timerTime.Start();
         }
 
-        private void Event_LaunchProduction(object sender, EventArgs e)
+        private void setCurrentTime()
         {
-            ProducerManagerUI.ExecActionFromButtons(ProducerState.created, sender);
-        }
-
-        private void Event_StartProduction(object sender, EventArgs e)
-        {
-            ProducerManagerUI.ExecActionFromButtons(ProducerState.started, sender);
-        }
-
-        private void Event_StopProduction(object sender, EventArgs e)
-        {
-            ProducerManagerUI.ExecActionFromButtons(ProducerState.stopped, sender);
+            statusTime.Text = DateTime.Now.ToString("HH:mm:ss");
         }
 
         private void Event_ShutdownAll(object? sender, EventArgs e)
@@ -164,9 +130,9 @@ namespace ToutEmbalUI
 
         private void ShutdownAllProducers()
         {
-            foreach (ProducerManagerUI prodManUI in prodManagersUI)
+            foreach (ProducerManager manager in ManagerUIBuilder.Managers)
             {
-                prodManUI.Shutdown();
+                manager.Shutdown();
             }
         }
     }

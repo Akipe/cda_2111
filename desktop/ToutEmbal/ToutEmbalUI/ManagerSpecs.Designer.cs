@@ -1,6 +1,6 @@
 ﻿namespace ToutEmbalUI
 {
-    partial class ProducerSpecs
+    partial class ManagerSpecs
     {
         /// <summary> 
         /// Required designer variable.
@@ -96,7 +96,6 @@
             this.Controls.Add(this.lNbProducts);
             this.Name = "ProducerSpecs";
             this.Size = new System.Drawing.Size(365, 135);
-            this.Load += new System.EventHandler(this.ProducerSpecs_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
