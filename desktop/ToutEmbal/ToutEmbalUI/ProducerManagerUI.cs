@@ -242,5 +242,44 @@ namespace ToutEmbalUI
                 }
             }
         }
+
+        public static void ExecActionFromButtons(ProducerState state, object sender)
+        {
+            ProducerManagerUI? managerUI = null;
+
+            if (sender is ToolStripMenuItem menuItem)
+            {
+                if (menuItem.Tag is ProducerManagerUI)
+                {
+                    managerUI = (ProducerManagerUI)menuItem.Tag;
+                }
+            }
+            if (sender is Control control)
+            {
+                if (control.Tag is ProducerManagerUI)
+                {
+                    managerUI = (ProducerManagerUI)control.Tag;
+                }
+            }
+
+            if (managerUI is not null)
+            {
+                switch (state)
+                {
+                    case ProducerState.created:
+                        managerUI.Launch();
+                        break;
+                    case ProducerState.stopped:
+                        managerUI.Stop();
+                        break;
+                    case ProducerState.started:
+                        managerUI.Start();
+                        break;
+                    case ProducerState.shutdown:
+                        managerUI.Shutdown();
+                        break;
+                }
+            }
+        }
     }
 }

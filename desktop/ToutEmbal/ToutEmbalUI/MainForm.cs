@@ -93,8 +93,6 @@ namespace ToutEmbalUI
                         prodManUI.InfoStatus = statusProdC;
                         break;
                 }
-
-                //prodManUI.UpdateStatusManagerActions();
             }
         }
 
@@ -105,63 +103,17 @@ namespace ToutEmbalUI
 
         private void Event_LaunchProduction(object sender, EventArgs e)
         {
-            ProducerManagerUI? managerUI = null;
-
-            if (sender is ToolStripMenuItem menuItem)
-            {
-                if (menuItem.Tag is ProducerManagerUI)
-                {
-                    managerUI = (ProducerManagerUI)menuItem.Tag;
-                }
-            }
-            if (sender is Control control)
-            {
-                if (control.Tag is ProducerManagerUI)
-                {
-                    managerUI = (ProducerManagerUI)control.Tag;
-                }
-            }
-
-            if (managerUI is not null)
-            {
-                managerUI.Launch();
-            }
+            ProducerManagerUI.ExecActionFromButtons(ProducerState.created, sender);
         }
 
         private void Event_StartProduction(object sender, EventArgs e)
         {
-            if (sender is ToolStripMenuItem menuItem)
-            {
-                if (menuItem.Tag is ProducerManagerUI managerUI)
-                {
-                    managerUI.Start();
-                }
-            }
-            if (sender is Control control)
-            {
-                if (control.Tag is ProducerManagerUI managerUI)
-                {
-                    managerUI.Start();
-                }
-            }
+            ProducerManagerUI.ExecActionFromButtons(ProducerState.started, sender);
         }
 
         private void Event_StopProduction(object sender, EventArgs e)
         {
-            if (sender is ToolStripMenuItem menuItem)
-            {
-                if (menuItem.Tag is ProducerManagerUI managerUI)
-                {
-                    managerUI.Stop();
-                }
-            }
-            if (sender is Control control)
-            {
-                if (control.Tag is ProducerManagerUI managerUI)
-                {
-                    managerUI.Stop();
-                }
-            }
+            ProducerManagerUI.ExecActionFromButtons(ProducerState.stopped, sender);
         }
 
         private void Event_ShutdownAll(object? sender, EventArgs e)
