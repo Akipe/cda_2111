@@ -8,6 +8,8 @@ namespace ToutEmbalCore.Producers
     public class BoxProduction : IProducer
     {
         private static Random? _rnd = null;
+        private const int DEFECT_RATE_MIN = 0;
+        private const int DEFECT_RATE_MAX = 1000;
 
         private int _productivityPerHour;
         private int _nbDone;
@@ -73,7 +75,7 @@ namespace ToutEmbalCore.Producers
             set
             {
                 _productivityPerHour = value;
-                MilisecondsForOneProduct = (int)(((double)value / 3600d) * 1000d);
+                MilisecondsForOneProduct = (int)((3600d / (double)value) * 1000d);
             }
         }
 
@@ -110,20 +112,20 @@ namespace ToutEmbalCore.Producers
             string name,
             int productivityPerHour,
             int maxWanted,
-            int rateDefectPercent
+            int rateDefectPerThousand
         )
         {
-            if (rateDefectPercent < 0 && rateDefectPercent > 100)
+            if (rateDefectPerThousand < DEFECT_RATE_MIN && rateDefectPerThousand > DEFECT_RATE_MAX)
             {
                 throw new Exception(
-                    "You have to set an rate defect between 0 and 100 (for a percent)"
+                    $"You have to set an rate defect between {DEFECT_RATE_MIN} and {DEFECT_RATE_MAX} (for a per thousand)"
                 );
             }
 
             Name = name;
             ProductivityPerHour = productivityPerHour;
             MaxWanted = maxWanted;
-            RateDefectPercent = rateDefectPercent;
+            RateDefectPercent = rateDefectPerThousand;
 
             OnMaxProduction = null;
             OnStateChanged = null;
@@ -151,8 +153,6 @@ namespace ToutEmbalCore.Producers
 
             foreach (IProducerDefect defect in Defects)
             {
-                var dateError = defect.GetWhenOccurred();
-                var nowMinusOneHour = DateTime.Now - oneHour;
                 if (defect.GetWhenOccurred() > DateTime.Now - oneHour)
                 {
                     countDefect++;
@@ -235,7 +235,10 @@ namespace ToutEmbalCore.Producers
 
         private bool IsBoxDefect()
         {
-            int luck = GetRandom().Next(0, 101);
+            int luck = GetRandom().Next(
+                DEFECT_RATE_MIN,
+                DEFECT_RATE_MAX + 1
+            );
 
             return RateDefectPercent > luck;
         }

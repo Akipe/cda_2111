@@ -132,7 +132,7 @@ namespace ToutEmbalUI.Libs
                 }
                 else if (button is ToolStripMenuItem menuItem)
                 {
-                    var toolStrip = menuItem.OwnerItem.GetCurrentParent();
+                    ToolStrip toolStrip = menuItem.OwnerItem.GetCurrentParent();
 
                     if (toolStrip.InvokeRequired)
                     {
