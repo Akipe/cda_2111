@@ -5,23 +5,20 @@ using System.Text;
 using System.Threading.Tasks;
 using ToutEmbalCore;
 
-namespace ToutEmbalUI
+namespace ToutEmbalUI.Libs
 {
-    public class ManagerButton
+    public class ManagerCommand
     {
-        public Form Form { get; init; }
         public ProducerManager Manager { get; init; }
         public List<object> LaunchBtns { get; private set; }
         public List<object> StopBtns { get; private set; }
         public List<object> StartBtns { get; private set; }
         public List<object> ShutdownBtns { get; private set; }
 
-        public ManagerButton(
-            Form form,
+        public ManagerCommand(
             ProducerManager manager
         )
         {
-            Form = form;
             Manager = manager;
 
             LaunchBtns = new List<object>();
@@ -117,16 +114,41 @@ namespace ToutEmbalUI
         {
             foreach (object button in buttons)
             {
-                if (Form.InvokeRequired)
+                if (button is Control control)
                 {
-                    Form.Invoke(new Action(() =>
+                    Form buttonForm = control.FindForm();
+
+                    if (buttonForm.InvokeRequired)
+                    {
+                        buttonForm.Invoke(new Action(() =>
+                        {
+                            TriggerAvailable(isEnable, button);
+                        }));
+                    }
+                    else
                     {
                         TriggerAvailable(isEnable, button);
-                    }));
+                    }
+                }
+                else if (button is ToolStripMenuItem menuItem)
+                {
+                    var toolStrip = menuItem.OwnerItem.GetCurrentParent();
+
+                    if (toolStrip.InvokeRequired)
+                    {
+                        toolStrip.Invoke(new Action(() =>
+                        {
+                            TriggerAvailable(isEnable, button);
+                        }));
+                    }
+                    else
+                    {
+                        TriggerAvailable(isEnable, button);
+                    }
                 }
                 else
                 {
-                    TriggerAvailable(isEnable, button);
+                    throw new Exception("Buttons has to be Control or ToolStripMenuItem");
                 }
             }
         }
@@ -144,21 +166,21 @@ namespace ToutEmbalUI
         }
 
 
-        private ManagerButton? GetManagerButtonFromTag(ToolStripMenuItem control)
+        private ManagerCommand? GetManagerButtonFromTag(ToolStripMenuItem control)
         {
-            if (control.Tag is ManagerButton)
+            if (control.Tag is ManagerCommand)
             {
-                return (ManagerButton)control.Tag;
+                return (ManagerCommand)control.Tag;
             }
 
             return null;
         }
 
-        private ManagerButton? GetManagerButtonFromTag(Control control)
+        private ManagerCommand? GetManagerButtonFromTag(Control control)
         {
-            if (control.Tag is ManagerButton)
+            if (control.Tag is ManagerCommand)
             {
-                return (ManagerButton)control.Tag;
+                return (ManagerCommand)control.Tag;
             }
 
             return null;
@@ -166,9 +188,9 @@ namespace ToutEmbalUI
 
         private void EventRunAction(object? sender, EventArgs e)
         {
-            ManagerButton? managerBtn = null;
+            ManagerCommand? managerBtn = null;
 
-            switch(sender)
+            switch (sender)
             {
                 case ToolStripMenuItem menuItem:
                     managerBtn = GetManagerButtonFromTag(menuItem);

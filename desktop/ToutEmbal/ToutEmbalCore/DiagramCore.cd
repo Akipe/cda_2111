@@ -3,13 +3,13 @@
   <Class Name="ToutEmbalCore.BoxProduction">
     <Position X="1" Y="1.5" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>EAUABEBARCAAAAEAABAAASSAIAFQAAAAIAACBAAAJgA=</HashCode>
+      <HashCode>EAAABEBARiBAAAEAAJEACSSAIAFQAAQAIAACBAAAJgA=</HashCode>
       <FileName>BoxProduction.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="ToutEmbalCore.ProduceDefect">
-    <Position X="3.75" Y="5.75" Width="1.75" />
+    <Position X="4.25" Y="4.75" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
       <FileName>ProduceDefect.cs</FileName>
@@ -17,9 +17,9 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="ToutEmbalCore.ProducerManager">
-    <Position X="5" Y="1.75" Width="2" />
+    <Position X="4.5" Y="1.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAARCAAAAAEIAAAAQAAAAAAAAAAIAAAQAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAQCAAAAAEIAAAAQAAAAAAAAAAIAAAQAAAAAA=</HashCode>
       <FileName>ProducerManager.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -27,21 +27,21 @@
     </ShowAsAssociation>
   </Class>
   <Interface Name="ToutEmbalCore.IProducer">
-    <Position X="8.5" Y="2" Width="2" />
+    <Position X="7.5" Y="1.25" Width="2" />
     <TypeIdentifier>
-      <HashCode>EAQAAEBARCAAAAEAABAAASAAIAAAAAAAIAAAAAAABAA=</HashCode>
+      <HashCode>EAAAAEBARCAAAAEAABEAASAAIAAAAAAAIAAAAAAABAA=</HashCode>
       <FileName>IProducer.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="ToutEmbalCore.IProducerDefect">
-    <Position X="6.5" Y="5.75" Width="1.5" />
+    <Position X="6.5" Y="5.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>IProducerDefect.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Enum Name="ToutEmbalCore.ProducerState">
-    <Position X="6.75" Y="7.25" Width="1.5" />
+    <Position X="4.25" Y="7" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAADAAAAAgAABAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>ProducerState.cs</FileName>

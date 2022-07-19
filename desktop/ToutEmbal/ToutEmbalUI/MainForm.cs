@@ -1,4 +1,6 @@
 using ToutEmbalCore;
+using ToutEmbalCore.Producers;
+using ToutEmbalUI.Libs;
 
 namespace ToutEmbalUI
 {
@@ -49,7 +51,6 @@ namespace ToutEmbalUI
                 .AddStatus(statusProdA)
                 .AddSpecs(producerSpecsA)
                 .AddLoading(producerLoadingA)
-                .AddForm(this)
                 .AddLaunchButtons(new object[] { menuiLaunchA, bLaunchA })
                 .AddStopButtons(new object[] { menuiStopA, bStopA })
                 .AddStartButtons(new object[] { menuiStartA, bStartA })
@@ -60,7 +61,6 @@ namespace ToutEmbalUI
                 .AddStatus(statusProdB)
                 .AddSpecs(producerSpecsB)
                 .AddLoading(producerLoadingB)
-                .AddForm(this)
                 .AddLaunchButtons(new object[] { menuiLaunchB, bLaunchB })
                 .AddStopButtons(new object[] { menuiStopB, bStopB })
                 .AddStartButtons(new object[] { menuiStartB, bStartB })
@@ -71,7 +71,6 @@ namespace ToutEmbalUI
                 .AddStatus(statusProdC)
                 .AddSpecs(producerSpecsC)
                 .AddLoading(producerLoadingC)
-                .AddForm(this)
                 .AddLaunchButtons(new object[] { menuiLaunchC, bLaunchC })
                 .AddStopButtons(new object[] { menuiStopC, bStopC })
                 .AddStartButtons(new object[] { menuiStartC, bStartC })

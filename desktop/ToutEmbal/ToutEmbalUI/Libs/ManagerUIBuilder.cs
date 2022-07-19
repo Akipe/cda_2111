@@ -5,18 +5,17 @@ using System.Text;
 using System.Threading.Tasks;
 using ToutEmbalCore;
 
-namespace ToutEmbalUI
+namespace ToutEmbalUI.Libs
 {
     public class ManagerUIBuilder
     {
         public static List<ProducerManager>? Managers { get; private set; }
 
         public ProducerManager? Manager { get; private set; }
-        public Form? CurrentForm { get; private set; }
         public ManagerStatus? Status { get; private set; }
         public ManagerSpecs? Specs { get; private set; }
         public ManagerLoading? Loading { get; private set; }
-        public ManagerButton? Button { get; private set; }
+        public ManagerCommand? Command { get; private set; }
 
         public ManagerUIBuilder(ProducerManager manager)
         {
@@ -68,23 +67,14 @@ namespace ToutEmbalUI
             return this;
         }
 
-        public ManagerUIBuilder AddForm(Form form)
-        {
-            CurrentForm = form;
-
-            return this;
-        }
-
         private void InitButtonIfNeeded()
         {
             if (Manager is null)
                 throw new MemberAccessException("You need a manager");
-            if (CurrentForm is null)
-                throw new MemberAccessException("You need a form");
 
-            if (Button is null)
+            if (Command is null)
             {
-                Button = new ManagerButton(CurrentForm, Manager);
+                Command = new ManagerCommand(Manager);
             }
         }
 
@@ -94,7 +84,7 @@ namespace ToutEmbalUI
 
             foreach (object btn in btns)
             {
-                Button.BindLaunch(btn);
+                Command.BindLaunch(btn);
             }
 
             return this;
@@ -106,7 +96,7 @@ namespace ToutEmbalUI
 
             foreach (object btn in btns)
             {
-                Button.BindStop(btn);
+                Command.BindStop(btn);
             }
 
             return this;
@@ -118,7 +108,7 @@ namespace ToutEmbalUI
 
             foreach (object btn in btns)
             {
-                Button.BindStart(btn);
+                Command.BindStart(btn);
             }
 
             return this;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ToutEmbalCore
+namespace ToutEmbalCore.Producers
 {
     public class BoxProduction : IProducer
     {
@@ -19,12 +19,12 @@ namespace ToutEmbalCore
 
         private static Random GetRandom()
         {
-            if (BoxProduction._rnd is null)
+            if (_rnd is null)
             {
-                BoxProduction._rnd = new Random();
+                _rnd = new Random();
             }
 
-            return BoxProduction._rnd;
+            return _rnd;
         }
 
         public int RateDefectPercent
@@ -38,7 +38,7 @@ namespace ToutEmbalCore
             {
                 return _nbDone;
             }
-            
+
             private set
             {
                 if (value > MaxWanted)
@@ -141,7 +141,7 @@ namespace ToutEmbalCore
                 return 0.0;
             }
 
-            return (double)Defects.Count / (double)NbDone;
+            return Defects.Count / (double)NbDone;
         }
 
         public double GetLastHourRateDefect()
@@ -153,13 +153,13 @@ namespace ToutEmbalCore
             {
                 var dateError = defect.GetWhenOccurred();
                 var nowMinusOneHour = DateTime.Now - oneHour;
-                if (defect.GetWhenOccurred() > (DateTime.Now - oneHour))
+                if (defect.GetWhenOccurred() > DateTime.Now - oneHour)
                 {
                     countDefect++;
                 }
             }
 
-            return (double)countDefect / (double)ProductivityPerHour;
+            return countDefect / (double)ProductivityPerHour;
         }
 
         public string GetName()
@@ -229,13 +229,13 @@ namespace ToutEmbalCore
         {
             /*if (State != ProducerState.created)
             {*/
-                State = ProducerState.shutdown;
+            State = ProducerState.shutdown;
             /*}*/
         }
 
         private bool IsBoxDefect()
         {
-            int luck = BoxProduction.GetRandom().Next(0, 101);
+            int luck = GetRandom().Next(0, 101);
 
             return RateDefectPercent > luck;
         }

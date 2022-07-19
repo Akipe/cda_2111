@@ -63,6 +63,7 @@ namespace ToutEmbalUI
             this.statusProdA = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusProdB = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusProdC = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusTime = new System.Windows.Forms.ToolStripStatusLabel();
             this.timerTime = new System.Windows.Forms.Timer(this.components);
             this.bLaunchA = new System.Windows.Forms.Button();
@@ -133,25 +134,25 @@ namespace ToutEmbalUI
             this.menuiLaunchB,
             this.menuiLaunchC});
             this.menuiLaunch.Name = "menuiLaunch";
-            this.menuiLaunch.Size = new System.Drawing.Size(127, 22);
-            this.menuiLaunch.Text = "Démarrer";
+            this.menuiLaunch.Size = new System.Drawing.Size(180, 22);
+            this.menuiLaunch.Text = "Initialiser";
             // 
             // menuiLaunchA
             // 
             this.menuiLaunchA.Name = "menuiLaunchA";
-            this.menuiLaunchA.Size = new System.Drawing.Size(180, 22);
+            this.menuiLaunchA.Size = new System.Drawing.Size(82, 22);
             this.menuiLaunchA.Text = "A";
             // 
             // menuiLaunchB
             // 
             this.menuiLaunchB.Name = "menuiLaunchB";
-            this.menuiLaunchB.Size = new System.Drawing.Size(180, 22);
+            this.menuiLaunchB.Size = new System.Drawing.Size(82, 22);
             this.menuiLaunchB.Text = "B";
             // 
             // menuiLaunchC
             // 
             this.menuiLaunchC.Name = "menuiLaunchC";
-            this.menuiLaunchC.Size = new System.Drawing.Size(180, 22);
+            this.menuiLaunchC.Size = new System.Drawing.Size(82, 22);
             this.menuiLaunchC.Text = "C";
             // 
             // menuiStop
@@ -167,19 +168,19 @@ namespace ToutEmbalUI
             // menuiStopA
             // 
             this.menuiStopA.Name = "menuiStopA";
-            this.menuiStopA.Size = new System.Drawing.Size(180, 22);
+            this.menuiStopA.Size = new System.Drawing.Size(82, 22);
             this.menuiStopA.Text = "A";
             // 
             // menuiStopB
             // 
             this.menuiStopB.Name = "menuiStopB";
-            this.menuiStopB.Size = new System.Drawing.Size(180, 22);
+            this.menuiStopB.Size = new System.Drawing.Size(82, 22);
             this.menuiStopB.Text = "B";
             // 
             // menuiStopC
             // 
             this.menuiStopC.Name = "menuiStopC";
-            this.menuiStopC.Size = new System.Drawing.Size(180, 22);
+            this.menuiStopC.Size = new System.Drawing.Size(82, 22);
             this.menuiStopC.Text = "C";
             // 
             // menuiStart
@@ -189,8 +190,8 @@ namespace ToutEmbalUI
             this.menuiStartB,
             this.menuiStartC});
             this.menuiStart.Name = "menuiStart";
-            this.menuiStart.Size = new System.Drawing.Size(127, 22);
-            this.menuiStart.Text = "Continuer";
+            this.menuiStart.Size = new System.Drawing.Size(180, 22);
+            this.menuiStart.Text = "Reprendre";
             // 
             // menuiStartA
             // 
@@ -308,6 +309,7 @@ namespace ToutEmbalUI
             this.statusProdA,
             this.statusProdB,
             this.statusProdC,
+            this.toolStripStatusLabel1,
             this.statusTime});
             this.statusBar.Location = new System.Drawing.Point(0, 381);
             this.statusBar.Name = "statusBar";
@@ -333,6 +335,12 @@ namespace ToutEmbalUI
             this.statusProdC.Size = new System.Drawing.Size(71, 17);
             this.statusProdC.Text = "statusProdC";
             // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.AutoSize = false;
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(150, 17);
+            // 
             // statusTime
             // 
             this.statusTime.Name = "statusTime";
@@ -346,7 +354,7 @@ namespace ToutEmbalUI
             this.bLaunchA.Name = "bLaunchA";
             this.bLaunchA.Size = new System.Drawing.Size(65, 23);
             this.bLaunchA.TabIndex = 8;
-            this.bLaunchA.Text = "A Launch";
+            this.bLaunchA.Text = "A Init";
             this.bLaunchA.UseVisualStyleBackColor = true;
             // 
             // bStopA
@@ -364,7 +372,7 @@ namespace ToutEmbalUI
             this.bStartA.Name = "bStartA";
             this.bStartA.Size = new System.Drawing.Size(50, 23);
             this.bStartA.TabIndex = 10;
-            this.bStartA.Text = "A Start";
+            this.bStartA.Text = "A ReS";
             this.bStartA.UseVisualStyleBackColor = true;
             // 
             // bStartB
@@ -373,7 +381,7 @@ namespace ToutEmbalUI
             this.bStartB.Name = "bStartB";
             this.bStartB.Size = new System.Drawing.Size(50, 23);
             this.bStartB.TabIndex = 13;
-            this.bStartB.Text = "B Start";
+            this.bStartB.Text = "B ReS";
             this.bStartB.UseVisualStyleBackColor = true;
             // 
             // bStopB
@@ -391,7 +399,7 @@ namespace ToutEmbalUI
             this.bLaunchB.Name = "bLaunchB";
             this.bLaunchB.Size = new System.Drawing.Size(65, 23);
             this.bLaunchB.TabIndex = 11;
-            this.bLaunchB.Text = "B Launch";
+            this.bLaunchB.Text = "B Init";
             this.bLaunchB.UseVisualStyleBackColor = true;
             // 
             // bStartC
@@ -400,7 +408,7 @@ namespace ToutEmbalUI
             this.bStartC.Name = "bStartC";
             this.bStartC.Size = new System.Drawing.Size(50, 23);
             this.bStartC.TabIndex = 16;
-            this.bStartC.Text = "C Start";
+            this.bStartC.Text = "C ReS";
             this.bStartC.UseVisualStyleBackColor = true;
             // 
             // bStopC
@@ -418,7 +426,7 @@ namespace ToutEmbalUI
             this.bLaunchC.Name = "bLaunchC";
             this.bLaunchC.Size = new System.Drawing.Size(65, 23);
             this.bLaunchC.TabIndex = 14;
-            this.bLaunchC.Text = "C Launch";
+            this.bLaunchC.Text = "C Init";
             this.bLaunchC.UseVisualStyleBackColor = true;
             // 
             // MainForm
@@ -502,5 +510,6 @@ namespace ToutEmbalUI
         private Button bStartC;
         private Button bStopC;
         private Button bLaunchC;
+        private ToolStripStatusLabel toolStripStatusLabel1;
     }
 }

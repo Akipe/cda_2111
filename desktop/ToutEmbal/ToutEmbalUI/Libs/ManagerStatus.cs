@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ToutEmbalCore;
 
-namespace ToutEmbalUI
+namespace ToutEmbalUI.Libs
 {
     public class ManagerStatus
     {
@@ -26,7 +26,7 @@ namespace ToutEmbalUI
 
         public void UpdateStatusInfoEvent(object? sender, EventArgs e)
         {
-            string valueState = String.Empty;
+            string valueState = string.Empty;
 
             switch (Manager.Unit.GetState())
             {
