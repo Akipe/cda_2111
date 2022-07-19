@@ -12,7 +12,7 @@ namespace ToutEmbalCore
         void Stop();
         void Start();
         void Shutdown();
-        ProducerState GetState();
+        IProducerState GetState();
         int GetProduction();
         double GetLastHourRateDefect();
         double GetTotalRateDefect();

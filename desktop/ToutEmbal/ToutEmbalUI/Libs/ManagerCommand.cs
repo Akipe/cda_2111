@@ -72,32 +72,35 @@ namespace ToutEmbalUI.Libs
 
         private void SetAvailability(object? sender, EventArgs e)
         {
-            switch (Manager.GetUnit().GetState())
+            IProducerState currentState = Manager.GetUnit().GetState();
+
+            if (currentState == ProducerState.CREATED)
             {
-                case ProducerState.created:
-                    Enable(LaunchBtns);
-                    Disable(StopBtns);
-                    Disable(StartBtns);
-                    Disable(ShutdownBtns);
-                    break;
-                case ProducerState.started:
-                    Disable(LaunchBtns);
-                    Enable(StopBtns);
-                    Disable(StartBtns);
-                    Enable(ShutdownBtns);
-                    break;
-                case ProducerState.stopped:
-                    Disable(LaunchBtns);
-                    Disable(StopBtns);
-                    Enable(StartBtns);
-                    Enable(ShutdownBtns);
-                    break;
-                case ProducerState.shutdown:
-                    Disable(LaunchBtns);
-                    Disable(StopBtns);
-                    Disable(StartBtns);
-                    Disable(ShutdownBtns);
-                    break;
+                Enable(LaunchBtns);
+                Disable(StopBtns);
+                Disable(StartBtns);
+                Disable(ShutdownBtns);
+            }
+            if (currentState == ProducerState.STARTED)
+            {
+                Disable(LaunchBtns);
+                Enable(StopBtns);
+                Disable(StartBtns);
+                Enable(ShutdownBtns);
+            }
+            if (currentState == ProducerState.STOPPED)
+            {
+                Disable(LaunchBtns);
+                Disable(StopBtns);
+                Enable(StartBtns);
+                Enable(ShutdownBtns);
+            }
+            if (currentState == ProducerState.SHUTDOWN)
+            {
+                Disable(LaunchBtns);
+                Disable(StopBtns);
+                Disable(StartBtns);
+                Disable(ShutdownBtns);
             }
         }
 

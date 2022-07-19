@@ -27,25 +27,13 @@ namespace ToutEmbalUI.Libs
 
         public void UpdateStatusInfoEvent(object? sender, EventArgs e)
         {
-            string valueState = string.Empty;
+            string stateMessage = Manager
+                .GetUnit()
+                .GetState()
+                .GetName()
+            ;
 
-            switch (Manager.GetUnit().GetState())
-            {
-                case ProducerState.created:
-                    valueState = "Initialisé";
-                    break;
-                case ProducerState.started:
-                    valueState = "Démarré";
-                    break;
-                case ProducerState.stopped:
-                    valueState = "Suspendu";
-                    break;
-                case ProducerState.shutdown:
-                    valueState = "Terminé";
-                    break;
-            }
-
-            Label.Text = $"Caisse {Manager.GetUnit().GetName()}: {valueState}";
+            Label.Text = $"Caisse {Manager.GetUnit().GetName()}: {stateMessage}";
         }
     }
 }

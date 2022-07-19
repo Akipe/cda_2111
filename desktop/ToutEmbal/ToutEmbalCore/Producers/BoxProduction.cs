@@ -14,7 +14,7 @@ namespace ToutEmbalCore.Producers
 
         private int _productivityPerHour;
         private int _nbDone;
-        private ProducerState _state;
+        private IProducerState _state;
 
         public event EventHandler? OnMaxProduction;
         public event EventHandler? OnStateChanged;
@@ -55,7 +55,7 @@ namespace ToutEmbalCore.Producers
 
                 if (_nbDone == MaxWanted)
                 {
-                    State = ProducerState.shutdown;
+                    State = ProducerState.SHUTDOWN;
                     ExecOnMaxProduction();
                 }
             }
@@ -85,7 +85,7 @@ namespace ToutEmbalCore.Producers
             get; set;
         }
 
-        public ProducerState State
+        public IProducerState State
         {
             get
             {
@@ -139,7 +139,7 @@ namespace ToutEmbalCore.Producers
 
             NbDone = 0;
             Defects = new List<IProducerDefect>();
-            State = ProducerState.created;
+            State = ProducerState.CREATED;
         }
 
         public double GetTotalRateDefect()
@@ -180,16 +180,16 @@ namespace ToutEmbalCore.Producers
 
         public void Launch()
         {
-            if (State != ProducerState.created)
+            if (State != ProducerState.CREATED)
             {
                 return;
             }
 
-            State = ProducerState.started;
+            State = ProducerState.STARTED;
 
-            while (State != ProducerState.shutdown)
+            while (State != ProducerState.SHUTDOWN)
             {
-                if (State == ProducerState.started)
+                if (State == ProducerState.STARTED)
                 {
                     Thread.Sleep(MilisecondsForOneProduct);
 
@@ -210,21 +210,21 @@ namespace ToutEmbalCore.Producers
         public void Start()
         {
             if (
-                State != ProducerState.shutdown &&
-                State != ProducerState.created)
+                State != ProducerState.SHUTDOWN &&
+                State != ProducerState.CREATED)
             {
-                State = ProducerState.started;
+                State = ProducerState.STARTED;
             }
         }
 
         public void Stop()
         {
             if (
-                State != ProducerState.shutdown &&
-                State != ProducerState.created
+                State != ProducerState.SHUTDOWN &&
+                State != ProducerState.CREATED
             )
             {
-                State = ProducerState.stopped;
+                State = ProducerState.STOPPED;
             }
         }
 
@@ -232,7 +232,7 @@ namespace ToutEmbalCore.Producers
         {
             /*if (State != ProducerState.created)
             {*/
-            State = ProducerState.shutdown;
+            State = ProducerState.SHUTDOWN;
             /*}*/
         }
 
@@ -256,7 +256,7 @@ namespace ToutEmbalCore.Producers
             return MaxWanted;
         }
 
-        public ProducerState GetState()
+        public IProducerState GetState()
         {
             return State;
         }
@@ -281,8 +281,8 @@ namespace ToutEmbalCore.Producers
             if (OnStateChanged is not null)
             {
                 if (
-                    _state == ProducerState.started ||
-                    _state == ProducerState.stopped
+                    _state == ProducerState.STARTED ||
+                    _state == ProducerState.STOPPED
                 )
                 {
                     try
