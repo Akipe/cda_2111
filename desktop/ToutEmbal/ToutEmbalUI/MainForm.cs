@@ -1,4 +1,5 @@
 using ToutEmbalCore;
+using ToutEmbalCore.Managers;
 using ToutEmbalCore.Producers;
 using ToutEmbalUI.Libs;
 
@@ -6,20 +7,20 @@ namespace ToutEmbalUI
 {
     public partial class MainForm : Form
     {
-        private List<ProducerManager> _managers;
+        private List<IManager> _managers;
 
         public MainForm()
         {
             InitializeComponent();
 
-            _managers = new List<ProducerManager>();
+            _managers = new List<IManager>();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
             InitTimeClockStatus();
 
-            ProducerManager managerA = new ProducerManager(
+            IManager managerA = new ProducerManager(
                 new BoxProduction(
                     "A",
                     1000,
@@ -28,7 +29,7 @@ namespace ToutEmbalUI
                 )
             );
 
-            ProducerManager managerB = new ProducerManager(
+            IManager managerB = new ProducerManager(
                 new BoxProduction(
                     "B",
                     5000,
@@ -37,7 +38,7 @@ namespace ToutEmbalUI
                 )
             );
 
-            ProducerManager managerC = new ProducerManager(
+            IManager managerC = new ProducerManager(
                 new BoxProduction(
                     "C",
                     10000,

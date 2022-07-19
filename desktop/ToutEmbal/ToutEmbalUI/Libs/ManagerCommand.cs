@@ -4,19 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ToutEmbalCore;
+using ToutEmbalCore.Producers;
 
 namespace ToutEmbalUI.Libs
 {
     public class ManagerCommand
     {
-        public ProducerManager Manager { get; init; }
+        public IManager Manager { get; init; }
         public List<object> LaunchBtns { get; private set; }
         public List<object> StopBtns { get; private set; }
         public List<object> StartBtns { get; private set; }
         public List<object> ShutdownBtns { get; private set; }
 
         public ManagerCommand(
-            ProducerManager manager
+            IManager manager
         )
         {
             Manager = manager;
@@ -26,7 +27,7 @@ namespace ToutEmbalUI.Libs
             StartBtns = new List<object>();
             ShutdownBtns = new List<object>();
 
-            Manager.Unit.OnStateChanged += SetAvailability;
+            Manager.GetUnit().OnStateChanged += SetAvailability;
         }
 
         public void BindLaunch(object control)
@@ -71,7 +72,7 @@ namespace ToutEmbalUI.Libs
 
         private void SetAvailability(object? sender, EventArgs e)
         {
-            switch (Manager.Unit.GetState())
+            switch (Manager.GetUnit().GetState())
             {
                 case ProducerState.created:
                     Enable(LaunchBtns);

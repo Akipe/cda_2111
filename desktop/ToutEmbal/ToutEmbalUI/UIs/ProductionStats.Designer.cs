@@ -1,6 +1,6 @@
 ﻿namespace ToutEmbalUI
 {
-    partial class ManagerSpecs
+    partial class ProductionStats
     {
         /// <summary> 
         /// Required designer variable.

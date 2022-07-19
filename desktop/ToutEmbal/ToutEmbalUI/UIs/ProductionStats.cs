@@ -11,11 +11,11 @@ using ToutEmbalCore;
 
 namespace ToutEmbalUI
 {
-    public partial class ManagerSpecs : UserControl
+    public partial class ProductionStats : UserControl
     {
-        private ProducerManager? _manager;
+        private IManager? _manager;
 
-        public ProducerManager? Manager {
+        public IManager? Manager {
             get
             {
                 return _manager;
@@ -31,7 +31,7 @@ namespace ToutEmbalUI
             }
         }
 
-        public ManagerSpecs()
+        public ProductionStats()
         {
             InitializeComponent();
             Manager = null;
@@ -39,7 +39,7 @@ namespace ToutEmbalUI
 
         private void OnManagerDefine()
         {
-            Manager.Unit.OnCreateOne += UpdateSpecsThreadSafe;
+            Manager.GetUnit().OnCreateOne += UpdateSpecsThreadSafe;
             UpdateSpecsThreadSafe(null, EventArgs.Empty);
         }
 
@@ -60,9 +60,9 @@ namespace ToutEmbalUI
 
         private void UpdateSpecs()
         {
-            tbNbProducts.Text = Manager.Unit.GetProduction().ToString();
-            tbDefectRateLastHour.Text = Manager.Unit.GetLastHourRateDefect().ToString("0.0000");
-            tbDefectRateAllTime.Text = Manager.Unit.GetTotalRateDefect().ToString("0.0000");
+            tbNbProducts.Text = Manager.GetUnit().GetProduction().ToString();
+            tbDefectRateLastHour.Text = Manager.GetUnit().GetLastHourRateDefect().ToString("0.0000");
+            tbDefectRateAllTime.Text = Manager.GetUnit().GetTotalRateDefect().ToString("0.0000");
         }
     }
 }

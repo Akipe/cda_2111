@@ -9,26 +9,26 @@ namespace ToutEmbalUI.Libs
 {
     public class ManagerUIBuilder
     {
-        public static List<ProducerManager>? Managers { get; private set; }
+        public static List<IManager>? Managers { get; private set; }
 
-        public ProducerManager? Manager { get; private set; }
+        public IManager? Manager { get; private set; }
         public ManagerStatus? Status { get; private set; }
-        public ManagerSpecs? Specs { get; private set; }
-        public ManagerLoading? Loading { get; private set; }
+        public ProductionStats? Specs { get; private set; }
+        public ProductionProgress? Loading { get; private set; }
         public ManagerCommand? Command { get; private set; }
 
-        public ManagerUIBuilder(ProducerManager manager)
+        public ManagerUIBuilder(IManager manager)
         {
             AddManager(manager);
         }
 
-        public ManagerUIBuilder AddManager(ProducerManager manager)
+        public ManagerUIBuilder AddManager(IManager manager)
         {
             Manager = manager;
 
             if (Managers is null)
             {
-                Managers = new List<ProducerManager>();
+                Managers = new List<IManager>();
             }
             Managers.Add(manager);
 
@@ -45,7 +45,7 @@ namespace ToutEmbalUI.Libs
             return this;
         }
 
-        public ManagerUIBuilder AddSpecs(ManagerSpecs specs)
+        public ManagerUIBuilder AddSpecs(ProductionStats specs)
         {
             if (Manager is null)
                 throw new MemberAccessException("You need a manager");
@@ -56,7 +56,7 @@ namespace ToutEmbalUI.Libs
             return this;
         }
 
-        public ManagerUIBuilder AddLoading(ManagerLoading loading)
+        public ManagerUIBuilder AddLoading(ProductionProgress loading)
         {
             if (Manager is null)
                 throw new MemberAccessException("You need a manager");
@@ -67,7 +67,7 @@ namespace ToutEmbalUI.Libs
             return this;
         }
 
-        private void InitButtonIfNeeded()
+        private void GenerateCommandIfNeeded()
         {
             if (Manager is null)
                 throw new MemberAccessException("You need a manager");
@@ -80,7 +80,7 @@ namespace ToutEmbalUI.Libs
 
         public ManagerUIBuilder AddLaunchButtons(object[] btns)
         {
-            InitButtonIfNeeded();
+            GenerateCommandIfNeeded();
 
             foreach (object btn in btns)
             {
@@ -92,7 +92,7 @@ namespace ToutEmbalUI.Libs
 
         public ManagerUIBuilder AddStopButtons(object[] btns)
         {
-            InitButtonIfNeeded();
+            GenerateCommandIfNeeded();
 
             foreach (object btn in btns)
             {
@@ -104,7 +104,7 @@ namespace ToutEmbalUI.Libs
 
         public ManagerUIBuilder AddStartButtons(object[] btns)
         {
-            InitButtonIfNeeded();
+            GenerateCommandIfNeeded();
 
             foreach (object btn in btns)
             {

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ToutEmbalCore
+namespace ToutEmbalCore.Managers
 {
-    public class ProducerManager
+    public class ProducerManager: IManager
     {
         public IProducer Unit
         {
@@ -24,6 +24,11 @@ namespace ToutEmbalCore
             Unit = unit;
 
             Runner = null;
+        }
+
+        public IProducer GetUnit()
+        {
+            return Unit;
         }
 
         public void Launch()

@@ -51,14 +51,14 @@ namespace ToutEmbalUI
             this.menuiStartC = new System.Windows.Forms.ToolStripMenuItem();
             this.tabcProducersSpec = new System.Windows.Forms.TabControl();
             this.tabpA = new System.Windows.Forms.TabPage();
-            this.producerSpecsA = new ToutEmbalUI.ManagerSpecs();
+            this.producerSpecsA = new ToutEmbalUI.ProductionStats();
             this.tabpB = new System.Windows.Forms.TabPage();
-            this.producerSpecsB = new ToutEmbalUI.ManagerSpecs();
+            this.producerSpecsB = new ToutEmbalUI.ProductionStats();
             this.tabpC = new System.Windows.Forms.TabPage();
-            this.producerSpecsC = new ToutEmbalUI.ManagerSpecs();
-            this.producerLoadingA = new ToutEmbalUI.ManagerLoading();
-            this.producerLoadingB = new ToutEmbalUI.ManagerLoading();
-            this.producerLoadingC = new ToutEmbalUI.ManagerLoading();
+            this.producerSpecsC = new ToutEmbalUI.ProductionStats();
+            this.producerLoadingA = new ToutEmbalUI.ProductionProgress();
+            this.producerLoadingB = new ToutEmbalUI.ProductionProgress();
+            this.producerLoadingC = new ToutEmbalUI.ProductionProgress();
             this.statusBar = new System.Windows.Forms.StatusStrip();
             this.statusProdA = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusProdB = new System.Windows.Forms.ToolStripStatusLabel();
@@ -134,7 +134,7 @@ namespace ToutEmbalUI
             this.menuiLaunchB,
             this.menuiLaunchC});
             this.menuiLaunch.Name = "menuiLaunch";
-            this.menuiLaunch.Size = new System.Drawing.Size(180, 22);
+            this.menuiLaunch.Size = new System.Drawing.Size(128, 22);
             this.menuiLaunch.Text = "Initialiser";
             // 
             // menuiLaunchA
@@ -162,7 +162,7 @@ namespace ToutEmbalUI
             this.menuiStopB,
             this.menuiStopC});
             this.menuiStop.Name = "menuiStop";
-            this.menuiStop.Size = new System.Drawing.Size(127, 22);
+            this.menuiStop.Size = new System.Drawing.Size(128, 22);
             this.menuiStop.Text = "Arrêter";
             // 
             // menuiStopA
@@ -190,7 +190,7 @@ namespace ToutEmbalUI
             this.menuiStartB,
             this.menuiStartC});
             this.menuiStart.Name = "menuiStart";
-            this.menuiStart.Size = new System.Drawing.Size(180, 22);
+            this.menuiStart.Size = new System.Drawing.Size(128, 22);
             this.menuiStart.Text = "Reprendre";
             // 
             // menuiStartA
@@ -372,7 +372,7 @@ namespace ToutEmbalUI
             this.bStartA.Name = "bStartA";
             this.bStartA.Size = new System.Drawing.Size(50, 23);
             this.bStartA.TabIndex = 10;
-            this.bStartA.Text = "A ReS";
+            this.bStartA.Text = "A Start";
             this.bStartA.UseVisualStyleBackColor = true;
             // 
             // bStartB
@@ -381,7 +381,7 @@ namespace ToutEmbalUI
             this.bStartB.Name = "bStartB";
             this.bStartB.Size = new System.Drawing.Size(50, 23);
             this.bStartB.TabIndex = 13;
-            this.bStartB.Text = "B ReS";
+            this.bStartB.Text = "B Start";
             this.bStartB.UseVisualStyleBackColor = true;
             // 
             // bStopB
@@ -408,7 +408,7 @@ namespace ToutEmbalUI
             this.bStartC.Name = "bStartC";
             this.bStartC.Size = new System.Drawing.Size(50, 23);
             this.bStartC.TabIndex = 16;
-            this.bStartC.Text = "C ReS";
+            this.bStartC.Text = "C Start";
             this.bStartC.UseVisualStyleBackColor = true;
             // 
             // bStopC
@@ -486,15 +486,15 @@ namespace ToutEmbalUI
         private TabControl tabcProducersSpec;
         private TabPage tabpA;
         private TabPage tabpB;
-        private ManagerSpecs producerSpecsA;
+        private ProductionStats producerSpecsA;
         private TabPage tabpC;
-        private ManagerLoading producerLoadingA;
-        private ManagerLoading producerLoadingB;
-        private ManagerLoading producerLoadingC;
+        private ProductionProgress producerLoadingA;
+        private ProductionProgress producerLoadingB;
+        private ProductionProgress producerLoadingC;
         private ToolStripMenuItem menuiQuitApp;
         private ToolStripMenuItem menuiShutdownProduction;
-        private ManagerSpecs producerSpecsB;
-        private ManagerSpecs producerSpecsC;
+        private ProductionStats producerSpecsB;
+        private ProductionStats producerSpecsC;
         private StatusStrip statusBar;
         private ToolStripStatusLabel statusProdA;
         private ToolStripStatusLabel statusProdB;

@@ -11,10 +11,10 @@ using ToutEmbalCore;
 
 namespace ToutEmbalUI
 {
-    public partial class ManagerLoading : UserControl
+    public partial class ProductionProgress : UserControl
     {
-        private ProducerManager? _manager;
-        public ProducerManager? Manager
+        private IManager? _manager;
+        public IManager? Manager
         {
             get
             {
@@ -31,7 +31,7 @@ namespace ToutEmbalUI
             }
         }
 
-        public ManagerLoading()
+        public ProductionProgress()
         {
             InitializeComponent();
 
@@ -40,12 +40,12 @@ namespace ToutEmbalUI
 
         private void OnManagerDefine()
         {
-            lProduceTime.Text = "Production " + Manager.Unit.GetName();
+            lProduceTime.Text = "Production " + Manager.GetUnit().GetName();
 
             pbTimeProduce.Minimum = 0;
-            pbTimeProduce.Maximum = Manager.Unit.GetNbWanted();
+            pbTimeProduce.Maximum = Manager.GetUnit().GetNbWanted();
 
-            Manager.Unit.OnCreateOne += UpdateProcessBarThreadSafe;
+            Manager.GetUnit().OnCreateOne += UpdateProcessBarThreadSafe;
             UpdateProcessBarThreadSafe(null, EventArgs.Empty);
         }
 
@@ -66,7 +66,7 @@ namespace ToutEmbalUI
 
         private void updateProcessBar()
         {
-            pbTimeProduce.Value = Manager.Unit.GetProduction();
+            pbTimeProduce.Value = Manager.GetUnit().GetProduction();
         }
     }
 }

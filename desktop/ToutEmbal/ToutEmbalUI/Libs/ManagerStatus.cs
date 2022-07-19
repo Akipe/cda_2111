@@ -4,23 +4,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ToutEmbalCore;
+using ToutEmbalCore.Producers;
 
 namespace ToutEmbalUI.Libs
 {
     public class ManagerStatus
     {
-        public ProducerManager Manager { get; init; }
+        public IManager Manager { get; init; }
         public ToolStripStatusLabel Label { get; init; }
 
         public ManagerStatus(
-            ProducerManager manager,
+            IManager manager,
             ToolStripStatusLabel label
         )
         {
             Manager = manager;
             Label = label;
 
-            Manager.Unit.OnStateChanged += UpdateStatusInfoEvent;
+            Manager.GetUnit().OnStateChanged += UpdateStatusInfoEvent;
             UpdateStatusInfoEvent(this, EventArgs.Empty);
         }
 
@@ -28,7 +29,7 @@ namespace ToutEmbalUI.Libs
         {
             string valueState = string.Empty;
 
-            switch (Manager.Unit.GetState())
+            switch (Manager.GetUnit().GetState())
             {
                 case ProducerState.created:
                     valueState = "Initialisé";
@@ -44,7 +45,7 @@ namespace ToutEmbalUI.Libs
                     break;
             }
 
-            Label.Text = $"Caisse {Manager.Unit.GetName()}: {valueState}";
+            Label.Text = $"Caisse {Manager.GetUnit().GetName()}: {valueState}";
         }
     }
 }
