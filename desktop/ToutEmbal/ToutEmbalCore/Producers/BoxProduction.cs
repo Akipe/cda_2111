@@ -73,7 +73,7 @@ namespace ToutEmbalCore.Producers
             set
             {
                 _productivityPerHour = value;
-                MilisecondsForOneProduct = 3600000 / value;
+                MilisecondsForOneProduct = (int)(((double)value / 3600d) * 1000d);
             }
         }
 

@@ -22,9 +22,9 @@ namespace ToutEmbalUI
             ProducerManager managerA = new ProducerManager(
                 new BoxProduction(
                     "A",
+                    1000,
                     10000,
-                    20,
-                    20
+                    2
                 )
             );
 
