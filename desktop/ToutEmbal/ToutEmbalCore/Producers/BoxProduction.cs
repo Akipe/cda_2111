@@ -8,6 +8,7 @@ namespace ToutEmbalCore.Producers
     public class BoxProduction : IProducer
     {
         private static Random? _rnd = null;
+
         private const int DEFECT_RATE_MIN = 0;
         private const int DEFECT_RATE_MAX = 1000;
 
@@ -115,10 +116,15 @@ namespace ToutEmbalCore.Producers
             int rateDefectPerThousand
         )
         {
-            if (rateDefectPerThousand < DEFECT_RATE_MIN && rateDefectPerThousand > DEFECT_RATE_MAX)
+            if (
+                rateDefectPerThousand < DEFECT_RATE_MIN &&
+                rateDefectPerThousand > DEFECT_RATE_MAX
+            )
             {
                 throw new Exception(
-                    $"You have to set an rate defect between {DEFECT_RATE_MIN} and {DEFECT_RATE_MAX} (for a per thousand)"
+                    "You have to set an rate defect between " +
+                    $"{DEFECT_RATE_MIN} and {DEFECT_RATE_MAX} " +
+                    "(for a per thousand)"
                 );
             }
 
@@ -191,13 +197,10 @@ namespace ToutEmbalCore.Producers
                     {
                         Defects.Add(new ProduceDefect());
                     }
-
-                    // If we keep defect product in production count,
-                    // we don't remove it from the statistics
-                    //else
-                    //{
-                    NbDone++;
-                    //}
+                    else
+                    {
+                        NbDone++;
+                    }
 
                     OnCreateOne?.Invoke(this, EventArgs.Empty);
                 }
@@ -277,7 +280,10 @@ namespace ToutEmbalCore.Producers
         {
             if (OnStateChanged is not null)
             {
-                if (_state == ProducerState.started || _state == ProducerState.stopped)
+                if (
+                    _state == ProducerState.started ||
+                    _state == ProducerState.stopped
+                )
                 {
                     try
                     {
