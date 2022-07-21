@@ -26,7 +26,7 @@ namespace TrouveEmploi.Core.Validator
 
         public static bool IsWordsWithSpace(string sentence)
         {
-            Regex wordWithDashAndSpace = new Regex(@"^((([\w]*)+((-)([\w]+))*)(\s)?)+$");
+            Regex wordWithDashAndSpace = new Regex(@"^((([\w]*)+((-)([\w]+))*((')([\w]+))*)(\s)?)+$");
             return
                 wordWithDashAndSpace.IsMatch(sentence) &&
                 !String.IsNullOrWhiteSpace(sentence);
@@ -39,7 +39,9 @@ namespace TrouveEmploi.Core.Validator
 
         public static bool IsYearNotTooOld(int year, int howManyFromNow)
         {
-            return year > (
+            var a = int.Parse(DateTime.Now.ToString("yyyy")) - howManyFromNow;
+
+            return year >= (
                 int.Parse(DateTime.Now.ToString("yyyy")) - howManyFromNow
             );
         }

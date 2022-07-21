@@ -88,7 +88,7 @@ namespace TrouveEmploi.Core.Persons
             DiplomaYear = null;
         }
 
-        private void GenerateID()
+        public void GenerateID()
         {
             Guid uuid = Guid.NewGuid();
 

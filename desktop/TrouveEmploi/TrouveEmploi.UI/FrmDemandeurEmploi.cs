@@ -7,9 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using TrouveEmploi.Core.Core;
+using TrouveEmploi.Core;
 using TrouveEmploi.Core.Persons;
 using TrouveEmploi.UI.Input;
+using TrouveEmploi.Core.Validator;
 
 namespace TrouveEmploi.UI
 {
@@ -47,6 +48,11 @@ namespace TrouveEmploi.UI
                 if (cbHasDiploma.Checked)
                 {
                     diplomaI.UpdateJobKeeper(jobSeeker);
+                }
+
+                while(!IdValidator.HasValidId(jobSeeker))
+                {
+                    jobSeeker.GenerateID();
                 }
 
                 JobSeekerManager.users.Add(jobSeeker);

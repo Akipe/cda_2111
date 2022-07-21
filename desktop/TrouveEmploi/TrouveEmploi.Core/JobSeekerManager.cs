@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TrouveEmploi.Core.Persons;
 
-namespace TrouveEmploi.Core.Core
+namespace TrouveEmploi.Core
 {
     public static class JobSeekerManager
     {
