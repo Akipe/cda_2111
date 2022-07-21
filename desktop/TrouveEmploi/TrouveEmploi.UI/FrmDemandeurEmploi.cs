@@ -39,11 +39,15 @@ namespace TrouveEmploi.UI
 
         private void bRegister_Click(object sender, EventArgs e)
         {
-            JobSeeker jobSeeker = peopleI.GetJobSeeker();
-            diplomaI.UpdateJobKeeper(jobSeeker);
-
-            if (true == true) // todo
+            if (IsFormValid())
             {
+                JobSeeker jobSeeker = peopleI.GetJobSeeker();
+
+                if (cbHasDiploma.Checked)
+                {
+                    diplomaI.UpdateJobKeeper(jobSeeker);
+                }
+
                 Hide();
 
                 FrmAffichageDemandeurEmploi showJobSeeker = new FrmAffichageDemandeurEmploi();
@@ -55,13 +59,33 @@ namespace TrouveEmploi.UI
             else
             {
                 MessageBox.Show(
-                    "Erreur: veuillez remplir correctement le formulaire",
+                    "Veuillez corriger les erreurs du formulaire (texte en gras & rouge)",
                     "Formulaire invalide",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error
                 );
             }
+        }
+
+        private bool IsFormValid()
+        {
+            bool isPeopleValid = peopleI.IsValid();
+            bool isDiplomaValid = true;
+
+            if (cbHasDiploma.Checked)
+            {
+                isDiplomaValid = diplomaI.IsValid();
+            }
             
+            return isPeopleValid && isDiplomaValid;
+        }
+
+        private void cbHasDiploma_CheckedChanged(object sender, EventArgs e)
+        {
+            cbDiplomaName.Enabled = cbHasDiploma.Checked;
+            numDiplomaYear.Enabled = cbHasDiploma.Checked;
+            label7.Enabled = cbHasDiploma.Checked;
+            label8.Enabled = cbHasDiploma.Checked;
         }
     }
 }

@@ -43,6 +43,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.bRegister = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cbHasDiploma = new System.Windows.Forms.CheckBox();
             this.cbDiplomaName = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -132,7 +133,8 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(20, 25);
+            this.label7.Enabled = false;
+            this.label7.Location = new System.Drawing.Point(20, 30);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(34, 15);
             this.label7.TabIndex = 12;
@@ -140,7 +142,8 @@
             // 
             // numDiplomaYear
             // 
-            this.numDiplomaYear.Location = new System.Drawing.Point(157, 51);
+            this.numDiplomaYear.Enabled = false;
+            this.numDiplomaYear.Location = new System.Drawing.Point(157, 56);
             this.numDiplomaYear.Name = "numDiplomaYear";
             this.numDiplomaYear.Size = new System.Drawing.Size(149, 23);
             this.numDiplomaYear.TabIndex = 14;
@@ -148,7 +151,8 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(20, 54);
+            this.label8.Enabled = false;
+            this.label8.Location = new System.Drawing.Point(20, 59);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(41, 15);
             this.label8.TabIndex = 13;
@@ -158,7 +162,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Segoe UI", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
-            this.label9.Location = new System.Drawing.Point(10, 359);
+            this.label9.Location = new System.Drawing.Point(13, 372);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(77, 13);
             this.label9.TabIndex = 15;
@@ -166,7 +170,7 @@
             // 
             // bRegister
             // 
-            this.bRegister.Location = new System.Drawing.Point(261, 336);
+            this.bRegister.Location = new System.Drawing.Point(264, 349);
             this.bRegister.Name = "bRegister";
             this.bRegister.Size = new System.Drawing.Size(75, 23);
             this.bRegister.TabIndex = 16;
@@ -176,21 +180,33 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.cbHasDiploma);
             this.groupBox1.Controls.Add(this.cbDiplomaName);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.numDiplomaYear);
             this.groupBox1.Location = new System.Drawing.Point(10, 238);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(329, 82);
+            this.groupBox1.Size = new System.Drawing.Size(329, 91);
             this.groupBox1.TabIndex = 17;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Diplôme le plus récent";
             // 
+            // cbHasDiploma
+            // 
+            this.cbHasDiploma.AutoSize = true;
+            this.cbHasDiploma.Location = new System.Drawing.Point(139, 1);
+            this.cbHasDiploma.Name = "cbHasDiploma";
+            this.cbHasDiploma.Size = new System.Drawing.Size(15, 14);
+            this.cbHasDiploma.TabIndex = 15;
+            this.cbHasDiploma.UseVisualStyleBackColor = true;
+            this.cbHasDiploma.CheckedChanged += new System.EventHandler(this.cbHasDiploma_CheckedChanged);
+            // 
             // cbDiplomaName
             // 
+            this.cbDiplomaName.Enabled = false;
             this.cbDiplomaName.FormattingEnabled = true;
-            this.cbDiplomaName.Location = new System.Drawing.Point(157, 17);
+            this.cbDiplomaName.Location = new System.Drawing.Point(157, 22);
             this.cbDiplomaName.Name = "cbDiplomaName";
             this.cbDiplomaName.Size = new System.Drawing.Size(149, 23);
             this.cbDiplomaName.TabIndex = 10;
@@ -225,7 +241,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(352, 381);
+            this.ClientSize = new System.Drawing.Size(352, 402);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -270,5 +286,6 @@
         private GroupBox groupBox2;
         private GroupBox groupBox3;
         private ComboBox cbDiplomaName;
+        private CheckBox cbHasDiploma;
     }
 }

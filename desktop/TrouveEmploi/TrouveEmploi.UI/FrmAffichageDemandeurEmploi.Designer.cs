@@ -32,6 +32,7 @@
             this.tbFormationLevel = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.lId = new System.Windows.Forms.Label();
             this.tbRegisterYear = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.tbLastName = new System.Windows.Forms.TextBox();
@@ -50,7 +51,7 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.lEmployabilityRate = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.lId = new System.Windows.Forms.Label();
+            this.bAddMore = new System.Windows.Forms.Button();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -101,6 +102,14 @@
             this.groupBox2.TabIndex = 20;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Individus";
+            // 
+            // lId
+            // 
+            this.lId.Location = new System.Drawing.Point(88, 23);
+            this.lId.Name = "lId";
+            this.lId.Size = new System.Drawing.Size(216, 15);
+            this.lId.TabIndex = 10;
+            this.lId.Text = "Identifiant";
             // 
             // tbRegisterYear
             // 
@@ -268,19 +277,22 @@
             this.label2.TabIndex = 12;
             this.label2.Text = "Taux d\'employabilité";
             // 
-            // lId
+            // bAddMore
             // 
-            this.lId.Location = new System.Drawing.Point(88, 23);
-            this.lId.Name = "lId";
-            this.lId.Size = new System.Drawing.Size(216, 15);
-            this.lId.TabIndex = 10;
-            this.lId.Text = "Identifiant";
+            this.bAddMore.Location = new System.Drawing.Point(120, 417);
+            this.bAddMore.Name = "bAddMore";
+            this.bAddMore.Size = new System.Drawing.Size(140, 23);
+            this.bAddMore.TabIndex = 25;
+            this.bAddMore.Text = "Nouveau demandeur";
+            this.bAddMore.UseVisualStyleBackColor = true;
+            this.bAddMore.Click += new System.EventHandler(this.bAddMore_Click);
             // 
             // FrmAffichageDemandeurEmploi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(363, 448);
+            this.Controls.Add(this.bAddMore);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -291,7 +303,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MaximizeBox = false;
             this.Name = "FrmAffichageDemandeurEmploi";
-            this.Text = "FrmAffichageDemandeurEmploi";
+            this.Text = "Résumé du demandeur";
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -330,5 +342,6 @@
         private TextBox tbRegisterYear;
         private TextBox tbDiplomaYear;
         private Label lId;
+        private Button bAddMore;
     }
 }

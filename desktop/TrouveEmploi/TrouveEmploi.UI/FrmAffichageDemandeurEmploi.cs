@@ -52,5 +52,14 @@ namespace TrouveEmploi.UI
         {
             Close();
         }
+
+        private void bAddMore_Click(object sender, EventArgs e)
+        {
+            FrmDemandeurEmploi frm = new FrmDemandeurEmploi();
+
+            Hide();
+            frm.ShowDialog();
+            Close();
+        }
     }
 }

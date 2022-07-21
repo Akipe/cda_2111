@@ -5,10 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using TrouveEmploi.UI.Core.Education;
 using TrouveEmploi.UI.Core.Persons;
+using TrouveEmploi.UI.Core.Validator;
 
 namespace TrouveEmploi.UI.Input
 {
-    internal class DiplomaInput
+    internal class DiplomaInput : JobSeekerInput
     {
         private readonly ComboBox _name;
         private readonly NumericUpDown _year;
@@ -27,10 +28,40 @@ namespace TrouveEmploi.UI.Input
 
         public void UpdateJobKeeper(JobSeeker jobSeeker)
         {
-            jobSeeker.SetDiploma(
-                new Diploma(_name.Text),
-                (int)_year.Value
-            );
+            if (!String.IsNullOrWhiteSpace(_name.Text))
+            {
+                jobSeeker.SetDiploma(
+                    new Diploma(_name.Text.Trim()),
+                    (int)_year.Value
+                );
+            }
+        }
+
+        public bool IsValid()
+        {
+            bool isAllValid = true;
+
+            if (DiplomaValidator.IsNameValid(_name.Text))
+            {
+                SetControlValid(_name);
+            }
+            else
+            {
+                SetControlInvalid(_name);
+                isAllValid = false;
+            }
+
+            if (DiplomaValidator.IsYearValid((int)_year.Value))
+            {
+                SetControlValid(_year);
+            }
+            else
+            {
+                SetControlInvalid(_year);
+                isAllValid = false;
+            }
+
+            return isAllValid;
         }
 
         private void InitName()
