@@ -47,6 +47,7 @@
             this.cbDiplomaName = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.bReset = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numRegisterYear)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numDiplomaYear)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -237,11 +238,22 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Formation";
             // 
+            // bReset
+            // 
+            this.bReset.Location = new System.Drawing.Point(183, 349);
+            this.bReset.Name = "bReset";
+            this.bReset.Size = new System.Drawing.Size(75, 23);
+            this.bReset.TabIndex = 18;
+            this.bReset.Text = "Réinitialiser";
+            this.bReset.UseVisualStyleBackColor = true;
+            this.bReset.Click += new System.EventHandler(this.bReset_Click);
+            // 
             // FrmDemandeurEmploi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(352, 402);
+            this.Controls.Add(this.bReset);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -287,5 +299,6 @@
         private GroupBox groupBox3;
         private ComboBox cbDiplomaName;
         private CheckBox cbHasDiploma;
+        private Button bReset;
     }
 }

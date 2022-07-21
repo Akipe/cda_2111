@@ -24,7 +24,7 @@ namespace TrouveEmploi.UI
         {
             _jobSeeker = jobSeeker;
 
-            lTitle.Text = $"Demandeur {jobSeeker.firstName} {jobSeeker.lastName}"; 
+            lTitle.Text = $"Utilisateur {jobSeeker.firstName} {jobSeeker.lastName}"; 
 
             lId.Text = jobSeeker.Id.ToString();
             tbFirstName.Text = jobSeeker.firstName;

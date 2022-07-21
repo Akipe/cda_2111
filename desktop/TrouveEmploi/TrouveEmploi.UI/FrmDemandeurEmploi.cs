@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TrouveEmploi.UI.Core;
 using TrouveEmploi.UI.Core.Persons;
 using TrouveEmploi.UI.Input;
 
@@ -48,6 +49,8 @@ namespace TrouveEmploi.UI
                     diplomaI.UpdateJobKeeper(jobSeeker);
                 }
 
+                JobSeekerManager.users.Add(jobSeeker);
+
                 Hide();
 
                 FrmAffichageDemandeurEmploi showJobSeeker = new FrmAffichageDemandeurEmploi();
@@ -86,6 +89,17 @@ namespace TrouveEmploi.UI
             numDiplomaYear.Enabled = cbHasDiploma.Checked;
             label7.Enabled = cbHasDiploma.Checked;
             label8.Enabled = cbHasDiploma.Checked;
+        }
+
+        private void bReset_Click(object sender, EventArgs e)
+        {
+            tbLastName.Text = String.Empty;
+            tbFirstName.Text = String.Empty;
+            numRegisterYear.Value = int.Parse(DateTime.Now.ToString("yyyy"));
+            cbFormationLevel.SelectedIndex = 0;
+            cbHasDiploma.Checked = false;
+            cbDiplomaName.Text = String.Empty;
+            numDiplomaYear.Value = int.Parse(DateTime.Now.ToString("yyyy"));
         }
     }
 }
