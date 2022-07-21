@@ -7,17 +7,48 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TrouveEmploi.UI.Core.Persons;
 
 namespace TrouveEmploi.UI
 {
     public partial class FrmAffichageDemandeurEmploi : Form
     {
+        private JobSeeker _jobSeeker;
+
         public FrmAffichageDemandeurEmploi()
         {
             InitializeComponent();
         }
 
-        private void bRegister_Click(object sender, EventArgs e)
+        public void SetJobSeeker(JobSeeker jobSeeker)
+        {
+            _jobSeeker = jobSeeker;
+
+            lTitle.Text = $"Demandeur {jobSeeker.firstName} {jobSeeker.lastName}"; 
+
+            lId.Text = jobSeeker.Id.ToString();
+            tbFirstName.Text = jobSeeker.firstName;
+            tbLastName.Text = jobSeeker.lastName;
+            tbRegisterYear.Text = jobSeeker.registrationYear.ToString();
+            tbFormationLevel.Text = jobSeeker.formation.name;
+
+            if (jobSeeker.Diploma is not null)
+            {
+                tbDiplomaName.Text = jobSeeker.Diploma.ToString();
+                tbDiplomaYear.Text = jobSeeker.DiplomaYear.ToString();
+            }
+            else
+            {
+                tbDiplomaName.Text = "Aucun";
+                tbDiplomaYear.Text = "Non valide";
+            }
+
+            lEmployabilityRate.Text = 
+                jobSeeker.formation.rateEmployementPercent.ToString()
+                + " %";
+        }
+
+        private void bClose_Click(object sender, EventArgs e)
         {
             Close();
         }

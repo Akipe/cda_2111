@@ -37,13 +37,13 @@
             this.numRegisterYear = new System.Windows.Forms.NumericUpDown();
             this.cbFormationLevel = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.cbDiplomaName = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.numDiplomaYear = new System.Windows.Forms.NumericUpDown();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.bRegister = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cbDiplomaName = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.numRegisterYear)).BeginInit();
@@ -113,8 +113,9 @@
             // 
             // cbFormationLevel
             // 
+            this.cbFormationLevel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbFormationLevel.FormattingEnabled = true;
-            this.cbFormationLevel.Location = new System.Drawing.Point(157, 22);
+            this.cbFormationLevel.Location = new System.Drawing.Point(157, 17);
             this.cbFormationLevel.Name = "cbFormationLevel";
             this.cbFormationLevel.Size = new System.Drawing.Size(149, 23);
             this.cbFormationLevel.TabIndex = 8;
@@ -127,14 +128,6 @@
             this.label5.Size = new System.Drawing.Size(44, 15);
             this.label5.TabIndex = 9;
             this.label5.Text = "Niveau";
-            // 
-            // cbDiplomaName
-            // 
-            this.cbDiplomaName.FormattingEnabled = true;
-            this.cbDiplomaName.Location = new System.Drawing.Point(157, 22);
-            this.cbDiplomaName.Name = "cbDiplomaName";
-            this.cbDiplomaName.Size = new System.Drawing.Size(149, 23);
-            this.cbDiplomaName.TabIndex = 10;
             // 
             // label7
             // 
@@ -177,14 +170,14 @@
             this.bRegister.Name = "bRegister";
             this.bRegister.Size = new System.Drawing.Size(75, 23);
             this.bRegister.TabIndex = 16;
-            this.bRegister.Text = "Enregistrer";
+            this.bRegister.Text = "Valider";
             this.bRegister.UseVisualStyleBackColor = true;
             this.bRegister.Click += new System.EventHandler(this.bRegister_Click);
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.cbDiplomaName);
+            this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.numDiplomaYear);
             this.groupBox1.Location = new System.Drawing.Point(10, 238);
@@ -193,6 +186,14 @@
             this.groupBox1.TabIndex = 17;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Diplôme le plus récent";
+            // 
+            // cbDiplomaName
+            // 
+            this.cbDiplomaName.FormattingEnabled = true;
+            this.cbDiplomaName.Location = new System.Drawing.Point(157, 17);
+            this.cbDiplomaName.Name = "cbDiplomaName";
+            this.cbDiplomaName.Size = new System.Drawing.Size(149, 23);
+            this.cbDiplomaName.TabIndex = 10;
             // 
             // groupBox2
             // 
@@ -224,7 +225,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(348, 381);
+            this.ClientSize = new System.Drawing.Size(352, 381);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -260,7 +261,6 @@
         private NumericUpDown numRegisterYear;
         private ComboBox cbFormationLevel;
         private Label label5;
-        private ComboBox cbDiplomaName;
         private Label label7;
         private NumericUpDown numDiplomaYear;
         private Label label8;
@@ -269,5 +269,6 @@
         private GroupBox groupBox1;
         private GroupBox groupBox2;
         private GroupBox groupBox3;
+        private ComboBox cbDiplomaName;
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TrouveEmploi.UI.Core.Education;
 
 namespace TrouveEmploi.UI.Core.Persons
 {
@@ -10,29 +11,79 @@ namespace TrouveEmploi.UI.Core.Persons
     {
         public readonly int registrationYear;
         public Formation formation;
-        public string diplomaName;
-        public int diplomaYear;
+        private int? _diplomaYear;
+
+        public Guid Id
+        {
+            get; private set;
+        }
+
+        public Diploma? Diploma
+        {
+            get; private set;
+        }
+
+        public int? DiplomaYear
+        {
+            get
+            {
+                return _diplomaYear;
+            }
+            private set
+            {
+                if (
+                    value is not null &&
+                    value > int.Parse(DateTime.Now.ToString("yyyy")
+                ))
+                {
+                    throw new Exception("You can't have a diploma in the future");
+                }
+
+                _diplomaYear = value;
+            }
+        }
+
+        public JobSeeker(
+            string firstName,
+            string lastName,
+            int registrationYear,
+            Formation formation
+        ) : base(firstName, lastName)
+        {
+            this.registrationYear = registrationYear;
+            this.formation = formation;
+
+            GenerateID();
+            RemoveDiploma();
+        }
 
         public JobSeeker(
             string firstName,
             string lastName,
             int registrationYear,
             Formation formation,
-            string diplomaName,
+            Diploma diploma,
             int diplomaYear
-        ) : base(firstName, lastName) 
+        ) : this(
+            firstName,
+            lastName,
+            registrationYear,
+            formation
+        )
         {
-            this.registrationYear = registrationYear;
-            this.formation = formation;
-            this.diplomaName = diplomaName;
-            this.diplomaYear = diplomaYear;
-
-            GenerateID();
+            SetDiploma(diploma, diplomaYear);
         }
 
-        public Guid Id
+        public void SetDiploma(Diploma diploma, int year)
         {
-            get; private set;
+            Diploma = diploma;
+            DiplomaYear = year;
+        }
+
+        public void RemoveDiploma()
+        {
+            Diploma = null;
+            DiplomaYear = null;
         }
 
         private void GenerateID()
