@@ -6,22 +6,15 @@ using System.Threading.Tasks;
 
 namespace TrouveEmploi.UI.Core
 {
-    internal class Person
+    public abstract class Person
     {
-        public int FirstName
-        {
-            get => default;
-            set
-            {
-            }
-        }
+        public readonly string firstName;
+        public readonly string lastName;
 
-        public int LastName
+        public Person(string firstName, string lastName)
         {
-            get => default;
-            set
-            {
-            }
+            this.firstName = firstName;
+            this.lastName = lastName;
         }
     }
 }

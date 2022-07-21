@@ -6,22 +6,19 @@ using System.Threading.Tasks;
 
 namespace TrouveEmploi.UI.Core
 {
-    internal class Formation
+    public class Formation
     {
-        public int RateEmployement
+        public readonly string name;
+
+        public Formation(string name, int rateEmployementPercent)
         {
-            get => default;
-            set
-            {
-            }
+            this.name = name;
+            RateEmployement = (double)rateEmployementPercent / 100d;
         }
 
-        public int Name
+        public double RateEmployement
         {
-            get => default;
-            set
-            {
-            }
+            get; set;
         }
     }
 }
