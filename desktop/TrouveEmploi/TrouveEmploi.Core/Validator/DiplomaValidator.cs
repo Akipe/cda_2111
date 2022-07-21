@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TrouveEmploi.Core.Persons;
 
-namespace TrouveEmploi.UI.Core.Validator
+namespace TrouveEmploi.Core.Validator
 {
     public static class DiplomaValidator
     {
@@ -12,7 +13,7 @@ namespace TrouveEmploi.UI.Core.Validator
         {
             return
                 CommonsValidator.IsYearNotInFuture(year) &&
-                CommonsValidator.IsYearNotTooOld(year, 60)
+                CommonsValidator.IsYearNotTooOld(year, JobSeeker.MAX_YEAR_FROM_NOW)
             ;
         }
 

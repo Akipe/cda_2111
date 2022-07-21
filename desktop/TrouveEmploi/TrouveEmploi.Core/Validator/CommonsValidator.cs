@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace TrouveEmploi.UI.Core.Validator
+namespace TrouveEmploi.Core.Validator
 {
     public static class CommonsValidator
     {

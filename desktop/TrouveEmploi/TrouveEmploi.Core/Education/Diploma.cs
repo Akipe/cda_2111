@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TrouveEmploi.UI.Core.Education
+namespace TrouveEmploi.Core.Education
 {
     public class Diploma
     {

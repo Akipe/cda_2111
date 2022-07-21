@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TrouveEmploi.UI.Core.Education;
+using TrouveEmploi.Core.Education;
 
-namespace TrouveEmploi.UI.Core.Persons
+namespace TrouveEmploi.Core.Persons
 {
     public class JobSeeker : Person
     {
+        public const int MAX_YEAR_FROM_NOW = 60;
+
         public readonly int registrationYear;
         public Formation formation;
         private int? _diplomaYear;

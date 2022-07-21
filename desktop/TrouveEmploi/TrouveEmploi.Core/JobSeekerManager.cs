@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TrouveEmploi.UI.Core.Persons;
+using TrouveEmploi.Core.Persons;
 
-namespace TrouveEmploi.UI.Core
+namespace TrouveEmploi.Core.Core
 {
     public static class JobSeekerManager
     {

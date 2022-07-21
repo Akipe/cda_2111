@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using TrouveEmploi.UI.Core.Persons;
+using TrouveEmploi.Core.Persons;
 
 namespace TrouveEmploi.UI
 {

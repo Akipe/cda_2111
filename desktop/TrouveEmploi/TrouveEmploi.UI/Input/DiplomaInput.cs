@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TrouveEmploi.UI.Core.Education;
-using TrouveEmploi.UI.Core.Persons;
-using TrouveEmploi.UI.Core.Validator;
+using TrouveEmploi.Core.Education;
+using TrouveEmploi.Core.Persons;
+using TrouveEmploi.Core.Validator;
 
 namespace TrouveEmploi.UI.Input
 {
@@ -79,7 +79,7 @@ namespace TrouveEmploi.UI.Input
                 DateTime.Now.ToString("yyyy")
             );
 
-            _year.Minimum = currentYear - 66;
+            _year.Minimum = currentYear - JobSeeker.MAX_YEAR_FROM_NOW;
             _year.Maximum = currentYear;
 
             _year.Value = currentYear;
