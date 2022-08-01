@@ -37,12 +37,13 @@
             // 
             // btn
             // 
+            this.btn.BackColor = System.Drawing.SystemColors.Control;
             this.btn.Location = new System.Drawing.Point(12, 12);
             this.btn.Name = "btn";
             this.btn.Size = new System.Drawing.Size(75, 23);
             this.btn.TabIndex = 0;
             this.btn.Text = "button1";
-            this.btn.UseVisualStyleBackColor = true;
+            this.btn.UseVisualStyleBackColor = false;
             this.btn.Click += new System.EventHandler(this.button1_Click);
             // 
             // lblDate

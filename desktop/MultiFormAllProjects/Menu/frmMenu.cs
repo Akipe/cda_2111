@@ -27,7 +27,7 @@ namespace Menu
 
             tsslDateNow.Text = DateTime.Now.ToString("MM/dd/yyyy");
 
-            miSumMaker.Tag = typeof(AppBuilder<>).MakeGenericType(new SimpleAdditionForm().GetType());
+            miSumMaker.Tag = new AppBuilder<SimpleAdditionForm>();
         }
 
         #endregion Constructor
@@ -127,7 +127,7 @@ namespace Menu
 */
             if (sender is ToolStripItem item)
             {
-                var typeBuilderApp = (Type)item.Tag;
+                var typeBuilderApp = (I)item.Tag;
 
 
                 //string test = item.Tag.ToString();

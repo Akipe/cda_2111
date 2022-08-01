@@ -9,7 +9,7 @@ namespace HttpServerExample
 {
     public class WebServer
     {
-        Boolean running; // Gére si on arréte le serveur
+        public Boolean Running { get; set; } // Gére si on arréte le serveur
         HttpListener server;
 
         public event EventHandler OnStart;
@@ -23,23 +23,30 @@ namespace HttpServerExample
             using (server = new HttpListener())
             {
 
-                if (!running)
+                if (!Running)
                 {
                     // On initialise notre serveur
                     server.Prefixes.Add("http://localhost:8000/");
                     server.Start();
-                    running = true;
+                    Running = true;
 
                     // Ici on attent des requetes t'utilisateurs
-                    while (running)
+                    while (Running)
                     {
-                        var context = await server.GetContextAsync();
+                        try
+                        {
+                            var context = await server.GetContextAsync();
 
-                        // On créer notre processus
-                        Thread t = new Thread(OnRequest);
+                            // On créer notre processus
+                            Thread t = new Thread(OnRequest);
 
-                        // On envoie le contexte au processus
-                        t.Start(context);
+                            // On envoie le contexte au processus
+                            t.Start(context);
+                        }
+                        catch(HttpListenerException)
+                        {
+
+                        }
                     }
                 }
             }
@@ -48,11 +55,14 @@ namespace HttpServerExample
         // Pour stoper notre serveur
         public void Stop()
         {
-            running = false;
+            Running = false;
+            server.Abort();
+            server.Close();
+            //server.Stop();
         }
 
         // Methode executé dans un processus pour chacune des requetes
-        public void OnRequest(object request)
+        public void OnRequest(object? request)
         {
             if (request is HttpListenerContext ctx)
             {

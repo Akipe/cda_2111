@@ -28,33 +28,47 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
+            this.bStart = new System.Windows.Forms.Button();
+            this.tbLog = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // button1
+            // bStart
             // 
-            this.button1.Location = new System.Drawing.Point(12, 12);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Démarrer";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.bStart.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.bStart.Location = new System.Drawing.Point(25, 12);
+            this.bStart.Name = "bStart";
+            this.bStart.Size = new System.Drawing.Size(75, 23);
+            this.bStart.TabIndex = 0;
+            this.bStart.Text = "Démarrer";
+            this.bStart.UseVisualStyleBackColor = false;
+            this.bStart.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // tbLog
+            // 
+            this.tbLog.Location = new System.Drawing.Point(132, 12);
+            this.tbLog.Multiline = true;
+            this.tbLog.Name = "tbLog";
+            this.tbLog.Size = new System.Drawing.Size(459, 291);
+            this.tbLog.TabIndex = 1;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(603, 315);
+            this.Controls.Add(this.tbLog);
+            this.Controls.Add(this.bStart);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private Button button1;
+        private Button bStart;
+        private TextBox tbLog;
     }
 }

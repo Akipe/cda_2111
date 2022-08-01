@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Menu
 {
-    internal class AppBuilder<T> where T:Form, new()
+    public class AppBuilder<T> where T:Form, new()
     {
         private int Index { get; set; }
         private Form MdiParent { get; set; }

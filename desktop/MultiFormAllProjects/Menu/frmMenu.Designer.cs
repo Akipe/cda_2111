@@ -60,7 +60,6 @@
             this.horizontalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.verticalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
-            this.saisieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ssStatusInfo.SuspendLayout();
             this.tsMediOption2.SuspendLayout();
             this.msMdiOptions.SuspendLayout();
@@ -137,6 +136,7 @@
             this.tsmiStage3,
             this.tsmiStageWindows});
             this.msMdiOptions.Location = new System.Drawing.Point(0, 0);
+            this.msMdiOptions.MdiWindowListItem = this.tsmiStageWindows;
             this.msMdiOptions.Name = "msMdiOptions";
             this.msMdiOptions.Size = new System.Drawing.Size(800, 24);
             this.msMdiOptions.TabIndex = 4;
@@ -184,19 +184,19 @@
             // miSumMaker
             // 
             this.miSumMaker.Name = "miSumMaker";
-            this.miSumMaker.Size = new System.Drawing.Size(180, 22);
+            this.miSumMaker.Size = new System.Drawing.Size(151, 22);
             this.miSumMaker.Text = "L\'additionneur";
             this.miSumMaker.Click += new System.EventHandler(this.StartChildrenForm_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(148, 6);
             // 
             // synthèseToolStripMenuItem
             // 
             this.synthèseToolStripMenuItem.Name = "synthèseToolStripMenuItem";
-            this.synthèseToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.synthèseToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.synthèseToolStripMenuItem.Text = "Synthèse";
             // 
             // tsmiStage2
@@ -274,8 +274,7 @@
             this.cascadeToolStripMenuItem,
             this.horizontalToolStripMenuItem,
             this.verticalToolStripMenuItem,
-            this.toolStripSeparator6,
-            this.saisieToolStripMenuItem});
+            this.toolStripSeparator6});
             this.tsmiStageWindows.Name = "tsmiStageWindows";
             this.tsmiStageWindows.Size = new System.Drawing.Size(63, 20);
             this.tsmiStageWindows.Text = "Fenêtres";
@@ -283,31 +282,25 @@
             // cascadeToolStripMenuItem
             // 
             this.cascadeToolStripMenuItem.Name = "cascadeToolStripMenuItem";
-            this.cascadeToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
+            this.cascadeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.cascadeToolStripMenuItem.Text = "Cascade";
             // 
             // horizontalToolStripMenuItem
             // 
             this.horizontalToolStripMenuItem.Name = "horizontalToolStripMenuItem";
-            this.horizontalToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
+            this.horizontalToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.horizontalToolStripMenuItem.Text = "Horizontal";
             // 
             // verticalToolStripMenuItem
             // 
             this.verticalToolStripMenuItem.Name = "verticalToolStripMenuItem";
-            this.verticalToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
+            this.verticalToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.verticalToolStripMenuItem.Text = "Vertical";
             // 
             // toolStripSeparator6
             // 
             this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(126, 6);
-            // 
-            // saisieToolStripMenuItem
-            // 
-            this.saisieToolStripMenuItem.Name = "saisieToolStripMenuItem";
-            this.saisieToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
-            this.saisieToolStripMenuItem.Text = "1 Saisie";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(177, 6);
             // 
             // frmMenu
             // 
@@ -363,7 +356,6 @@
         private ToolStripMenuItem horizontalToolStripMenuItem;
         private ToolStripMenuItem verticalToolStripMenuItem;
         private ToolStripSeparator toolStripSeparator6;
-        private ToolStripMenuItem saisieToolStripMenuItem;
         private ToolStripMenuItem lesControlesDeSaisieToolStripMenuItem;
         private ToolStripSeparator toolStripSeparator7;
         private ToolStripMenuItem synthèseToolStripMenuItem1;
