@@ -43,7 +43,7 @@ namespace ToutEmbalUI
                     "C",
                     10000,
                     120000,
-                    10
+                    200
                 )
             );
 

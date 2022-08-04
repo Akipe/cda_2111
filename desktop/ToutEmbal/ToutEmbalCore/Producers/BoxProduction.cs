@@ -155,7 +155,7 @@ namespace ToutEmbalCore.Producers
         public double GetLastHourRateDefect()
         {
             int countDefect = 0;
-            TimeSpan oneHour = new TimeSpan(1, 0, 0);
+            TimeSpan oneHour = TimeSpan.FromHours(1);
 
             foreach (IProducerDefect defect in Defects)
             {

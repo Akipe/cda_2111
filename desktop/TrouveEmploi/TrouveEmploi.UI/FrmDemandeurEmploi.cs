@@ -19,9 +19,15 @@ namespace TrouveEmploi.UI
         private PeopleInput peopleI;
         private DiplomaInput diplomaI;
 
+        public readonly Label yearRegisterInfo;
+        public readonly Label diplomayearInfo;
+
         public FrmDemandeurEmploi()
         {
             InitializeComponent();
+
+            this.yearRegisterInfo = lYearRegisterInfo;
+            this.diplomayearInfo = lDiplomaYearInfo;
         }
 
         private void FrmDemandeurEmploi_Load(object sender, EventArgs e)
@@ -107,5 +113,7 @@ namespace TrouveEmploi.UI
             cbDiplomaName.Text = String.Empty;
             numDiplomaYear.Value = int.Parse(DateTime.Now.ToString("yyyy"));
         }
+
+        
     }
 }

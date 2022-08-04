@@ -74,15 +74,60 @@ namespace TrouveEmploi.UI.Input
 
         private void InitYear()
         {
-
             int currentYear = int.Parse(
                 DateTime.Now.ToString("yyyy")
             );
 
-            _year.Minimum = currentYear - JobSeeker.MAX_YEAR_FROM_NOW;
-            _year.Maximum = currentYear;
+            _year.Minimum = decimal.MinValue;
+            _year.Maximum = decimal.MaxValue;
+            /*_year.Minimum = currentYear - JobSeeker.MAX_YEAR_FROM_NOW;
+            _year.Maximum = currentYear;*/
 
             _year.Value = currentYear;
+
+            _year.ValueChanged += new EventHandler(numControl_ValueChanged);
+        }
+
+        private void numControl_ValueChanged(object? sender, EventArgs e)
+        {
+            if (sender is NumericUpDown numControl)
+            {
+                if (numControl.ParentForm is FrmDemandeurEmploi form)
+                {
+                    int currentYear = int.Parse(
+                        DateTime.Now.ToString("yyyy")
+                    );
+
+                    Size iconSize = SystemInformation.SmallIconSize;
+                    Bitmap bitmap = new Bitmap(iconSize.Width, iconSize.Height);
+
+                    using (Graphics g = Graphics.FromImage(bitmap))
+                    {
+                        g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                        g.DrawImage(SystemIcons.Exclamation.ToBitmap(), new Rectangle(Point.Empty, iconSize));
+                    }
+
+                    Icon smallerErrorIcon = Icon.FromHandle(bitmap.GetHicon());
+
+                    //System.Drawing.Icon myIcon = new Icon(SystemIcons.Exclamation, 4, 4);
+
+                    if (numControl.Value > currentYear)
+                    {
+                        numControl.Value = currentYear;
+                        form.diplomayearInfo.Image = smallerErrorIcon.ToBitmap();
+                    }
+                    else if (numControl.Value < currentYear - JobSeeker.MAX_YEAR_FROM_NOW)
+                    {
+                        numControl.Value = currentYear - JobSeeker.MAX_YEAR_FROM_NOW;
+                        form.diplomayearInfo.Image = smallerErrorIcon.ToBitmap();
+
+                    }
+                    else
+                    {
+                        form.diplomayearInfo.Image = null;
+                    }
+                }
+            }
         }
     }
 }

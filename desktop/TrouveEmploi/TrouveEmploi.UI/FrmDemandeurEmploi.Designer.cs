@@ -46,8 +46,10 @@
             this.cbHasDiploma = new System.Windows.Forms.CheckBox();
             this.cbDiplomaName = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.lYearRegisterInfo = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.bReset = new System.Windows.Forms.Button();
+            this.lDiplomaYearInfo = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numRegisterYear)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numDiplomaYear)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -181,6 +183,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.lDiplomaYearInfo);
             this.groupBox1.Controls.Add(this.cbHasDiploma);
             this.groupBox1.Controls.Add(this.cbDiplomaName);
             this.groupBox1.Controls.Add(this.label7);
@@ -188,7 +191,7 @@
             this.groupBox1.Controls.Add(this.numDiplomaYear);
             this.groupBox1.Location = new System.Drawing.Point(10, 238);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(329, 91);
+            this.groupBox1.Size = new System.Drawing.Size(350, 91);
             this.groupBox1.TabIndex = 17;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Diplôme le plus récent";
@@ -214,6 +217,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.lYearRegisterInfo);
             this.groupBox2.Controls.Add(this.tbLastName);
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.label3);
@@ -222,10 +226,18 @@
             this.groupBox2.Controls.Add(this.numRegisterYear);
             this.groupBox2.Location = new System.Drawing.Point(12, 46);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(327, 117);
+            this.groupBox2.Size = new System.Drawing.Size(348, 117);
             this.groupBox2.TabIndex = 15;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Individus";
+            // 
+            // lYearRegisterInfo
+            // 
+            this.lYearRegisterInfo.Location = new System.Drawing.Point(310, 78);
+            this.lYearRegisterInfo.Name = "lYearRegisterInfo";
+            this.lYearRegisterInfo.Size = new System.Drawing.Size(30, 25);
+            this.lYearRegisterInfo.TabIndex = 7;
+            this.lYearRegisterInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // groupBox3
             // 
@@ -233,7 +245,7 @@
             this.groupBox3.Controls.Add(this.label5);
             this.groupBox3.Location = new System.Drawing.Point(10, 171);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(329, 61);
+            this.groupBox3.Size = new System.Drawing.Size(350, 61);
             this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Formation";
@@ -248,11 +260,19 @@
             this.bReset.UseVisualStyleBackColor = true;
             this.bReset.Click += new System.EventHandler(this.bReset_Click);
             // 
+            // lDiplomaYearInfo
+            // 
+            this.lDiplomaYearInfo.Location = new System.Drawing.Point(312, 56);
+            this.lDiplomaYearInfo.Name = "lDiplomaYearInfo";
+            this.lDiplomaYearInfo.Size = new System.Drawing.Size(30, 25);
+            this.lDiplomaYearInfo.TabIndex = 8;
+            this.lDiplomaYearInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // FrmDemandeurEmploi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(352, 402);
+            this.ClientSize = new System.Drawing.Size(364, 402);
             this.Controls.Add(this.bReset);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -300,5 +320,7 @@
         private ComboBox cbDiplomaName;
         private CheckBox cbHasDiploma;
         private Button bReset;
+        private Label lYearRegisterInfo;
+        private Label lDiplomaYearInfo;
     }
 }

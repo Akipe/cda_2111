@@ -6,9 +6,6 @@
       <HashCode>EAAABEBARiBAAAEAAJkACSSAKAFQAAQAIAACBAAAJgA=</HashCode>
       <FileName>Producers\BoxProduction.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="State" />
-    </ShowAsAssociation>
     <ShowAsCollectionAssociation>
       <Property Name="Defects" />
     </ShowAsCollectionAssociation>
@@ -17,12 +14,13 @@
   <Class Name="ToutEmbalCore.Managers.ProducerManager">
     <Position X="6.75" Y="1.25" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAQCAAAAAEIAAAAQAAAAAAAAAAIAAAQAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAwCAAAAAEIAAAAQAAAAAAAAAAIAAAQAAAAAA=</HashCode>
       <FileName>Managers\ProducerManager.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Property Name="Unit" />
     </ShowAsAssociation>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="ToutEmbalCore.Producers.ProduceDefect">
     <Position X="4.75" Y="4.75" Width="1.75" />
@@ -46,12 +44,5 @@
       <FileName>IProducerDefect.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Enum Name="ToutEmbalCore.Producers.ProducerState">
-    <Position X="4.25" Y="2" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAADAAAAAgAABAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Producers\ProducerState.cs</FileName>
-    </TypeIdentifier>
-  </Enum>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

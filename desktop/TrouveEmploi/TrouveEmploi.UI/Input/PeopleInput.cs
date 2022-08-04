@@ -87,10 +87,15 @@ namespace TrouveEmploi.UI.Input
                 DateTime.Now.ToString("yyyy")
             );
 
-            _registerYear.Minimum = currentYear - JobSeeker.MAX_YEAR_FROM_NOW;
-            _registerYear.Maximum = currentYear;
+            _registerYear.Minimum = decimal.MinValue;
+            _registerYear.Maximum = decimal.MaxValue;
+            /*_registerYear.Minimum = currentYear - JobSeeker.MAX_YEAR_FROM_NOW;
+            _registerYear.Maximum = currentYear;*/
 
             _registerYear.Value = currentYear;
+
+
+            _registerYear.ValueChanged += new EventHandler(numControl_ValueChanged);
 
         }
 
@@ -102,6 +107,49 @@ namespace TrouveEmploi.UI.Input
             }
 
             _formations.SelectedIndex = 0;
+        }
+
+
+        private void numControl_ValueChanged(object? sender, EventArgs e)
+        {
+            if (sender is NumericUpDown numControl)
+            {
+                if (numControl.ParentForm is FrmDemandeurEmploi form)
+                {
+                    int currentYear = int.Parse(
+                        DateTime.Now.ToString("yyyy")
+                    );
+
+                    Size iconSize = SystemInformation.SmallIconSize;
+                    Bitmap bitmap = new Bitmap(iconSize.Width, iconSize.Height);
+
+                    using (Graphics g = Graphics.FromImage(bitmap))
+                    {
+                        g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                        g.DrawImage(SystemIcons.Exclamation.ToBitmap(), new Rectangle(Point.Empty, iconSize));
+                    }
+
+                    Icon smallerErrorIcon = Icon.FromHandle(bitmap.GetHicon());
+
+                    //System.Drawing.Icon myIcon = new Icon(SystemIcons.Exclamation, 4, 4);
+
+                    if (numControl.Value > currentYear)
+                    {
+                        numControl.Value = currentYear;
+                        form.yearRegisterInfo.Image = smallerErrorIcon.ToBitmap();
+                    }
+                    else if (numControl.Value < currentYear - JobSeeker.MAX_YEAR_FROM_NOW)
+                    {
+                        numControl.Value = currentYear - JobSeeker.MAX_YEAR_FROM_NOW;
+                        form.yearRegisterInfo.Image = smallerErrorIcon.ToBitmap();
+                    }
+                    else
+                    {
+                        form.yearRegisterInfo.Image = null;
+                    }
+                }
+
+            }
         }
     }
 }
