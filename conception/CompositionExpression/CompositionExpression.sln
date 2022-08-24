@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32526.322
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompositionExpressionCore", "CompositionExpressionCore\CompositionExpressionCore.csproj", "{AA2C21EA-45A3-4BD5-80C1-C3D81934DB9F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompositionExpressionDemo", "CompositionExpressionDemo\CompositionExpressionDemo.csproj", "{4C717740-B12F-480E-943F-2E7A7E849209}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AA2C21EA-45A3-4BD5-80C1-C3D81934DB9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA2C21EA-45A3-4BD5-80C1-C3D81934DB9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA2C21EA-45A3-4BD5-80C1-C3D81934DB9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA2C21EA-45A3-4BD5-80C1-C3D81934DB9F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C717740-B12F-480E-943F-2E7A7E849209}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C717740-B12F-480E-943F-2E7A7E849209}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C717740-B12F-480E-943F-2E7A7E849209}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C717740-B12F-480E-943F-2E7A7E849209}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {583D2AED-5EED-4B05-A702-FD3F869F5AB6}
+	EndGlobalSection
+EndGlobal
