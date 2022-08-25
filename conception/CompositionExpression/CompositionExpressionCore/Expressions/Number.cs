@@ -25,6 +25,16 @@ namespace CompositionExpressionCore.Expressions
             return ToString();
         }
 
+        public override string Format2()
+        {
+            return ToString();
+        }
+
+        public override string Operation()
+        {
+            return ToString();
+        }
+
         public override string ToString()
         {
             return _value.ToString();

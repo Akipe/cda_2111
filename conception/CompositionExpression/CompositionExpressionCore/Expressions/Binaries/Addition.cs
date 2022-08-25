@@ -34,6 +34,22 @@ namespace CompositionExpressionCore.Expressions.Binaries
             return format.ToString();
         }
 
+        public override string Format2()
+        {
+            return _op1.Operation() + "+" + _op2.Operation() + "=" + Evaluate().ToString();
+        }
+
+        public override string Operation()
+        {
+            StringBuilder format = new StringBuilder();
+
+            format.Append(_op1.Operation());
+            format.Append('+');
+            format.Append(_op2.Operation());
+
+            return format.ToString();
+        }
+
         public override string ToString()
         {
             return Evaluate().ToString();
