@@ -30,6 +30,11 @@ namespace CompositionExpressionCore.Expressions
             return ToString();
         }
 
+        public override string Format3()
+        {
+            return ToString();
+        }
+
         public override string Operation()
         {
             return ToString();
