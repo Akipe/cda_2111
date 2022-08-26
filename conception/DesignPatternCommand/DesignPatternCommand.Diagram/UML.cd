@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Comment CommentText="Client est responsable de créer une CommandeConcrete et de définir le recepteur">
+    <Position X="0.573" Y="0.719" Height="0.865" Width="1.679" />
+  </Comment>
+  <Comment CommentText="L'Invocateur contient les commandes. A un moment, il lance l'execution de l'ensemble des commandes.">
+    <Position X="3.26" Y="0.74" Height="0.854" Width="2.21" />
+  </Comment>
+  <Comment CommentText="Interface que les commandes doivent implémenter. Elle permet à l'invocateur de pouvoir réaliser ces taches l'ensemble.">
+    <Position X="7.25" Y="0.75" Height="0.667" Width="2.596" />
+  </Comment>
+  <Comment CommentText="Le recepteur sait comment réaliser l'action. N'importe quelle classe peut être le Recepteur (example : Lampe, PorteGarage)">
+    <Position X="0.5" Y="6.281" Height="0.917" Width="2.388" />
+  </Comment>
+  <Class Name="DesignPatternCommand.Diagram.Client">
+    <Position X="2.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAA=</HashCode>
+      <FileName>Client.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="CommandeConcrete" />
+      <Property Name="Recepteur" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DesignPatternCommand.Diagram.CommandeConcrete">
+    <Position X="4.75" Y="4.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAABAAAAAAAAAAAAAAEEAAAAAAAAAAA=</HashCode>
+      <FileName>CommandeConcrete.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Recepteur" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DesignPatternCommand.Diagram.Invocateur">
+    <Position X="3.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Invocateur.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="ICommande" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="DesignPatternCommand.Diagram.Recepteur">
+    <Position X="0.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Recepteur.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="DesignPatternCommand.Diagram.ICommande">
+    <Position X="7.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAABAAAAAAAAAAAAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>ICommande.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

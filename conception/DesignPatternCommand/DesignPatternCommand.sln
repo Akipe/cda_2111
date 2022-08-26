@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32526.322
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DesignPatternCommand.TelecommandeSimple", "DesignPatternCommand.TelecommandeSimple\DesignPatternCommand.TelecommandeSimple.csproj", "{879658CF-E794-4132-96F0-F9212170B487}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DesignPatternCommand.Console", "DesignPatternCommand.Console\DesignPatternCommand.Console.csproj", "{5F791848-C49B-429E-BDFD-0B505467D367}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DesignPatternCommand.Diagram", "DesignPatternCommand.Diagram\DesignPatternCommand.Diagram.csproj", "{CC4336A0-786E-45F4-BB27-0B8A53AA5F59}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesignPatternCommand.TelecommandeComplexe", "DesignPatternCommand.TelecommandeComplexe\DesignPatternCommand.TelecommandeComplexe.csproj", "{648E9703-6ADE-4458-8640-CE983529C918}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesignPatternCommand.ConsoleComplexe", "DesignPatternCommand.ConsoleComplexe\DesignPatternCommand.ConsoleComplexe.csproj", "{776D4A28-7211-405F-B4DD-9CF553FD07EB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{879658CF-E794-4132-96F0-F9212170B487}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{879658CF-E794-4132-96F0-F9212170B487}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{879658CF-E794-4132-96F0-F9212170B487}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{879658CF-E794-4132-96F0-F9212170B487}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F791848-C49B-429E-BDFD-0B505467D367}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F791848-C49B-429E-BDFD-0B505467D367}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F791848-C49B-429E-BDFD-0B505467D367}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F791848-C49B-429E-BDFD-0B505467D367}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC4336A0-786E-45F4-BB27-0B8A53AA5F59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC4336A0-786E-45F4-BB27-0B8A53AA5F59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC4336A0-786E-45F4-BB27-0B8A53AA5F59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC4336A0-786E-45F4-BB27-0B8A53AA5F59}.Release|Any CPU.Build.0 = Release|Any CPU
+		{648E9703-6ADE-4458-8640-CE983529C918}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{648E9703-6ADE-4458-8640-CE983529C918}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{648E9703-6ADE-4458-8640-CE983529C918}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{648E9703-6ADE-4458-8640-CE983529C918}.Release|Any CPU.Build.0 = Release|Any CPU
+		{776D4A28-7211-405F-B4DD-9CF553FD07EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{776D4A28-7211-405F-B4DD-9CF553FD07EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{776D4A28-7211-405F-B4DD-9CF553FD07EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{776D4A28-7211-405F-B4DD-9CF553FD07EB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {77334012-EC19-4E46-9377-874D40DBFE2B}
+	EndGlobalSection
+EndGlobal
