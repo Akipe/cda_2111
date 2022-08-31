@@ -16,26 +16,3 @@ Console.WriteLine(exp2.Format() + '\n');
 Console.WriteLine(exp3.Format() + '\n');
 Console.WriteLine(exp4.Format() + '\n');
 Console.WriteLine(exp5.Format() + '\n');
-
-Console.WriteLine(new Number(1).Format() + '\n');
-Console.WriteLine(exp1.Format2() + '\n');
-Console.WriteLine(exp2.Format2() + '\n');
-Console.WriteLine(exp3.Format2() + '\n');
-Console.WriteLine(exp4.Format2() + '\n');
-Console.WriteLine(exp5.Format2() + '\n');
-
-/*Expression cyrilExp1 = new Substraction(new Number(2), new Number(3));
-Console.WriteLine(cyrilExp1);
-
-Expression cyrilExp2 = new Substraction(new Number(89), cyrilExp1);
-Console.WriteLine(cyrilExp2.Format2());
-
-Expression toto = new Addition(new Addition(new Number(2), new Number(5)), new Number(3));
-Console.WriteLine(toto.Format3());*/
-
-Console.WriteLine(new Number(1).Format3() + '\n');
-Console.WriteLine(exp1.Format3() + '\n');
-Console.WriteLine(exp2.Format3() + '\n');
-Console.WriteLine(exp3.Format3() + '\n');
-Console.WriteLine(exp4.Format3() + '\n');
-Console.WriteLine(exp5.Format3() + '\n');
