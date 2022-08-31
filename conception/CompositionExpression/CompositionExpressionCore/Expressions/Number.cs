@@ -20,22 +20,12 @@ namespace CompositionExpressionCore.Expressions
             return _value;
         }
 
-        public override string Format(bool showResult = true)
+        public override string Format()
         {
             return ToString();
         }
 
-        public override string Format2()
-        {
-            return ToString();
-        }
-
-        public override string Format3()
-        {
-            return ToString();
-        }
-
-        public override string Operation()
+        public override string RepresentationOperation()
         {
             return ToString();
         }

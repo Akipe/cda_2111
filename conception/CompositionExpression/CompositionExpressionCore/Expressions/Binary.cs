@@ -16,5 +16,10 @@ namespace CompositionExpressionCore.Expressions
             _op1 = op1;
             _op2 = op2;
         }
+
+        public override string Format()
+        {
+            return RepresentationOperation() + "=" + Evaluate().ToString();
+        }
     }
 }
