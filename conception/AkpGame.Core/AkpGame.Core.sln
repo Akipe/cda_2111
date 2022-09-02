@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32526.322
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AkpGame.Core", "AkpGame.Core\AkpGame.Core.csproj", "{CFA1965E-3B40-4E80-B183-7ED5B6008A0A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AkpGame.UI", "AkpGame.UI\AkpGame.UI.csproj", "{757C2B3E-86EB-4AA4-A650-C2F8AF4095EE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CFA1965E-3B40-4E80-B183-7ED5B6008A0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFA1965E-3B40-4E80-B183-7ED5B6008A0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFA1965E-3B40-4E80-B183-7ED5B6008A0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFA1965E-3B40-4E80-B183-7ED5B6008A0A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{757C2B3E-86EB-4AA4-A650-C2F8AF4095EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{757C2B3E-86EB-4AA4-A650-C2F8AF4095EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{757C2B3E-86EB-4AA4-A650-C2F8AF4095EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{757C2B3E-86EB-4AA4-A650-C2F8AF4095EE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {576AC95B-EB38-4DF7-9969-3D44968A0B86}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="DesignPatternMemento.UML.InterfaceIntermediaire.Originator">
+    <Position X="3.25" Y="1.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAIAAAAAAAAAAAAAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>Originator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DesignPatternMemento.UML.InterfaceIntermediaire.ConcreteMemento">
+    <Position X="0.5" Y="1.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>ConcreteMemento.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DesignPatternMemento.UML.InterfaceIntermediaire.Client">
+    <Position X="3.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAgA=</HashCode>
+      <FileName>Client.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Originator" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="history" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Interface Name="DesignPatternMemento.UML.InterfaceIntermediaire.IMemento">
+    <Position X="7" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IMemento.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

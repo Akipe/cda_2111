@@ -9,9 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DesignPatternCommand.Consol
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DesignPatternCommand.Diagram", "DesignPatternCommand.Diagram\DesignPatternCommand.Diagram.csproj", "{CC4336A0-786E-45F4-BB27-0B8A53AA5F59}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesignPatternCommand.TelecommandeComplexe", "DesignPatternCommand.TelecommandeComplexe\DesignPatternCommand.TelecommandeComplexe.csproj", "{648E9703-6ADE-4458-8640-CE983529C918}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DesignPatternCommand.TelecommandeComplexe", "DesignPatternCommand.TelecommandeComplexe\DesignPatternCommand.TelecommandeComplexe.csproj", "{648E9703-6ADE-4458-8640-CE983529C918}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesignPatternCommand.ConsoleComplexe", "DesignPatternCommand.ConsoleComplexe\DesignPatternCommand.ConsoleComplexe.csproj", "{776D4A28-7211-405F-B4DD-9CF553FD07EB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DesignPatternCommand.ConsoleComplexe", "DesignPatternCommand.ConsoleComplexe\DesignPatternCommand.ConsoleComplexe.csproj", "{776D4A28-7211-405F-B4DD-9CF553FD07EB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommandExempleConcret", "CommandExempleConcret\CommandExempleConcret.csproj", "{EF319E1D-F28A-40E2-A485-BA0EB7303A7D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{776D4A28-7211-405F-B4DD-9CF553FD07EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{776D4A28-7211-405F-B4DD-9CF553FD07EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{776D4A28-7211-405F-B4DD-9CF553FD07EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF319E1D-F28A-40E2-A485-BA0EB7303A7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF319E1D-F28A-40E2-A485-BA0EB7303A7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF319E1D-F28A-40E2-A485-BA0EB7303A7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF319E1D-F28A-40E2-A485-BA0EB7303A7D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

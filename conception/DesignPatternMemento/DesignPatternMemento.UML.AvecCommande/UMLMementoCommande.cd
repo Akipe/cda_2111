@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="DesignPatternMemento.UML.AvecCommande.Instantane">
+    <Position X="6.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAAAAAAAAAAABACAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Instantane.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DesignPatternMemento.UML.AvecCommande.Editeur">
+    <Position X="3" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAABAAAAAAAAAAgAAAAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Editeur.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DesignPatternMemento.UML.AvecCommande.Commande">
+    <Position X="1.75" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Commande.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
