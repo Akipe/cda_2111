@@ -2,6 +2,8 @@
 
 database/00_mssql-server_docker/data/*
 
+*.ldb
+
 ###########################
 # Common IntelliJ Platform excludes
 ###########################
