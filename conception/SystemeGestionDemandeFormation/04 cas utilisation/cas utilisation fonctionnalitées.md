@@ -2,7 +2,8 @@ Cas utilisation fonctionnalités - DemandeFormation
 ====
 
 - Employé
-    - Demander une formation
+    - Demander une formation?
+    - Gérer ses demande de formation.
 - Responsable de formation
-    - Inscrire un employé en formation
-    - Régler des factures de formations
+    - Gérer les demandes de formation.
+    - Mettre à jour le catalogue de formations.
