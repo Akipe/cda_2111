@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32526.322
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValidationTraining.UI", "ValidationTraining.UI\ValidationTraining.UI.csproj", "{7D681F91-C9F6-4B53-A96D-A5B052FCB6D7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValidationTraining.Validation", "ValidationTraining.Validation\ValidationTraining.Validation.csproj", "{7271C21D-4D12-4774-A32C-9E5AE36A8096}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7D681F91-C9F6-4B53-A96D-A5B052FCB6D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D681F91-C9F6-4B53-A96D-A5B052FCB6D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D681F91-C9F6-4B53-A96D-A5B052FCB6D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D681F91-C9F6-4B53-A96D-A5B052FCB6D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7271C21D-4D12-4774-A32C-9E5AE36A8096}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7271C21D-4D12-4774-A32C-9E5AE36A8096}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7271C21D-4D12-4774-A32C-9E5AE36A8096}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7271C21D-4D12-4774-A32C-9E5AE36A8096}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2218F19B-C436-4C8C-AA99-D7E979DDC064}
+	EndGlobalSection
+EndGlobal

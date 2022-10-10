@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="EcfBlancCoursCore.JobSeeker">
+    <Position X="1.25" Y="1.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAACAEAAAAAAAAAEAAAAAAAAAAAAAADBAAAAAAAQAIg=</HashCode>
+      <FileName>JobSeeker.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Level" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="EcfBlancCoursCore.ViewModel.JobSeekerViewModel">
+    <Position X="4.25" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAgAAAAAAAAAAgAAACAAAAAAAAA=</HashCode>
+      <FileName>ViewModel\JobSeekerViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="EcfBlancCoursCore.Levels">
+    <Position X="4.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAhAAAAAACAgAAAAAAAACAABAAAAAAAAAQA=</HashCode>
+      <FileName>Levels.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

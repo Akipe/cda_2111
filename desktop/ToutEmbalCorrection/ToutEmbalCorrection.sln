@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32526.322
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToutEmbalCorrection.Core", "ToutEmbalCorrectionCore\ToutEmbalCorrection.Core.csproj", "{3CDB9800-3645-4196-8C3C-4E551A287794}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToutEmbalCorrection.Test", "ToutEmbalCorrection.Test\ToutEmbalCorrection.Test.csproj", "{884BA48A-1340-4195-8AC7-A96DE65B3E8B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3CDB9800-3645-4196-8C3C-4E551A287794}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CDB9800-3645-4196-8C3C-4E551A287794}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CDB9800-3645-4196-8C3C-4E551A287794}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CDB9800-3645-4196-8C3C-4E551A287794}.Release|Any CPU.Build.0 = Release|Any CPU
+		{884BA48A-1340-4195-8AC7-A96DE65B3E8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{884BA48A-1340-4195-8AC7-A96DE65B3E8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{884BA48A-1340-4195-8AC7-A96DE65B3E8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{884BA48A-1340-4195-8AC7-A96DE65B3E8B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D8F544E2-AD7E-4A7F-A5CD-E95290E4AFC4}
+	EndGlobalSection
+EndGlobal
