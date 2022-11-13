@@ -13,10 +13,11 @@
         android:orientation="horizontal">
 
         <Button
+            android:id="@+id/decrement_number_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0"
-            android:text="@string/increment_btn" />
+            android:text="@string/decrement_btn"/>
 
         <EditText
             android:id="@+id/numberField"
@@ -30,10 +31,11 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
+            android:id="@+id/increment_number_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0"
-            android:text="@string/decrement_btn" />
+            android:text="@string/increment_btn"/>
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -43,6 +45,7 @@
         android:gravity="bottom">
 
         <Button
+            android:id="@+id/exit_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
