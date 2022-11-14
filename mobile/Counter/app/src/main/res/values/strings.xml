@@ -3,4 +3,5 @@
     <string name="increment_btn">Increment</string>
     <string name="decrement_btn">Decrement</string>
     <string name="default_number_value">0</string>
+    <string name="number_description_edit_text">Enter a number</string>
 </resources>

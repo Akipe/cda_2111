@@ -23,12 +23,14 @@
             android:id="@+id/numberField"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/default_number_value"
+            android:text=""
             android:layout_weight="1"
+            android:inputType="number"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:autofillHints="@string/number_description_edit_text" />
 
         <Button
             android:id="@+id/increment_number_btn"

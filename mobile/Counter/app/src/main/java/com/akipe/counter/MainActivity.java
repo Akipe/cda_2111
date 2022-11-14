@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
             this::manageNumber
         );
         incrementBtn.setOnClickListener(
-            this::manageNumber
+                new NumberManagerOnClickListener(this.numberBtn)
         );
         exitBtn.setOnClickListener(
             this::exit
