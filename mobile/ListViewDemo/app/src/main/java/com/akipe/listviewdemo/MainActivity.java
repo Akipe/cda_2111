@@ -15,6 +15,8 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final int ASK_EDIT_PERSON_CODE = 1;
+
     private TextView firstnameTw;
     private TextView lastnameTw;
     private ListView listPersonsLv;
@@ -67,15 +69,18 @@ public class MainActivity extends AppCompatActivity {
         definePersonIntent.putExtra("firstname", this.firstnameTw.getText().toString());
         definePersonIntent.putExtra("lastname", this.lastnameTw.getText().toString());
 
-        startActivityForResult(definePersonIntent, 1);
+        startActivityForResult(definePersonIntent, ASK_EDIT_PERSON_CODE);
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
         super.onActivityResult(requestCode, resultCode, data);
 
-        this.firstnameTw.setText(data.getStringExtra("firstname"));
-        this.lastnameTw.setText(data.getStringExtra("lastname"));
+        // ASK_EDIT_PERSON_CODE est égale à 1
+        if (requestCode == ASK_EDIT_PERSON_CODE && resultCode == RESULT_OK) {
+            this.firstnameTw.setText(data.getStringExtra("firstname"));
+            this.lastnameTw.setText(data.getStringExtra("lastname"));
+        }
     }
 }
